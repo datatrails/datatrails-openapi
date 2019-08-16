@@ -1,0 +1,226 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Cache Management API",
+    "version": "1.0",
+    "contact": {
+      "name": "Jitsuin",
+      "url": "https://www.jitsuin.com"
+    }
+  },
+  "host": "jitsuin.readthedocs.io",
+  "basePath": "/api/archivist/v1",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/archivist/v1/caches": {
+      "get": {
+        "summary": "List caches",
+        "description": "Returns a paginated list of Caches",
+        "operationId": "ListCaches",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListCachesResponse"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to list the caches.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "order_by",
+            "description": "Specify the sort order for the results. Only default supported.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "DEFAULT"
+            ],
+            "default": "DEFAULT"
+          },
+          {
+            "name": "page_size",
+            "description": "Maximum caches per page.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_token",
+            "description": "The next_page_token returned from a previous list request if any.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Caches"
+        ]
+      }
+    },
+    "/archivist/v1/{identity}": {
+      "get": {
+        "summary": "Get a Cache",
+        "description": "Returns the Cache associated with the identifyied cache resource, e.g. `caches/3`",
+        "operationId": "GetCache",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Cache"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to read the cache.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when a cache with the identity does not exist.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "identity",
+            "description": "Unique identification for the cache epoch. e.g. `caches/3`",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Caches"
+        ]
+      },
+      "delete": {
+        "summary": "Flush a cache",
+        "description": "Delete the cache identified by the supplied epoch.  This initiates the delete of a cache epoch.  A new cache epoch will automatically be created on completion",
+        "operationId": "DeleteCache",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Cache"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to delete the cache.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the cache does not exist.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "identity",
+            "description": "Unique identification for the cache epoch. e.g. `caches/3`",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Caches"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "CacheCacheStatus": {
+      "type": "string",
+      "enum": [
+        "OK",
+        "BUILDING",
+        "DELETING"
+      ],
+      "default": "OK",
+      "title": "CacheStatus"
+    },
+    "ListCachesRequestOrderBy": {
+      "type": "string",
+      "enum": [
+        "DEFAULT"
+      ],
+      "default": "DEFAULT",
+      "title": "OrderBy"
+    },
+    "v1Cache": {
+      "type": "object",
+      "example": {
+        "identity": "caches/3",
+        "size": 98712341,
+        "timestamp_created": "1937-01-01T12:00:27.87+00:00",
+        "status": "OK"
+      },
+      "properties": {
+        "identity": {
+          "type": "string",
+          "description": "Unique identification for the cache epoch, Relative Resource Name",
+          "title": "caches/{integer}",
+          "readOnly": true
+        },
+        "size": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Usage of the cache, Bytes",
+          "readOnly": true
+        },
+        "timestamp_created": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Time the current epoch of cache began, RFC3339 string",
+          "readOnly": true
+        },
+        "status": {
+          "$ref": "#/definitions/CacheCacheStatus",
+          "description": "Status of the cache",
+          "readOnly": true
+        }
+      },
+      "description": "Describes a cache epoch"
+    },
+    "v1ListCachesResponse": {
+      "type": "object",
+      "properties": {
+        "caches": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Cache"
+          },
+          "title": "There will be at most ListCachesRequest.page_size items"
+        },
+        "next_page_token": {
+          "type": "string",
+          "description": "Token to retrieve the next page of results or empty if there are none."
+        }
+      }
+    }
+  }
+}

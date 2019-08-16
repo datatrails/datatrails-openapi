@@ -1,0 +1,412 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Location API",
+    "version": "1.0",
+    "contact": {
+      "name": "Jitsuin",
+      "url": "https://www.jitsuin.com"
+    }
+  },
+  "host": "jitsuin.readthedocs.io",
+  "basePath": "/api/archivist/v1",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/archivist/v1/locations": {
+      "get": {
+        "summary": "List locations",
+        "description": "Returns a paginated list of locations",
+        "operationId": "ListLocations",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListLocationsResponse"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to read the location.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "order_by",
+            "description": "Specify the sort order for the results. By display_name and by named\nextended attribute are supported.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "DEFAULT",
+              "DISPLAY_NAME",
+              "EXTENDED_ATTRIBUTE"
+            ],
+            "default": "DEFAULT"
+          },
+          {
+            "name": "page_size",
+            "description": "Maximum locations per page.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_token",
+            "description": "The next_page_token returned from a previous list request if any.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "display_name",
+            "description": "Further fields are bound to query parameters and act to filter the result.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "extended_attributes_key",
+            "description": "The key name for an extended attribute, to match or to order by",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "extended_attributes_value",
+            "description": "Only show locations with a matching extended attribute. The key name must be identified by extended_attribute_key",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Locations"
+        ]
+      },
+      "post": {
+        "summary": "Create a location",
+        "description": "This request creates a new location. A name and a latitude and longitude must be provided. The display_name is the friendly name. The latitude and longitude must be entered in Degrees Decimal format See [Change of units and format](https://en.wikipedia.org/wiki/Geographic_coordinate_conversion#Change_of_units_and_format). The `extended_attributes` field is a flat map of `{ \"key\": \"value\" }`. The keys and values must be strings.",
+        "operationId": "CreateLocation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/archivistv1Location"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to create a location.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateLocationRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Locations"
+        ]
+      }
+    },
+    "/archivist/v1/{identity}": {
+      "get": {
+        "summary": "Get a location",
+        "description": "Returns the identified location",
+        "operationId": "GetLocation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/archivistv1Location"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to read the location.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the identified location does not exist.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "identity",
+            "description": "Unique identification for the location. Relative Resource Name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Locations"
+        ]
+      },
+      "delete": {
+        "summary": "Delete a location",
+        "description": "Delete the identified location",
+        "operationId": "DeleteLocation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to delete the location.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the identified location does not exist.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "identity",
+            "description": "Unique identification for the location. Relative Resource Name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Locations"
+        ]
+      },
+      "patch": {
+        "summary": "Update a location's details",
+        "description": "Perform a full or partial update of the identified location",
+        "operationId": "UpdateLocation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/archivistv1Location"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to update the location.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the identified location does not exist.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "identity",
+            "description": "locations/{UUID}",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "description": "The body provides the location fields to update",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/archivistv1Location"
+            }
+          }
+        ],
+        "tags": [
+          "Locations"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "ListLocationsRequestOrderBy": {
+      "type": "string",
+      "enum": [
+        "DEFAULT",
+        "DISPLAY_NAME",
+        "EXTENDED_ATTRIBUTE"
+      ],
+      "default": "DEFAULT",
+      "title": "Supported sort orders"
+    },
+    "archivistv1Location": {
+      "type": "object",
+      "example": {
+        "identity": "locations/08838336-c357-460d-902a-3aba9528dd22",
+        "display_name": "Macclesfield, Cheshire",
+        "description": "Manufacturing site, North West England, Macclesfield, Cheshire",
+        "latitude": "53.2546799",
+        "longitude": "-2.1213956,14.54",
+        "extended_attributes": {
+          "director": "John Smith",
+          "address": "Bridgewater, Somerset",
+          "Facility Type": "Manufacture",
+          "support_email": "support@macclesfield.com",
+          "support_phone": "123 456 789"
+        }
+      },
+      "properties": {
+        "identity": {
+          "type": "string",
+          "description": "Unique identification for the location, Relative Resource Name",
+          "title": "locations/{UUID}",
+          "maxLength": 4096
+        },
+        "display_name": {
+          "type": "string",
+          "description": "Customer friendly name for the location.",
+          "maxLength": 128
+        },
+        "description": {
+          "type": "string",
+          "description": "Free text description of the location",
+          "maxLength": 8096
+        },
+        "latitude": {
+          "type": "number",
+          "format": "double",
+          "description": "Latitude in decimal degrees",
+          "maximum": 90,
+          "minimum": -90
+        },
+        "longitude": {
+          "type": "number",
+          "format": "double",
+          "description": "Longitude in decimal degrees",
+          "maximum": 180,
+          "minimum": -180
+        },
+        "extended_attributes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Customer defined extended attributes. keys are max_length 1024, values\nmax_length 4096"
+        }
+      },
+      "description": "Describes a location for asset resources"
+    },
+    "protobufFieldMask": {
+      "type": "object",
+      "properties": {
+        "paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "The set of field mask paths."
+        }
+      },
+      "description": "paths: \"f.a\"\n    paths: \"f.b.d\"\n\nHere `f` represents a field in some root message, `a` and `b`\nfields in the message found in `f`, and `d` a field found in the\nmessage in `f.b`.\n\nField masks are used to specify a subset of fields that should be\nreturned by a get operation or modified by an update operation.\nField masks also have a custom JSON encoding (see below).\n\n# Field Masks in Projections\n\nWhen used in the context of a projection, a response message or\nsub-message is filtered by the API to only contain those fields as\nspecified in the mask. For example, if the mask in the previous\nexample is applied to a response message as follows:\n\n    f {\n      a : 22\n      b {\n        d : 1\n        x : 2\n      }\n      y : 13\n    }\n    z: 8\n\nThe result will not contain specific values for fields x,y and z\n(their value will be set to the default, and omitted in proto text\noutput):\n\n\n    f {\n      a : 22\n      b {\n        d : 1\n      }\n    }\n\nA repeated field is not allowed except at the last position of a\npaths string.\n\nIf a FieldMask object is not present in a get operation, the\noperation applies to all fields (as if a FieldMask of all fields\nhad been specified).\n\nNote that a field mask does not necessarily apply to the\ntop-level response message. In case of a REST get operation, the\nfield mask applies directly to the response, but in case of a REST\nlist operation, the mask instead applies to each individual message\nin the returned resource list. In case of a REST custom method,\nother definitions may be used. Where the mask applies will be\nclearly documented together with its declaration in the API.  In\nany case, the effect on the returned resource/resources is required\nbehavior for APIs.\n\n# Field Masks in Update Operations\n\nA field mask in update operations specifies which fields of the\ntargeted resource are going to be updated. The API is required\nto only change the values of the fields as specified in the mask\nand leave the others untouched. If a resource is passed in to\ndescribe the updated values, the API ignores the values of all\nfields not covered by the mask.\n\nIf a repeated field is specified for an update operation, new values will\nbe appended to the existing repeated field in the target resource. Note that\na repeated field is only allowed in the last position of a `paths` string.\n\nIf a sub-message is specified in the last position of the field mask for an\nupdate operation, then new value will be merged into the existing sub-message\nin the target resource.\n\nFor example, given the target message:\n\n    f {\n      b {\n        d: 1\n        x: 2\n      }\n      c: [1]\n    }\n\nAnd an update message:\n\n    f {\n      b {\n        d: 10\n      }\n      c: [2]\n    }\n\nthen if the field mask is:\n\n paths: [\"f.b\", \"f.c\"]\n\nthen the result will be:\n\n    f {\n      b {\n        d: 10\n        x: 2\n      }\n      c: [1, 2]\n    }\n\nAn implementation may provide options to override this default behavior for\nrepeated and message fields.\n\nIn order to reset a field's value to the default, the field must\nbe in the mask and set to the default value in the provided resource.\nHence, in order to reset all fields of a resource, provide a default\ninstance of the resource and set all fields in the mask, or do\nnot provide a mask as described below.\n\nIf a field mask is not present on update, the operation applies to\nall fields (as if a field mask of all fields has been specified).\nNote that in the presence of schema evolution, this may mean that\nfields the client does not know and has therefore not filled into\nthe request will be reset to their default. If this is unwanted\nbehavior, a specific service may require a client to always specify\na field mask, producing an error if not.\n\nAs with get operations, the location of the resource which\ndescribes the updated values in the request message depends on the\noperation kind. In any case, the effect of the field mask is\nrequired to be honored by the API.\n\n## Considerations for HTTP REST\n\nThe HTTP kind of an update operation which uses a field mask must\nbe set to PATCH instead of PUT in order to satisfy HTTP semantics\n(PUT must only be used for full updates).\n\n# JSON Encoding of Field Masks\n\nIn JSON, a field mask is encoded as a single string where paths are\nseparated by a comma. Fields name in each path are converted\nto/from lower-camel naming conventions.\n\nAs an example, consider the following message declarations:\n\n    message Profile {\n      User user = 1;\n      Photo photo = 2;\n    }\n    message User {\n      string display_name = 1;\n      string address = 2;\n    }\n\nIn proto a field mask for `Profile` may look as such:\n\n    mask {\n      paths: \"user.display_name\"\n      paths: \"photo\"\n    }\n\nIn JSON, the same mask is represented as below:\n\n    {\n      mask: \"user.displayName,photo\"\n    }\n\n# Field Masks and Oneof Fields\n\nField masks treat fields in oneofs just as regular fields. Consider the\nfollowing message:\n\n    message SampleMessage {\n      oneof test_oneof {\n        string name = 4;\n        SubMessage sub_message = 9;\n      }\n    }\n\nThe field mask can be:\n\n    mask {\n      paths: \"name\"\n    }\n\nOr:\n\n    mask {\n      paths: \"sub_message\"\n    }\n\nNote that oneof type names (\"test_oneof\" in this case) cannot be used in\npaths.\n\n## Field Mask Verification\n\nThe implementation of any API method which has a FieldMask type field in the\nrequest should verify the included field paths, and return an\n`INVALID_ARGUMENT` error if any path is duplicated or unmappable.",
+      "title": "`FieldMask` represents a set of symbolic field paths, for example:"
+    },
+    "v1CreateLocationRequest": {
+      "type": "object",
+      "example": {
+        "display_name": "Macclesfield, Cheshire",
+        "description": "Manufacturing site, North West England, Macclesfield, Cheshire",
+        "latitude": "53.2546799",
+        "longitude": "-2.1213956,14.54",
+        "extended_attributes": {
+          "director": "John Smith",
+          "address": "Bridgewater, Somerset",
+          "Facility Type": "Manufacture",
+          "support_email": "support@macclesfield.com",
+          "support_phone": "123 456 789"
+        }
+      },
+      "properties": {
+        "display_name": {
+          "type": "string",
+          "description": "Customer friendly name for the asset.",
+          "maxLength": 128
+        },
+        "description": {
+          "type": "string",
+          "description": "Free text description of the location",
+          "maxLength": 8096
+        },
+        "latitude": {
+          "type": "number",
+          "format": "double",
+          "description": "Latitude in decimal degrees format.",
+          "maximum": 90,
+          "minimum": -90
+        },
+        "longitude": {
+          "type": "number",
+          "format": "double",
+          "description": "longitude in decimal degrees format.",
+          "maximum": 180,
+          "minimum": -180
+        },
+        "extended_attributes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Customer defined extended attributes. keys are max_length 1024, values\nmax_length 4096"
+        }
+      },
+      "description": "The body of a request to create new Jitsuin Asset location.",
+      "required": [
+        "display_name",
+        "latitude",
+        "longitude"
+      ]
+    },
+    "v1ListLocationsResponse": {
+      "type": "object",
+      "properties": {
+        "locations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/archivistv1Location"
+          },
+          "title": "There will be at most ListLocationsRequest.page_size items"
+        },
+        "next_page_token": {
+          "type": "string",
+          "description": "Token to retrieve the next page of results or empty if there are none."
+        }
+      }
+    }
+  }
+}

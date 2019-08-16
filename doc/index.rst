@@ -6,21 +6,18 @@
 Archivist API documentation
 ===========================
 
-Authorization and Authentication
---------------------------------
-
-Authentication
-^^^^^^^^^^^^^^
-
-To authenticate with Archivist APIs...
-
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
+
+   introduction/index
+   auth/authentication
+   asset/index
+   attachments/index
+   locations/index
 
 Indices and tables
 ==================
 
 * :ref:`genindex`
-* :ref:`modindex`
 * :ref:`search`
