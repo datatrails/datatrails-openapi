@@ -1,5 +1,5 @@
 
-Create the bearer_token and store in a file in a secure local directory with 0600 permissions.
+Create the **bearer_token** and store in a file in a secure local directory with 0600 permissions.
 
 
 See :ref:`bearer-token`.

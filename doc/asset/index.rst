@@ -8,5 +8,6 @@ Assets API
    creation
    firmware
    maintenance
+   vulnerability
    openapi
 

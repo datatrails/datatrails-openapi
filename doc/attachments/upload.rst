@@ -27,17 +27,18 @@ The response is:
 
     {
         "identity": "attachments/08838336-c357-460d-902a-3aba9528dd22",
-        "timestamp_accepted": "Macclesfield, Cheshire",
         "hash": {
             "algorithm": "SHA256",
             "value": "xxxxxxxxxxxxxxxxxxxxxxx",
         },
-        "size": 1234567,
         "mime_type": "application/jpeg"
+        "timestamp_accepted": "2019-06-22 14:41:32+00:00"
+        "size": 1024,
     }
 
 
 .. note::
-   The **"identity"** field is used to reference the attachment to an asset during asset
-   creation or asset event. (usually a maintenance event).
+   identity
+       used to reference the attachment to an asset during asset
+       creation or asset event. (usually a maintenance event).
 

@@ -15,9 +15,4 @@ Archivist API documentation
    asset/index
    attachments/index
    locations/index
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`search`
+   system/index

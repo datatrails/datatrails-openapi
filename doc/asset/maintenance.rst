@@ -43,11 +43,13 @@ Define the maintenance event(s) and store in /path/to/jsonfile:
      ]
 
 .. note::
-    The field **attachments** is optional.
+    attachments
+        optional.
 
     See :ref:`attachments_upload`.
 
-    The field **"asset_identity"** is required in each instance.
+    asset_identity
+        **required** in each instance.
 
     More than one event can be registered in the same POST request.
 
@@ -96,7 +98,7 @@ The response is:
             "type": "Maintenance",
             "transaction_id": "0x04756",
             "block_number": 12,
-            "block_index": 5,
+            "transaction_index": 5,
             "type_attributes": {},
             "attachments": [
                 {
@@ -113,10 +115,10 @@ The response is:
 
 
 .. note::
-    The **"identity"** field is used internally by the Jitsuin system to track this event.
+    identity
+        used internally by the Jitsuin system to track this event.
 
-    The additional field **"confirmation_status"** can have 2 values:
-
+    confirmation_status
         1. "CONFIRMATION_STATUS_PENDING": asset has not yet been registered on the Ledger.
         2. "CONFIRMATION_STATUS_CONFIRMED": asset has been registered on the Ledger.
 

@@ -18,7 +18,7 @@
 # -- Project information -----------------------------------------------------
 
 import sphinx_rtd_theme
-project = 'archivist'
+project = 'Jitsuin Archivist'
 copyright = '2019, Jitsuin, Inc.'
 author = 'jitsuin.com'
 
@@ -59,6 +59,13 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 # a list of builtin themes.
 #
 html_theme = 'sphinx_rtd_theme'
+html_theme_options = {
+    'logo_only': True,
+    'collapse_navigation': True,
+}
+html_logo = '_static/Jitsuin_Logo_RGB.png'
+html_show_sourcelink = False
+html_show_sphinx = False
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,

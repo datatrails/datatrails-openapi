@@ -25,6 +25,10 @@
               "$ref": "#/definitions/v1ListAssetsResponse"
             }
           },
+          "206": {
+            "description": "The number of assets exceeds the servers limit.The number of matching results is provided by the x-total-count header, the limit is available in the content-range header. The value format is 'items 0-LIMIT/TOTAL'. Note that x-total-count is always present for 200 and 206 responses",
+            "schema": {}
+          },
           "401": {
             "description": "Returned when the user is not authenticated to the system.",
             "schema": {}
@@ -193,6 +197,10 @@
             "schema": {
               "$ref": "#/definitions/v1ListEventsResponse"
             }
+          },
+          "206": {
+            "description": "The number of events exceeds the servers limit.The number of matching results is provided by the x-total-count header, the limit is available in the content-range header. The value format is 'items 0-LIMIT/TOTAL'. Note that x-total-count is always present for 200 and 206 responses",
+            "schema": {}
           },
           "401": {
             "description": "Returned when the user is not authenticated to the system.",
@@ -611,6 +619,20 @@
       "example": [
         {
           "asset_identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
+          "type": "VulnerabilityReport",
+          "extended_attributes": {
+            "cve_id": "CVE-2014-0160"
+          },
+          "type_attributes": {},
+          "principal_declared": {
+            "issuer": "job.idp.server/1234",
+            "subject": "bob@job"
+          },
+          "description": "Heartbleed",
+          "attachments": []
+        },
+        {
+          "asset_identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
           "type": "AttributeUpdate",
           "extended_attributes": {
             "what": "did something!"
@@ -765,6 +787,31 @@
             "issuer": "job.idp.server/1234",
             "subject": "bob@job"
           },
+          "description": "Heartbleed",
+          "timestamp_declared": "2019-03-29T11:00:00+00:00",
+          "confirmation_status": "CONFIRMED",
+          "timestamp_committed": "2019-03-29T12:01:00+00:00",
+          "timestamp_accepted": "2019-03-29T12:01:00+00:00",
+          "extended_attributes": {
+            "cve_id": "CVE-2014-0160"
+          },
+          "type": "VulnerabilityReport",
+          "transaction_id": "0x07569",
+          "block_number": 12,
+          "transaction_index": 5,
+          "type_attributes": {}
+        },
+        {
+          "identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000",
+          "asset_identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
+          "principal_declared": {
+            "issuer": "job.idp.server/1234",
+            "subject": "bob@job"
+          },
+          "principal_accepted": {
+            "issuer": "job.idp.server/1234",
+            "subject": "bob@job"
+          },
           "description": "Did something",
           "timestamp_declared": "2019-03-29T11:00:00+00:00",
           "confirmation_status": "CONFIRMED",
@@ -776,7 +823,7 @@
           "type": "AttributeUpdate",
           "transaction_id": "0x04756",
           "block_number": 12,
-          "block_index": 5,
+          "transaction_index": 5,
           "type_attributes": {
             "field": "type_attributes.firmware_version",
             "value": "v45.7"
@@ -804,7 +851,7 @@
           "type": "Maintenance",
           "transaction_id": "0x04756",
           "block_number": 12,
-          "block_index": 5,
+          "transaction_index": 5,
           "type_attributes": {},
           "attachments": [
             {
@@ -839,7 +886,7 @@
           "type": "NewAttachments",
           "transaction_id": "0x04756",
           "block_number": 12,
-          "block_index": 5,
+          "transaction_index": 5,
           "type_attributes": {},
           "attachments": [
             {
@@ -870,7 +917,7 @@
           "type": "StopTracking",
           "transaction_id": "0x04756",
           "block_number": 12,
-          "block_index": 5,
+          "transaction_index": 5,
           "type_attributes": {},
           "attachments": []
         },
@@ -896,7 +943,7 @@
           "type": "StartTracking",
           "transaction_id": "0x04756",
           "block_number": 12,
-          "block_index": 5,
+          "transaction_index": 5,
           "type_attributes": {},
           "attachments": []
         }
@@ -977,7 +1024,7 @@
           "description": "number of block event was commited on",
           "readOnly": true
         },
-        "block_index": {
+        "transaction_index": {
           "type": "string",
           "format": "uint64",
           "description": "index of event within commited block",

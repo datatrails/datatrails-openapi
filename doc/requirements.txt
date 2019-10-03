@@ -1,0 +1,11 @@
+#
+# this is only used for pushing to readthedocs
+#
+# for development, the correct packages are installed in the builder image.
+#
+# Duplicate of stanza in builder/Dockerfile-builder
+# Make changes in both places
+#
+# no need for sphinx-rtd-theme
+sphinx==2.1.2
+sphinxcontrib-openapi==0.4.0

@@ -36,13 +36,19 @@ Define the asset parameters and store in /path/to/jsonfile:
 
 
 .. note::
-    The fields **location_identity** and **attachments** are optional.
+    location_identity
+        optional identity of location
+
+    attachments
+        optional list of attachments
 
     See :ref:`attachments_upload` and/or :ref:`locations_creation`.
 
-    The **"type"** field is **required** and must equal 'SimpleDeviceAsset'.
+    type
+        **required** and must equal 'SimpleDeviceAsset'.
 
-    The **"display_name"** field is **required**.
+    display_name
+        **required**.
 
     See `Swagger POST API <openapi.html#post--archivist-v1-assets>`_
 
@@ -89,10 +95,10 @@ The response is:
     }
 
 .. note::
-    The **"identity"** field is used internally by the Jitsuin system to track this asset.
+    identity
+        used internally by the Jitsuin system to track this asset.
 
-    The additional field **"confirmation_status"** can have 2 values:
-
+    confirmation_status
         1. "CONFIRMATION_STATUS_PENDING": asset has not yet been registered on the Ledger.
         2. "CONFIRMATION_STATUS_CONFIRMED": asset has been registered on the Ledger.
 

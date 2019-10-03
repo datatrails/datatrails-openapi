@@ -25,13 +25,16 @@ Define the location parameters and store in /path/to/jsonfile:
     }
 
 .. note::
-    The **"display_name"** field is **required**.
+    display_name
+        **required**.
 
-    The **"description"** field is **required**.
+    description
+        **required**.
 
-    The **"extended_attributes"** fields are freeform and can contain any fields.
+    extended_attributes
+        freeform and can contain any fields.
 
-   See `Swagger POST API <openapi.html#post--archivist-v1-locations>`_
+    See `Swagger POST API <openapi.html#post--archivist-v1-locations>`_
 
 Create the location:
 
@@ -64,6 +67,7 @@ The response is:
     }
 
 .. note::
-   The **"identity"** field is used to attach the location to an asset during asset
-   creation or asset event. (usually a maintenance event).
+    identity
+        used to attach the location to an asset during asset
+        creation or asset event. (usually a maintenance event).
 

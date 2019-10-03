@@ -53,36 +53,31 @@
     }
   },
   "definitions": {
-    "PeerBlockchainNodeConnectionStatus": {
-      "type": "string",
-      "enum": [
-        "UNSPECIFIED",
-        "HEALTHY",
-        "UNHEALTHY"
-      ],
-      "default": "UNSPECIFIED"
-    },
     "v1ArchivistNodes": {
       "type": "object",
       "example": {
-        "identity": "archivistnode",
+        "identity": "quorum-0",
         "blockchain_nodes": [
           {
             "validator_pubkey": {
               "kty": "EC",
               "crv": "P-256K",
               "x": "VBKHictTWJC-3sqknXCb8MI4IxTc3c_My7lnem2C74E=",
-              "y": "ItNeb5d-6vEHkvtUOcDYrEADxsZXeOCJm18pQWntenE="
+              "y": "ItNeb5d-6vEHkvtUOcDYrEADxsZXeOCJm18pQWntenE=",
+              "d": ""
             },
             "block_height": "38773",
-            "timestamp_committed": "1937-01-01T12:00:27.87+00:00",
+            "connection_status": "HEALTHY",
+            "timestamp_committed": "2019-01-01T12:00:27Z",
+            "timestamp_created": "2019-01-01T12:00:27Z",
             "peers": [
               {
                 "validator_pubkey": {
                   "kty": "EC",
                   "crv": "P-256K",
                   "x": "o0uZ8ix5DE42srPCw1o22wYibkHGkvyCuLVqwcVAxb0=",
-                  "y": "W43sUjWg-ociR2x3CcAlWeOqc6oDkYui1JLup1q-ojU="
+                  "y": "W43sUjWg-ociR2x3CcAlWeOqc6oDkYui1JLup1q-ojU=",
+                  "d": ""
                 },
                 "connection_status": "HEALTHY"
               },
@@ -91,7 +86,8 @@
                   "kty": "EC",
                   "crv": "P-256K",
                   "x": "5HcU1PJgTe0LGyGxKFrIPFZWdTbxPySfi6bKxdQeO8A=",
-                  "y": "dEpMURyTwEGzpgIgLdm4Csl1BgF6H39tb1Kf8wLLhVI="
+                  "y": "dEpMURyTwEGzpgIgLdm4Csl1BgF6H39tb1Kf8wLLhVI=",
+                  "d": ""
                 },
                 "connection_status": "HEALTHY"
               }
@@ -102,7 +98,7 @@
       "properties": {
         "identity": {
           "type": "string",
-          "description": "The identity of the archivistnode is archivistnode",
+          "description": "The identity of the archivistnode blockchain",
           "title": "archivistnode",
           "readOnly": true
         },
@@ -132,10 +128,21 @@
           "title": "unsigned 64 bit integer",
           "readOnly": true
         },
+        "connection_status": {
+          "$ref": "#/definitions/v1ConnectionStatus",
+          "description": "An indication of the nodes connection status.",
+          "readOnly": true
+        },
         "timestamp_committed": {
           "type": "string",
           "format": "date-time",
-          "description": "Timestamp when consensus was achieved for the block at `block_height` (RFC 3339)",
+          "description": "Timestamp when consensus was achieved for the block at `block_height` (RFC 3339) obtained from the block info of the 'latest' block.",
+          "readOnly": true
+        },
+        "timestamp_created": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp of creation of the genesis block (RFC 3339)",
           "readOnly": true
         },
         "peers": {
@@ -147,6 +154,15 @@
           "readOnly": true
         }
       }
+    },
+    "v1ConnectionStatus": {
+      "type": "string",
+      "enum": [
+        "UNSPECIFIED",
+        "HEALTHY",
+        "UNHEALTHY"
+      ],
+      "default": "UNSPECIFIED"
     },
     "v1JSONWebKey": {
       "type": "object",
@@ -162,7 +178,8 @@
         "kty": "EC",
         "crv": "P-256K",
         "x": "VBKHictTWJC-3sqknXCb8MI4IxTc3c_My7lnem2C74E=",
-        "y": "ItNeb5d-6vEHkvtUOcDYrEADxsZXeOCJm18pQWntenE="
+        "y": "ItNeb5d-6vEHkvtUOcDYrEADxsZXeOCJm18pQWntenE=",
+        "d": ""
       },
       "properties": {
         "kty": {
@@ -214,7 +231,7 @@
           "readOnly": true
         },
         "connection_status": {
-          "$ref": "#/definitions/PeerBlockchainNodeConnectionStatus",
+          "$ref": "#/definitions/v1ConnectionStatus",
           "description": "An indication of the peers connection status.",
           "readOnly": true
         }

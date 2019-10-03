@@ -5,8 +5,6 @@ Introduction
    :maxdepth: 2
    :caption: Contents:
 
-   overview
    lifecycle
    attachments
    locations
-
