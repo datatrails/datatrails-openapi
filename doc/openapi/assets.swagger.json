@@ -321,6 +321,54 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "timestamp_accepted_since",
+            "description": "Filtering. Only list events when timestamp_accepted is greater",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "timestamp_accepted_before",
+            "description": "Only list events when timestamp_accepted is lesser",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "timestamp_committed_since",
+            "description": "Only list events when timestamp_committed is greater",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "timestamp_committed_before",
+            "description": "Only list events when timestamp_committed is lesser",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "timestamp_declared_since",
+            "description": "Only list events when timestamp_declared is greater",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "timestamp_declared_before",
+            "description": "Only list events when timestamp_declared is lesser",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
           }
         ],
         "tags": [
@@ -788,10 +836,10 @@
             "subject": "bob@job"
           },
           "description": "Heartbleed",
-          "timestamp_declared": "2019-03-29T11:00:00+00:00",
+          "timestamp_declared": "2019-11-07T15:31:49Z",
           "confirmation_status": "CONFIRMED",
-          "timestamp_committed": "2019-03-29T12:01:00+00:00",
-          "timestamp_accepted": "2019-03-29T12:01:00+00:00",
+          "timestamp_committed": "2019-11-07T15:31:49Z",
+          "timestamp_accepted": "2019-11-07T15:31:49Z",
           "extended_attributes": {
             "cve_id": "CVE-2014-0160"
           },
@@ -813,10 +861,10 @@
             "subject": "bob@job"
           },
           "description": "Did something",
-          "timestamp_declared": "2019-03-29T11:00:00+00:00",
+          "timestamp_declared": "2019-11-06T15:31:49Z",
           "confirmation_status": "CONFIRMED",
-          "timestamp_committed": "2019-03-29T12:01:00+00:00",
-          "timestamp_accepted": "2019-03-29T12:01:00+00:00",
+          "timestamp_committed": "2019-11-07T15:31:49Z",
+          "timestamp_accepted": "2019-11-07T15:31:49Z",
           "extended_attributes": {
             "patch": "af445dde7"
           },
@@ -841,10 +889,10 @@
             "subject": "bob@job"
           },
           "description": "Did something",
-          "timestamp_declared": "2019-03-29T11:00:00+00:00",
+          "timestamp_declared": "2019-11-06T15:31:49Z",
           "confirmation_status": "CONFIRMED",
-          "timestamp_committed": "2019-03-29T12:01:00+00:00",
-          "timestamp_accepted": "2019-03-29T12:00:00+00:00",
+          "timestamp_committed": "2019-11-07T15:31:49Z",
+          "timestamp_accepted": "2019-11-07T15:31:55Z",
           "extended_attributes": {
             "action": "checked it"
           },
@@ -876,10 +924,10 @@
             "subject": "bob@job"
           },
           "description": "Did something",
-          "timestamp_declared": "2019-03-29T11:00:00+00:00",
+          "timestamp_declared": "2019-11-06T15:31:49Z",
           "confirmation_status": "CONFIRMED",
-          "timestamp_committed": "2019-03-29T12:01:00+00:00",
-          "timestamp_accepted": "2019-03-29T12:00:00+00:00",
+          "timestamp_committed": "2019-11-07T15:31:49Z",
+          "timestamp_accepted": "2019-11-07T15:31:55Z",
           "extended_attributes": {
             "action": "checked it"
           },
@@ -907,10 +955,10 @@
             "subject": "bob@job"
           },
           "description": "Did something",
-          "timestamp_declared": "2019-03-29T11:00:00+00:00",
+          "timestamp_declared": "2019-11-06T15:31:49Z",
           "confirmation_status": "CONFIRMED",
-          "timestamp_committed": "2019-03-29T12:01:00+00:00",
-          "timestamp_accepted": "2019-03-29T12:00:00+00:00",
+          "timestamp_committed": "2019-11-07T15:31:49Z",
+          "timestamp_accepted": "2019-11-07T15:31:55Z",
           "extended_attributes": {
             "description": "asset sold"
           },
@@ -933,10 +981,10 @@
             "subject": "bob@job"
           },
           "description": "Did something",
-          "timestamp_declared": "2019-03-29T11:00:00+00:00",
+          "timestamp_declared": "2019-11-06T15:31:49Z",
           "confirmation_status": "CONFIRMED",
-          "timestamp_committed": "2019-03-29T12:01:00+00:00",
-          "timestamp_accepted": "2019-03-29T12:00:00+00:00",
+          "timestamp_committed": "2019-11-07T15:31:49Z",
+          "timestamp_accepted": "2019-11-07T15:31:55Z",
           "extended_attributes": {
             "description": "asset sold"
           },

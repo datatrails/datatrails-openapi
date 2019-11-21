@@ -84,6 +84,20 @@ Only the asset identity is fixed: all other attributes can be modified.
 Modification of significant attributes (such as firmware version) results 
 in an audited entry in the asset history.
 
+Recording events in the asset lifecycle
+=======================================
+
+Any interaction with a device can be significant: from user logins to
+unexpected restarts or ad-hoc observations. Keeping a record of these
+events can build up a picture of how an asset came to be in its current
+state and provide crucial insight to future maintenance staff, auditors,
+and security remediation teams.
+
+Archivist allows recording these general lifecycle events through the
+``EvidenceLog`` event.
+
+For more detail, see :ref:`asset_evidence`
+
 Firmware security management
 ============================
 
@@ -138,8 +152,10 @@ Follow the steps in this order for best success:
 1. Determine if the asset is associated with a particular location. 
 If it is, look up the location identity (if it already exists) or get a 
 new location identity by creating one.
+
 2. Import any attachments associated with the asset (for example, 
 photograph of the physical unit) and get their identities.
+
 3. Create the Asset, including the (optional) identities of the location 
 and attachments.
 

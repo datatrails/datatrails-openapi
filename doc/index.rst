@@ -11,8 +11,11 @@ Archivist API documentation
    :caption: Contents:
 
    introduction/index
+   admin/index
    auth/authentication
    asset/index
    attachments/index
    locations/index
+   applicationlink/index
+   msiothub/index
    system/index

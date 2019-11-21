@@ -32,7 +32,7 @@ The response is:
             "value": "xxxxxxxxxxxxxxxxxxxxxxx",
         },
         "mime_type": "application/jpeg"
-        "timestamp_accepted": "2019-06-22 14:41:32+00:00"
+        "timestamp_accepted": "2019-11-07T15:31:49Z"
         "size": 1024,
     }
 

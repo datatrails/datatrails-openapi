@@ -1,8 +1,8 @@
 
-.. _asset_vulnerability:
+.. _asset_evidence:
 
-Asset Vulnerability Report
---------------------------
+Asset General Evidence Event
+----------------------------
 
 .. include:: ../auth_url.rst
 
@@ -12,24 +12,34 @@ Define the asset_identity:
 
     $ ASSET_IDENTITY=assets/add30235-1424-4fda-840a-d5ef82c4c96f
 
-Define the vulnerability report and store in /path/to/jsonfile:
+Define the evidence event(s) and store in /path/to/jsonfile:
 
 .. code-block:: JSON
 
     [
         {
             "asset_identity": "$ASSET_IDENTITY",
-            "type": "VulnerabilityReport",
+            "type": "EvidenceLog",
             "extended_attributes": {
-                "cve_id": "CVE-2014-0160"
+                "what": "something happened",
+                "correlation_value": "abc:1234"
             },
             "type_attributes": {},
             "principal_declared": {
                 "issuer": "job.idp.server/1234",
                 "subject": "bob@job"
              },
-             "description": "Heartbleed",
-             "attachments": []
+             "description": "Something happened",
+             "attachments": [
+                  {
+                      "attachment_identity": "attachments/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000",
+                      "display_name": "Incident photograph"
+                  },
+                  {
+                      "attachment_identity": "attachments/add30235-1424-4fda-840a-d5ef82c4c96f",
+                      "display_name": "Incident Report"
+                  }
+             ]
          }
      ]
 
@@ -78,20 +88,29 @@ The response is:
                 "issuer": "job.idp.server/1234",
                 "subject": "bob@job"
             },
-            "description": "Heartbleed",
+            "description": "Something happened",
             "timestamp_declared": "2019-11-07T15:31:49Z",
-            "confirmation_status": "CONFIRMATION_STATUS_CONFIRMED",
+            "confirmation_status": "CONFIRMATION_STATUS_PENDING",
             "timestamp_committed": "2019-11-07T15:31:49Z",
             "timestamp_accepted": "2019-11-07T15:31:49Z",
             "extended_attributes": {
-                "cve_id": "CVE-2014-0160"
+                "what": "something happened",
+                "correlation_value": "abc:1234"
             },
-            "type": "VulnerabilityReport",
+            "type": "EvidenceLog",
             "transaction_id": "0x04756",
             "block_number": 12,
-            "transaction_index": 5,
             "type_attributes": {},
-            "attachments": []
+            "attachments": [
+                {
+                    "attachment_identity": "attachments/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000",
+                    "display_name": "form B5"
+                },
+                {
+                    "attachment_identity": "attachments/add30235-1424-4fda-840a-d5ef82c4c96f",
+                  "display_name": "form B7"
+                }
+            ]
         }
     ]
 

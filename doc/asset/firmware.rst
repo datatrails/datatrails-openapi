@@ -82,10 +82,10 @@ The response is:
                 "subject": "bob@job"
             },
             "description": "Did something",
-            "timestamp_declared": "2019-03-29T11:00:00+00:00",
-            "confirmation_status": "CONFIRMED",
-            "timestamp_committed": "2019-03-29T12:01:00+00:00",
-            "timestamp_accepted": "2019-03-29T12:01:00+00:00",
+            "timestamp_declared": "2019-11-07T15:31:40Z",
+            "confirmation_status": "CONFIRMATION_STATUS_CONFIRMED",
+            "timestamp_committed": "2019-11-07T15:31:49Z",
+            "timestamp_accepted": "2019-11-07T15:31:45Z",
             "extended_attributes": {
                 "patch": "af445dde7"
             },

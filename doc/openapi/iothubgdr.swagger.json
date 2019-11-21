@@ -1,0 +1,337 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "IoTHubGDR API",
+    "version": "1.0",
+    "contact": {
+      "name": "Jitsuin",
+      "url": "https://www.jitsuin.com"
+    }
+  },
+  "host": "jitsuin.readthedocs.io",
+  "basePath": "/archivist/v1",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/archivist/v1/iothubgdrs": {
+      "get": {
+        "operationId": "ListIoTHubGDRConnections",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListIoTHubGDRConnectionsResponse"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to view Event.",
+            "schema": {}
+          }
+        },
+        "tags": [
+          "IoTHubGDR"
+        ]
+      },
+      "post": {
+        "operationId": "CreateIoTHubGDRConnection",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1OperationResponse"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to view Event.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateIoTHubGDRConnectionRequest"
+            }
+          }
+        ],
+        "tags": [
+          "IoTHubGDR"
+        ]
+      }
+    },
+    "/archivist/v1/{identity}": {
+      "get": {
+        "operationId": "GetIoTHubGDRConnection",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1OperationResponse"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to view Event.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the IotHubGDR does not exist.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "identity",
+            "description": "unique identity of this operations",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "IoTHubGDR"
+        ]
+      },
+      "delete": {
+        "operationId": "DeleteIoTHubGDRConnection",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to view Event.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the IotHubGDR does not exist.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "identity",
+            "description": "unique identity of this operations",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "IoTHubGDR"
+        ]
+      }
+    },
+    "/archivist/v1/{identity}:cancel": {
+      "post": {
+        "operationId": "CancelIoTHubGDRConnection",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1OperationResponse"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to view Event.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the IotHubGDR does not exist.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "identity",
+            "description": "unique identity of this operations",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "IoTHubGDR"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "OperationResultStatus": {
+      "type": "string",
+      "enum": [
+        "STATUS_UNSPECIFIED",
+        "STATUS_PENDING",
+        "STATUS_INPROGRESS",
+        "STATUS_FINISHED",
+        "STATUS_CANCELLED"
+      ],
+      "default": "STATUS_UNSPECIFIED"
+    },
+    "v1CreateIoTHubGDRConnectionRequest": {
+      "type": "object",
+      "example": {
+        "display_name": "My Company IoT Hub",
+        "secret": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "location_identity": "locations/25f812d3-10ab-4451-8bd1-fb02454c9361"
+      },
+      "properties": {
+        "display_name": {
+          "type": "string",
+          "description": "display name for this import",
+          "maxLength": 1024
+        },
+        "secret": {
+          "type": "string",
+          "description": "secret used to connect to IoT Hub",
+          "maxLength": 1024
+        },
+        "location_identity": {
+          "type": "string",
+          "description": "idenentity of a location wo which to add the assets",
+          "maxLength": 1024
+        }
+      },
+      "description": "Create IoTHubGDR import"
+    },
+    "v1ListIoTHubGDRConnectionsResponse": {
+      "type": "object",
+      "properties": {
+        "operations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1OperationResponse"
+          }
+        }
+      }
+    },
+    "v1OperationError": {
+      "type": "object",
+      "example": {
+        "display_name": "My Company IoT Hub",
+        "number_assets_imported": 66,
+        "location_identity": "locations/25f812d3-10ab-4451-8bd1-fb02454c9361",
+        "error_message": "could not connect to IoT Hub"
+      },
+      "properties": {
+        "display_name": {
+          "type": "string",
+          "description": "display name for this import",
+          "maxLength": 1024
+        },
+        "number_assets_imported": {
+          "type": "string",
+          "format": "int64",
+          "description": "number of Assets imported"
+        },
+        "location_identity": {
+          "type": "string",
+          "description": "idenentity of a location wo which to add the assets",
+          "maxLength": 1024
+        },
+        "error_message": {
+          "type": "string",
+          "description": "error message",
+          "maxLength": 1024
+        }
+      },
+      "description": "Result of an import that failed"
+    },
+    "v1OperationResponse": {
+      "type": "object",
+      "example": {
+        "message": "abcd"
+      },
+      "properties": {
+        "identity": {
+          "type": "string",
+          "description": "unique identity of this operations",
+          "maxLength": 1024
+        },
+        "done": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "indicates if import is still running"
+        },
+        "timestamp_accepted": {
+          "type": "string",
+          "format": "date-time",
+          "description": "time when import has been accepted by the API"
+        },
+        "timestamp_finished": {
+          "type": "string",
+          "format": "date-time",
+          "description": "time import finished"
+        },
+        "result": {
+          "$ref": "#/definitions/v1OperationResult"
+        },
+        "error": {
+          "$ref": "#/definitions/v1OperationError"
+        }
+      },
+      "description": "Long running operation"
+    },
+    "v1OperationResult": {
+      "type": "object",
+      "example": {
+        "display_name": "My Company IoT Hub",
+        "number_assets_imported": 66,
+        "location_identity": "locations/25f812d3-10ab-4451-8bd1-fb02454c9361",
+        "status": "STATUS_FINISHED"
+      },
+      "properties": {
+        "display_name": {
+          "type": "string",
+          "description": "display name for this import",
+          "maxLength": 1024
+        },
+        "number_assets_imported": {
+          "type": "string",
+          "format": "int64",
+          "description": "number of Assets imported"
+        },
+        "location_identity": {
+          "type": "string",
+          "description": "idenentity of a location wo which to add the assets",
+          "maxLength": 1024
+        },
+        "status": {
+          "$ref": "#/definitions/OperationResultStatus",
+          "description": "status of the import"
+        }
+      },
+      "description": "Result of the import - in progress or completed succefully"
+    }
+  }
+}

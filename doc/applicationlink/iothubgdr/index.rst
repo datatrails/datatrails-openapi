@@ -1,4 +1,4 @@
-Assets API
+IoTHubGDR API
 ----------
 
 .. toctree::
@@ -6,9 +6,6 @@ Assets API
    :caption: Contents:
 
    creation
-   firmware
-   evidence
-   maintenance
-   vulnerability
+   management
    openapi
 
