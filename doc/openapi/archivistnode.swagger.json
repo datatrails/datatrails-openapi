@@ -67,7 +67,7 @@
               "d": ""
             },
             "block_height": "38773",
-            "connection_status": "HEALTHY",
+            "connection_status": "REACHABLE",
             "timestamp_committed": "2019-01-01T12:00:27Z",
             "timestamp_created": "2019-01-01T12:00:27Z",
             "peers": [
@@ -79,7 +79,7 @@
                   "y": "W43sUjWg-ociR2x3CcAlWeOqc6oDkYui1JLup1q-ojU=",
                   "d": ""
                 },
-                "connection_status": "HEALTHY"
+                "connection_status": "REACHABLE"
               },
               {
                 "validator_pubkey": {
@@ -89,7 +89,7 @@
                   "y": "dEpMURyTwEGzpgIgLdm4Csl1BgF6H39tb1Kf8wLLhVI=",
                   "d": ""
                 },
-                "connection_status": "HEALTHY"
+                "connection_status": "REACHABLE"
               }
             ]
           }
@@ -159,8 +159,8 @@
       "type": "string",
       "enum": [
         "UNSPECIFIED",
-        "HEALTHY",
-        "UNHEALTHY"
+        "REACHABLE",
+        "UNREACHABLE"
       ],
       "default": "UNSPECIFIED"
     },

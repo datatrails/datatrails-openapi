@@ -1,11 +1,10 @@
-IoTHubGDR API
--------------
+Firmware Update API
+-------------------
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
    creation
-   management
    openapi
 

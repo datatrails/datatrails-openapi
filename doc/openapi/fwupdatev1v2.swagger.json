@@ -1,0 +1,249 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Firmware Update API",
+    "version": "1.0",
+    "contact": {
+      "name": "Jitsuin",
+      "url": "https://www.jitsuin.com"
+    }
+  },
+  "host": "jitsuin.readthedocs.io",
+  "basePath": "/archivist/v1",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/archivist/v2/{asset_identity}/events": {
+      "post": {
+        "operationId": "Create",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v2EventResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "asset_identity",
+            "description": "identity of a related asset resource `assets/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v2CreateEventRequest"
+            }
+          }
+        ],
+        "tags": [
+          "FwUpdateV1"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "v2ConfirmationStatus": {
+      "type": "string",
+      "enum": [
+        "CONFIRMATION_STATUS_UNSPECIFIED",
+        "PENDING",
+        "CONFIRMED",
+        "FAILED"
+      ],
+      "default": "CONFIRMATION_STATUS_UNSPECIFIED"
+    },
+    "v2CreateEventRequest": {
+      "type": "object",
+      "example": {
+        "operation": "Update",
+        "behaviour": "FwUpdateV1",
+        "attributes": {
+          "firmware_version": "3.2.1"
+        },
+        "timestamp_declared": "2019-11-27T14:44:19Z",
+        "principal_declared": {
+          "issuer": "job.idp.server/1234",
+          "subject": "bob@job"
+        }
+      },
+      "properties": {
+        "asset_identity": {
+          "type": "string",
+          "description": "identity of a related asset resource `assets/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
+          "readOnly": true,
+          "maxLength": 4096
+        },
+        "behaviour": {
+          "type": "string"
+        },
+        "operation": {
+          "type": "string"
+        },
+        "attributes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "principal_declared": {
+          "$ref": "#/definitions/v2Principal"
+        },
+        "timestamp_declared": {
+          "type": "string",
+          "format": "date-time",
+          "description": "time of event as declared by the user",
+          "readOnly": true
+        }
+      },
+      "description": "Request creating Firmware Update event Specify `operation` to chose which Firmware Update event to create "
+    },
+    "v2EventResponse": {
+      "type": "object",
+      "example": {
+        "identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000",
+        "asset_identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
+        "operation": "Update",
+        "behaviour": "FwUpdateV1",
+        "attributes": {
+          "firmware_version": "3.2.1"
+        },
+        "timestamp_accepted": "2019-11-27T14:44:19Z",
+        "timestamp_declared": "2019-11-27T14:44:19Z",
+        "timestamp_committed": "2019-11-27T14:44:19Z",
+        "principal_declared": {
+          "issuer": "job.idp.server/1234",
+          "subject": "bob@job"
+        },
+        "principal_accepted": {
+          "issuer": "job.idp.server/1234",
+          "subject": "bob@job"
+        },
+        "confirmation_status": "CONFIRMED",
+        "block_number": 12,
+        "transaction_index": 5,
+        "transaction_id": "0x07569"
+      },
+      "properties": {
+        "identity": {
+          "type": "string",
+          "description": "identity of a event resource",
+          "readOnly": true,
+          "maxLength": 4096
+        },
+        "asset_identity": {
+          "type": "string",
+          "description": "identity of a related asset resource `assets/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
+          "readOnly": true,
+          "maxLength": 4096
+        },
+        "attributes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "operation": {
+          "type": "string",
+          "description": "The operation represented by the event. `Update`",
+          "readOnly": true,
+          "maxLength": 4096
+        },
+        "timestamp_declared": {
+          "type": "string",
+          "format": "date-time",
+          "description": "time of event as declared by the user",
+          "readOnly": true
+        },
+        "timestamp_accepted": {
+          "type": "string",
+          "format": "date-time",
+          "description": "time of event as recorded by the server",
+          "readOnly": true
+        },
+        "timestamp_committed": {
+          "type": "string",
+          "format": "date-time",
+          "description": "time of event as recorded on blockchain",
+          "readOnly": true
+        },
+        "principal_declared": {
+          "$ref": "#/definitions/v2Principal",
+          "description": "principal provided by the user",
+          "readOnly": true
+        },
+        "principal_accepted": {
+          "$ref": "#/definitions/v2Principal",
+          "description": "principal recorded by the server",
+          "readOnly": true
+        },
+        "confirmation_status": {
+          "$ref": "#/definitions/v2ConfirmationStatus",
+          "description": "indicates if the event has been succesfully committed to the blockchain",
+          "readOnly": true
+        },
+        "transaction_id": {
+          "type": "string",
+          "description": "hash of the transaction as a hex string `0x11bf5b37e0b842e08dcfdc8c4aefc000`",
+          "maxLength": 4096
+        },
+        "block_number": {
+          "type": "string",
+          "format": "uint64",
+          "description": "number of block event was commited on",
+          "readOnly": true
+        },
+        "transaction_index": {
+          "type": "string",
+          "format": "uint64",
+          "description": "index of event within commited block",
+          "readOnly": true
+        }
+      },
+      "description": "This describes Jitsuin Event."
+    },
+    "v2Principal": {
+      "type": "object",
+      "example": {
+        "issuer": "job.idp.server/1234",
+        "subject": "bob@job"
+      },
+      "properties": {
+        "issuer": {
+          "type": "string",
+          "description": "optional issuer of the principal identity. Where the issuer is not provided the subject is treated as a free string",
+          "maxLength": 1024
+        },
+        "subject": {
+          "type": "string",
+          "description": "unique identifier of the principal (within issuer context)",
+          "maxLength": 1024
+        },
+        "display_name": {
+          "type": "string",
+          "description": "The displayable name of the end-user.  The name claim is prefered, followed by email claims, then a composite of  given_name, middle_name, family_name",
+          "maxLength": 1024
+        },
+        "email": {
+          "type": "string",
+          "description": "The email for the end-user if available. If email_verified is  available it is preferd. Empty if neither email_verified or email  are provided by the IdP",
+          "maxLength": 1024
+        }
+      },
+      "description": "The principal description assured by the configured Identity  Provider. All values are according to OIDC id token claims and  standard claims.  See https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims"
+    }
+  }
+}

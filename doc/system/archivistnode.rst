@@ -33,7 +33,7 @@ The response is:
                     "d": ""
                 },
                 "block_height": "38773",
-                "connection_status": "HEALTHY"
+                "connection_status": "REACHABLE"
                 "timestamp_committed": "2019-01-02T01:03:07Z",
                 "timestamp_created": "2019-01-01T12:00:27Z",
                 "peers": [
@@ -45,7 +45,7 @@ The response is:
                             "y": "W43sUjWg-ociR2x3CcAlWeOqc6oDkYui1JLup1q-ojU=",
                             "d": ""
                         },
-                        "connection_status": "HEALTHY"
+                        "connection_status": "REACHABLE"
                     },
                     {
                         "validator_pubkey": {
@@ -55,7 +55,7 @@ The response is:
                             "y": "dEpMURyTwEGzpgIgLdm4Csl1BgF6H39tb1Kf8wLLhVI=",
                             "d": ""
                         },
-                        "connection_status": "HEALTHY"
+                        "connection_status": "REACHABLE"
                     }
                 ]
             }
@@ -74,14 +74,14 @@ The response is:
         public key (ECDSA).
 
     block_height
-        current no. of blocks in blockchain. May be zero if node is UNHEALTHY.
+        current no. of blocks in blockchain. May be zero if node is UNREACHABLE.
 
     connection_status
-        - HEALTHY: node is reachable.
-        - UNHEALTHY: node is currently unreachable.
+        - REACHABLE: node is reachable.
+        - UNREACHABLE: node is currently unreachable.
 
     timestamp_committed
-        timestamp (UTC) of latest block in the blockchain. May be zero (Jan 1st 1970) if node is UNHEALTHY.
+        timestamp (UTC) of latest block in the blockchain. May be zero (Jan 1st 1970) if node is UNREACHABLE.
 
     timestamp_created
         timestamp (UTC) of genesis block in blockchain.
@@ -95,8 +95,8 @@ The response is:
         public key (ECDSA).
 
     connection_status
-        - HEALTHY: blockchain is connected.
-        - UNHEALTHY: peer is currently unreachable.
+        - REACHABLE: blockchain is connected.
+        - UNREACHABLE: peer is currently unreachable.
 
     See `Swagger GET API <openapi.html#get --archivist-v1-archivistnode>`_
 

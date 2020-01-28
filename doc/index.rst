@@ -14,7 +14,11 @@ Archivist API documentation
    admin/index
    auth/authentication
    asset/index
+   assetv2/index
    attachments/index
+   fwupdatev1/index
+   recordevidencev1/index
+   maintenancev1/index
    locations/index
    applicationlink/index
    msiothub/index

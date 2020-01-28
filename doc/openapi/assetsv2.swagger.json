@@ -1,0 +1,693 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Assets API",
+    "version": "2.0",
+    "contact": {
+      "name": "Jitsuin",
+      "url": "https://www.jitsuin.com"
+    }
+  },
+  "host": "jitsuin.readthedocs.io",
+  "basePath": "/archivist/v2",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/archivist/v2/assets": {
+      "get": {
+        "operationId": "ListAssets",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v2ListAssetsResponse"
+            }
+          },
+          "206": {
+            "description": "The number of assets exceeds the servers limit. The approximate number of matching results is provided by the x-total-count header, the exact limit is available in the content-range header. The value format is 'items 0-LIMIT/TOTAL'. Note that x-total-count is always present for 200 and 206 responses. It is the servers best available approximation. Similarly, in any result set, you may get a few more than LIMIT items.",
+            "schema": {}
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to list Assets.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "page_size",
+            "description": "Maximum results per page.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_token",
+            "description": "The next_page_token returned from a previous list request if any.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "order_by",
+            "description": "Specify the sort order for the results.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "DEFAULT"
+            ],
+            "default": "DEFAULT"
+          },
+          {
+            "name": "tracked",
+            "description": "indicates whether asset is still being tracked in the system.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "TRACKED_STATUS_UNSPECIFIED",
+              "TRACKED",
+              "NOT_TRACKED"
+            ],
+            "default": "TRACKED_STATUS_UNSPECIFIED"
+          },
+          {
+            "name": "confirmation_status",
+            "description": "indicates if the asset has been succesfully committed to the blockchain.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "CONFIRMATION_STATUS_UNSPECIFIED",
+              "PENDING",
+              "CONFIRMED",
+              "FAILED"
+            ],
+            "default": "CONFIRMATION_STATUS_UNSPECIFIED"
+          }
+        ],
+        "tags": [
+          "Assets"
+        ]
+      },
+      "post": {
+        "operationId": "CreateAsset",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v2AssetResponse"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to create an Asset.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v2CreateAssetRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Assets"
+        ]
+      }
+    },
+    "/archivist/v2/{asset_identity}": {
+      "get": {
+        "operationId": "GetAsset",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v2AssetResponse"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to view an Asset.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the asset with the id does not exist.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "asset_identity",
+            "description": "Specify asset `identity` as in `assets/add30235-1424-4fda-840a-d5ef82c4c96f`",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Assets"
+        ]
+      }
+    },
+    "/archivist/v2/{asset_identity}/events": {
+      "get": {
+        "operationId": "ListEvents",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v2ListEventsResponse"
+            }
+          },
+          "206": {
+            "description": "The number of events exceeds the servers limit. The approximate number of matching results is provided by the x-total-count header, the exact limit is available in the content-range header. The value format is 'items 0-LIMIT/TOTAL'.  Note that x-total-count is always present for 200 and 206 responses. It is the servers best available approximation. Similarly, in any result set, you may get a few more than LIMIT items.",
+            "schema": {}
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to list Events.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "asset_identity",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "page_size",
+            "description": "Maximum results per page.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_token",
+            "description": "The next_page_token returned from a previous list request if any.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "order_by",
+            "description": "Specify the sort order for the results.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "DEFAULT"
+            ],
+            "default": "DEFAULT"
+          },
+          {
+            "name": "confirmation_status",
+            "description": "indicates if the asset has been succesfully committed to the blockchain.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "CONFIRMATION_STATUS_UNSPECIFIED",
+              "PENDING",
+              "CONFIRMED",
+              "FAILED"
+            ],
+            "default": "CONFIRMATION_STATUS_UNSPECIFIED"
+          },
+          {
+            "name": "principal_declared.issuer",
+            "description": "optional issuer of the principal identity. Where the issuer is not provided the subject is treated as a free string",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "principal_declared.subject",
+            "description": "unique identifier of the principal (within issuer context)",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "principal_declared.display_name",
+            "description": "The displayable name of the end-user.  The name claim is prefered, followed by email claims, then a composite of  given_name, middle_name, family_name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "principal_declared.email",
+            "description": "The email for the end-user if available. If email_verified is  available it is preferd. Empty if neither email_verified or email  are provided by the IdP",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "principal_accepted.issuer",
+            "description": "optional issuer of the principal identity. Where the issuer is not provided the subject is treated as a free string",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "principal_accepted.subject",
+            "description": "unique identifier of the principal (within issuer context)",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "principal_accepted.display_name",
+            "description": "The displayable name of the end-user.  The name claim is prefered, followed by email claims, then a composite of  given_name, middle_name, family_name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "principal_accepted.email",
+            "description": "The email for the end-user if available. If email_verified is  available it is preferd. Empty if neither email_verified or email  are provided by the IdP",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "timestamp_accepted_since",
+            "description": "Filtering. Only list events when timestamp_accepted is greater",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "timestamp_accepted_before",
+            "description": "Only list events when timestamp_accepted is lesser",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "timestamp_committed_since",
+            "description": "Only list events when timestamp_committed is greater",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "timestamp_committed_before",
+            "description": "Only list events when timestamp_committed is lesser",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "timestamp_declared_since",
+            "description": "Only list events when timestamp_declared is greater",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "timestamp_declared_before",
+            "description": "Only list events when timestamp_declared is lesser",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          }
+        ],
+        "tags": [
+          "Assets"
+        ]
+      }
+    },
+    "/archivist/v2/{event_identity}": {
+      "get": {
+        "operationId": "GetEvent",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v2EventResponse"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to view Event.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the event does not exist.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "event_identity",
+            "description": "Specify Event `identity` as in full `assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Assets"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "v2AssetResponse": {
+      "type": "object",
+      "example": {
+        "identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
+        "behaviours": [
+          "Firmware",
+          "Location"
+        ],
+        "attributes": {
+          "some": "properties",
+          "firmware_version": "v4.9-a-beta1",
+          "location_identity": "locations/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000"
+        },
+        "user_mutable": [
+          "some"
+        ]
+      },
+      "properties": {
+        "identity": {
+          "type": "string",
+          "description": "relative resource address `assets/{UUID}`",
+          "readOnly": true,
+          "maxLength": 4096
+        },
+        "behaviours": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "list of behaviours enabled for this asset"
+        },
+        "attributes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "user_mutable": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "list of properties that can be modified"
+        },
+        "confirmation_status": {
+          "$ref": "#/definitions/v2ConfirmationStatus",
+          "description": "indicates if the asset has been succesfully committed to the blockchain",
+          "readOnly": true
+        },
+        "tracked": {
+          "$ref": "#/definitions/v2TrackedStatus",
+          "description": "indicates whether asset is still being tracked in the system",
+          "readOnly": true
+        }
+      },
+      "description": "This describes Jitsuin Asset."
+    },
+    "v2ConfirmationStatus": {
+      "type": "string",
+      "enum": [
+        "CONFIRMATION_STATUS_UNSPECIFIED",
+        "PENDING",
+        "CONFIRMED",
+        "FAILED"
+      ],
+      "default": "CONFIRMATION_STATUS_UNSPECIFIED"
+    },
+    "v2CreateAssetRequest": {
+      "type": "object",
+      "example": {
+        "behaviours": [
+          "Firmware",
+          "Location"
+        ],
+        "attributes": {
+          "some": "properties",
+          "location_identity": "locations/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000"
+        },
+        "user_mutable": [
+          "some"
+        ]
+      },
+      "properties": {
+        "behaviours": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "list of behaviours enabled for this asset"
+        },
+        "attributes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "user_mutable": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "list of properties that can be modified"
+        }
+      },
+      "description": "This describes the body of a request to create new Jitsuin Asset."
+    },
+    "v2EventResponse": {
+      "type": "object",
+      "example": {
+        "identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000",
+        "asset_identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
+        "operation": "Update",
+        "behaviour": "FwUpdateV1",
+        "attributes": {
+          "firmware_version": "3.2.1"
+        },
+        "timestamp_accepted": "2019-11-27T14:44:19Z",
+        "timestamp_declared": "2019-11-27T14:44:19Z",
+        "timestamp_committed": "2019-11-27T14:44:19Z",
+        "principal_declared": {
+          "issuer": "job.idp.server/1234",
+          "subject": "bob@job"
+        },
+        "principal_accepted": {
+          "issuer": "job.idp.server/1234",
+          "subject": "bob@job"
+        },
+        "confirmation_status": "CONFIRMED",
+        "block_number": 12,
+        "transaction_index": 5,
+        "transaction_id": "0x07569"
+      },
+      "properties": {
+        "identity": {
+          "type": "string",
+          "description": "identity of a event resource",
+          "readOnly": true,
+          "maxLength": 4096
+        },
+        "asset_identity": {
+          "type": "string",
+          "description": "identity of a related asset resource `assets/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
+          "readOnly": true,
+          "maxLength": 4096
+        },
+        "attributes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "operation": {
+          "type": "string",
+          "description": "The operation represented by the event. `Update`",
+          "readOnly": true,
+          "maxLength": 4096
+        },
+        "timestamp_declared": {
+          "type": "string",
+          "format": "date-time",
+          "description": "time of event as declared by the user",
+          "readOnly": true
+        },
+        "timestamp_accepted": {
+          "type": "string",
+          "format": "date-time",
+          "description": "time of event as recorded by the server",
+          "readOnly": true
+        },
+        "timestamp_committed": {
+          "type": "string",
+          "format": "date-time",
+          "description": "time of event as recorded on blockchain",
+          "readOnly": true
+        },
+        "principal_declared": {
+          "$ref": "#/definitions/v2Principal",
+          "description": "principal provided by the user",
+          "readOnly": true
+        },
+        "principal_accepted": {
+          "$ref": "#/definitions/v2Principal",
+          "description": "principal recorded by the server",
+          "readOnly": true
+        },
+        "confirmation_status": {
+          "$ref": "#/definitions/v2ConfirmationStatus",
+          "description": "indicates if the event has been succesfully committed to the blockchain",
+          "readOnly": true
+        },
+        "transaction_id": {
+          "type": "string",
+          "description": "hash of the transaction as a hex string `0x11bf5b37e0b842e08dcfdc8c4aefc000`",
+          "maxLength": 4096
+        },
+        "block_number": {
+          "type": "string",
+          "format": "uint64",
+          "description": "number of block event was commited on",
+          "readOnly": true
+        },
+        "transaction_index": {
+          "type": "string",
+          "format": "uint64",
+          "description": "index of event within commited block",
+          "readOnly": true
+        }
+      },
+      "description": "This describes Jitsuin Event."
+    },
+    "v2ListAssetsRequestOrderBy": {
+      "type": "string",
+      "enum": [
+        "DEFAULT"
+      ],
+      "default": "DEFAULT",
+      "title": "Supported sort orders"
+    },
+    "v2ListAssetsResponse": {
+      "type": "object",
+      "properties": {
+        "assets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v2AssetResponse"
+          }
+        },
+        "next_page_token": {
+          "type": "string",
+          "description": "Token to retrieve the next page of results or empty if there are none."
+        }
+      },
+      "description": "A list of assets returned data identical to `Asset`"
+    },
+    "v2ListEventsRequestOrderBy": {
+      "type": "string",
+      "enum": [
+        "DEFAULT"
+      ],
+      "default": "DEFAULT",
+      "title": "Supported sort orders"
+    },
+    "v2ListEventsResponse": {
+      "type": "object",
+      "properties": {
+        "events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v2EventResponse"
+          }
+        },
+        "next_page_token": {
+          "type": "string",
+          "description": "Token to retrieve the next page of results or empty if there are none."
+        }
+      },
+      "description": "A list of event records returned data identical to `EventRecord`"
+    },
+    "v2Principal": {
+      "type": "object",
+      "example": {
+        "issuer": "job.idp.server/1234",
+        "subject": "bob@job"
+      },
+      "properties": {
+        "issuer": {
+          "type": "string",
+          "description": "optional issuer of the principal identity. Where the issuer is not provided the subject is treated as a free string",
+          "maxLength": 1024
+        },
+        "subject": {
+          "type": "string",
+          "description": "unique identifier of the principal (within issuer context)",
+          "maxLength": 1024
+        },
+        "display_name": {
+          "type": "string",
+          "description": "The displayable name of the end-user.  The name claim is prefered, followed by email claims, then a composite of  given_name, middle_name, family_name",
+          "maxLength": 1024
+        },
+        "email": {
+          "type": "string",
+          "description": "The email for the end-user if available. If email_verified is  available it is preferd. Empty if neither email_verified or email  are provided by the IdP",
+          "maxLength": 1024
+        }
+      },
+      "description": "The principal description assured by the configured Identity  Provider. All values are according to OIDC id token claims and  standard claims.  See https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims"
+    },
+    "v2TrackedStatus": {
+      "type": "string",
+      "enum": [
+        "TRACKED_STATUS_UNSPECIFIED",
+        "TRACKED",
+        "NOT_TRACKED"
+      ],
+      "default": "TRACKED_STATUS_UNSPECIFIED"
+    }
+  }
+}

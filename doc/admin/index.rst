@@ -16,6 +16,7 @@ configuration.
 
    register
    adminconsent
+   roles
    userassignment
    endpointaccess
    tokenexample

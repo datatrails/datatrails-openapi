@@ -58,6 +58,8 @@ Select the user for role assignment
 
 .. |enterprise-app-add-user-select| image:: enterprise-app-add-user-select.png
 
+See :ref:`jitsuin-roles` for description of the various roles available.
+
 Assign the user a Jitsuin Archivist role
 ````````````````````````````````````````
 |enterprise-app-user-role-asign|

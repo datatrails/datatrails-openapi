@@ -1,4 +1,4 @@
-IoTHubGDR API
+Assets V2 API
 -------------
 
 .. toctree::
@@ -6,6 +6,5 @@ IoTHubGDR API
    :caption: Contents:
 
    creation
-   management
    openapi
 

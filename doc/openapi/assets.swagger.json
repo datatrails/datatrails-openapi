@@ -4,10 +4,6 @@
     "title": "Archivist externally facing API",
     "version": "version not set"
   },
-  "schemes": [
-    "http",
-    "https"
-  ],
   "consumes": [
     "application/json"
   ],
@@ -26,7 +22,7 @@
             }
           },
           "206": {
-            "description": "The number of assets exceeds the servers limit.The number of matching results is provided by the x-total-count header, the limit is available in the content-range header. The value format is 'items 0-LIMIT/TOTAL'. Note that x-total-count is always present for 200 and 206 responses",
+            "description": "The number of assets exceeds the servers limit. The approximate number of matching results is provided by the x-total-count header, the exact limit is available in the content-range header. The value format is 'items 0-LIMIT/TOTAL'. Note that x-total-count is always present for 200 and 206 responses. It is the servers best available approximation. Similarly, in any result set, you may get a few more than LIMIT items.",
             "schema": {}
           },
           "401": {
@@ -199,7 +195,7 @@
             }
           },
           "206": {
-            "description": "The number of events exceeds the servers limit.The number of matching results is provided by the x-total-count header, the limit is available in the content-range header. The value format is 'items 0-LIMIT/TOTAL'. Note that x-total-count is always present for 200 and 206 responses",
+            "description": "The number of events exceeds the servers limit. The approximate number of matching results is provided by the x-total-count header, the exact limit is available in the content-range header. The value format is 'items 0-LIMIT/TOTAL'.  Note that x-total-count is always present for 200 and 206 responses. It is the servers best available approximation. Similarly, in any result set, you may get a few more than LIMIT items.",
             "schema": {}
           },
           "401": {
