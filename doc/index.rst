@@ -19,6 +19,7 @@ Archivist API documentation
    fwupdatev1/index
    recordevidencev1/index
    maintenancev1/index
+   attachmentsv1/index
    locations/index
    applicationlink/index
    msiothub/index
