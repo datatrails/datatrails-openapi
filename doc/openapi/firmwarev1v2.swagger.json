@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "RecordEvidenceV1 API",
+    "title": "FirmwareV1 API",
     "version": "1.0",
     "contact": {
       "name": "Jitsuin",
@@ -50,7 +50,7 @@
           }
         ],
         "tags": [
-          "RecordEvidenceV1"
+          "FirmwareV1"
         ]
       }
     }

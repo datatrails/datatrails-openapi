@@ -16,11 +16,14 @@ Archivist API documentation
    asset/index
    assetv2/index
    attachments/index
-   fwupdatev1/index
+   firmwarev1/index
    recordevidencev1/index
    maintenancev1/index
+   userattributesv1/index
    attachmentsv1/index
    locations/index
+   locationupdatev1/index
    applicationlink/index
    msiothub/index
    system/index
+   

@@ -445,9 +445,29 @@
           "$ref": "#/definitions/v2TrackedStatus",
           "description": "indicates whether asset is still being tracked in the system",
           "readOnly": true
+        },
+        "complex_attr": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/v2AttributeValue"
+          }
         }
       },
       "description": "This describes Jitsuin Asset."
+    },
+    "v2AttributeValue": {
+      "type": "object",
+      "properties": {
+        "str_val": {
+          "type": "string"
+        },
+        "dict_val": {
+          "$ref": "#/definitions/v2DictAttr"
+        },
+        "list_val": {
+          "$ref": "#/definitions/v2ListAttr"
+        }
+      }
     },
     "v2ConfirmationStatus": {
       "type": "string",
@@ -494,9 +514,26 @@
             "type": "string"
           },
           "description": "list of properties that can be modified"
+        },
+        "complex_attr": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/v2AttributeValue"
+          }
         }
       },
       "description": "This describes the body of a request to create new Jitsuin Asset."
+    },
+    "v2DictAttr": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
     },
     "v2EventResponse": {
       "type": "object",
@@ -504,7 +541,7 @@
         "identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000",
         "asset_identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
         "operation": "Update",
-        "behaviour": "FwUpdateV1",
+        "behaviour": "FirmwareV1",
         "attributes": {
           "firmware_version": "3.2.1"
         },
@@ -598,6 +635,12 @@
           "format": "uint64",
           "description": "index of event within commited block",
           "readOnly": true
+        },
+        "complex_attr": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/v2AttributeValue"
+          }
         }
       },
       "description": "This describes Jitsuin Event."
@@ -625,6 +668,17 @@
         }
       },
       "description": "A list of assets returned data identical to `Asset`"
+    },
+    "v2ListAttr": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v2DictAttr"
+          }
+        }
+      }
     },
     "v2ListEventsRequestOrderBy": {
       "type": "string",
