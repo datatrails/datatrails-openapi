@@ -17,7 +17,7 @@ Define the location parameters and store in /path/to/jsonfile:
        "longitude": "-2.1213956,14.54",
        "extended_attributes": {
        "director": "John Smith",
-       "address": "Bridgewater, Somerset",
+       "address": "Unit 6A, Synsation Park, Maccelsfield",
        "Facility Type": "Manufacture",
            "support_email": "support@macclesfield.com",
            "support_phone": "123 456 789"
@@ -26,17 +26,17 @@ Define the location parameters and store in /path/to/jsonfile:
 
 .. note::
     display_name
-        **required**.
+        **required** Friendly name for the location. Displayed in the Archivist GUI.
 
     description
-        **required**.
+        **required** Extended information about the location.
 
     extended_attributes
         freeform and can contain any fields.
 
     See `Swagger POST API <openapi.html#post--archivist-v1-locations>`_
 
-Create the location:
+Create the location to POSTing to the ``locations`` resource:
 
 .. code-block:: shell
 

@@ -6,5 +6,4 @@ User Attributes API
    :caption: Contents:
 
    creation
-   openapi
 

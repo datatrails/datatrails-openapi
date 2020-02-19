@@ -22,7 +22,7 @@ The response is:
 .. code-block:: JSON
 
     {
-        "identity": "quorum-0",
+        "identity": "quorum",
         "blockchain_nodes": [
             {
                 "validator_pubkey": {
@@ -36,6 +36,7 @@ The response is:
                 "connection_status": "REACHABLE"
                 "timestamp_committed": "2019-01-02T01:03:07Z",
                 "timestamp_created": "2019-01-01T12:00:27Z",
+                "syncing": null,
                 "peers": [
                     {
                         "validator_pubkey": {
@@ -85,6 +86,10 @@ The response is:
 
     timestamp_created
         timestamp (UTC) of genesis block in blockchain.
+
+    syncing
+        if not null contains 3 integer fields, StartingBlock, CurrentBlock and HighestBlock indicating the
+        the progress of syncing with the blockchain.
 
     peers
         list of peers.

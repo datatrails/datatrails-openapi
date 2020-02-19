@@ -11,14 +11,11 @@ Upload the attachment stored at /path/to/file:
 
 .. code-block:: shell
 
-    $ curl -v \
+    $ curl -v -X POST \
         -H "@$BEARER_TOKEN_FILE" \
+        -H "content_type=image/jpg" \
         -F "file=@/path/to/file" \
         $URL/archivist/v1/attachments
-
-.. note::
-
-  See `Swagger POST API <openapi.html#post--archivist-v1-attachments>`_
 
 
 The response is:
@@ -29,16 +26,24 @@ The response is:
         "identity": "attachments/08838336-c357-460d-902a-3aba9528dd22",
         "hash": {
             "algorithm": "SHA256",
-            "value": "xxxxxxxxxxxxxxxxxxxxxxx",
+            "value": "xxxxxxxxxxxxxxxxxxxxxxx"
         },
-        "mime_type": "application/jpeg"
-        "timestamp_accepted": "2019-11-07T15:31:49Z"
-        "size": 1024,
+        "mime_type": "image/jpeg",
+        "timestamp_accepted": "2019-11-07T15:31:49Z",
+        "size": 31424
     }
 
 
 .. note::
    identity
-       used to reference the attachment to an asset during asset
-       creation or asset event. (usually a maintenance event).
+       The unique identity of the asset in the Jitsuin Archivist system,
+       used to reference the attachment in an Asset Record or asset event
+       (usually a Maintenance event).
+
+       Attachments in the Jitsuin Archivist system are not first-order
+       objects in their own right: they are properties of other objects
+       such as Asset Records or events. Due to this, Attachments
+       cannot be listed, filtered or searched, so it is important that
+       you remember the attachment identity returned until you connect
+       it to a suitable Asset Record or Event.
 

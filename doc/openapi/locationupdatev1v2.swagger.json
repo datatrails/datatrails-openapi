@@ -86,7 +86,18 @@
         "operation": "Update",
         "behaviour": "FirmwareV1",
         "attributes": {
-          "firmware_version": "3.2.1"
+          "firmware_version": "3.2.1",
+          "attachments": [
+            {
+              "attachment_identity": "attachments/1754b920-cf20-4d7e-9d36-9ed7d479744d",
+              "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+              "description": "Picture from yesterday"
+            }
+          ],
+          "primary_location": {
+            "location_identity": "locations/42054f10-9952-4c10-a082-9fd0d10295ae",
+            "description": "under the table"
+          }
         },
         "timestamp_declared": "2019-11-27T14:44:19Z",
         "principal_declared": {
@@ -110,7 +121,7 @@
         "attributes": {
           "type": "object",
           "additionalProperties": {
-            "type": "string"
+            "$ref": "#/definitions/v2AttributeValue"
           }
         },
         "principal_declared": {
@@ -121,12 +132,6 @@
           "format": "date-time",
           "description": "time of event as declared by the user",
           "readOnly": true
-        },
-        "complex_attr": {
-          "type": "object",
-          "additionalProperties": {
-            "$ref": "#/definitions/v2AttributeValue"
-          }
         }
       },
       "description": "Request creating Firmware Update event Specify `operation` to chose which Firmware Update event to create "
@@ -150,7 +155,18 @@
         "operation": "Update",
         "behaviour": "FirmwareV1",
         "attributes": {
-          "firmware_version": "3.2.1"
+          "firmware_version": "3.2.1",
+          "attachments": [
+            {
+              "attachment_identity": "attachments/1754b920-cf20-4d7e-9d36-9ed7d479744d",
+              "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+              "description": "Picture from yesterday"
+            }
+          ],
+          "primary_location": {
+            "location_identity": "locations/42054f10-9952-4c10-a082-9fd0d10295ae",
+            "description": "under the table"
+          }
         },
         "timestamp_accepted": "2019-11-27T14:44:19Z",
         "timestamp_declared": "2019-11-27T14:44:19Z",
@@ -184,7 +200,7 @@
         "attributes": {
           "type": "object",
           "additionalProperties": {
-            "type": "string"
+            "$ref": "#/definitions/v2AttributeValue"
           }
         },
         "operation": {
@@ -242,12 +258,6 @@
           "format": "uint64",
           "description": "index of event within commited block",
           "readOnly": true
-        },
-        "complex_attr": {
-          "type": "object",
-          "additionalProperties": {
-            "$ref": "#/definitions/v2AttributeValue"
-          }
         }
       },
       "description": "This describes Jitsuin Event."

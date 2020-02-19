@@ -1,3 +1,5 @@
+.. _firmware_behaviour:
+
 Firmware API
 ------------
 
@@ -8,5 +10,4 @@ Firmware API
    update
    update_required
    vulnerability
-   openapi
 

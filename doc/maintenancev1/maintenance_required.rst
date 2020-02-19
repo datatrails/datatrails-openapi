@@ -1,11 +1,11 @@
 
-.. _firmwarev1v2_vulnerability:
+.. _maintenancev1v2_required:
 
-Firmware Vulnerability
-----------------------
+Maintenance Request
+-------------------
 
-Use the `Firmware:Vulnerability` operation to record a vulnerability
-notification in an Asset Record.
+Use the `Maintenance:MaintenanceRequired` operation to record any maintenance
+needs for an asset (cyber or physical)
 
 .. include:: ../auth_url.rst
 
@@ -14,12 +14,10 @@ Define the event parameters and store in /path/to/jsonfile:
 .. code-block:: JSON
 
     {
-      "operation": "Vulnerability",
-      "behaviour": "Firmware",
+      "operation": "MaintenanceRequired",
+      "behaviour": "Maintenance",
       "attributes": {
-          "description": "All units affected by CVE-2014-0160. Review for risk exposure within reasonable time."
-          "cve_id": "CVE-2014-0160",
-          "arc_correlation_value": "12-345-67"
+          "description": "Intermittent telemetry failures are causing yield drops: contract maintenance co to investigate ASAP"
       },
       "timestamp_declared": "2019-11-27T14:44:19Z",
         "principal_declared": {
@@ -31,13 +29,7 @@ Define the event parameters and store in /path/to/jsonfile:
 
 .. note::
     attributes.description
-        *Required* Details of the vulnerability
-
-    attributes.cve_id
-        *Optional* Track a CVE label against this vulnerability
-
-    attributes.arc_correlation_value   
-        *Optional* Used to link related events together
+        *Required* Details of the maintenance request
 
     timestamp_declared
         *Optional* Client-claimed time at which the maintenance was performed
@@ -45,8 +37,7 @@ Define the event parameters and store in /path/to/jsonfile:
     principal_declared
         *Optional* Client-claimed identity of person performing the operation
 
-Push the vulnerability notification into the Asset Record by POSTing it to
-the appropriate ``asset`` resource:
+Add the maintenance request to the Asset Record by POSTing it to the resource:
 
 .. code-block:: shell
 
@@ -64,11 +55,10 @@ The response is:
     {
       "identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000",
       "asset_identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
-      "operation": "Vulnerability",
-      "behaviour": "Firmware",
+      "operation": "MaintenanceRequest",
+      "behaviour": "Maintenance",
       "attributes": {
-          "cve_id": "CVE-2014-0160",
-          "arc_correlation_value": "12-345-67"
+          "description": "Intermittent telemetry failures are causing yield drops: contract maintenance co to investigate ASAP"
       },
       "timestamp_accepted": "2019-11-27T15:13:21Z",
       "timestamp_declared": "2019-11-27T14:44:19Z",
@@ -88,7 +78,4 @@ The response is:
       "transaction_id": "0x07569"
     }
 
-The complete REST API is:
-
-.. openapi:: ../openapi/firmwarev1v2.swagger.json
 

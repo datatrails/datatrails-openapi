@@ -11,17 +11,17 @@ Define the event parameters and store in /path/to/jsonfile:
 
 .. code-block:: JSON
 
-    event = {
+    {
         "operation": "Set",
         "behaviour": "UserAttributesV1",
         "attributes": {
-            "attribute_name": "attribute_value",
+            "attribute_name": "attribute_value"
         },
         "timestamp_declared": "2019-10-03T11:09:30Z",
         "principal_declared": {
             "issuer": "job.idp.server/1234",
             "subject": "bob@job"
-        },
+        }
     }
 
 .. note::
@@ -57,7 +57,7 @@ The response is:
       "operation": "Set",
       "behaviour": "UserAttributesV1",
       "attributes": {
-          "attribute name": "attribute value",
+          "attribute_name": "attribute_value"
       },
       "timestamp_accepted": "2019-11-27T14:44:19Z",
       "timestamp_declared": "2019-11-27T14:44:19Z",

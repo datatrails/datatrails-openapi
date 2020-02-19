@@ -68,6 +68,7 @@
             },
             "block_height": "38773",
             "connection_status": "REACHABLE",
+            "syncing": null,
             "timestamp_committed": "2019-01-01T12:00:27Z",
             "timestamp_created": "2019-01-01T12:00:27Z",
             "peers": [
@@ -125,7 +126,6 @@
           "type": "string",
           "format": "uint64",
           "description": "For the local node, the height of the last committed block",
-          "title": "unsigned 64 bit integer",
           "readOnly": true
         },
         "connection_status": {
@@ -143,6 +143,11 @@
           "type": "string",
           "format": "date-time",
           "description": "Timestamp of creation of the genesis block (RFC 3339)",
+          "readOnly": true
+        },
+        "syncStatus": {
+          "$ref": "#/definitions/v1SyncStatus",
+          "description": "IF present, the node is syncing.",
           "readOnly": true
         },
         "peers": {
@@ -233,6 +238,29 @@
         "connection_status": {
           "$ref": "#/definitions/v1ConnectionStatus",
           "description": "An indication of the peers connection status.",
+          "readOnly": true
+        }
+      }
+    },
+    "v1SyncStatus": {
+      "type": "object",
+      "properties": {
+        "starting_block": {
+          "type": "string",
+          "format": "uint64",
+          "description": "When syncing, the starting block.",
+          "readOnly": true
+        },
+        "current_block": {
+          "type": "string",
+          "format": "uint64",
+          "description": "When syncing, the current block.",
+          "readOnly": true
+        },
+        "highest_block": {
+          "type": "string",
+          "format": "uint64",
+          "description": "When syncing, the highest block.",
           "readOnly": true
         }
       }

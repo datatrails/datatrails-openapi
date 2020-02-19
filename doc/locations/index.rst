@@ -6,5 +6,6 @@ Locations API
    :caption: Contents:
 
    creation
+   retrieval
    openapi
 

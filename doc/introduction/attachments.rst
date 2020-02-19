@@ -27,15 +27,19 @@ The asset 'primary_image'
 Attachments to assets are named in their ``display_name`` property, so 
 that they can be searched and indexed.  Names are arbitrary and may be 
 defined according to the needs of the application, but one name is 
-reserved and interpreted by the Jitsuin stack: ``primary_image``.  
+reserved and interpreted by the Jitsuin stack: ``arc_primary_image``.  
 
-If an asset has an attachment named ``primary_image`` then this will be 
-used by the user interface and other Jitsuin tools to represent the asset.  
+If an asset has an attachment named ``arc_primary_image`` then this will be 
+used by the user interface and other Jitsuin tools to represent the asset. 
 
 Attachments on events
 =====================
 
 Adding an attachment to an event allows recording and communication of 
-asset status that is difficult to capture in text.  For example, a 
-photograph of physical state of a device such as alignment of components 
-or wear on tamper seals at the time of a particular inspection.  
+asset status that is difficult to capture in text.  For example:
+* a photograph of physical state of a device such as alignment of
+  components or wear on tamper seals at the time of a particular
+  inspection. 
+* a PDF of a safety conformance report to support a maintenance event.
+* a software manifest to support an update.
+* an x-ray image

@@ -4,8 +4,10 @@
 Firmware Update Required
 -------------------------
 
-.. include:: ../auth_url.rst
+Use the `Firmware:UpdateRequired` operation to record a required
+update notification in an Asset Record.
 
+.. include:: ../auth_url.rst
 
 Define the event parameters and store in /path/to/jsonfile:
 
@@ -13,30 +15,34 @@ Define the event parameters and store in /path/to/jsonfile:
 
     {
       "operation": "UpdateRequired",
-      "behaviour": "FirmwareV1",
+      "behaviour": "Firmware",
       "attributes": {
-          "firmware_version": "3.2.1",
+          "description": "Update to 3.2.1 ASAP",
+          "arc_correlation_value": "12-345-67"
       },
       "timestamp_declared": "2019-11-27T14:44:19Z",
-      "principal_declared": {
-        "issuer": "job.idp.server/1234",
-        "subject": "bob@job"
-      }
+        "principal_declared": {
+            "issuer": "idp.synsation.io/1234",
+            "subject": "phil.b",
+            "email": "phil.b@synsation.io"
+        }
     }
 
 .. note::
-    attributes
-        properties of asset
+    attributes.description
+        *Required* Details of the request
+
+    attributes.arc_correlation_value   
+        *Optional* Used to link related events together
 
     timestamp_declared
-        Time at which update was preformed
+        *Optional* Client-claimed time at which the maintenance was performed
 
     principal_declared
-        Identity of person who did the update
+        *Optional* Client-claimed identity of person performing the operation
 
-    See `Swagger POST API <openapi.html#post--archivist-v2-firmwarev1>`_
 
-Create the firmware update:
+Add the notification ot the Asset Record by POSTing to the resource:
 
 .. code-block:: shell
 
@@ -55,16 +61,18 @@ The response is:
       "identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000",
       "asset_identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
       "operation": "UpdateRequired",
-      "behaviour": "FirmwareV1",
+      "behaviour": "Firmware",
       "attributes": {
-          "firmware_version": "3.2.1",
+          "description": "Update to 3.2.1 ASAP",
+          "arc_correlation_value": "12-345-67"
       },
-      "timestamp_accepted": "2019-11-27T14:44:19Z",
+      "timestamp_accepted": "2019-11-27T15:13:21Z",
       "timestamp_declared": "2019-11-27T14:44:19Z",
-      "timestamp_committed": "2019-11-27T14:44:19Z",
+      "timestamp_committed": "2019-11-27T15:15:02Z",
       "principal_declared": {
-        "issuer": "job.idp.server/1234",
-        "subject": "bob@job"
+        "issuer": "idp.synsation.io/1234",
+        "subject": "phil.b",
+        "email": "phil.b@synsation.io"
       },
       "principal_accepted": {
         "issuer": "job.idp.server/1234",
@@ -76,36 +84,4 @@ The response is:
       "transaction_id": "0x07569"
     }
 
-.. note::
-    identity
-        used internally by the Jitsuin system to track this event.
-
-    asset_identity
-        identity of asset (uuid)
-
-    attributes
-        properties of asset
-
-    timestamp_accepted
-        Time at which update was preformed
-
-    timestamp_committed
-        Time at which update was preformed
-
-    timestamp_declared
-        Time at which update was preformed
-
-    principal_declared
-        Identity of person who did the update
-
-    principal_accepted
-        Identity of person who did the update
-
-    confirmation_status
-        CONFIRMED is committed to blockchain
-
-    block_number transaction_index transaction_id
-        Details of event on blockchain
-
-    See `Swagger POST API <openapi.html#post--archivist-v2-firmwarev1>`_
 

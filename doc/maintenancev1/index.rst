@@ -1,10 +1,12 @@
-Maintenance Update API
-----------------------
+.. _maintenance_behaviour:
+
+Maintenance Operations API
+--------------------------
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-   creation
-   openapi
+   maintenance_required
+   maintenance
 

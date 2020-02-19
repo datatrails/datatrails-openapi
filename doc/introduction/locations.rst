@@ -13,7 +13,13 @@ updated?"*, or *"who was the last person to touch any device in the
 Cape Town facility?"*.  It is not *required* for assets to be 
 associated with a location, but it is a useful way to group assets in 
 the same physical location without inventing your own link values in 
-``extended_attributes``.
+custom attributes.
+
+It is important to recognize that the location does not necessarily
+denote the asset's current position in space: it simply determines
+which facility the asset belongs to. For things that move around, GIS
+location information can be included with any event in the Asset Record,
+and the asset's ``arc_last_seen`` property will be updated appropriately.
 
 Resolution
 ==========
@@ -26,7 +32,7 @@ each individual asset if that is more suitable.
 
 Data members
 ============
-As with all Jitsuin Archivist data types, locations support extended 
+As with all Jitsuin Archivist data types, locations support custom 
 attributes which can be defined and used for any purpose by the user. 
 This enables storage of a mailing address, phone number, or contact 
 details of the site manager, for example.  

@@ -1,10 +1,14 @@
-Assets V2 API
+Assets API
 -------------
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :caption: Contents:
 
    creation
-   openapi
+   retrieval
+   ../locationupdatev1/index
+   ../firmwarev1/index
+   ../maintenancev1/index
+   ../recordevidencev1/index
 

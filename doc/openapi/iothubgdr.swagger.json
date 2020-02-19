@@ -20,7 +20,7 @@
     "application/json"
   ],
   "paths": {
-    "/archivist/v1/iothubgdrs": {
+    "/archivist/v1/iothubgdr": {
       "get": {
         "operationId": "ListIoTHubGDRConnections",
         "responses": {

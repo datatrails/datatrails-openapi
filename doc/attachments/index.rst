@@ -6,5 +6,6 @@ Attachments API
    :caption: Contents:
 
    upload
+   retrieval
    openapi
 

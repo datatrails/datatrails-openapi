@@ -6,11 +6,13 @@ See :ref:`bearer-token`.
 
 .. note::
 
-    The following should be done in a bash script.
+    The following example shows use of the  API over curl in a bash terminal.
+    The concepts are fully portable to any other REST client (eg PostMan or
+    python requests)
 
 
 Set the URL (for example):
 
 .. code-block:: shell
 
-    $ URL=https://dev-paul-avid.engineering-k8s-scratch-1.dev.eng.jitsuin.io
+    $ export URL=https://synsation.1234-5678.nodes.archivist.jitsuin.io

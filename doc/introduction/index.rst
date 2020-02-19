@@ -6,5 +6,6 @@ Introduction
    :caption: Contents:
 
    lifecycle
+   behaviours
    attachments
    locations

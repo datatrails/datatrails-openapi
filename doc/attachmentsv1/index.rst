@@ -6,5 +6,4 @@ Attachments Behaviour API
    :caption: Contents:
 
    creation
-   openapi
 

@@ -41,7 +41,7 @@ Post to the endpoint:
         -H "@$BEARER_TOKEN_FILE" \
         -H "Content-type: application/json" \
         -d "@/path/to/jsonfile" \
-        $URL/archivist/v1/iothubgdrs
+        $URL/archivist/v1/iothubgdr
 
 .. _iothubgdr_creation_resp:
 
@@ -51,7 +51,7 @@ Responses
 .. code-block:: JSON
 
     {
-        "identity": "iothubgdrs/08838336-c357-460d-902a-3aba9528dd22",
+        "identity": "iothubgdr/08838336-c357-460d-902a-3aba9528dd22",
         "done": false,
         "timestamp_accepted": "2019-11-07T15:31:49Z",
         "timestamp_finished": null,
@@ -68,7 +68,7 @@ Or in case of error
 .. code-block:: JSON
 
     {
-        "identity": "iothubgdrs/08838336-c357-460d-902a-3aba9528dd22",
+        "identity": "iothubgdr/08838336-c357-460d-902a-3aba9528dd22",
         "done": true,
         "timestamp_accepted": "2019-11-07T15:31:49Z",
         "timestamp_finished": "2019-11-07T15:31:55Z",
