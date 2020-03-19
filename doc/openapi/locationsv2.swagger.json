@@ -9,7 +9,7 @@
     }
   },
   "host": "jitsuin.readthedocs.io",
-  "basePath": "/api/archivist/v1",
+  "basePath": "/api/archivist/v2",
   "schemes": [
     "http",
     "https"
@@ -21,7 +21,7 @@
     "application/json"
   ],
   "paths": {
-    "/archivist/v1/locations": {
+    "/archivist/v2/locations": {
       "get": {
         "summary": "List locations",
         "description": "Returns a paginated list of locations",
@@ -30,7 +30,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1ListLocationsResponse"
+              "$ref": "#/definitions/v2ListLocationsResponse"
             }
           },
           "401": {
@@ -57,8 +57,7 @@
             "type": "string",
             "enum": [
               "DEFAULT",
-              "DISPLAY_NAME",
-              "EXTENDED_ATTRIBUTE"
+              "DISPLAY_NAME"
             ],
             "default": "DEFAULT"
           },
@@ -83,20 +82,6 @@
             "in": "query",
             "required": false,
             "type": "string"
-          },
-          {
-            "name": "extended_attributes_key",
-            "description": "The key name for an extended attribute, to match or to order by",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "extended_attributes_value",
-            "description": "Only show locations with a matching extended attribute. The key name must be identified by extended_attribute_key",
-            "in": "query",
-            "required": false,
-            "type": "string"
           }
         ],
         "tags": [
@@ -105,13 +90,13 @@
       },
       "post": {
         "summary": "Create a location",
-        "description": "This request creates a new location. A name and a latitude and longitude must be provided. The display_name is the friendly name. The latitude and longitude must be entered in Degrees Decimal format See [Change of units and format](https://en.wikipedia.org/wiki/Geographic_coordinate_conversion#Change_of_units_and_format). The `extended_attributes` field is a flat map of `{ \"key\": \"value\" }`. The keys and values must be strings.",
+        "description": "This request creates a new location. A name and a latitude and longitude must be provided. The display_name is the friendly name. The latitude and longitude must be entered in Degrees Decimal format See [Change of units and format](https://en.wikipedia.org/wiki/Geographic_coordinate_conversion#Change_of_units_and_format). The `attributes` field is a flat map of `{ \"key\": \"value\" }`. The keys and values must be strings.",
         "operationId": "CreateLocation",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/archivistv1Location"
+              "$ref": "#/definitions/archivistv2Location"
             }
           },
           "401": {
@@ -135,7 +120,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/v1CreateLocationRequest"
+              "$ref": "#/definitions/v2CreateLocationRequest"
             }
           }
         ],
@@ -144,7 +129,7 @@
         ]
       }
     },
-    "/archivist/v1/{identity}": {
+    "/archivist/v2/{identity}": {
       "get": {
         "summary": "Get a location",
         "description": "Returns the identified location",
@@ -153,7 +138,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/archivistv1Location"
+              "$ref": "#/definitions/archivistv2Location"
             }
           },
           "401": {
@@ -239,7 +224,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/archivistv1Location"
+              "$ref": "#/definitions/archivistv2Location"
             }
           },
           "401": {
@@ -275,7 +260,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/archivistv1Location"
+              "$ref": "#/definitions/archivistv2Location"
             }
           }
         ],
@@ -290,13 +275,12 @@
       "type": "string",
       "enum": [
         "DEFAULT",
-        "DISPLAY_NAME",
-        "EXTENDED_ATTRIBUTE"
+        "DISPLAY_NAME"
       ],
       "default": "DEFAULT",
       "title": "Supported sort orders"
     },
-    "archivistv1Location": {
+    "archivistv2Location": {
       "type": "object",
       "example": {
         "identity": "locations/08838336-c357-460d-902a-3aba9528dd22",
@@ -304,7 +288,7 @@
         "description": "Manufacturing site, North West England, Macclesfield, Cheshire",
         "latitude": "53.2546799",
         "longitude": "-2.1213956,14.54",
-        "extended_attributes": {
+        "attributes": {
           "director": "John Smith",
           "address": "Bridgewater, Somerset",
           "Facility Type": "Manufacture",
@@ -316,7 +300,6 @@
         "identity": {
           "type": "string",
           "description": "Unique identification for the location, Relative Resource Name",
-          "title": "locations/{UUID}",
           "maxLength": 4096
         },
         "display_name": {
@@ -343,12 +326,11 @@
           "maximum": 180,
           "minimum": -180
         },
-        "extended_attributes": {
+        "attributes": {
           "type": "object",
           "additionalProperties": {
-            "type": "string"
-          },
-          "title": "Customer defined extended attributes. keys are max_length 1024, values\nmax_length 4096"
+            "$ref": "#/definitions/v2Attribute"
+          }
         }
       },
       "description": "Describes a location for asset resources"
@@ -403,14 +385,28 @@
         }
       }
     },
-    "v1CreateLocationRequest": {
+    "v2Attribute": {
+      "type": "object",
+      "properties": {
+        "str_val": {
+          "type": "string"
+        },
+        "dict_val": {
+          "$ref": "#/definitions/v2DictAttr"
+        },
+        "list_val": {
+          "$ref": "#/definitions/v2ListAttr"
+        }
+      }
+    },
+    "v2CreateLocationRequest": {
       "type": "object",
       "example": {
         "display_name": "Macclesfield, Cheshire",
         "description": "Manufacturing site, North West England, Macclesfield, Cheshire",
         "latitude": "53.2546799",
         "longitude": "-2.1213956,14.54",
-        "extended_attributes": {
+        "attributes": {
           "director": "John Smith",
           "address": "Bridgewater, Somerset",
           "Facility Type": "Manufacture",
@@ -443,12 +439,11 @@
           "maximum": 180,
           "minimum": -180
         },
-        "extended_attributes": {
+        "attributes": {
           "type": "object",
           "additionalProperties": {
-            "type": "string"
-          },
-          "title": "Customer defined extended attributes. keys are max_length 1024, values\nmax_length 4096"
+            "$ref": "#/definitions/v2Attribute"
+          }
         }
       },
       "description": "The body of a request to create new Jitsuin Asset location.",
@@ -458,13 +453,35 @@
         "longitude"
       ]
     },
-    "v1ListLocationsResponse": {
+    "v2DictAttr": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "v2ListAttr": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v2DictAttr"
+          }
+        }
+      }
+    },
+    "v2ListLocationsResponse": {
       "type": "object",
       "properties": {
         "locations": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/archivistv1Location"
+            "$ref": "#/definitions/archivistv2Location"
           },
           "title": "There will be at most ListLocationsRequest.page_size items"
         },

@@ -114,7 +114,7 @@ and security remediation teams.
 Archivist allows recording these general lifecycle events through the
 ``RecordEvidence`` behaviour.
 
-For more detail, see :ref:`recordevidencev1v2`
+For more detail, see :ref:`recordevidence_behaviour`
 
 Firmware security management
 ============================

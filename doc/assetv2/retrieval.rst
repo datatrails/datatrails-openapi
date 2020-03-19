@@ -51,7 +51,7 @@ To fetch all assets with a specific name,  GET the ``assets`` resource and filte
 
    $ curl -g -v -X GET \
         -H "@$BEARER_TOKEN_FILE" \
-        $URL/archivist/v2/assets?attributes[arc_display_name]=tcl.ccj.003
+        $URL/archivist/v2/assets?attributes.arc_display_name=tcl.ccj.003
 
 Fetch assets by type
 ====================
@@ -62,7 +62,7 @@ To fetch all assets of a specific type,  GET the ``assets`` resource and filter 
 
    $ curl -g -v -X GET \
         -H "@$BEARER_TOKEN_FILE" \
-        $URL/archivist/v2/assets?attributes[arc_display_type]=Traffic%20light
+        $URL/archivist/v2/assets?attributes.arc_display_type.=Traffic%20light
 
 Each of these calls returns a list of matching asset records in the form:
 

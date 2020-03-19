@@ -1,7 +1,14 @@
-Location Update API
--------------------
-
 .. include:: ../auth_url.rst
+
+.. _locationupdate_behaviour:
+
+LocationUpdate Operations API
+-------------------------------------------------------------------------------
+
+.. _locationupdate_behaviour_SetHomeLocation:
+
+LocationUpdate SetHomeLocation
+...............................................................................
 
 Define the event parameters and store in /path/to/jsonfile:
 
@@ -11,7 +18,7 @@ Define the event parameters and store in /path/to/jsonfile:
       "operation": "SetHomeLocation",
       "behaviour": "LocationUpdate",
       "attributes": {
-          "home_location_identity": "locations/90ec1b4f-93d9-49b4-b181-d6fe50ce2497"
+        "arc_home_location_identity": "locations/90ec1b4f-93d9-49b4-b181-d6fe50ce2497"
       },
       "timestamp_declared": "2019-11-27T14:44:19Z",
       "principal_declared": {
@@ -22,20 +29,16 @@ Define the event parameters and store in /path/to/jsonfile:
     }
 
 .. note::
-    attributes.home_location_identity
-        *Required* new home location for the asset
+    attributes.arc_home_location_identity
+       *Required* new home location for the asset
 
     timestamp_declared
-        *Optional* User-claimed time that the operation was performed
+        *Optional* Client-claimed time at which the maintenance was performed
 
     principal_declared
-        *Optional* User-claimed Identity of actor who performed the update
+        *Optional* Client-claimed identity of person performing the operation
 
-    See :ref:`locations_creation` and :ref:`locations_retrieval` for details
-    of how to get the correct value for ``home_location_identity``
-
-
-Initiate the Location update event by POSTing to the asset's ``events`` resource:
+Add the LocationUpdate request to the Asset Record by POSTing it to the resource:
 
 .. code-block:: shell
 
@@ -54,9 +57,9 @@ The response is:
       "identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000",
       "asset_identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
       "operation": "SetHomeLocation",
-      "behaviour": "LocationUpdateV1",
+      "behaviour": "LocationUpdate",
       "attributes": {
-          "home_location_identity": "locations/90ec1b4f-93d9-49b4-b181-d6fe50ce2497"
+        "arc_home_location_identity": "locations/90ec1b4f-93d9-49b4-b181-d6fe50ce2497"
       },
       "timestamp_accepted": "2019-11-27T15:13:21Z",
       "timestamp_declared": "2019-11-27T14:44:19Z",
@@ -65,7 +68,7 @@ The response is:
         "issuer": "idp.synsation.io/1234",
         "subject": "phil.b",
         "email": "phil.b@synsation.io"
-      }
+      },
       "principal_accepted": {
         "issuer": "job.idp.server/1234",
         "subject": "bob@job"
@@ -75,6 +78,5 @@ The response is:
       "transaction_index": 5,
       "transaction_id": "0x07569"
     }
-
 
 

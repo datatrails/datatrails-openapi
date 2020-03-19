@@ -35,11 +35,12 @@ used by the user interface and other Jitsuin tools to represent the asset.
 Attachments on events
 =====================
 
-Adding an attachment to an event allows recording and communication of 
+Adding an attachment to an event allows recording and communication of
 asset status that is difficult to capture in text.  For example:
+
 * a photograph of physical state of a device such as alignment of
   components or wear on tamper seals at the time of a particular
-  inspection. 
+  inspection.
 * a PDF of a safety conformance report to support a maintenance event.
 * a software manifest to support an update.
 * an x-ray image
