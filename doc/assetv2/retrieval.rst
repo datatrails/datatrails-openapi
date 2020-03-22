@@ -82,7 +82,7 @@ Each of these calls returns a list of matching asset records in the form:
             "attributes": {
                 "arc_display_type": "Traffic light",
                 "arc_firmware_version": "1.0",
-                "arc_location_identity": "locations/866790d8-4ed6-4cc9-8f60-07672609b331",
+                "arc_home_location_identity": "locations/866790d8-4ed6-4cc9-8f60-07672609b331",
                 "arc_serial_number": "vtl-x4-07",
                 "arc_description": "Traffic flow control light at A603 North East",
                 "arc_display_name": "tcl.ccj.003",
@@ -100,7 +100,7 @@ Each of these calls returns a list of matching asset records in the form:
     the system-reserved ``arc_*`` attributes.
 
     See :ref:`attachments_upload` and/or :ref:`locations_creation` for details
-    of how to handle the ``arc_location_identity`` and ``arc_primary_image``
+    of how to handle the ``arc_home_location_identity`` and ``arc_primary_image``
     attributes.
 
 .. note::
