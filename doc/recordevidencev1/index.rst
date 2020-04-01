@@ -18,7 +18,7 @@ Define the event parameters and store in /path/to/jsonfile:
       "operation": "Record",
       "behaviour": "RecordEvidence",
       "attributes": {
-        "description": "Safety conformance approved for version 1.6. See attached conformance report",
+        "arc_description": "Safety conformance approved for version 1.6. See attached conformance report",
         "arc_evidence": "DVA Conformance Report attached", 
         "conformance_report": "attachments/e2a1d16c-03cd-45a1-8cd0-690831df1273"
       },
@@ -31,7 +31,7 @@ Define the event parameters and store in /path/to/jsonfile:
     }
 
 .. note::
-    attributes.description
+    attributes.arc_description
         *Required* Details of the RecordEvidence request
 
     attributes.arc_evidence
@@ -68,7 +68,7 @@ The response is:
       "operation": "Record",
       "behaviour": "RecordEvidence",
       "attributes": {
-        "description": "Safety conformance approved for version 1.6. See attached conformance report",
+        "arc_description": "Safety conformance approved for version 1.6. See attached conformance report",
         "arc_evidence": "DVA Conformance Report attached", 
         "conformance_report": "attachments/e2a1d16c-03cd-45a1-8cd0-690831df1273"
       },

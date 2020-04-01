@@ -1,11 +1,10 @@
 
-.. _iothubgdrv1_creation:
+.. _iothubgdrv2_creation:
 
 =====================
-IoTHubGDR V1 Creation
+IoTHubGDR V2 Creation
 =====================
 
-.. include:: ../iothubgdr_warning.rst
 .. include:: ../../auth_url.rst
 
 The **iothubgdr** endpoint allows to import all devices from selected Azure IoT Hub into the Jitsuin Archivist system.
@@ -17,7 +16,7 @@ Define the iothubgdr parameters and store in /path/to/jsonfile:
     {
         "display_name": "Jitsuin",
         "secret": "Endpoint=sb://iothub-ns-test-org-1-1637462-0dd952fad8.servicebus.windows.net/;SharedAccessKeyName=iothubowner;SharedAccessKey=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;EntityPath=test-org-1",
-        "location_identity": "locations/47b575c0-ff0f-11e9-8f0b-362b9e155667"
+        "arc_home_location_identity": "locations/47b575c0-ff0f-11e9-8f0b-362b9e155667"
     }
 
 
@@ -28,7 +27,7 @@ Define the iothubgdr parameters and store in /path/to/jsonfile:
     secret
         **required**: connection string to Azure IoTHub
 
-    location_identity
+    arc_home_location_identity
         **optional**: location identity at which to add the imported devices
 
     The **iothubgdr** service does not persist the secret.
@@ -42,9 +41,9 @@ Post to the endpoint:
         -H "@$BEARER_TOKEN_FILE" \
         -H "Content-type: application/json" \
         -d "@/path/to/jsonfile" \
-        $URL/archivist/v1/iothubgdr
+        $URL/archivist/v2/iothubgdr
 
-.. _iothubgdrv1_creation_resp:
+.. _iothubgdrv2_creation_resp:
 
 Responses
 -----------
@@ -59,7 +58,7 @@ Responses
         "result": {
             "display_name": "Jitsuin",
             "number_assets_imported": 0,
-            "location_identity": "locations/47b575c0-ff0f-11e9-8f0b-362b9e155667",
+            "arc_home_location_identity": "locations/47b575c0-ff0f-11e9-8f0b-362b9e155667",
             "status": "STATUS_PENDING"
         }
     }
@@ -76,7 +75,7 @@ Or in case of error
         "error": {
             "display_name": "Jitsuin",
             "number_assets_imported": 0,
-            "location_identity": "locations/47b575c0-ff0f-11e9-8f0b-362b9e155667",
+            "arc_home_location_identity": "locations/47b575c0-ff0f-11e9-8f0b-362b9e155667",
             "error_message": "invalid secret provided"
         }
     }
@@ -103,7 +102,7 @@ Or in case of error
     number_assets_imported
         **part of result**: indicates number of assets imported so far
 
-    location_identity
+    arc_home_location_identity
         **part of result**: location identity at which to add the imported devices
 
     status
@@ -126,4 +125,4 @@ Or in case of error
         **part of error**: short description of an error
 
 .. note::
-    See `Swagger POST API <openapi.html#post --archivist-v1-iothubgdr>`_
+    See `Swagger POST API <openapi.html#post --archivist-v2-iothubgdr>`_

@@ -1,12 +1,12 @@
 
 .. _register-with-jitsuin:
 
-Register your Azure subscription with Jitsuin
----------------------------------------------
+Register your Azure Active Directory with Jitsuin
+-------------------------------------------------
 
 To obtain access to your Jitsuin Archivist:
 
-#. Communicate your azure directory (subscription) id to Jitsuin.
+#. Communicate your azure directory id to Jitsuin.
 #. Receive a link to your Jitsuin Archivist.
 
 .. _locate-directory-id:
@@ -14,7 +14,7 @@ To obtain access to your Jitsuin Archivist:
 Locating your directory id
 ``````````````````````````
 
-Go to the home tab for your subscription on portal.azure.com and select the
+Go to the home tab for your directory on portal.azure.com and select the
 properties blade. Send the directory id to jitsuin.
 |azure-directory-id|
 

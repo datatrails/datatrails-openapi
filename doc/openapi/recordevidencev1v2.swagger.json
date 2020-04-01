@@ -128,18 +128,16 @@
         "operation": "Update",
         "behaviour": "FirmwareV1",
         "attributes": {
-          "firmware_version": "3.2.1",
-          "attachments": [
+          "arc_firmware_version": "3.2.1",
+          "arc_attachments": [
             {
-              "attachment_identity": "attachments/1754b920-cf20-4d7e-9d36-9ed7d479744d",
-              "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
-              "description": "Picture from yesterday"
+              "arc_attachment_identity": "attachments/1754b920-cf20-4d7e-9d36-9ed7d479744d",
+              "arc_hash_value": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+              "arc_display_name": "Picture from yesterday",
+              "arc_hash_alg": "sha256"
             }
           ],
-          "primary_location": {
-            "location_identity": "locations/42054f10-9952-4c10-a082-9fd0d10295ae",
-            "description": "under the table"
-          }
+          "arc_home_location_identity": "locations/42054f10-9952-4c10-a082-9fd0d10295ae"
         },
         "timestamp_declared": "2019-11-27T14:44:19Z",
         "principal_declared": {
@@ -195,20 +193,18 @@
         "identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000",
         "asset_identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
         "operation": "Update",
-        "behaviour": "FirmwareV1",
+        "behaviour": "Firmware",
         "attributes": {
-          "firmware_version": "3.2.1",
-          "attachments": [
+          "arc_firmware_version": "3.2.1",
+          "arc_attachments": [
             {
-              "attachment_identity": "attachments/1754b920-cf20-4d7e-9d36-9ed7d479744d",
-              "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
-              "description": "Picture from yesterday"
+              "arc_attachment_identity": "attachments/1754b920-cf20-4d7e-9d36-9ed7d479744d",
+              "arc_hash_value": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+              "arc_display_name": "Picture from yesterday",
+              "arc_hash_alg": "sha256"
             }
           ],
-          "primary_location": {
-            "location_identity": "locations/42054f10-9952-4c10-a082-9fd0d10295ae",
-            "description": "under the table"
-          }
+          "arc_home_location_identity": "locations/42054f10-9952-4c10-a082-9fd0d10295ae"
         },
         "timestamp_accepted": "2019-11-27T14:44:19Z",
         "timestamp_declared": "2019-11-27T14:44:19Z",
@@ -248,6 +244,12 @@
         "operation": {
           "type": "string",
           "description": "The operation represented by the event. `Update`",
+          "readOnly": true,
+          "maxLength": 4096
+        },
+        "behaviour": {
+          "type": "string",
+          "description": "The behaviour used to create event. `Firmware`",
           "readOnly": true,
           "maxLength": 4096
         },

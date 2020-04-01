@@ -62,7 +62,7 @@ To fetch all assets of a specific type,  GET the ``assets`` resource and filter 
 
    $ curl -g -v -X GET \
         -H "@$BEARER_TOKEN_FILE" \
-        $URL/archivist/v2/assets?attributes.arc_display_type.=Traffic%20light
+        $URL/archivist/v2/assets?attributes.arc_display_type=Traffic%20light
 
 Each of these calls returns a list of matching asset records in the form:
 
@@ -86,7 +86,7 @@ Each of these calls returns a list of matching asset records in the form:
                 "arc_serial_number": "vtl-x4-07",
                 "arc_description": "Traffic flow control light at A603 North East",
                 "arc_display_name": "tcl.ccj.003",
-                "arc_primary_image": "attachments/87b1a84c-1c6f-442b-923e-a97516f4d275",
+                "arc_primary_image_identity": "attachments/87b1a84c-1c6f-442b-923e-a97516f4d275",
                 "some_custom_attribute": "value"
             },
             "confirmation_status": "CONFIRMED",
@@ -100,7 +100,7 @@ Each of these calls returns a list of matching asset records in the form:
     the system-reserved ``arc_*`` attributes.
 
     See :ref:`attachments_upload` and/or :ref:`locations_creation` for details
-    of how to handle the ``arc_home_location_identity`` and ``arc_primary_image``
+    of how to handle the ``arc_home_location_identity`` and ``arc_primary_image_identity``
     attributes.
 
 .. note::

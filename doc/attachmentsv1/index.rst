@@ -18,7 +18,20 @@ Define the event parameters and store in /path/to/jsonfile:
       "operation": "Attach",
       "behaviour": "Attachments",
       "attributes": {
-        "arc_attachment_identity": "attachments/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+        "arc_append_attachments": [
+          {
+                "arc_attachment_identity": "attachments/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                "arc_display_name": "an attachment 2",
+                "arc_hash_value": "042aea10a0f14f2d391373599be69d53a75dde9951fc3d3cd10b6100aa7a9f24",
+                "arc_hash_alg": "sha256",
+          },
+          {
+                "arc_attachment_identity": "attachments/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                "arc_display_name": "an attachment 2",
+                "arc_hash_value": "042aea10a0f14f2d391373599be69d53a75dde9951fc3d3cd10b6100aa7a9f24",
+                "arc_hash_alg": "sha256",
+          }
+        ]
       },
       "timestamp_declared": "2019-11-27T14:44:19Z",
       "principal_declared": {
@@ -29,8 +42,18 @@ Define the event parameters and store in /path/to/jsonfile:
     }
 
 .. note::
-    attributes.arc_attachment_identity
-        *Required* Details of the Attachments request
+    attributes.arc_append_attachments
+        *Required* List with details of all attachments to be attached to an asset,
+        each attachment details must have following four fields defined:
+
+        arc_attachment_identity
+            *Required* identity of an attachment
+        arc_display_name
+            *Required* display name of an attachment
+        arc_hash_value
+            *Required* hash of the attachment Content
+        arc_hash_alg
+            *Required* algorithm used to calculate the hash
 
     timestamp_declared
         *Optional* Client-claimed time at which the maintenance was performed
@@ -59,7 +82,34 @@ The response is:
       "operation": "Attach",
       "behaviour": "Attachments",
       "attributes": {
-        "arc_attachment_identity": "attachments/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+        "arc_append_attachments": [
+          {
+                "arc_attachment_identity": "attachments/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                "arc_display_name": "an attachment 2",
+                "arc_hash_value": "042aea10a0f14f2d391373599be69d53a75dde9951fc3d3cd10b6100aa7a9f24",
+                "arc_hash_alg": "sha256",
+          },
+          {
+                "arc_attachment_identity": "attachments/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                "arc_display_name": "an attachment 2",
+                "arc_hash_value": "042aea10a0f14f2d391373599be69d53a75dde9951fc3d3cd10b6100aa7a9f24",
+                "arc_hash_alg": "sha256",
+          }
+        ],
+        "arc_attachments": [
+          {
+                "arc_attachment_identity": "attachments/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                "arc_display_name": "an attachment 2",
+                "arc_hash_value": "042aea10a0f14f2d391373599be69d53a75dde9951fc3d3cd10b6100aa7a9f24",
+                "arc_hash_alg": "sha256",
+          },
+          {
+                "arc_attachment_identity": "attachments/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                "arc_display_name": "an attachment 2",
+                "arc_hash_value": "042aea10a0f14f2d391373599be69d53a75dde9951fc3d3cd10b6100aa7a9f24",
+                "arc_hash_alg": "sha256",
+          }
+        ]
       },
       "timestamp_accepted": "2019-11-27T15:13:21Z",
       "timestamp_declared": "2019-11-27T14:44:19Z",
@@ -78,6 +128,11 @@ The response is:
       "transaction_index": 5,
       "transaction_id": "0x07569"
     }
+
+.. note::
+    attributes.arc_attachments
+        Holds all asset attachments - pre-existing asset attachments
+        and attachments provided in arc_append_attachments
 
 .. _attachments_behaviour_setprimaryimage:
 

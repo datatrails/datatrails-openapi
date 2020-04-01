@@ -18,7 +18,7 @@ Define the event parameters and store in /path/to/jsonfile:
       "operation": "Maintenance",
       "behaviour": "Maintenance",
       "attributes": {
-        "description": "Cleaned and replaced plugs"
+        "arc_description": "Cleaned and replaced plugs"
       },
       "timestamp_declared": "2019-11-27T14:44:19Z",
       "principal_declared": {
@@ -29,7 +29,7 @@ Define the event parameters and store in /path/to/jsonfile:
     }
 
 .. note::
-    attributes.description
+    attributes.arc_description
         *Required* Details of the Maintenance request
 
     timestamp_declared
@@ -59,7 +59,7 @@ The response is:
       "operation": "Maintenance",
       "behaviour": "Maintenance",
       "attributes": {
-        "description": "Cleaned and replaced plugs"
+        "arc_description": "Cleaned and replaced plugs"
       },
       "timestamp_accepted": "2019-11-27T15:13:21Z",
       "timestamp_declared": "2019-11-27T14:44:19Z",
@@ -92,7 +92,7 @@ Define the event parameters and store in /path/to/jsonfile:
       "operation": "MaintenanceRequired",
       "behaviour": "Maintenance",
       "attributes": {
-        "description": "Intermittent telemetry failures are causing yield drops: contract maintenance co to investigate ASAP"
+        "arc_description": "Intermittent telemetry failures are causing yield drops: contract maintenance co to investigate ASAP"
       },
       "timestamp_declared": "2019-11-27T14:44:19Z",
       "principal_declared": {
@@ -103,7 +103,7 @@ Define the event parameters and store in /path/to/jsonfile:
     }
 
 .. note::
-    attributes.description
+    attributes.arc_description
         *Required* Details of the Maintenance request
 
     timestamp_declared
@@ -133,7 +133,7 @@ The response is:
       "operation": "MaintenanceRequired",
       "behaviour": "Maintenance",
       "attributes": {
-        "description": "Intermittent telemetry failures are causing yield drops: contract maintenance co to investigate ASAP"
+        "arc_description": "Intermittent telemetry failures are causing yield drops: contract maintenance co to investigate ASAP"
       },
       "timestamp_accepted": "2019-11-27T15:13:21Z",
       "timestamp_declared": "2019-11-27T14:44:19Z",

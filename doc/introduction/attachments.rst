@@ -21,15 +21,15 @@ While asset attachments are generally expected to be unique, the same
 attachment can be applied to multiple assets, such as a stock image of a 
 type of device.
 
-The asset 'primary_image'
-+++++++++++++++++++++++++
+The asset 'arc_primary_image_identity'
+++++++++++++++++++++++++++++++++++++++
 
 Attachments to assets are named in their ``display_name`` property, so 
 that they can be searched and indexed.  Names are arbitrary and may be 
 defined according to the needs of the application, but one name is 
-reserved and interpreted by the Jitsuin stack: ``arc_primary_image``.  
+reserved and interpreted by the Jitsuin stack: ``arc_primary_image_identity``.  
 
-If an asset has an attachment named ``arc_primary_image`` then this will be 
+If an asset has an attachment named ``arc_primary_image_identity`` then this will be 
 used by the user interface and other Jitsuin tools to represent the asset. 
 
 Attachments on events

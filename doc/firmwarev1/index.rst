@@ -19,7 +19,7 @@ Define the event parameters and store in /path/to/jsonfile:
       "operation": "Update",
       "behaviour": "Firmware",
       "attributes": {
-        "description": "Patched during regular patch window",
+        "arc_description": "Patched during regular patch window",
         "arc_firmware_version": "3.2.1",
         "arc_correlation_value": "12-345-67"
       },
@@ -32,7 +32,7 @@ Define the event parameters and store in /path/to/jsonfile:
     }
 
 .. note::
-    attributes.description
+    attributes.arc_description
         *Required* Details of the Firmware request
 
     attributes.arc_firmware_version
@@ -68,7 +68,7 @@ The response is:
       "operation": "Update",
       "behaviour": "Firmware",
       "attributes": {
-        "description": "Patched during regular patch window",
+        "arc_description": "Patched during regular patch window",
         "arc_firmware_version": "3.2.1",
         "arc_correlation_value": "12-345-67"
       },
@@ -103,7 +103,7 @@ Define the event parameters and store in /path/to/jsonfile:
       "operation": "UpdateRequired",
       "behaviour": "Firmware",
       "attributes": {
-        "description": "Update to 3.2.1 ASAP",
+        "arc_description": "Update to 3.2.1 ASAP",
         "arc_correlation_value": "12-345-67"
       },
       "timestamp_declared": "2019-11-27T14:44:19Z",
@@ -115,7 +115,7 @@ Define the event parameters and store in /path/to/jsonfile:
     }
 
 .. note::
-    attributes.description
+    attributes.arc_description
         *Required* Details of the Firmware request
 
     attributes.arc_correlation_value   
@@ -148,7 +148,7 @@ The response is:
       "operation": "UpdateRequired",
       "behaviour": "Firmware",
       "attributes": {
-        "description": "Update to 3.2.1 ASAP",
+        "arc_description": "Update to 3.2.1 ASAP",
         "arc_correlation_value": "12-345-67"
       },
       "timestamp_accepted": "2019-11-27T15:13:21Z",
@@ -182,7 +182,7 @@ Define the event parameters and store in /path/to/jsonfile:
       "operation": "Vulnerability",
       "behaviour": "Firmware",
       "attributes": {
-        "description": "All units affected by CVE-2014-0160. Review for risk exposure within reasonable time.",
+        "arc_description": "All units affected by CVE-2014-0160. Review for risk exposure within reasonable time.",
         "arc_cve_id": "CVE-2014-0160",
         "arc_correlation_value": "12-345-67"
       },
@@ -195,7 +195,7 @@ Define the event parameters and store in /path/to/jsonfile:
     }
 
 .. note::
-    attributes.description
+    attributes.arc_description
         *Required* Details of the Firmware request
 
     attributes.cve_id
@@ -231,7 +231,7 @@ The response is:
       "operation": "Vulnerability",
       "behaviour": "Firmware",
       "attributes": {
-        "description": "All units affected by CVE-2014-0160. Review for risk exposure within reasonable time."
+        "arc_description": "All units affected by CVE-2014-0160. Review for risk exposure within reasonable time."
         "arc_cve_id": "CVE-2014-0160",
         "arc_correlation_value": "12-345-67"
       },

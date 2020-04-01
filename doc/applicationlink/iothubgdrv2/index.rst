@@ -1,10 +1,8 @@
 
-.. _iothubgdrv1:
+.. _iothubgdrv2:
 
-IoTHubGDR V1 API
-----------------
-
-.. include:: ../iothubgdr_warning.rst
+IoTHubGDR V2 API
+-----------------
 
 .. toctree::
    :maxdepth: 2

@@ -19,7 +19,7 @@ Define the asset parameters and store in /path/to/jsonfile:
             "arc_description": "Traffic flow control light at A603 North East",
             "arc_home_location_identity": "locations/115340cf-f39e-4d43-a2ee-8017d672c6c6",
             "arc_display_type": "Traffic light with violation camera",
-            "arc_primary_image": "attachments/87b1a84c-1c6f-442b-923e-a97516f4d275",
+            "arc_primary_image_identity": "attachments/87b1a84c-1c6f-442b-923e-a97516f4d275",
             "some_custom_attribute": "value"
         }
     }
@@ -36,7 +36,7 @@ Define the asset parameters and store in /path/to/jsonfile:
 
     See :ref:`attachments_upload`, :ref:`locations_creation`, and
     :ref:`locations_retrieval` for details of how to get the correct values
-    for  ``arc_home_location_identity`` and ``arc_primary_image``.
+    for  ``arc_home_location_identity`` and ``arc_primary_image_identity``.
 
 Create the asset:
 
@@ -69,7 +69,7 @@ The response is:
             "arc_home_location_identity": "locations/115340cf-f39e-4d43-a2ee-8017d672c6c6",
             "arc_display_type": "Traffic light with violation camera",
             "arc_firmware_version": "1.0",
-            "arc_primary_image": "attachments/87b1a84c-1c6f-442b-923e-a97516f4d275",
+            "arc_primary_image_identity": "attachments/87b1a84c-1c6f-442b-923e-a97516f4d275",
             "some_custom_attribute": "value"
         },
         "confirmation_status": "PENDING",
