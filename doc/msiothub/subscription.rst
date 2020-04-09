@@ -39,47 +39,13 @@ Namespace
 Choose your namespace (in this case **jitsuin-dev**).
 |portal-subscription|
 
-Queues
-''''''
-
-.. |portal-queues| image:: portal-queues.png
-
-Select **Queues** in the sidebar.
-|portal-queues|
-
-Add Queue
-'''''''''
-
-.. |portal-add-queue| image:: portal-add-queue.png
-
-Select **+Queue**.
-Ensure that the queue is named (in this document: **iothub**) and duplicate detection is enabled.
-Sessions is **not** enabled.
-Select **Create** and Wait.
-|portal-add-queue|
-
-Show Queues
-'''''''''''
-
-.. |portal-show-queues| image:: portal-show-queues.png
-
-Created queues are shown.
-|portal-show-queues|
-
-New Queue
-'''''''''
-
-.. |portal-show-queue| image:: portal-show-queue.png
-
-Select the new queue.
-|portal-show-queue|
-
 Shared Access Policies
 ''''''''''''''''''''''
 
 .. |portal-shared-access-policy| image:: portal-shared-access-policy.png
 
-Select **Shared Access Policies**.
+Select **Shared Access Policies** for the servicebus.
+
 |portal-shared-access-policy|
 
 Set Policy
@@ -88,7 +54,7 @@ Set Policy
 .. |portal-policy-listener| image:: portal-policy-listener.png
 
 
-Select **+Add**, set name to something suitable and select **Listen**. Wait.
+Select **+Add**, set name to something suitable (in this case **jitsuin-listener**) and select **Listen**. Wait.
 |portal-policy-listener|
 
 List Policies
@@ -109,7 +75,42 @@ Get Connection String
 Select the policy (in this case **jitsuin-listener**) and copy the connection string into the clipboard.
 Save the connection string somewhere safe.
 To setup the subscription service in Archivist both the connection string and the queue name are required.
+A suitable queue name is defined below.
+Details for this are provided here: :ref:`svcbussources_creation`
+
 |portal-connection-string|
+
+Queues
+''''''
+
+.. |portal-queues| image:: portal-queues.png
+
+Select **Queues** in the sidebar.
+|portal-queues|
+
+Add Queue
+'''''''''
+
+.. |portal-add-queue| image:: portal-add-queue.png
+
+Select **+Queue**.
+Ensure that the queue is named (in this document: **iothub**) and duplicate detection is enabled.
+Sessions is **not** enabled.
+Select **Create** and Wait.
+|portal-add-queue|
+
+.. _subscription_show_queues:
+
+Show Queues
+'''''''''''
+
+.. |portal-show-queues| image:: portal-show-queues.png
+
+Created queues are shown.
+To setup the subscription service in Archivist both the connection string and the queue name are required.
+Details for this are provided here: :ref:`svcbussources_creation`
+
+|portal-show-queues|
 
 Iothub
 ''''''
@@ -185,14 +186,14 @@ Select Route
 
 .. |portal-add-route| image:: portal-add-route.png
 
-Select **Routes* and **+Add** to add the route.
+Select **Routes** and **+Add** to add the route.
 The Custom Endpoint should now be displayed.
 |portal-add-route|
 
 .. |portal-add-a-route| image:: portal-add-a-route.png
 
 Set **Name** to a suitable value (in this case **jitsuin-listener-twin**).
-Set **Endpoint** to the endpont name (in this case **jitsuin-listener-twin**).
+Set **Endpoint** to the endpoint name (in this case **jitsuin-listener-twin**).
 Set **Data Source** to **Device TwinChange Events**.
 Select **Save** and wait.
 The Route will now be displayed.
@@ -202,8 +203,8 @@ Enabling subscription in Archivist
 ''''''''''''''''''''''''''''''''''
 
 Follow the instructions in the Application Link section of this document for
-**Service Bus sources** :ref:`svcbussources_api` to start feeding Microsoft IoTHub events into the Jitsuin
+**Service Bus sources** :ref:`svcbussources_creation` to start feeding Microsoft IoTHub events into the Jitsuin
 Archivist system. The parameters required to start a subscription are the servicebus connection string and the queuename
-saved from  :ref:`subscription_connection_string` above.
+saved from  :ref:`subscription_connection_string` and :ref:`subscription_show_queues` above.
 
 

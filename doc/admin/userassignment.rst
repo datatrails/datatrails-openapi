@@ -11,6 +11,8 @@ To enable access for individual users to your Jitsuin Archivist:
 This Microsoft guide provides the general details for `assigning users`_ and
 their roles.
 
+.. _`assigning users`: https://docs.microsoft.com/bs-latn-ba/azure/active-directory/manage-apps/assign-user-or-group-access-portal
+
 The key steps are as follows:
 
 Locate your Jitsuin Archivist Enterprise Application
@@ -65,4 +67,3 @@ Assign the user a Jitsuin Archivist role
 |enterprise-app-user-role-asign|
 
 .. |enterprise-app-user-role-asign| image:: enterprise-app-user-role-asign.png
-.. _`assigning users`: https://docs.microsoft.com/bs-latn-ba/azure/active-directory/manage-apps/assign-user-or-group-access-portal

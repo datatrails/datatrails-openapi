@@ -40,6 +40,7 @@ The response is:
        used to reference the attachment in an Asset Record or asset event
        (usually a Maintenance event).
 
+.. warning::
        Attachments in the Jitsuin Archivist system are not first-order
        objects in their own right: they are properties of other objects
        such as Asset Records or events. Due to this, Attachments

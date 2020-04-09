@@ -9,6 +9,12 @@ SvcBusSources Creation
 The **svcbussources** endpoint allows subscribing to an Azure Service Bus Queue and receiving events
 when a device changes state. The state changes are recorded in the Jitsuin Archivist system.
 
+The servicebus connection string is obtained from here :ref:`subscription_connection_string`.
+
+.. warning::
+    The connection string used is for the **servicebus** and not for the **servicebus queue**.
+
+
 Define the svcbussource parameters and store in /path/to/jsonfile:
 
 .. code-block:: JSON
@@ -25,11 +31,11 @@ Define the svcbussource parameters and store in /path/to/jsonfile:
         **required**: user-supplied identification of the IotHub subscription 
 
     connection_string
-        **required**: connection string to Azure IoTHub Service bus. This will be
+        **required**: connection string to Azure Service bus. This will be
         stored in a secure keyvault.
 
     queue_name
-        **required**: user-configured Azure service bus queue 
+        **required**: user-configured Azure service bus queue name
 
     The **svcbussources** service is capacity limited to 2 subscriptions. Attempting to
     create a third subscription will return a 429 code (ResourceExhausted)
