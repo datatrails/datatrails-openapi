@@ -48,3 +48,9 @@ The response is:
        you remember the attachment identity returned until you connect
        it to a suitable Asset Record or Event.
 
+
+.. note::
+
+    A full API reference is available in `Swagger POST API <openapi.html#post--archivist-v2-attachments>`_
+
+~                                                                                                                                      

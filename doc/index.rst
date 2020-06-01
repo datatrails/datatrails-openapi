@@ -13,9 +13,13 @@ Archivist API documentation
    introduction/index
    admin/index
    auth/authentication
+   iamv1alpha1/index
    attachments/index
    locations/index
    assetv2/index
+   eventv2/index
    applicationlink/index
    msiothub/index
+   blockchainv1alpha1/index
    system/index
+   miscellaneous/index

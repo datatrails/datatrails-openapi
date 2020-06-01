@@ -521,6 +521,16 @@
           "$ref": "#/definitions/v2TrackedStatus",
           "description": "indicates whether asset is still being tracked in the system",
           "readOnly": true
+        },
+        "access_policy": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/v2Attribute"
+          }
+        },
+        "owner": {
+          "type": "string",
+          "description": "public key of the asset owner"
         }
       },
       "description": "This describes Jitsuin Asset."

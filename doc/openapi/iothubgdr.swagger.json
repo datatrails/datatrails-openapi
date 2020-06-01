@@ -11,6 +11,7 @@
   "host": "jitsuin.readthedocs.io",
   "basePath": "/archivist/v1",
   "schemes": [
+    "http",
     "https"
   ],
   "consumes": [

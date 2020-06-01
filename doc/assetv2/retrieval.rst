@@ -105,4 +105,7 @@ Each of these calls returns a list of matching asset records in the form:
 
 .. note::
 
-    A full API reference is available in `Swagger GET API <openapi.html>`_
+    The number of records returned has a maximum limit. If this limit is too small then one must use 
+    :ref:`misc_paging`.
+
+    A full API reference is available in `Swagger GET API <openapi.html#get--archivist-v2-assets>`_

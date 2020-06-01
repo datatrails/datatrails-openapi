@@ -16,8 +16,8 @@ Define the event parameters and store in /path/to/jsonfile:
 .. code-block:: JSON
 
     {
-      "operation": "Update",
       "behaviour": "Firmware",
+      "operation": "Update",
       "attributes": {
         "arc_description": "Patched during regular patch window",
         "arc_firmware_version": "3.2.1",

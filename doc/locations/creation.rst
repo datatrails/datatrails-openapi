@@ -34,7 +34,7 @@ Define the location parameters and store in /path/to/jsonfile:
     extended_attributes
         freeform and can contain any fields.
 
-    See `Swagger POST API <openapi.html#post--archivist-v1-locations>`_
+    See `Swagger POST API <openapi.html#post--archivist-v2-locations>`_
 
 Create the location to POSTing to the ``locations`` resource:
 

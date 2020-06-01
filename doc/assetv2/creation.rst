@@ -79,4 +79,3 @@ The response is:
 .. note::
 
     A full API reference is available in `Swagger POST API <openapi.html#post--archivist-v2-assets>`_
-

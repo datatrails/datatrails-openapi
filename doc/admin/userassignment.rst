@@ -23,18 +23,18 @@ for your Jitsuin Archivist. There will be two **Homepage URLs** which match the
 FQDN for the link you received. The URL for the root resource is your API
 principal. This is where assign users their roles. It is also where you asign
 roles for non interactive clients.
-|enterprise-app-locate|
+|userdocs_aad_enterprise_applications|
 
-.. |enterprise-app-locate| image:: enterprise-app-locate.png
+.. |userdocs_aad_enterprise_applications| image:: ../screenshots/userdocs_aad_enterprise_applications.png
 
 .. note::
    The /webgate principal authorises your Jitsuin Archivist deployment to act
    on your users behalf. It needs no further configuration.
 
 Select the principal with the Homepage URL matching your link.
-|enterprise-app-locate-by-link|
+|userdocs_aad_select_principal|
 
-.. |enterprise-app-locate-by-link| image:: enterprise-app-locate-by-link.png
+.. |userdocs_aad_select_principal| image:: ../screenshots/userdocs_aad_select_principal.png
 
 
 Check that User assignment is required for your Jitsuin Archivist
@@ -44,26 +44,26 @@ The **User assignment required** setting must be **yes** in order to restrict
 access to particular users in your directory. If it is set to **no** *any* user
 at your organisation will be able to login.
 
-|enterprise-app-user-assignment-required|
+|userdocs_aad_check_user_assignment|
 
-.. |enterprise-app-user-assignment-required| image:: enterprise-app-user-assignment-required.png
+.. |userdocs_aad_check_user_assignment| image:: ../screenshots/userdocs_aad_check_user_assignment.png
 
 Add user to the enterprise application
 ``````````````````````````````````````
-|enterprise-app-add-user|
+|userdocs_aad_add_user|
 
-.. |enterprise-app-add-user| image:: enterprise-app-add-user.png
+.. |userdocs_aad_add_user| image:: ../screenshots/userdocs_aad_add_user.png
 
 Select the user for role assignment
 ```````````````````````````````````
-|enterprise-app-add-user-select|
+|userdocs_aad_select_user|
 
-.. |enterprise-app-add-user-select| image:: enterprise-app-add-user-select.png
+.. |userdocs_aad_select_user| image:: ../screenshots/userdocs_aad_select_user.png
 
 See :ref:`jitsuin-roles` for description of the various roles available.
 
 Assign the user a Jitsuin Archivist role
 ````````````````````````````````````````
-|enterprise-app-user-role-asign|
+|userdocs_aad_select_role|
 
-.. |enterprise-app-user-role-asign| image:: enterprise-app-user-role-asign.png
+.. |userdocs_aad_select_role| image:: ../screenshots/userdocs_aad_select_role.png

@@ -1,0 +1,253 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "BlockChain API",
+    "version": "1.0",
+    "contact": {
+      "name": "Jitsuin",
+      "url": "https://www.jitsuin.com"
+    }
+  },
+  "host": "jitsuin.readthedocs.io",
+  "basePath": "/archivist/v1alpha1",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/archivist/v1alpha1/blockchain/{identity}": {
+      "get": {
+        "operationId": "ListBlockchain",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1alpha1ListBlockchainResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "identity",
+            "description": "Specify Event `identity` as in full `assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "page_size",
+            "description": "Maximum entries per page.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "page_token",
+            "description": "The next_page_token returned from a previous list request if any.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "BlockChain"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string",
+          "description": "A URL/resource name that uniquely identifies the type of the serialized\nprotocol buffer message. This string must contain at least\none \"/\" character. The last segment of the URL's path must represent\nthe fully qualified name of the type (as in\n`path/google.protobuf.Duration`). The name should be in a canonical form\n(e.g., leading \".\" is not accepted).\n\nIn practice, teams usually precompile into the binary all types that they\nexpect it to use in the context of Any. However, for URLs which use the\nscheme `http`, `https`, or no scheme, one can optionally set up a type\nserver that maps type URLs to message definitions as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nNote: this functionality is not currently available in the official\nprotobuf release, and it is not used for type URLs beginning with\ntype.googleapis.com.\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics."
+        },
+        "value": {
+          "type": "string",
+          "format": "byte",
+          "description": "Must be a valid serialized protocol buffer of the above specified type."
+        }
+      },
+      "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(\u0026foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\n Example 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\n Example 4: Pack and unpack a message in Go\n\n     foo := \u0026pb.Foo{...}\n     any, err := ptypes.MarshalAny(foo)\n     ...\n     foo := \u0026pb.Foo{}\n     if err := ptypes.UnmarshalAny(any, foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n====\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": \u003cstring\u003e,\n      \"lastName\": \u003cstring\u003e\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }"
+    },
+    "runtimeError": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        },
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1alpha1ListBlockchainResponse": {
+      "type": "object",
+      "example": {
+        "transactions": [
+          {
+            "hash": "0x9fc76417374aa880d4449a1f7f31ec597f00b1f6f3dd2d66f4c9c6c445836d8b",
+            "nonce": 2,
+            "blockHash": "0xef95f2f1ed3ca60b048b4bf67cde2195961e0bba6f70bcbea9a2c4e133e34b46",
+            "blockNumber": 3,
+            "transactionIndex": 0,
+            "r": "0x8912348621879462817634897216348712638941",
+            "s": "0x1234689712638957682375682364892376487238",
+            "from": "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b",
+            "to": "0x6295ee1b4f6dd65047762f924ecd367c17eabf8f",
+            "value": "123450000000000000",
+            "gas": 314159,
+            "gasPrice": "2000000000000",
+            "input": "0x57cb2fc4",
+            "v": "0x26"
+          },
+          {
+            "hash": "0x9fc76417374aa880d4449a1f7f31ec597f00b1f6f3dd2d66f4c9c6c445836d8b",
+            "nonce": 2,
+            "blockHash": "0xef1234567d3ca60b048b4bf67cde2195961e0bba6f70bcbea9a2c4e133e34b46",
+            "blockNumber": 3,
+            "transactionIndex": 0,
+            "r": "0x8912348621879462817634897216348712638941",
+            "s": "0x1234689712638957682375682364892376487238",
+            "from": "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b",
+            "to": "0x6295ee1b4f6dd65047762f924ecd367c17eabf8f",
+            "value": "123450000000000000",
+            "gas": 314159,
+            "gasPrice": "2000000000000",
+            "input": "0x57cb2fc4",
+            "v": "0x26"
+          }
+        ]
+      },
+      "properties": {
+        "transactions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1alpha1Transaction"
+          }
+        },
+        "next_page_token": {
+          "type": "string",
+          "description": "Token to retrieve the next page of results or empty if there are none."
+        }
+      },
+      "description": "List of events (or the next page in a continuing  list request"
+    },
+    "v1alpha1Transaction": {
+      "type": "object",
+      "example": {
+        "hash": "0x9fc76417374aa880d4449a1f7f31ec597f00b1f6f3dd2d66f4c9c6c445836d8b",
+        "nonce": 2,
+        "blockHash": "0xef95f2f1ed3ca60b048b4bf67cde2195961e0bba6f70bcbea9a2c4e133e34b46",
+        "blockNumber": 3,
+        "transactionIndex": 0,
+        "r": "0x8912348621879462817634897216348712638941",
+        "s": "0x1234689712638957682375682364892376487238",
+        "from": "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b",
+        "to": "0x6295ee1b4f6dd65047762f924ecd367c17eabf8f",
+        "value": "123450000000000000",
+        "gas": 314159,
+        "gasPrice": "2000000000000",
+        "input": "0x57cb2fc4",
+        "v": "0x26"
+      },
+      "properties": {
+        "hash": {
+          "type": "string",
+          "description": "Transaction hash",
+          "maxLength": 256
+        },
+        "nonce": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Nonce"
+        },
+        "blockhash": {
+          "type": "string",
+          "description": "Block Hash",
+          "maxLength": 256
+        },
+        "block_number": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Block number"
+        },
+        "transaction_index": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Transaction Index"
+        },
+        "r": {
+          "type": "string",
+          "description": "Signature: R value",
+          "maxLength": 256
+        },
+        "s": {
+          "type": "string",
+          "description": "Signature: S Value",
+          "maxLength": 256
+        },
+        "from": {
+          "type": "string",
+          "description": "From...",
+          "maxLength": 256
+        },
+        "to": {
+          "type": "string",
+          "description": "To...",
+          "maxLength": 256
+        },
+        "value": {
+          "type": "string",
+          "description": "Value",
+          "maxLength": 256
+        },
+        "gas": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Gas left"
+        },
+        "gas_price": {
+          "type": "string",
+          "description": "Gas Price",
+          "maxLength": 256
+        },
+        "input": {
+          "type": "string",
+          "description": "Input...",
+          "maxLength": 256
+        },
+        "v": {
+          "type": "string",
+          "description": "Signature: V value",
+          "maxLength": 256
+        }
+      },
+      "description": "TODO: add description here "
+    }
+  }
+}

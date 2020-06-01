@@ -40,3 +40,11 @@ The response is:
         "size": 31424
     }
 
+.. note::
+
+    The number of records returned has a maximum limit. If this limit is too small then one must use 
+    :ref:`misc_paging`.
+
+    A full API reference is available in `Swagger GET API <openapi.html#get--archivist-v2-attachments>`_
+
+

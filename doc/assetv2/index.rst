@@ -1,3 +1,6 @@
+
+.. _assetv2:
+
 Assets API
 -------------
 
@@ -14,4 +17,5 @@ Assets API
    ../maintenancev1/index
    ../recordevidencev1/index
    ../userattributesv1/index
+   openapi
 
