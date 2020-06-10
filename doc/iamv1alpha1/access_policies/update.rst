@@ -12,8 +12,17 @@ Define the access_policies parameters to be changed and store in /path/to/jsonfi
 
     {
        "filters": "[
-            [\"location=basingstoke\", \"location=cambridge\"],
-            [\"asset_type=door_access_reader\"]
+            [
+                \"attributes.arc_home_location_identity=locations/5ea815f0-4de1-4a84-9377-701e880fe8ae\",
+                \"attributes.arc_home_location_identity=locations/27eed70b-9e2b-4db1-b8c4-e36505350dcc\",
+            ],
+            [
+                \"attributes.arc_display_type=Valve\",
+                \"attributes.arc_display_type=Pump\"
+            ],
+            [
+                \"attributes.ext_vendor_name=SynsationIndustries\"
+            ]
         ]",
         "access_permissions": [
             {
@@ -27,8 +36,8 @@ Define the access_policies parameters to be changed and store in /path/to/jsonfi
                         "wallet": [ "key7", "key8" ]
                     }
                 ],
-                "behaviours": [ "behaviour1", "behaviour2" ],
-                "include_attributes": [ "attribute1", "attribute2" ]
+                "behaviours": [ "Attachments", "Firmware", "Maintenance", "RecordEvidence" ],
+                "include_attributes": [ "arc_display_name", "arc_display_type", "arc_firmware_version" ]
             }
         ]
     }
@@ -36,7 +45,8 @@ Define the access_policies parameters to be changed and store in /path/to/jsonfi
 .. note::
 
     filters
-        String containing JSON of list of listes of selectors
+        String containing JSON of a list of lists of asset attributes to match.
+        Note the need to escape strings in this field ONLY.
 
     access_permissions
         access_keys
@@ -66,8 +76,17 @@ The response is:
         "identity": "access_policies/3f5be24f-fd1b-40e2-af35-ec7c14c74d53",
         "display_name": "Some description",
         "filters": "[
-            [\"location=basingstoke\", \"location=cambridge\"],
-            [\"asset_type=door_access_reader\"]
+            [
+                \"attributes.arc_home_location_identity=locations/5ea815f0-4de1-4a84-9377-701e880fe8ae\",
+                \"attributes.arc_home_location_identity=locations/27eed70b-9e2b-4db1-b8c4-e36505350dcc\",
+            ],
+            [
+                \"attributes.arc_display_type=Valve\",
+                \"attributes.arc_display_type=Pump\"
+            ],
+            [
+                \"attributes.ext_vendor_name=SynsationIndustries\"
+            ]
         ]",
         "access_permissions": [
             {
@@ -81,8 +100,8 @@ The response is:
                         "wallet": [ "key7", "key8" ]
                     }
                 ],
-                "behaviours": [ "behaviour1", "behaviour2" ],
-                "include_attributes": [ "attribute1", "attribute2" ]
+                "behaviours": [ "Attachments", "Firmware", "Maintenance", "RecordEvidence" ],
+                "include_attributes": [ "arc_display_name", "arc_display_type", "arc_firmware_version" ]
             }
         ]
     }

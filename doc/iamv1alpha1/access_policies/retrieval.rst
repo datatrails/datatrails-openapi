@@ -50,7 +50,7 @@ To fetch all IAM access_policies with a specific name,  GET the ``iam/access_pol
 
    $ curl -g -v -X GET \
         -H "@$BEARER_TOKEN_FILE" \
-        $URL/archivist/v1alpha1/iam/access_policies?display_name=Acme
+        $URL/archivist/v1alpha1/iam/access_policies?display_name=Some%20description
 
 
 Each of these calls returns a list of matching IAM access_policies records in the form:
@@ -62,9 +62,18 @@ Each of these calls returns a list of matching IAM access_policies records in th
             {
                 "identity": "access_policies/6a951b62-0a26-4c22-a886-1082297b063b",
                 "display_name": "Some description",
-                "filters": "[
-                    [\"location=basingstoke\", \"location=cambridge\"],
-                    [\"asset_type=door_access_reader\"]
+                "filters":"[
+                    [
+                        \"attributes.arc_home_location_identity=locations/5ea815f0-4de1-4a84-9377-701e880fe8ae\",
+                        \"attributes.arc_home_location_identity=locations/27eed70b-9e2b-4db1-b8c4-e36505350dcc\",
+                    ],
+                    [
+                        \"attributes.arc_display_type=Valve\",
+                        \"attributes.arc_display_type=Pump\"
+                    ],
+                    [
+                        \"attributes.ext_vendor_name=SynsationIndustries\"
+                    ]
                 ]",
                 "access_permissions": [
                     {
@@ -78,17 +87,16 @@ Each of these calls returns a list of matching IAM access_policies records in th
                                 "wallet": [ "key7", "key8" ]
                             }
                         ],
-                        "behaviours": [ "behaviour1", "behaviour2" ],
-                        "include_attributes": [ "attribute1", "attribute2" ]
+                        "behaviours": [  "Attachments", "Firmware", "Maintenance", "RecordEvidence"  ],
+                        "include_attributes": [ "arc_display_name", "arc_display_type", "arc_firmware_version" ]
                     }
                 ]
             },
             {
                 "identity": "access_policies/12345678-0a26-4c22-a886-1082297b063b",
-                "display_name": "Some otherdescription",
+                "display_name": "Some other description",
                 "filters": "[
-                    [\"location=london\", \"location=oxford\"],
-                    [\"asset_type=door_access_reader\"]
+                    [\"attributes.arc_display_type=door_access_reader\"]
                 ]",
                 "access_permissions": [
                     {
@@ -102,8 +110,8 @@ Each of these calls returns a list of matching IAM access_policies records in th
                                 "wallet": [ "key17", "key18" ]
                             }
                         ],
-                        "behaviours": [ "behaviour3", "behaviour4" ],
-                        "include_attributes": [ "attribute3", "attribute4" ]
+                        "behaviours": [ "Attachments", "Maintenance", "RecordEvidence" ],
+                        "include_attributes": [ "arc_display_name", "arc_display_type" ]
                     }
                 ]
             }
