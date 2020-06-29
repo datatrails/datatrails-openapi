@@ -302,6 +302,11 @@
           "format": "uint64",
           "description": "index of event within commited block",
           "readOnly": true
+        },
+        "from": {
+          "type": "string",
+          "description": "wallet address for the creator of this event",
+          "readOnly": true
         }
       },
       "description": "This describes Jitsuin Event."

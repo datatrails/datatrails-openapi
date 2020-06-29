@@ -95,6 +95,35 @@ Each of these calls returns a list of matching asset records in the form:
         ]
     }
 
+Fetch assets by filtering for presence of a field
+=================================================
+
+To fetch all assets with a field set to any value,  GET the ``assets`` resource
+and filter on most available fields. For example:
+
+.. code-block:: shell
+
+   $ curl -g -v -X GET \
+        -H "@$BEARER_TOKEN_FILE" \
+        $URL/archivist/v2/assets?attributes.arc_display_name=*
+
+Returns all assets which have arc_display_name that is not empty.
+
+Fetch assets which are missing a field
+======================================
+
+To fetch all assets with a field which is not set to any value,  GET the
+``assets`` resource and filter on most available fields. For example:
+
+.. code-block:: shell
+
+   $ curl -g -v -X GET \
+        -H "@$BEARER_TOKEN_FILE" \
+        $URL/archivist/v2/assets?attributes.arc_display_name!=*
+
+Returns all assets which do not have arc_display_name or in which
+arc_display_name is empty.
+
 .. note::
     See :ref:`intro_behaviours` and :ref:`intro_lifecycle` for details of how to interpret
     the system-reserved ``arc_*`` attributes.

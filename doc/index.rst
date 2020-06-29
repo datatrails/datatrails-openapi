@@ -14,6 +14,7 @@ Archivist API documentation
    admin/index
    auth/authentication
    iamv1alpha1/index
+   iamv1alpha2/index
    attachments/index
    locations/index
    assetv2/index

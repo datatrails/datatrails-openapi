@@ -7,8 +7,7 @@ IAM Subjects Self Entry (v1alpha1)
 There is an immutable entry in the subjects API called "Self" that contains
 the keys for the hosting organisation of the Jitsuin Archivist Node.
 
-This entry cannot be deleted or updated. It will not appear as a result of list
-operation (i.e. GET with no identity specified).
+This entry cannot be deleted or updated.
 
 This special identity is:
 
