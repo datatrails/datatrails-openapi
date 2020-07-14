@@ -19,11 +19,12 @@ Jitsuin Archivist. `${TENANT}` is your directory id, see :ref:`locate-directory-
 
 .. code-block:: shell
 
-   $ RESPONSE=$(curl
+   $ RESPONSE=$(curl \
      https://login.microsoftonline.com/${TENANT}/oauth2/token\
-     --data-urlencode \
-      -d "grant_type=client_credentials&client_id=${API_APP_ID}\
-     &client_secret=${API_APP_SECRET}&resource=https://${FQDN}")
+     --data-urlencode "grant_type=client_credentials" \
+     --data-urlencode "client_id=${API_APP_ID}" \
+     --data-urlencode "client_secret=${API_APP_SECRET}" \
+     --data-urlencode "resource=https://${FQDN}")
 
    $ TOKEN=$(echo -n $RESPONSE | jq .access_token | tr -d '"')
 

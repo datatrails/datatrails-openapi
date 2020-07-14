@@ -145,6 +145,59 @@
         ]
       }
     },
+    "/archivist/v1alpha2/iam/{asset_identity}/access_policies": {
+      "get": {
+        "summary": "Get matching access policies",
+        "description": "Get matching access policies for specified asset",
+        "operationId": "ListMatchingAccessPolicies",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1alpha2ListIAMAccessPoliciesResponse"
+            }
+          },
+          "400": {
+            "description": "Returned when the request is badly formed.",
+            "schema": {}
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to delete the subject.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the identified laccess policy does not exist.",
+            "schema": {}
+          },
+          "500": {
+            "description": "Returned when the underlying storage system returns an error.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "asset_identity",
+            "description": "Specify asset `identity` as in `assets/add30235-1424-4fda-840a-d5ef82c4c96f`",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "IAM"
+        ]
+      }
+    },
     "/archivist/v1alpha2/iam/{identity}": {
       "get": {
         "summary": "Get an access policy",
@@ -307,18 +360,62 @@
           "IAM"
         ]
       }
+    },
+    "/archivist/v1alpha2/iam/{identity}/assets": {
+      "get": {
+        "summary": "Delete an access policy",
+        "description": "Delete the identified access policy",
+        "operationId": "ListMatchingAssets",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v2ListAssetsResponse"
+            }
+          },
+          "400": {
+            "description": "Returned when the request is badly formed.",
+            "schema": {}
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to delete the subject.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the identified laccess policy does not exist.",
+            "schema": {}
+          },
+          "500": {
+            "description": "Returned when the underlying storage system returns an error.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "identity",
+            "description": "Unique identification for the access policy, Relative Resource Name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "IAM"
+        ]
+      }
     }
   },
   "definitions": {
-    "ListIAMAccessPoliciesRequestOrderBy": {
-      "type": "string",
-      "enum": [
-        "DEFAULT",
-        "DISPLAY_NAME"
-      ],
-      "default": "DEFAULT",
-      "title": "Supported sort orders"
-    },
     "protobufAny": {
       "type": "object",
       "properties": {
@@ -462,6 +559,15 @@
       },
       "description": "Describes an Access Policy for OBAC"
     },
+    "v1alpha2ListIAMAccessPoliciesRequestOrderBy": {
+      "type": "string",
+      "enum": [
+        "DEFAULT",
+        "DISPLAY_NAME"
+      ],
+      "default": "DEFAULT",
+      "title": "Supported sort orders"
+    },
     "v1alpha2ListIAMAccessPoliciesResponse": {
       "type": "object",
       "example": {
@@ -544,6 +650,143 @@
         }
       },
       "description": "Permissions"
+    },
+    "v2AssetResponse": {
+      "type": "object",
+      "example": {
+        "identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
+        "behaviours": [
+          "Firmware",
+          "Location"
+        ],
+        "attributes": {
+          "arc_firmware_version": "3.2.1",
+          "arc_attachments": [
+            {
+              "arc_attachment_identity": "attachments/1754b920-cf20-4d7e-9d36-9ed7d479744d",
+              "arc_hash_value": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+              "arc_display_name": "Picture from yesterday",
+              "arc_hash_alg": "sha256"
+            }
+          ],
+          "arc_home_location_identity": "locations/42054f10-9952-4c10-a082-9fd0d10295ae"
+        }
+      },
+      "properties": {
+        "identity": {
+          "type": "string",
+          "description": "relative resource address `assets/{UUID}`",
+          "readOnly": true,
+          "maxLength": 4096
+        },
+        "behaviours": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "list of behaviours enabled for this asset"
+        },
+        "attributes": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/v2Attribute"
+          }
+        },
+        "confirmation_status": {
+          "$ref": "#/definitions/v2ConfirmationStatus",
+          "description": "indicates if the asset has been succesfully committed to the blockchain",
+          "readOnly": true
+        },
+        "tracked": {
+          "$ref": "#/definitions/v2TrackedStatus",
+          "description": "indicates whether asset is still being tracked in the system",
+          "readOnly": true
+        },
+        "access_policy": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/v2Attribute"
+          }
+        },
+        "owner": {
+          "type": "string",
+          "description": "wallet address of the asset owner",
+          "readOnly": true
+        }
+      },
+      "description": "This describes Jitsuin Asset."
+    },
+    "v2Attribute": {
+      "type": "object",
+      "properties": {
+        "str_val": {
+          "type": "string"
+        },
+        "dict_val": {
+          "$ref": "#/definitions/v2DictAttr"
+        },
+        "list_val": {
+          "$ref": "#/definitions/v2ListAttr"
+        }
+      }
+    },
+    "v2ConfirmationStatus": {
+      "type": "string",
+      "enum": [
+        "CONFIRMATION_STATUS_UNSPECIFIED",
+        "PENDING",
+        "CONFIRMED",
+        "FAILED"
+      ],
+      "default": "CONFIRMATION_STATUS_UNSPECIFIED"
+    },
+    "v2DictAttr": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "v2ListAssetsResponse": {
+      "type": "object",
+      "properties": {
+        "assets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v2AssetResponse"
+          }
+        },
+        "next_page_token": {
+          "type": "string",
+          "description": "Token to retrieve the next page of results or empty if there are none."
+        }
+      },
+      "description": "A list of assets returned data identical to `Asset`"
+    },
+    "v2ListAttr": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v2DictAttr"
+          }
+        }
+      }
+    },
+    "v2TrackedStatus": {
+      "type": "string",
+      "enum": [
+        "TRACKED_STATUS_UNSPECIFIED",
+        "TRACKED",
+        "NOT_TRACKED",
+        "ANY"
+      ],
+      "default": "TRACKED_STATUS_UNSPECIFIED"
     }
   }
 }

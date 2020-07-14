@@ -12,5 +12,6 @@ IAM Access Policies API (v1alpha2)
    retrieval
    deletion
    update
+   assets
    openapi
 
