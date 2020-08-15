@@ -13,10 +13,6 @@ with your secret from the application registration. `${FQDN}` is the FQDN for yo
 Jitsuin Archivist. `${TENANT}` is your directory id, see :ref:`locate-directory-id`
 
 
-.. todo::
-   Is it FQDN or the name of the principal, currently both are the same so we
-   can't tell
-
 .. code-block:: shell
 
    $ RESPONSE=$(curl \
@@ -140,7 +136,7 @@ Copy the following python code to check-token.py
 
        # Check the Jitsuin Archivist roles are present
        roles = payload["roles"]
-       if "archivist_administrator" not in roles or "guest" not in roles:
+       if "archivist_administrator" not in roles and "guest" not in roles:
            print("Token is missing the required roles", file=sys.stderr)
            return -1
 
@@ -206,7 +202,7 @@ Copy the following python code to check-token.py
            print(f"expected key missing {str(e)}", file=sys.stderr)
        except ValueError as e:
            print(str(e), file=sys.stderr)
-      except Exception as e:
+       except Exception as e:
            print(str(e), file=sys.stderr)
        sys.exit(-1)
 

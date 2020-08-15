@@ -469,7 +469,8 @@
     "v1alpha2CreateIAMAccessPolicyRequest": {
       "type": "object",
       "example": {
-        "display_name": "Some description",
+        "display_name": "Customers name for the policy",
+        "description": "Customers description for the policy",
         "filters": "[    [\"location=basingstoke\", \"location=cambridge\"],    [\"asset_type=door_access_reader\"]  ]",
         "access_permissions": [
           {
@@ -484,6 +485,14 @@
             "include_attributes": [
               "attribute1",
               "attribute2"
+            ],
+            "user_attributes": [
+              {
+                "or": [
+                  "group:maintainers",
+                  "group:supervisors"
+                ]
+              }
             ]
           }
         ]
@@ -504,6 +513,11 @@
             "$ref": "#/definitions/v1alpha2Permission"
           },
           "description": "The access permissions maps"
+        },
+        "description": {
+          "type": "string",
+          "description": "Customer description for the access policy.",
+          "maxLength": 4096
         }
       },
       "description": "The body of a request to create new Jitsuin Access Policy.",
@@ -511,11 +525,31 @@
         "display_name"
       ]
     },
+    "v1alpha2Filter": {
+      "type": "object",
+      "example": {
+        "or": [
+          "group:maintainers",
+          "group:supervisors"
+        ]
+      },
+      "properties": {
+        "or": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "The filter list"
+        }
+      },
+      "description": "Filter"
+    },
     "v1alpha2IAMAccessPolicy": {
       "type": "object",
       "example": {
         "identity": "access_policies/08838336-c357-460d-902a-3aba9528dd22",
-        "display_name": "Some description",
+        "display_name": "User name for this policy",
+        "description": "User description for this policy",
         "filters": "[    [\"location=basingstoke\", \"location=cambridge\"],    [\"asset_type=door_access_reader\"]  ]",
         "access_permissions": [
           {
@@ -530,6 +564,14 @@
             "include_attributes": [
               "attribute1",
               "attribute2"
+            ],
+            "user_attributes": [
+              {
+                "or": [
+                  "group:maintainers",
+                  "group:supervisors"
+                ]
+              }
             ]
           }
         ]
@@ -555,6 +597,16 @@
             "$ref": "#/definitions/v1alpha2Permission"
           },
           "description": "The permissions maps"
+        },
+        "tenant": {
+          "type": "string",
+          "description": "Tenent id",
+          "maxLength": 128
+        },
+        "description": {
+          "type": "string",
+          "description": "Customer description for the access policy.",
+          "maxLength": 4096
         }
       },
       "description": "Describes an Access Policy for OBAC"
@@ -589,6 +641,14 @@
                 "include_attributes": [
                   "attribute1",
                   "attribute2"
+                ],
+                "user_attributes": [
+                  {
+                    "or": [
+                      "group:maintainers",
+                      "group:supervisors"
+                    ]
+                  }
                 ]
               }
             ]
@@ -624,6 +684,14 @@
         "include_attributes": [
           "attribute1",
           "attribute2"
+        ],
+        "user_attributes": [
+          {
+            "or": [
+              "group:maintainers",
+              "group:supervisors"
+            ]
+          }
         ]
       },
       "properties": {
@@ -647,6 +715,13 @@
             "type": "string"
           },
           "description": "The shareable attributes list"
+        },
+        "user_attributes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1alpha2Filter"
+          },
+          "description": "User attribute filters"
         }
       },
       "description": "Permissions"

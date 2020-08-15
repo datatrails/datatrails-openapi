@@ -12,5 +12,4 @@ The access_policies endpoint manages which rights have been granted.
    :caption: Contents:
 
    subjects/index
-   access_policies/index
    openapi

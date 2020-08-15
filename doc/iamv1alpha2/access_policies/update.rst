@@ -31,7 +31,10 @@ Define the access_policies parameters to be changed and store in /path/to/jsonfi
                     "subjects/a24306e5-dc06-41ba-a7d6-2b6b3e1df48d"
                 ],
                 "behaviours": [ "Attachments", "Firmware", "Maintenance", "RecordEvidence" ],
-                "include_attributes": [ "arc_display_name", "arc_display_type", "arc_firmware_version" ]
+                "include_attributes": [ "arc_display_name", "arc_display_type", "arc_firmware_version" ],
+                "user_attributes": [
+                    {"or": ["group:maintainers", "group:supervisors"]}
+                ]
             }
         ]
     }
@@ -52,6 +55,9 @@ Define the access_policies parameters to be changed and store in /path/to/jsonfi
         include_attributes
             list of included attributes
 
+        user_attributes
+            list of user attributes filters
+
 Update the access policy:
 
 .. code-block:: shell
@@ -68,7 +74,8 @@ The response is:
 
     {
         "identity": "access_policies/3f5be24f-fd1b-40e2-af35-ec7c14c74d53",
-        "display_name": "Some description",
+        "display_name": "Friendly name of the policy",
+        "description": "Description of the policy",
         "filters": "[
             [
                 \"attributes.arc_home_location_identity=locations/5ea815f0-4de1-4a84-9377-701e880fe8ae\",
@@ -89,7 +96,10 @@ The response is:
                     "subjects/a24306e5-dc06-41ba-a7d6-2b6b3e1df48d"
                 ],
                 "behaviours": [ "Attachments", "Firmware", "Maintenance", "RecordEvidence" ],
-                "include_attributes": [ "arc_display_name", "arc_display_type", "arc_firmware_version" ]
+                "include_attributes": [ "arc_display_name", "arc_display_type", "arc_firmware_version" ],
+                "user_attributes": [
+                    {"or": ["group:maintainers", "group:supervisors"]}
+                ]
             }
         ]
     }

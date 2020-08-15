@@ -104,7 +104,10 @@ Each of these calls returns a list of matching IAM access_policies records in th
                             "subjects/a24306e5-dc06-41ba-a7d6-2b6b3e1df48d"
                         ],
                         "behaviours": [  "Attachments", "Firmware", "Maintenance", "RecordEvidence"  ],
-                        "include_attributes": [ "arc_display_name", "arc_display_type", "arc_firmware_version" ]
+                        "include_attributes": [ "arc_display_name", "arc_display_type", "arc_firmware_version" ],
+                        "user_attributes": [
+                            {"or": ["group:maintainers", "group:supervisors"]}
+                        ]
                     }
                 ]
             },
@@ -121,7 +124,10 @@ Each of these calls returns a list of matching IAM access_policies records in th
                             "subjects/a24306e5-dc06-41ba-a7d6-2b6b3e1df48d"
                         ],
                         "behaviours": [ "Attachments", "Maintenance", "RecordEvidence" ],
-                        "include_attributes": [ "arc_display_name", "arc_display_type" ]
+                        "include_attributes": [ "arc_display_name", "arc_display_type" ],
+                        "user_attributes": [
+                            {"or": ["group:maintainers", "group:supervisors"]}
+                        ]
                     }
                 ]
             }

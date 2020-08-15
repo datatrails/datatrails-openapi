@@ -21,130 +21,6 @@
     "application/json"
   ],
   "paths": {
-    "/archivist/v1alpha1/iam/access_policies": {
-      "get": {
-        "summary": "List access policies",
-        "description": "Returns a paginated list of access_policies",
-        "operationId": "ListIAMAccessPolicies",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1alpha1ListIAMAccessPoliciesResponse"
-            }
-          },
-          "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to read the subject.",
-            "schema": {}
-          },
-          "500": {
-            "description": "Returned when the underlying storage system returns an error.",
-            "schema": {}
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "order_by",
-            "description": "Specify the sort order for the results.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "enum": [
-              "DEFAULT",
-              "DISPLAY_NAME"
-            ],
-            "default": "DEFAULT"
-          },
-          {
-            "name": "page_size",
-            "description": "Maximum entries per page.",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "page_token",
-            "description": "The next_page_token returned from a previous list request if any.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "display_name",
-            "description": "Further fields are bound to query parameters and act to filter the result. Customer friendly name for the access policy.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "IAM"
-        ]
-      },
-      "post": {
-        "summary": "Create an access policy",
-        "description": "This request creates a new access policy. The display_name is the friendly name.",
-        "operationId": "CreateIAMAccessPolicy",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1alpha1IAMAccessPolicy"
-            }
-          },
-          "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to create a access policy.",
-            "schema": {}
-          },
-          "500": {
-            "description": "Returned when the underlying storage system returns an error.",
-            "schema": {}
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1alpha1CreateIAMAccessPolicyRequest"
-            }
-          }
-        ],
-        "tags": [
-          "IAM"
-        ]
-      }
-    },
     "/archivist/v1alpha1/iam/subjects": {
       "get": {
         "summary": "List subjects",
@@ -271,14 +147,14 @@
     },
     "/archivist/v1alpha1/iam/{identity}": {
       "get": {
-        "summary": "Get an access policy",
-        "description": "Returns the identified access policy",
-        "operationId": "GetIAMAccessPolicy",
+        "summary": "Get an subject",
+        "description": "Returns the identified subject",
+        "operationId": "GetIAMSubject",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1alpha1IAMAccessPolicy"
+              "$ref": "#/definitions/v1alpha1IAMSubject"
             }
           },
           "400": {
@@ -294,7 +170,7 @@
             "schema": {}
           },
           "404": {
-            "description": "Returned when the identified access policy does not exist.",
+            "description": "Returned when the identified subject does not exist.",
             "schema": {}
           },
           "500": {
@@ -311,7 +187,7 @@
         "parameters": [
           {
             "name": "identity",
-            "description": "Unique identification for the access policy, Relative Resource Name",
+            "description": "Unique identification for the subject, Relative Resource Name",
             "in": "path",
             "required": true,
             "type": "string"
@@ -322,9 +198,9 @@
         ]
       },
       "delete": {
-        "summary": "Delete an access policy",
-        "description": "Delete the identified access policy",
-        "operationId": "DeleteIAMAccessPolicy",
+        "summary": "Delete a subject",
+        "description": "Delete the identified subject",
+        "operationId": "DeleteIAMSubject",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -362,7 +238,7 @@
         "parameters": [
           {
             "name": "identity",
-            "description": "Unique identification for the access policy, Relative Resource Name",
+            "description": "Unique identification for the subject, Relative Resource Name",
             "in": "path",
             "required": true,
             "type": "string"
@@ -373,14 +249,14 @@
         ]
       },
       "patch": {
-        "summary": "Update a access policy's details",
-        "description": "Perform a full or partial update of the identified access policy",
-        "operationId": "UpdateIAMAccessPolicy",
+        "summary": "Update a subject's details",
+        "description": "Perform a full or partial update of the identified subject",
+        "operationId": "UpdateIAMSubject",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1alpha1IAMAccessPolicy"
+              "$ref": "#/definitions/v1alpha1IAMSubject"
             }
           },
           "400": {
@@ -413,7 +289,7 @@
         "parameters": [
           {
             "name": "identity",
-            "description": "Unique identification for the access policy, Relative Resource Name",
+            "description": "Unique identification for the subject, Relative Resource Name",
             "in": "path",
             "required": true,
             "type": "string"
@@ -423,7 +299,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/v1alpha1IAMAccessPolicy"
+              "$ref": "#/definitions/v1alpha1IAMSubject"
             }
           }
         ],
@@ -434,6 +310,15 @@
     }
   },
   "definitions": {
+    "ListIAMSubjectsRequestOrderBy": {
+      "type": "string",
+      "enum": [
+        "DEFAULT",
+        "DISPLAY_NAME"
+      ],
+      "default": "DEFAULT",
+      "title": "Supported sort orders"
+    },
     "protobufAny": {
       "type": "object",
       "properties": {
@@ -484,99 +369,6 @@
         }
       }
     },
-    "v1alpha1AccessKeys": {
-      "type": "object",
-      "example": {
-        "tessera": [
-          "key1",
-          "key2"
-        ],
-        "wallet": [
-          "key3",
-          "key4"
-        ]
-      },
-      "properties": {
-        "tessera": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "The tessera list"
-        },
-        "wallet": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "The wallet list"
-        }
-      },
-      "description": "Describes a subject keys list"
-    },
-    "v1alpha1CreateIAMAccessPolicyRequest": {
-      "type": "object",
-      "example": {
-        "display_name": "Some description",
-        "filters": "[    [\"location=basingstoke\", \"location=cambridge\"],    [\"asset_type=door_access_reader\"]  ]",
-        "access_permissions": [
-          {
-            "access_keys": [
-              {
-                "tessera": [
-                  "key1",
-                  "key2"
-                ],
-                "wallet": [
-                  "key3",
-                  "key4"
-                ]
-              },
-              {
-                "tessera": [
-                  "key5",
-                  "key6"
-                ],
-                "wallet": [
-                  "key7",
-                  "key8"
-                ]
-              }
-            ],
-            "behaviours": [
-              "behaviour1",
-              "behaviour2"
-            ],
-            "include_attributes": [
-              "attribute1",
-              "attribute2"
-            ]
-          }
-        ]
-      },
-      "properties": {
-        "display_name": {
-          "type": "string",
-          "description": "Customer friendly name for the access policy.",
-          "maxLength": 128
-        },
-        "filters": {
-          "type": "string",
-          "description": "The filters JSON list of lists expressed as a string"
-        },
-        "access_permissions": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1alpha1Permission"
-          },
-          "description": "The access permissions maps"
-        }
-      },
-      "description": "The body of a request to create new Jitsuin Access Policy.",
-      "required": [
-        "display_name"
-      ]
-    },
     "v1alpha1CreateIAMSubjectRequest": {
       "type": "object",
       "example": {
@@ -617,72 +409,6 @@
       "required": [
         "display_name"
       ]
-    },
-    "v1alpha1IAMAccessPolicy": {
-      "type": "object",
-      "example": {
-        "identity": "access_policies/08838336-c357-460d-902a-3aba9528dd22",
-        "display_name": "Some description",
-        "filters": "[    [\"location=basingstoke\", \"location=cambridge\"],    [\"asset_type=door_access_reader\"]  ]",
-        "access_permissions": [
-          {
-            "access_keys": [
-              {
-                "tessera": [
-                  "key1",
-                  "key2"
-                ],
-                "wallet": [
-                  "key3",
-                  "key4"
-                ]
-              },
-              {
-                "tessera": [
-                  "key5",
-                  "key6"
-                ],
-                "wallet": [
-                  "key7",
-                  "key8"
-                ]
-              }
-            ],
-            "behaviours": [
-              "behaviour1",
-              "behaviour2"
-            ],
-            "include_attributes": [
-              "attribute1",
-              "attribute2"
-            ]
-          }
-        ]
-      },
-      "properties": {
-        "identity": {
-          "type": "string",
-          "description": "Unique identification for the access policy, Relative Resource Name",
-          "maxLength": 4096
-        },
-        "display_name": {
-          "type": "string",
-          "description": "Customer friendly name for the access policy.",
-          "maxLength": 128
-        },
-        "filters": {
-          "type": "string",
-          "description": "The filters JSON list of lists expressed as a string"
-        },
-        "access_permissions": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1alpha1Permission"
-          },
-          "description": "The permissions maps"
-        }
-      },
-      "description": "Describes an Access Policy for OBAC"
     },
     "v1alpha1IAMSubject": {
       "type": "object",
@@ -736,87 +462,14 @@
           },
           "description": "Organisation's tessara wallet keys (BNF)",
           "maxLength": 256
+        },
+        "tenant": {
+          "type": "string",
+          "description": "Tenent id",
+          "maxLength": 128
         }
       },
       "description": "Describes an Access Policy for OBAC"
-    },
-    "v1alpha1ListIAMAccessPoliciesRequestOrderBy": {
-      "type": "string",
-      "enum": [
-        "DEFAULT",
-        "DISPLAY_NAME"
-      ],
-      "default": "DEFAULT",
-      "title": "Supported sort orders"
-    },
-    "v1alpha1ListIAMAccessPoliciesResponse": {
-      "type": "object",
-      "example": {
-        "access_policies": [
-          {
-            "identity": "subjects/08838336-c357-460d-902a-3aba9528dd22",
-            "display_name": "Some description",
-            "filters": "[        [\"location=basingstoke\", \"location=cambridge\"],        [\"asset_type=door_access_reader\"]      ]",
-            "access_permissions": [
-              {
-                "access_keys": [
-                  {
-                    "tessera": [
-                      "key1",
-                      "key2"
-                    ],
-                    "wallet": [
-                      "key3",
-                      "key4"
-                    ]
-                  },
-                  {
-                    "tessera": [
-                      "key5",
-                      "key6"
-                    ],
-                    "wallet": [
-                      "key7",
-                      "key8"
-                    ]
-                  }
-                ],
-                "behaviours": [
-                  "behaviour1",
-                  "behaviour2"
-                ],
-                "include_attributes": [
-                  "attribute1",
-                  "attribute2"
-                ]
-              }
-            ]
-          }
-        ],
-        "page_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6InN0dW50aWR"
-      },
-      "properties": {
-        "access_policies": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1alpha1IAMAccessPolicy"
-          }
-        },
-        "next_page_token": {
-          "type": "string",
-          "description": "Token to retrieve the next page of results or empty if there are none."
-        }
-      },
-      "description": "List of access policies (or the next page in a continuing  list request"
-    },
-    "v1alpha1ListIAMSubjectsRequestOrderBy": {
-      "type": "string",
-      "enum": [
-        "DEFAULT",
-        "DISPLAY_NAME"
-      ],
-      "default": "DEFAULT",
-      "title": "Supported sort orders"
     },
     "v1alpha1ListIAMSubjectsResponse": {
       "type": "object",
@@ -850,65 +503,6 @@
         }
       },
       "description": "List of subjects (or the next page in a continuing  list request"
-    },
-    "v1alpha1Permission": {
-      "type": "object",
-      "example": {
-        "access_keys": [
-          {
-            "tessera": [
-              "key1",
-              "key2"
-            ],
-            "wallet": [
-              "key3",
-              "key4"
-            ]
-          },
-          {
-            "tessera": [
-              "key5",
-              "key6"
-            ],
-            "wallet": [
-              "key7",
-              "key8"
-            ]
-          }
-        ],
-        "behaviours": [
-          "behaviour1",
-          "behaviour2"
-        ],
-        "include_attributes": [
-          "attribute1",
-          "attribute2"
-        ]
-      },
-      "properties": {
-        "access_keys": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1alpha1AccessKeys"
-          },
-          "description": "The keys list"
-        },
-        "behaviours": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "The allowed behaviours"
-        },
-        "include_attributes": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "The shareable attributes list"
-        }
-      },
-      "description": "Permissions"
     }
   }
 }

@@ -331,6 +331,11 @@
           "additionalProperties": {
             "$ref": "#/definitions/v2Attribute"
           }
+        },
+        "tenant": {
+          "type": "string",
+          "description": "Tenent id",
+          "maxLength": 128
         }
       },
       "description": "Describes a location for asset resources"
@@ -384,6 +389,26 @@
           }
         }
       }
+    },
+    "v1ListSuggestionsResponse": {
+      "type": "object",
+      "example": [
+        "Grayslake, Illinois",
+        "Macclesfield"
+      ],
+      "properties": {
+        "suggestions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "next_page_token": {
+          "type": "string",
+          "description": "Token to retrieve the next page of results or empty if there are none."
+        }
+      },
+      "description": "List of suggestions (or the next page in a continuing  list request"
     },
     "v2Attribute": {
       "type": "object",

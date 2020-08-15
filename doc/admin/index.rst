@@ -15,8 +15,8 @@ configuration.
    :caption: Contents:
 
    register
-   adminconsent
    roles
    userassignment
    endpointaccess
    tokenexample
+   pingone

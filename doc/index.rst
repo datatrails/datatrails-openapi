@@ -13,6 +13,7 @@ Archivist API documentation
    introduction/index
    admin/index
    auth/authentication
+   groupsv1/index
    iamv1alpha1/index
    iamv1alpha2/index
    attachments/index
