@@ -25,7 +25,7 @@
       "get": {
         "summary": "List access policies",
         "description": "Returns a paginated list of access_policies",
-        "operationId": "ListIAMAccessPolicies",
+        "operationId": "IAM_ListIAMAccessPolicies",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -99,7 +99,7 @@
       "post": {
         "summary": "Create an access policy",
         "description": "This request creates a new access policy. The display_name is the friendly name.",
-        "operationId": "CreateIAMAccessPolicy",
+        "operationId": "IAM_CreateIAMAccessPolicy",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -149,7 +149,7 @@
       "get": {
         "summary": "Get matching access policies",
         "description": "Get matching access policies for specified asset",
-        "operationId": "ListMatchingAccessPolicies",
+        "operationId": "IAM_ListMatchingAccessPolicies",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -202,7 +202,7 @@
       "get": {
         "summary": "Get an access policy",
         "description": "Returns the identified access policy",
-        "operationId": "GetIAMAccessPolicy",
+        "operationId": "IAM_GetIAMAccessPolicy",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -253,7 +253,7 @@
       "delete": {
         "summary": "Delete an access policy",
         "description": "Delete the identified access policy",
-        "operationId": "DeleteIAMAccessPolicy",
+        "operationId": "IAM_DeleteIAMAccessPolicy",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -304,7 +304,7 @@
       "patch": {
         "summary": "Update a access policy's details",
         "description": "Perform a full or partial update of the identified access policy",
-        "operationId": "UpdateIAMAccessPolicy",
+        "operationId": "IAM_UpdateIAMAccessPolicy",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -365,7 +365,7 @@
       "get": {
         "summary": "Delete an access policy",
         "description": "Delete the identified access policy",
-        "operationId": "ListMatchingAssets",
+        "operationId": "IAM_ListMatchingAssets",
         "responses": {
           "200": {
             "description": "A successful response.",

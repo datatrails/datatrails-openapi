@@ -23,7 +23,7 @@
   "paths": {
     "/archivist/v2/assets": {
       "get": {
-        "operationId": "ListAssets",
+        "operationId": "Assets_ListAssets",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -111,7 +111,7 @@
         ]
       },
       "post": {
-        "operationId": "CreateAsset",
+        "operationId": "Assets_CreateAsset",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -151,7 +151,7 @@
     },
     "/archivist/v2/{asset_identity}": {
       "get": {
-        "operationId": "GetAsset",
+        "operationId": "Assets_GetAsset",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -194,7 +194,7 @@
     },
     "/archivist/v2/{asset_identity}/events": {
       "get": {
-        "operationId": "ListEvents",
+        "operationId": "Assets_ListEvents",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -392,7 +392,7 @@
     },
     "/archivist/v2/{event_identity}": {
       "get": {
-        "operationId": "GetEvent",
+        "operationId": "Assets_GetEvent",
         "responses": {
           "200": {
             "description": "A successful response.",

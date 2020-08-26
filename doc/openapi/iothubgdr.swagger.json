@@ -23,7 +23,7 @@
   "paths": {
     "/archivist/v1/iothubgdr": {
       "get": {
-        "operationId": "ListIoTHubGDRConnections",
+        "operationId": "IoTHubGDR_ListIoTHubGDRConnections",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -51,7 +51,7 @@
         ]
       },
       "post": {
-        "operationId": "CreateIoTHubGDRConnection",
+        "operationId": "IoTHubGDR_CreateIoTHubGDRConnection",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -91,7 +91,7 @@
     },
     "/archivist/v1/{identity}": {
       "get": {
-        "operationId": "GetIoTHubGDRConnection",
+        "operationId": "IoTHubGDR_GetIoTHubGDRConnection",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -132,7 +132,7 @@
         ]
       },
       "delete": {
-        "operationId": "DeleteIoTHubGDRConnection",
+        "operationId": "IoTHubGDR_DeleteIoTHubGDRConnection",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -175,7 +175,7 @@
     },
     "/archivist/v1/{identity}:cancel": {
       "post": {
-        "operationId": "CancelIoTHubGDRConnection",
+        "operationId": "IoTHubGDR_CancelIoTHubGDRConnection",
         "responses": {
           "200": {
             "description": "A successful response.",

@@ -30,15 +30,15 @@ Response
 
 .. code-block:: JSON
 
-    {
+    [
         {
             "identity": "subjects/00000000-0000-0000-0000-000000000000",
             "display_name": "Some description",
             "wallet_pub_key": ["key1", "key2"],
             "wallet_address": ["address1", "address2"],
             "tessera_pub_key": ["key3", "key4"]
-        },
-    }
+        }
+    ]
 
 .. note::
 

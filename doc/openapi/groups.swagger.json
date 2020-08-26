@@ -25,7 +25,7 @@
       "get": {
         "summary": "List all groups",
         "description": "Returns a list of groups",
-        "operationId": "ListGroups",
+        "operationId": "Groups_ListGroups",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -65,7 +65,7 @@
       "get": {
         "summary": "Get a list of groups for a user",
         "description": "Returns the list of groups for a user",
-        "operationId": "GetGroups",
+        "operationId": "Groups_GetGroups",
         "responses": {
           "200": {
             "description": "A successful response.",

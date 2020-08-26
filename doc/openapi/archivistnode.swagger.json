@@ -25,7 +25,7 @@
       "get": {
         "summary": "Get information about an archivist node",
         "description": "Returns the identified archivist node",
-        "operationId": "GetArchivistNode",
+        "operationId": "ArchivistNode_GetArchivistNode",
         "responses": {
           "200": {
             "description": "A successful response.",

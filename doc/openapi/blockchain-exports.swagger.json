@@ -25,7 +25,7 @@
       "get": {
         "summary": "List all blockchain exports",
         "description": "Returns a list of all exports. e.g. blockchain-exports/20c97f42-87fc-482c-9d58-4d11abd33359",
-        "operationId": "ListExports",
+        "operationId": "BlockchainExports_ListExports",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -85,7 +85,7 @@
       "post": {
         "summary": "Start creating a blockchain export",
         "description": "Returns a reference to a pending blockchain export",
-        "operationId": "CreateExport",
+        "operationId": "BlockchainExports_CreateExport",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -117,7 +117,7 @@
       "get": {
         "summary": "Get attributes of blockchain export",
         "description": "Queries the progress of a blockchain export",
-        "operationId": "GetExportInfo",
+        "operationId": "BlockchainExports_GetExportInfo",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -159,7 +159,7 @@
       },
       "delete": {
         "summary": "Delete a blockchain export",
-        "operationId": "DeleteExport",
+        "operationId": "BlockchainExports_DeleteExport",
         "responses": {
           "200": {
             "description": "A successful response.",

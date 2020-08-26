@@ -25,7 +25,7 @@
       "get": {
         "summary": "List all SvcBusSources",
         "description": "List all SvcBusSources, the results will not contain secrets",
-        "operationId": "ListSvcBusSources",
+        "operationId": "SvcBusSources_ListSvcBusSources",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -55,7 +55,7 @@
       "post": {
         "summary": "Create new SvcBusSource",
         "description": "Create a connection to service bus endpoint - archivist will store credentials provided and sync events",
-        "operationId": "CreateSvcBusSource",
+        "operationId": "SvcBusSources_CreateSvcBusSource",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -101,7 +101,7 @@
       "get": {
         "summary": "Get SvcBusSource with provided identity",
         "description": "Get SvcBusSource with provided identity, response will not include the secret",
-        "operationId": "GetSvcBusSource",
+        "operationId": "SvcBusSources_GetSvcBusSource",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -140,7 +140,7 @@
       "delete": {
         "summary": "Delete SvcBusSource",
         "description": "Delete SvcBusSource with provided connection_identity",
-        "operationId": "DeleteSvcBusSource",
+        "operationId": "SvcBusSources_DeleteSvcBusSource",
         "responses": {
           "200": {
             "description": "A successful response.",

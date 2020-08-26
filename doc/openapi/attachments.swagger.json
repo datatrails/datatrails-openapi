@@ -25,7 +25,7 @@
       "post": {
         "summary": "Create an attachment",
         "description": "Creates an attachment and returns identifying metadata. Note that this operation is not idempotent - the same request executed twice will create 2 separate objects even if the data is identical.",
-        "operationId": "Upload",
+        "operationId": "Attachments_Upload",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -57,7 +57,7 @@
       "get": {
         "summary": "Get an attachment",
         "description": "Returns the attachment associated with the relative resource name",
-        "operationId": "Download",
+        "operationId": "Attachments_Download",
         "responses": {
           "200": {
             "description": "A successful response.(streaming responses)",
@@ -111,7 +111,7 @@
       "get": {
         "summary": "Get attachment metadata",
         "description": "Gets the metadata associated an attachment uuid",
-        "operationId": "GetInfo",
+        "operationId": "Attachments_GetInfo",
         "responses": {
           "200": {
             "description": "A successful response.",

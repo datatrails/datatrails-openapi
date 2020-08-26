@@ -23,7 +23,7 @@
   "paths": {
     "/archivist/v1alpha1/blockchain/{identity}": {
       "get": {
-        "operationId": "ListBlockchain",
+        "operationId": "BlockChain_ListBlockchain",
         "responses": {
           "200": {
             "description": "A successful response.",

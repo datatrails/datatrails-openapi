@@ -25,7 +25,7 @@
       "get": {
         "summary": "List subjects",
         "description": "Returns a paginated list of subjects",
-        "operationId": "ListIAMSubjects",
+        "operationId": "IAM_ListIAMSubjects",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -99,7 +99,7 @@
       "post": {
         "summary": "Create an subject",
         "description": "This request creates a new subject. The display_name is the friendly name.",
-        "operationId": "CreateIAMSubject",
+        "operationId": "IAM_CreateIAMSubject",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -149,7 +149,7 @@
       "get": {
         "summary": "Get an subject",
         "description": "Returns the identified subject",
-        "operationId": "GetIAMSubject",
+        "operationId": "IAM_GetIAMSubject",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -200,7 +200,7 @@
       "delete": {
         "summary": "Delete a subject",
         "description": "Delete the identified subject",
-        "operationId": "DeleteIAMSubject",
+        "operationId": "IAM_DeleteIAMSubject",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -251,7 +251,7 @@
       "patch": {
         "summary": "Update a subject's details",
         "description": "Perform a full or partial update of the identified subject",
-        "operationId": "UpdateIAMSubject",
+        "operationId": "IAM_UpdateIAMSubject",
         "responses": {
           "200": {
             "description": "A successful response.",

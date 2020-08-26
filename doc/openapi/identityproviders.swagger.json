@@ -25,7 +25,7 @@
       "get": {
         "summary": "Get list of identity providers",
         "description": "Returns a paginated list of IdentityProviders",
-        "operationId": "ListIdentityProviders",
+        "operationId": "IdentityProviders_ListIdentityProviders",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -94,7 +94,7 @@
       "get": {
         "summary": "Get an identity provider",
         "description": "Returns the identity provider associated with the identifying Relative Resource Name, e.g. `identityproviders/08838336-c357-460d-902a-3aba9528dd22`",
-        "operationId": "GetIdentityProvider",
+        "operationId": "IdentityProviders_GetIdentityProvider",
         "responses": {
           "200": {
             "description": "A successful response.",

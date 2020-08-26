@@ -25,7 +25,7 @@
       "get": {
         "summary": "List locations",
         "description": "Returns a paginated list of locations",
-        "operationId": "ListLocations",
+        "operationId": "Locations_ListLocations",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -91,7 +91,7 @@
       "post": {
         "summary": "Create a location",
         "description": "This request creates a new location. A name and a latitude and longitude must be provided. The display_name is the friendly name. The latitude and longitude must be entered in Degrees Decimal format See [Change of units and format](https://en.wikipedia.org/wiki/Geographic_coordinate_conversion#Change_of_units_and_format). The `attributes` field is a flat map of `{ \"key\": \"value\" }`. The keys and values must be strings.",
-        "operationId": "CreateLocation",
+        "operationId": "Locations_CreateLocation",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -133,7 +133,7 @@
       "get": {
         "summary": "Get a location",
         "description": "Returns the identified location",
-        "operationId": "GetLocation",
+        "operationId": "Locations_GetLocation",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -176,7 +176,7 @@
       "delete": {
         "summary": "Delete a location",
         "description": "Delete the identified location",
-        "operationId": "DeleteLocation",
+        "operationId": "Locations_DeleteLocation",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -219,7 +219,7 @@
       "patch": {
         "summary": "Update a location's details",
         "description": "Perform a full or partial update of the identified location",
-        "operationId": "UpdateLocation",
+        "operationId": "Locations_UpdateLocation",
         "responses": {
           "200": {
             "description": "A successful response.",
