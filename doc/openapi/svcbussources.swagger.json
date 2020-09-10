@@ -127,7 +127,7 @@
         "parameters": [
           {
             "name": "identity",
-            "description": "Relative resource name for the subscription. e.g. svcbussources/20c97f42-87fc-482c-9d58-4d11abd33359",
+            "description": "Specify svcbussource `identity` as in `svcbussources/add30235-1424-4fda-840a-d5ef82c4c96f`",
             "in": "path",
             "required": true,
             "type": "string"
@@ -166,7 +166,7 @@
         "parameters": [
           {
             "name": "identity",
-            "description": "Relative resource name for the subscription. e.g. svcbussources/20c97f42-87fc-482c-9d58-4d11abd33359",
+            "description": "Specify svcbussource `identity` as in `svcbussources/add30235-1424-4fda-840a-d5ef82c4c96f`",
             "in": "path",
             "required": true,
             "type": "string"
@@ -238,6 +238,7 @@
         "queue_name": {
           "type": "string",
           "description": "Service bus queue name",
+          "title": "Service bus queue name",
           "readOnly": true,
           "maxLength": 4096
         }
@@ -265,8 +266,8 @@
         "identity": {
           "type": "string",
           "description": "Relative resource name for the subscription. e.g. svcbussources/20c97f42-87fc-482c-9d58-4d11abd33359",
-          "readOnly": true,
-          "maxLength": 4096
+          "title": "Unique identifier for the service bus connection string created by the service on POST",
+          "readOnly": true
         },
         "display_name": {
           "type": "string",

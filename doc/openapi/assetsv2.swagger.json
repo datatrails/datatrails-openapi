@@ -224,6 +224,7 @@
         "parameters": [
           {
             "name": "asset_identity",
+            "description": "Specify asset `identity` as in `assets/add30235-1424-4fda-840a-d5ef82c4c96f`",
             "in": "path",
             "required": true,
             "type": "string"
@@ -496,41 +497,47 @@
         "identity": {
           "type": "string",
           "description": "relative resource address `assets/{UUID}`",
-          "readOnly": true,
-          "maxLength": 4096
+          "title": "asset identity",
+          "readOnly": true
         },
         "behaviours": {
           "type": "array",
           "items": {
             "type": "string"
           },
-          "description": "list of behaviours enabled for this asset"
+          "description": "list of behaviours enabled for this asset",
+          "title": "list of enabled behaviours"
         },
         "attributes": {
           "type": "object",
           "additionalProperties": {
             "$ref": "#/definitions/v2Attribute"
-          }
+          },
+          "title": "all the asssets attributes"
         },
         "confirmation_status": {
           "$ref": "#/definitions/v2ConfirmationStatus",
           "description": "indicates if the asset has been succesfully committed to the blockchain",
+          "title": "indicated if asset has been committed to the blockchain, possible values are CONFIRMED for committed, PENDING for not yet committed or FAILED for permanent failure",
           "readOnly": true
         },
         "tracked": {
           "$ref": "#/definitions/v2TrackedStatus",
           "description": "indicates whether asset is still being tracked in the system",
+          "title": "indicates if asset is being tracked in the system TRACKED or NOT_TRACKED",
           "readOnly": true
         },
         "access_policy": {
           "type": "object",
           "additionalProperties": {
             "$ref": "#/definitions/v2Attribute"
-          }
+          },
+          "title": "describes the access policy for this asset"
         },
         "owner": {
           "type": "string",
           "description": "wallet address of the asset owner",
+          "title": "wallet address for the owner of this asset",
           "readOnly": true
         }
       },
@@ -586,13 +593,16 @@
           "items": {
             "type": "string"
           },
-          "description": "list of behaviours enabled for this asset"
+          "description": "list of behaviours enabled for this asset",
+          "title": "list of enabled behaviours",
+          "maxLength": 1024
         },
         "attributes": {
           "type": "object",
           "additionalProperties": {
             "$ref": "#/definitions/v2Attribute"
-          }
+          },
+          "title": "all the asssets attributes"
         }
       },
       "description": "This describes the body of a request to create new Jitsuin Asset."
@@ -647,30 +657,33 @@
         "identity": {
           "type": "string",
           "description": "identity of a event resource",
-          "readOnly": true,
-          "maxLength": 4096
+          "title": "Relative Resource Name for the operation event",
+          "readOnly": true
         },
         "asset_identity": {
           "type": "string",
           "description": "identity of a related asset resource `assets/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
-          "readOnly": true,
-          "maxLength": 4096
+          "title": "relative resource name for associated asset ( asset the operation is performed on  - has to have specific behaviour enabled)",
+          "readOnly": true
         },
         "attributes": {
           "type": "object",
           "additionalProperties": {
             "$ref": "#/definitions/v2Attribute"
-          }
+          },
+          "description": "map of attributes describing this operation. For each operation describe the required and optional attributes and their interpretation. Notice this is the behaviour specific content of the request."
         },
         "operation": {
           "type": "string",
           "description": "The operation represented by the event. `Update`",
+          "title": "name of operation on this behviour",
           "readOnly": true,
           "maxLength": 4096
         },
         "behaviour": {
           "type": "string",
           "description": "The behaviour used to create event. `Firmware`",
+          "title": "name of this behaviour",
           "readOnly": true,
           "maxLength": 4096
         },
@@ -678,55 +691,65 @@
           "type": "string",
           "format": "date-time",
           "description": "time of event as declared by the user",
+          "title": "timestamp when operation was actually performed - if not provided will be set to timestamp_accepted",
           "readOnly": true
         },
         "timestamp_accepted": {
           "type": "string",
           "format": "date-time",
           "description": "time of event as recorded by the server",
+          "title": "timestamp when system received operation request",
           "readOnly": true
         },
         "timestamp_committed": {
           "type": "string",
           "format": "date-time",
           "description": "time of event as recorded on blockchain",
+          "title": "timestamp operation has been committed on the blockchain",
           "readOnly": true
         },
         "principal_declared": {
           "$ref": "#/definitions/v2Principal",
           "description": "principal provided by the user",
+          "title": "principal information associated with event - if not provided will be set to principal_accepted",
           "readOnly": true
         },
         "principal_accepted": {
           "$ref": "#/definitions/v2Principal",
           "description": "principal recorded by the server",
+          "title": "principal logged into the system that performed the operation",
           "readOnly": true
         },
         "confirmation_status": {
           "$ref": "#/definitions/v2ConfirmationStatus",
           "description": "indicates if the event has been succesfully committed to the blockchain",
+          "title": "indicated if operation has been committed to the blockchain",
           "readOnly": true
         },
         "transaction_id": {
           "type": "string",
           "description": "hash of the transaction as a hex string `0x11bf5b37e0b842e08dcfdc8c4aefc000`",
+          "title": "hash of transaction committing this operation on blockchain",
           "maxLength": 4096
         },
         "block_number": {
           "type": "string",
           "format": "uint64",
           "description": "number of block event was commited on",
+          "title": "block number of committing transaction",
           "readOnly": true
         },
         "transaction_index": {
           "type": "string",
           "format": "uint64",
           "description": "index of event within commited block",
+          "title": "transaction index of committing transaction",
           "readOnly": true
         },
         "from": {
           "type": "string",
           "description": "wallet address for the creator of this event",
+          "title": "wallet address for the creator of this event",
           "readOnly": true
         }
       },

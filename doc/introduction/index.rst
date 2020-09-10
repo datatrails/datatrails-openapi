@@ -10,3 +10,4 @@ Introduction
    attachments
    locations
    access_control
+   security_twins

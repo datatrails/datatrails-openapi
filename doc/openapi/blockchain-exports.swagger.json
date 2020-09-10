@@ -260,30 +260,33 @@
         "identity": {
           "type": "string",
           "description": "Relative resource name for the blockchain export. e.g. blockchain-exports/20c97f42-87fc-482c-9d58-4d11abd33359",
-          "readOnly": true,
-          "maxLength": 4096
+          "readOnly": true
         },
         "timestamp_accepted": {
           "type": "string",
           "format": "date-time",
           "description": "Timestamp of accepting export request (RFC 3339)",
+          "title": "RFC 3339 representation of time of creation",
           "readOnly": true
         },
         "url": {
           "type": "string",
           "description": "URI to storage location",
+          "title": "URL where dump is stored.  Only populated when state is FINISHED",
           "readOnly": true,
           "maxLength": 128
         },
         "state": {
           "$ref": "#/definitions/v1ExportState",
           "description": "State: Pending, In Progress, Finished, Failed",
+          "title": "Status of dump process",
           "readOnly": true
         },
         "timestamp_finished": {
           "type": "string",
           "format": "date-time",
           "description": "Timestamp when export is finished (RFC 3339)",
+          "title": "RFC 3339 representation of time when dump finished",
           "readOnly": true
         }
       },

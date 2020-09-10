@@ -121,7 +121,7 @@
         "parameters": [
           {
             "name": "identity",
-            "description": "unique identity of this operations",
+            "description": "Specify iothubgdr `identity` as in `iothubgdr/add30235-1424-4fda-840a-d5ef82c4c96f`",
             "in": "path",
             "required": true,
             "type": "string"
@@ -162,7 +162,7 @@
         "parameters": [
           {
             "name": "identity",
-            "description": "unique identity of this operations",
+            "description": "Specify iothubgdr `identity` as in `iothubgdr/add30235-1424-4fda-840a-d5ef82c4c96f`",
             "in": "path",
             "required": true,
             "type": "string"
@@ -205,7 +205,7 @@
         "parameters": [
           {
             "name": "identity",
-            "description": "unique identity of this operations",
+            "description": "Specify iothubgdr `identity` as in `iothubgdr/add30235-1424-4fda-840a-d5ef82c4c96f`",
             "in": "path",
             "required": true,
             "type": "string"
@@ -285,8 +285,9 @@
         },
         "location_identity": {
           "type": "string",
-          "description": "idenentity of a location wo which to add the assets",
-          "maxLength": 1024
+          "description": "Identity of location` as in `locations/add30235-1424-4fda-840a-d5ef82c4c96f`",
+          "title": "Location to use with new assets",
+          "readOnly": true
         }
       },
       "description": "Create IoTHubGDR import"
@@ -323,8 +324,7 @@
         },
         "location_identity": {
           "type": "string",
-          "description": "idenentity of a location wo which to add the assets",
-          "maxLength": 1024
+          "description": "identity of a location wo which to add the assets"
         },
         "error_message": {
           "type": "string",
@@ -343,7 +343,7 @@
         "identity": {
           "type": "string",
           "description": "unique identity of this operations",
-          "maxLength": 1024
+          "title": "Unique identifier for the IoT Hub connection string created by the service on POST"
         },
         "done": {
           "type": "boolean",
@@ -386,16 +386,18 @@
         "number_assets_imported": {
           "type": "string",
           "format": "int64",
-          "description": "number of Assets imported"
+          "description": "number of Assets imported",
+          "title": "Current count of assets fetched"
         },
         "location_identity": {
           "type": "string",
-          "description": "idenentity of a location wo which to add the assets",
-          "maxLength": 1024
+          "description": "Identity of location` as in `locations/add30235-1424-4fda-840a-d5ef82c4c96f`",
+          "readOnly": true
         },
         "status": {
           "$ref": "#/definitions/OperationResultStatus",
-          "description": "status of the import"
+          "description": "status of the import",
+          "title": "Status of collection"
         }
       },
       "description": "Result of the import - in progress or completed succefully"

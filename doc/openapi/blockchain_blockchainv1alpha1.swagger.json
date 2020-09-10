@@ -23,6 +23,7 @@
   "paths": {
     "/archivist/v1alpha1/blockchain/{identity}": {
       "get": {
+        "summary": "get the list of blockchain transactions that made up an Archivist Event\nincludes standard Jitsuin paging",
         "operationId": "BlockChain_ListBlockchain",
         "responses": {
           "200": {
@@ -247,7 +248,8 @@
           "maxLength": 256
         }
       },
-      "description": "TODO: add description here "
+      "description": "TODO: add description here ",
+      "title": "as Ethereum RPC eth_getTransactionByHash (https://web3js.readthedocs.io/en/v1.2.0/web3-eth.html#gettransaction)"
     }
   }
 }

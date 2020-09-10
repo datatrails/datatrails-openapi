@@ -120,7 +120,7 @@
         "parameters": [
           {
             "name": "identity",
-            "description": "unique identity of this operations",
+            "description": "Specify iothubgdr `identity` as in `iothubgdr/add30235-1424-4fda-840a-d5ef82c4c96f`",
             "in": "path",
             "required": true,
             "type": "string"
@@ -161,7 +161,7 @@
         "parameters": [
           {
             "name": "identity",
-            "description": "unique identity of this operations",
+            "description": "Specify iothubgdr `identity` as in `iothubgdr/add30235-1424-4fda-840a-d5ef82c4c96f`",
             "in": "path",
             "required": true,
             "type": "string"
@@ -204,7 +204,7 @@
         "parameters": [
           {
             "name": "identity",
-            "description": "unique identity of this operations",
+            "description": "Specify iothubgdr `identity` as in `iothubgdr/add30235-1424-4fda-840a-d5ef82c4c96f`",
             "in": "path",
             "required": true,
             "type": "string"
@@ -284,8 +284,8 @@
         },
         "arc_home_location_identity": {
           "type": "string",
-          "description": "identity of a location wo which to add the assets",
-          "maxLength": 1024
+          "description": "Identity of location` as in `locations/add30235-1424-4fda-840a-d5ef82c4c96f`",
+          "readOnly": true
         }
       },
       "description": "Create IoTHubGDR import"
@@ -322,8 +322,7 @@
         },
         "arc_home_location_identity": {
           "type": "string",
-          "description": "identity of a location wo which to add the assets",
-          "maxLength": 1024
+          "description": "identity of a location wo which to add the assets"
         },
         "error_message": {
           "type": "string",
@@ -341,8 +340,7 @@
       "properties": {
         "identity": {
           "type": "string",
-          "description": "unique identity of this operations",
-          "maxLength": 1024
+          "description": "unique identity of this operations"
         },
         "done": {
           "type": "boolean",
@@ -389,8 +387,7 @@
         },
         "arc_home_location_identity": {
           "type": "string",
-          "description": "identity of a location wo which to add the assets",
-          "maxLength": 1024
+          "description": "identity of a location wo which to add the assets"
         },
         "status": {
           "$ref": "#/definitions/OperationResultStatus",

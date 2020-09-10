@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Identity Provider Management API",
-    "version": "1.0",
+    "version": "1.1",
     "contact": {
       "name": "Jitsuin",
       "url": "https://www.jitsuin.com"
@@ -193,15 +193,18 @@
         "api_id": {
           "type": "string",
           "description": "Azure API service principal ID.",
+          "title": "Azure registered Application id",
           "maxLength": 32
         },
         "consent_uri": {
           "type": "string",
           "description": "Azure Administrator consent URI.",
+          "title": "Azure Admnin Consent URI",
           "maxLength": 4096
         }
       },
-      "description": "Describes an Azure Active Directory identity provider"
+      "description": "Describes an Azure Active Directory identity provider",
+      "title": "identity_provider_type_info where asset_type is AzureActiveDirectory"
     },
     "v1GenericProvider": {
       "type": "object",
@@ -219,6 +222,7 @@
           "callback_host": "https://synsation-avid.prod.jitsuin.io",
           "provider_uri": "https://login.microsoftonline.com/09123456789-abcd-1234-5678-0123456789abc/v2.0",
           "client_id": "9876543210-fedc-8765-4321-cba9876543210",
+          "prompt": "select_account",
           "audiences": "https://synsation-avid.prod.jitsuin.io",
           "jwks": "https://login.microsoftonline.com/09123456789-abcd-1234-5678-0123456789abc/discovery/v2.0/keys",
           "issuer": "https://sts.windows.net/09123456789-abcd-1234-5678-0123456789abc/",
@@ -236,7 +240,6 @@
         "identity": {
           "type": "string",
           "description": "Unique identification for the identity provider, Relative Resource Name.",
-          "title": "identityproviders/{UUID}",
           "maxLength": 128
         },
         "display_name": {
@@ -293,6 +296,11 @@
         "azure_active_directory": {
           "$ref": "#/definitions/v1AzureActiveDirectoryIdentityProvider",
           "description": "Azure Active Directory identity provider specific attributes."
+        },
+        "prompt": {
+          "type": "string",
+          "description": "Auth URI prmopt query.",
+          "maxLength": 256
         }
       },
       "description": "Describes an identity provider"

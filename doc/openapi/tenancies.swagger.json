@@ -114,7 +114,7 @@
         "identity": {
           "type": "string",
           "description": "tenant identity `{UUID}`",
-          "maxLength": 4096
+          "readOnly": true
         }
       },
       "description": "Create a tenancy"
@@ -125,8 +125,7 @@
         "identity": {
           "type": "string",
           "description": "tenant identity `{UUID}`",
-          "readOnly": true,
-          "maxLength": 4096
+          "readOnly": true
         }
       }
     }

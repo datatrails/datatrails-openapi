@@ -96,7 +96,7 @@
         "parameters": [
           {
             "name": "identity",
-            "description": "Relative resource name for the attachment. e.g. attachments/20c97f42-87fc-482c-9d58-4d11abd33359",
+            "description": "Specify attachment `identity` as in `attachments/add30235-1424-4fda-840a-d5ef82c4c96f`",
             "in": "path",
             "required": true,
             "type": "string"
@@ -141,7 +141,7 @@
         "parameters": [
           {
             "name": "identity",
-            "description": "Relative resource name for the attachment. e.g. attachments/20c97f42-87fc-482c-9d58-4d11abd33359",
+            "description": "Specify attachment `identity` as in `attachments/add30235-1424-4fda-840a-d5ef82c4c96f`",
             "in": "path",
             "required": true,
             "type": "string"
@@ -262,8 +262,8 @@
         "identity": {
           "type": "string",
           "description": "Relative resource name for the attachment. e.g. attachments/20c97f42-87fc-482c-9d58-4d11abd33359",
-          "readOnly": true,
-          "maxLength": 4096
+          "title": "identity of an attachment in attachments service - attachments/UUID",
+          "readOnly": true
         },
         "hash": {
           "$ref": "#/definitions/v1Hash"

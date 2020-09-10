@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Cache Management API",
+    "title": "Compliance API",
     "version": "1.0",
     "contact": {
       "name": "Jitsuin",
@@ -9,7 +9,7 @@
     }
   },
   "host": "jitsuin.readthedocs.io",
-  "basePath": "/api/archivist/v1",
+  "basePath": "/archivist/v1",
   "schemes": [
     "http",
     "https"
@@ -21,24 +21,31 @@
     "application/json"
   ],
   "paths": {
-    "/archivist/v1/caches": {
+    "/archivist/v1/compliance/{asset_identity}": {
       "get": {
-        "summary": "List caches",
-        "description": "Returns a paginated list of Caches",
-        "operationId": "Caches_ListCaches",
+        "summary": "List all compliance statoos relevant to an asset",
+        "operationId": "Compliance_ListAssetCompliance",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1ListCachesResponse"
+              "$ref": "#/definitions/v1ListAssetComplianceResponse"
             }
+          },
+          "206": {
+            "description": "The number of compliance statements exceeds the servers limit. ",
+            "schema": {}
           },
           "401": {
             "description": "Returned when the user is not authenticated to the system.",
             "schema": {}
           },
           "403": {
-            "description": "Returned when the user is not authorized to list the caches.",
+            "description": "Returned when the user is not authorized to access the requested resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the asset with the id does not exist.",
             "schema": {}
           },
           "default": {
@@ -50,19 +57,15 @@
         },
         "parameters": [
           {
-            "name": "order_by",
-            "description": "Specify the sort order for the results. Only default supported.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "enum": [
-              "DEFAULT"
-            ],
-            "default": "DEFAULT"
+            "name": "asset_identity",
+            "description": "Specify asset `identity` as in `assets/add30235-1424-4fda-840a-d5ef82c4c96f`",
+            "in": "path",
+            "required": true,
+            "type": "string"
           },
           {
             "name": "page_size",
-            "description": "Maximum caches per page.",
+            "description": "Maximum results per page.",
             "in": "query",
             "required": false,
             "type": "integer",
@@ -74,120 +77,33 @@
             "in": "query",
             "required": false,
             "type": "string"
-          }
-        ],
-        "tags": [
-          "Caches"
-        ]
-      }
-    },
-    "/archivist/v1/{identity}": {
-      "get": {
-        "summary": "Get a Cache",
-        "description": "Returns the Cache associated with the identifyied cache resource, e.g. `caches/3`",
-        "operationId": "Caches_GetCache",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1Cache"
-            }
           },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to read the cache.",
-            "schema": {}
-          },
-          "404": {
-            "description": "Returned when a cache with the identity does not exist.",
-            "schema": {}
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
           {
-            "name": "identity",
-            "description": "Unique identification for the cache epoch. e.g. `caches/3`",
-            "in": "path",
-            "required": true,
-            "type": "string"
+            "name": "order_by",
+            "description": "Specify the sort order for the results.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "DEFAULT"
+            ],
+            "default": "DEFAULT"
           }
         ],
         "tags": [
-          "Caches"
-        ]
-      },
-      "delete": {
-        "summary": "Flush a cache",
-        "description": "Delete the cache identified by the supplied epoch.  This initiates the delete of a cache epoch.  A new cache epoch will automatically be created on completion",
-        "operationId": "Caches_DeleteCache",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1Cache"
-            }
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to delete the cache.",
-            "schema": {}
-          },
-          "404": {
-            "description": "Returned when the cache does not exist.",
-            "schema": {}
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "identity",
-            "description": "Unique identification for the cache epoch. e.g. `caches/3`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Caches"
+          "Compliance"
         ]
       }
     }
   },
   "definitions": {
-    "CacheCacheStatus": {
-      "type": "string",
-      "enum": [
-        "OK",
-        "BUILDING",
-        "DELETING"
-      ],
-      "default": "OK",
-      "title": "Status of this epoch of cache"
-    },
-    "ListCachesRequestOrderBy": {
+    "ListAssetComplianceRequestOrderBy": {
       "type": "string",
       "enum": [
         "DEFAULT"
       ],
       "default": "DEFAULT",
-      "title": "OrderBy"
+      "title": "Supported sort orders"
     },
     "protobufAny": {
       "type": "object",
@@ -225,58 +141,62 @@
         }
       }
     },
-    "v1Cache": {
+    "v1ComplianceStatement": {
       "type": "object",
       "example": {
-        "identity": "caches/3",
-        "size": 98712341,
-        "timestamp_created": "1937-01-01T12:00:27.87+00:00",
-        "status": "OK"
+        "compliance_policy_identity": "compliance_policies/0000-0000-000000000-00000000",
+        "compliant": false
       },
       "properties": {
-        "identity": {
+        "compliance_policy_identity": {
           "type": "string",
-          "description": "Unique identification for the cache epoch, Relative Resource Name",
-          "title": "This is a unique and indelible identity for the cache. This is generated by the system and represents an \"epoch\" of the cache, it shall monotonically increase in lexical sort order for each epoch i.e. \"caches/1\"",
-          "readOnly": true
+          "description": "identity of the compliance policy",
+          "title": "compliance_policy identity",
+          "readOnly": true,
+          "maxLength": 1024
         },
-        "size": {
-          "type": "string",
-          "format": "uint64",
-          "description": "Usage of the cache, Bytes",
-          "title": "The size in bytes of the current cache usage",
-          "readOnly": true
-        },
-        "timestamp_created": {
-          "type": "string",
-          "format": "date-time",
-          "description": "Time the current epoch of cache began, RFC3339 string",
-          "title": "Time the current epoch of cache began\nThis is _created (rather than _accepted) as the cache epochs are created by the system, not as a direct response to a user request that was accepted by our system",
-          "readOnly": true
-        },
-        "status": {
-          "$ref": "#/definitions/CacheCacheStatus",
-          "description": "Status of the cache",
-          "readOnly": true
+        "compliant": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "status of compliance against the compliance policy",
+          "title": "compliance status"
         }
       },
-      "description": "Describes a cache epoch"
+      "description": "simple compliance status against a compliance policy.",
+      "title": "A ComplianceStatement gives the status of compliance against a specific Compliance Policy"
     },
-    "v1ListCachesResponse": {
+    "v1ListAssetComplianceResponse": {
       "type": "object",
+      "example": {
+        "compliance": [
+          {
+            "compliance_policy_identity": "compliance_policies/0000-0000-000000000-00000000",
+            "compliant": false
+          }
+        ],
+        "compliant": false
+      },
       "properties": {
-        "caches": {
+        "compliant": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "overall compliance status for the asset",
+          "title": "Overall compliance status.  Will be true only if compliant is true for all applicable compliance_policies, otherwise false"
+        },
+        "compliance": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/v1Cache"
+            "$ref": "#/definitions/v1ComplianceStatement"
           },
-          "title": "There will be at most ListCachesRequest.page_size items"
+          "description": "list of statemants of compliance with applicable compliance policies",
+          "title": "List of compliance statements"
         },
         "next_page_token": {
           "type": "string",
           "description": "Token to retrieve the next page of results or empty if there are none."
         }
-      }
+      },
+      "description": "simple compliance status for an Asset."
     }
   }
 }

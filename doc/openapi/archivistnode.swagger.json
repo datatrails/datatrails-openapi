@@ -142,7 +142,6 @@
         "identity": {
           "type": "string",
           "description": "The identity of the archivistnode blockchain",
-          "title": "archivistnode",
           "readOnly": true
         },
         "blockchain_nodes": {
@@ -173,18 +172,21 @@
         "connection_status": {
           "$ref": "#/definitions/v1ConnectionStatus",
           "description": "An indication of the nodes connection status.",
+          "title": "Status of the connection to this blockchain node",
           "readOnly": true
         },
         "timestamp_committed": {
           "type": "string",
           "format": "date-time",
           "description": "Timestamp when consensus was achieved for the block at `block_height` (RFC 3339) obtained from the block info of the 'latest' block.",
+          "title": "The timestamp when the ledger committed the block at block_height",
           "readOnly": true
         },
         "timestamp_created": {
           "type": "string",
           "format": "date-time",
           "description": "Timestamp of creation of the genesis block (RFC 3339)",
+          "title": "The timestamp when the ledger was created i.e. the timestamp of the genesis block",
           "readOnly": true
         },
         "syncStatus": {

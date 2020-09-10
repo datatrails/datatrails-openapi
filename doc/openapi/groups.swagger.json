@@ -173,11 +173,11 @@
       "example": {
         "groups": [
           {
-            "identity": "https://sts.windows.net/e6cd7cbd-4331-4942-b28d-xxxxxxxxxxxx/:1754b920-cf20-4d7e-9d36-xxxxxxxxxxxx",
+            "name": "https://sts.windows.net/e6cd7cbd-4331-4942-b28d-xxxxxxxxxxxx/:1754b920-cf20-4d7e-9d36-xxxxxxxxxxxx",
             "display_name": "Maintainers"
           },
           {
-            "identity": "https://sts.windows.net/e6cd7cbd-4331-4942-b28d-xxxxxxxxxxxx/:1754b920-1234-4d7e-9d36-yyyyyyyyyyyy",
+            "name": "https://sts.windows.net/e6cd7cbd-4331-4942-b28d-xxxxxxxxxxxx/:1754b920-1234-4d7e-9d36-yyyyyyyyyyyy",
             "display_name": "Supervisors"
           }
         ]

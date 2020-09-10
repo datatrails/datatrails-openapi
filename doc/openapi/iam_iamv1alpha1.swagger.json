@@ -187,7 +187,7 @@
         "parameters": [
           {
             "name": "identity",
-            "description": "Unique identification for the subject, Relative Resource Name",
+            "description": "Specify subject `identity` as in `subjects/add30235-1424-4fda-840a-d5ef82c4c96f`",
             "in": "path",
             "required": true,
             "type": "string"
@@ -238,7 +238,7 @@
         "parameters": [
           {
             "name": "identity",
-            "description": "Unique identification for the subject, Relative Resource Name",
+            "description": "Specify subject `identity` as in `subjects/add30235-1424-4fda-840a-d5ef82c4c96f`",
             "in": "path",
             "required": true,
             "type": "string"
@@ -289,7 +289,7 @@
         "parameters": [
           {
             "name": "identity",
-            "description": "Unique identification for the subject, Relative Resource Name",
+            "description": "Specify subject `identity` as in `subjects/add30235-1424-4fda-840a-d5ef82c4c96f`",
             "in": "path",
             "required": true,
             "type": "string"
@@ -432,11 +432,12 @@
         "identity": {
           "type": "string",
           "description": "Unique identification for the subject, Relative Resource Name",
-          "maxLength": 4096
+          "title": "generated identity for the entry"
         },
         "display_name": {
           "type": "string",
           "description": "Customer friendly name for the subject.",
+          "title": "user friendly display name for this principal",
           "maxLength": 128
         },
         "wallet_pub_key": {
@@ -445,6 +446,7 @@
             "type": "string"
           },
           "description": "Organisation's public wallet keys (BNF)",
+          "title": "org wallet keys (one to start with) in blockchain native format",
           "maxLength": 256
         },
         "wallet_address": {
@@ -453,6 +455,7 @@
             "type": "string"
           },
           "description": "Organisation's wallet addresses",
+          "title": "org wallet addresses, derived from the org wallet keys.  For each org wallet key there will be a corresponding address",
           "maxLength": 256
         },
         "tessera_pub_key": {
@@ -461,11 +464,13 @@
             "type": "string"
           },
           "description": "Organisation's tessara wallet keys (BNF)",
+          "title": "org tessera keys (one to start with) in blockchain native format",
           "maxLength": 256
         },
         "tenant": {
           "type": "string",
           "description": "Tenent id",
+          "title": "customer tenant ID",
           "maxLength": 128
         }
       },
