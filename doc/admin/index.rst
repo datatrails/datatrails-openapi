@@ -15,7 +15,6 @@ configuration.
    :caption: Contents:
 
    register
-   roles
    userassignment
    endpointaccess
    tokenexample

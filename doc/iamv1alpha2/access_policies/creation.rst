@@ -34,6 +34,7 @@ Define the access_policies parameters and store in /path/to/jsonfile:
                 ],
                 "behaviours": [ "Attachments", "Firmware", "Maintenance", "RecordEvidence" ],
                 "include_attributes": [ "arc_display_name", "arc_display_type", "arc_firmware_version" ],
+                "event_arc_display_type_read: ["toner_type", "toner_colour"],
                 "user_attributes": [
                     {"or": ["group:maintainers", "group:supervisors"]}
                 ]
@@ -54,21 +55,35 @@ Define the access_policies parameters and store in /path/to/jsonfile:
         Note the need to escape strings in this field ONLY.
 
     access_permissions
-        A list specifying which rights apply to which subjects for the matching
-        assets.
+        A list specifying which subjects and users get what rights for the
+        matching assets.
 
         subjects
-            list of subject identities of subjects to be granted
-            these rights 
-
-        behaviours
-            list of behaviours to allow for those subjects
-
-        include_attributes
-            list of attributes to share with those subjects
+            list of subject identities of subjects who are to be granted
+            these rights
 
         user_attributes
-            list of user attribute filters that specifies who is allowed to see this asset
+            list of user attribute filters that specifies who is allowed to see
+            the assets matching the policy filters and use those assets
+            behaviours
+
+        behaviours
+            list of behaviours allowed to update the asset for the matching
+            subjects and users. For all behaviours use [ "*" ]
+
+        include_attributes
+            list of attributes to share with the matching subjects and be
+            visible to the matching users. For all attributes use [ "*" ].
+            matches due to include_attributes are OR'd with event_arc_display_type_read
+
+        event_arc_display_type_read
+            events which have an event attribute arc_display_type with a value
+            from this list will be visible. Matches due to
+            event_arc_display_type_read are OR'd with matches due to include_attributes. To share
+            all events with the specified users for any asset matching the filters, use [ "*" ].
+            Using "*" here causes all include_attributes in all permissions on
+            the policy to be ignored.
+
 
 Create the access policy:
 

@@ -37,13 +37,13 @@ The response is:
 
     The response contains a list of Compliance Statements.
 
-    Each member of the list has the following attributes:
+        Each member of the list has the following attributes:
 
-    compliance_policy_identity
-        The identity of the Compliance Policy this statement refers to.
+        compliance_policy_identity
+            The identity of the Compliance Policy this statement refers to.
 
-    compliant
-        Compliance status for this Compliance Policy.
+        compliant
+            Compliance status for this Compliance Policy.
 
     See `Swagger GET API <openapi.html#get --archivist-v1-compliance>`_
 

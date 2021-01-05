@@ -110,10 +110,12 @@ Each of these calls returns a list of matching event records in the form:
       "asset_identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
       "behaviour": "Firmware",
       "operation": "Update",
-      "attributes": {
+      "event_attributes": {
         "arc_description": "Patched during regular patch window",
-        "arc_firmware_version": "3.2.1",
         "arc_correlation_value": "12-345-67"
+      },
+      "asset_attributes": {
+        "arc_firmware_version": "3.2.1",
       },
       "timestamp_accepted": "2019-11-27T15:13:21Z",
       "timestamp_declared": "2019-11-27T14:44:19Z",
@@ -142,5 +144,13 @@ Each of these calls returns a list of matching event records in the form:
 
     The number of records returned has a maximum limit. If this limit is too small then one must use 
     :ref:`misc_paging`.
+
+.. note::
+
+   The total number of assets that exist is returned in the response header field 'x-total-count' if
+   the 'x-request-total-count' header on the request is set to 'true'.
+   The curl option '-i' will emit this to stdout.
+
+.. note::
 
     A full API reference is available in `Swagger GET API <openapi.html#get--archivist-v2-assets>`_

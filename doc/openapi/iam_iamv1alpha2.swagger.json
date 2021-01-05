@@ -90,6 +90,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "description",
+            "description": "Customer description of the access policy.",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -486,7 +493,7 @@
               "behaviour1",
               "behaviour2"
             ],
-            "include_attributes": [
+            "asset_attributes_read": [
               "attribute1",
               "attribute2"
             ],
@@ -565,7 +572,7 @@
               "behaviour1",
               "behaviour2"
             ],
-            "include_attributes": [
+            "asset_attributes_read": [
               "attribute1",
               "attribute2"
             ],
@@ -603,7 +610,7 @@
             "$ref": "#/definitions/v1alpha2Permission"
           },
           "description": "The permissions maps",
-          "title": "POST and PATCH do full replacement\n[\n  {\n    \"access_keys\": [\n      {\n        \"tessera\": [\"TESSERAPUBKEY0\", \"TESSERAPUBKEY1\"],\n        \"wallet\": [\"WALLETPUBKEY0\",\"WALLETPUBKEY1\"]\n      },\n      {\n        \"tessera\": [\"TESSERAPUBKEY01\",\"TESSERAPUBKEY10\"],\n        \"wallet\": [\"WALLETPUBKEY01\",\"WALLETPUBKEY10\"]\n      }\n    ],\n    \"behaviours\": [\"BEHAVIOUR0\",\"BEHAVIOUR1\"],\n    \"include_attributes\": [\"ATTRIBUTE0\",\"ATTRIBUTE1\"]\n  }\n]"
+          "title": "POST and PATCH do full replacement\n[\n  {\n    \"access_keys\": [\n      {\n        \"tessera\": [\"TESSERAPUBKEY0\", \"TESSERAPUBKEY1\"],\n        \"wallet\": [\"WALLETPUBKEY0\",\"WALLETPUBKEY1\"]\n      },\n      {\n        \"tessera\": [\"TESSERAPUBKEY01\",\"TESSERAPUBKEY10\"],\n        \"wallet\": [\"WALLETPUBKEY01\",\"WALLETPUBKEY10\"]\n      }\n    ],\n    \"behaviours\": [\"BEHAVIOUR0\",\"BEHAVIOUR1\"],\n    \"asset_attributes_read\": [\"ATTRIBUTE0\",\"ATTRIBUTE1\"]\n  }\n]"
         },
         "tenant": {
           "type": "string",
@@ -647,7 +654,7 @@
                   "behaviour1",
                   "behaviour2"
                 ],
-                "include_attributes": [
+                "asset_attributes_read": [
                   "attribute1",
                   "attribute2"
                 ],
@@ -694,6 +701,20 @@
           "attribute1",
           "attribute2"
         ],
+        "asset_attributes_read": [
+          "attribute1",
+          "attribute2"
+        ],
+        "asset_attributes_write": [
+          "toner_colour"
+        ],
+        "event_arc_display_type_read": [
+          "TonerReplacement",
+          "TonerReplacementRequired"
+        ],
+        "event_arc_display_type_write": [
+          "TonerReplacement"
+        ],
         "user_attributes": [
           {
             "or": [
@@ -726,7 +747,7 @@
             "type": "string"
           },
           "description": "The shareable attributes list",
-          "title": "Name of attributes to allow visibility of"
+          "title": "Names of allowed visible attributes"
         },
         "user_attributes": {
           "type": "array",
@@ -735,6 +756,34 @@
           },
           "description": "User attribute filters",
           "title": "list of filters for user attribute matching\ninner OR and outer AND in form of\n[\n    { \"or\": [\"group=issuer1:maintainers\", \"group=issuer2:supervisors\"] }\n]\ndescribing anybody who is a maintainer or supervisor"
+        },
+        "asset_attributes_read": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of readable asset attributes"
+        },
+        "asset_attributes_write": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of writable asset attributes"
+        },
+        "event_arc_display_type_read": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Visible events selector"
+        },
+        "event_arc_display_type_write": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Visible events selector"
         }
       },
       "description": "Permissions"

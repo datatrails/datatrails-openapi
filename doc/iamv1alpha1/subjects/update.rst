@@ -11,8 +11,8 @@ Define the subjects parameters to be changed and store in /path/to/jsonfile:
 .. code-block:: JSON
 
     {
-        "wallet_pub_key": ["key1", "key2"],
-        "tessera_pub_key": ["key3", "key4"]
+        "wallet_pub_key": ["key1"],
+        "tessera_pub_key": ["key2"]
     }
 
 .. note::
@@ -41,9 +41,9 @@ The response is:
     {
         "identity": "subjects/3f5be24f-fd1b-40e2-af35-ec7c14c74d53",
         "display_name": "Some description",
-        "wallet_pub_key": ["key1", "key2"],
-        "wallet_address": ["address1", "address2"],
-        "tessera_pub_key": ["key3", "key4"]
+        "wallet_pub_key": ["key1"],
+        "wallet_address": ["address1"],
+        "tessera_pub_key": ["key3"]
     }
 
 .. note::

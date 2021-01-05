@@ -65,10 +65,9 @@ Steps:
 
 .. |pingone_wizard_step_5| image:: pingone-wizard-step-5.png
 
-9. (Wizard Step 6) Select "Email" for email attribute mapping and "member of" for sub attribute mapping
+9. (Wizard Step 6) Select "Email" for email attribute mapping and "Id" for sub attribute mapping
 
 |pingone_wizard_step_6|
-   pingone
 
 .. |pingone_wizard_step_6| image:: pingone-wizard-step-6.png
 
@@ -78,5 +77,4 @@ Steps:
 
 .. |pingone_wizard_step_7| image:: pingone-wizard-step-7.png
 
-.. note::
 Once Jitsuin has received the client ID and secret the connection will be completed and the Archivist app will be available on the URL provided using SSO login credentials.

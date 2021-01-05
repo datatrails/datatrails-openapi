@@ -8,6 +8,5 @@ The Application Link APIs allows ingressing data from external sources.
    :caption: Contents:
 
    svcbussources/index
-   iothubgdr/index
    iothubgdrv2/index
 

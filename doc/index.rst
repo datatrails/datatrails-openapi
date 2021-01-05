@@ -13,6 +13,8 @@ Archivist API documentation
    introduction/index
    admin/index
    auth/authentication
+   tlscacertificatesv1/index
+   compliancev1/index
    groupsv1/index
    iamv1alpha1/index
    iamv1alpha2/index

@@ -53,8 +53,15 @@ Each of these calls returns a list of matching Asset records in the form:
                 "arc_serial_number": "vtl-x4-07",
                 "arc_description": "Pump at A603 North East",
                 "arc_display_name": "tcl.ccj.003",
-                "arc_primary_image_identity": "attachments/87b1a84c-1c6f-442b-923e-a97516f4d275",
-                "some_custom_attribute": "value"
+                "some_custom_attribute": "value",
+                "arc_attachments": [
+                    {
+                        "arc_display_name": "arc_primary_image",
+                        "arc_attachment_identity": "attachments/87b1a84c-1c6f-442b-923e-a97516f4d275",
+                        "arc_hash_alg": "SHA256",
+                        "arc_hash_value": "246c316e2cd6971ce5c83a3e61f9880fa6e2f14ae2976ee03500eb282fd03a60"
+                    }
+            ]
             },
             "confirmation_status": "CONFIRMED",
             "tracked": "TRACKED"

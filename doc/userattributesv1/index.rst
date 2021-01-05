@@ -17,7 +17,7 @@ Define the event parameters and store in /path/to/jsonfile:
     {
       "operation": "Set",
       "behaviour": "UserAttributes",
-      "attributes": {
+      "asset_attributes": {
         "attribute_name": "attribute_value"
       },
       "timestamp_declared": "2019-11-27T14:44:19Z",
@@ -29,7 +29,7 @@ Define the event parameters and store in /path/to/jsonfile:
     }
 
 .. note::
-    attributes
+    asset_attributes
         *Required* Details of the UserAttributes request
 
     timestamp_declared
@@ -58,7 +58,7 @@ The response is:
       "asset_identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
       "operation": "Set",
       "behaviour": "UserAttributes",
-      "attributes": {
+      "asset_attributes": {
         "attribute_name": "attribute_value"
       },
       "timestamp_accepted": "2019-11-27T15:13:21Z",

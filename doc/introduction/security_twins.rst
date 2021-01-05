@@ -32,6 +32,7 @@ In order to make these trust decisions, Jitsuin Archivist can be configured
 with *Compliance Policies* to check assets against. These policies specify
 things like tolerance for vulnerability windows, or SLAs for open maintenance
 calls. For example:
+
     "Assets must be patched within 40 days of vulnerability notification"
 
     "Maintenance calls must be answered within 72 hours"

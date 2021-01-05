@@ -1,0 +1,392 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "LocationUpdate API",
+    "version": "2.0",
+    "contact": {
+      "name": "Jitsuin",
+      "url": "https://www.jitsuin.com"
+    }
+  },
+  "host": "jitsuin.readthedocs.io",
+  "basePath": "/archivist/v2",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/archivist/v2/{asset_identity}/events": {
+      "post": {
+        "operationId": "BehaviourLocationUpdate_Create",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v2EventResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "asset_identity",
+            "description": "identity of a related asset resource `assets/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v2CreateEventRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BehaviourLocationUpdate"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string",
+          "description": "A URL/resource name that uniquely identifies the type of the serialized\nprotocol buffer message. This string must contain at least\none \"/\" character. The last segment of the URL's path must represent\nthe fully qualified name of the type (as in\n`path/google.protobuf.Duration`). The name should be in a canonical form\n(e.g., leading \".\" is not accepted).\n\nIn practice, teams usually precompile into the binary all types that they\nexpect it to use in the context of Any. However, for URLs which use the\nscheme `http`, `https`, or no scheme, one can optionally set up a type\nserver that maps type URLs to message definitions as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nNote: this functionality is not currently available in the official\nprotobuf release, and it is not used for type URLs beginning with\ntype.googleapis.com.\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics."
+        },
+        "value": {
+          "type": "string",
+          "format": "byte",
+          "description": "Must be a valid serialized protocol buffer of the above specified type."
+        }
+      },
+      "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(\u0026foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\n Example 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\n Example 4: Pack and unpack a message in Go\n\n     foo := \u0026pb.Foo{...}\n     any, err := ptypes.MarshalAny(foo)\n     ...\n     foo := \u0026pb.Foo{}\n     if err := ptypes.UnmarshalAny(any, foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n====\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": \u003cstring\u003e,\n      \"lastName\": \u003cstring\u003e\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }"
+    },
+    "runtimeError": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        },
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v2Attribute": {
+      "type": "object",
+      "properties": {
+        "str_val": {
+          "type": "string"
+        },
+        "dict_val": {
+          "$ref": "#/definitions/v2DictAttr"
+        },
+        "list_val": {
+          "$ref": "#/definitions/v2ListAttr"
+        }
+      }
+    },
+    "v2ConfirmationStatus": {
+      "type": "string",
+      "enum": [
+        "CONFIRMATION_STATUS_UNSPECIFIED",
+        "PENDING",
+        "CONFIRMED",
+        "FAILED"
+      ],
+      "default": "CONFIRMATION_STATUS_UNSPECIFIED"
+    },
+    "v2CreateEventRequest": {
+      "type": "object",
+      "example": {
+        "operation": "Update",
+        "behaviour": "FirmwareV1",
+        "event_attributes": {
+          "arc_attachments": [
+            {
+              "arc_attachment_identity": "attachments/1754b920-cf20-4d7e-9d36-9ed7d479744d",
+              "arc_hash_value": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+              "arc_display_name": "Picture from yesterday",
+              "arc_hash_alg": "sha256"
+            }
+          ]
+        },
+        "asset_attributes": {
+          "arc_firmware_version": "3.2.1",
+          "arc_home_location_identity": "locations/42054f10-9952-4c10-a082-9fd0d10295ae"
+        },
+        "timestamp_declared": "2019-11-27T14:44:19Z",
+        "principal_declared": {
+          "issuer": "job.idp.server/1234",
+          "subject": "bob@job"
+        }
+      },
+      "properties": {
+        "asset_identity": {
+          "type": "string",
+          "description": "identity of a related asset resource `assets/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
+          "title": "relative resource name for associated asset ( asset the operation is performed on  - has to have specific behaviour enabled)",
+          "readOnly": true
+        },
+        "behaviour": {
+          "type": "string",
+          "title": "name of this behaviour"
+        },
+        "operation": {
+          "type": "string",
+          "title": "name of operation on this behviour"
+        },
+        "principal_declared": {
+          "$ref": "#/definitions/v2Principal",
+          "title": "principal information associated with event - if not provided will be set to principal_accepted"
+        },
+        "timestamp_declared": {
+          "type": "string",
+          "format": "date-time",
+          "description": "time of event as declared by the user",
+          "title": "timestamp when operation was actually performed - if not provided will be set to timestamp_accepted",
+          "readOnly": true
+        },
+        "event_attributes": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/v2Attribute"
+          },
+          "description": "map of event attributes. Specific behaviours define required and optional event attributes for each supported operation."
+        },
+        "asset_attributes": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/v2Attribute"
+          },
+          "description": "map of asset attributes. Specific behaviours define required and optional asset attributes. These attributes cause the corresponding attributes on the asset to be updated."
+        }
+      },
+      "description": "Request creating Firmware Update event Specify `operation` to chose which Firmware Update event to create "
+    },
+    "v2DictAttr": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "v2EventResponse": {
+      "type": "object",
+      "example": {
+        "identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000",
+        "asset_identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
+        "operation": "Update",
+        "behaviour": "Firmware",
+        "event_attributes": {
+          "arc_attachments": [
+            {
+              "arc_attachment_identity": "attachments/1754b920-cf20-4d7e-9d36-9ed7d479744d",
+              "arc_hash_value": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+              "arc_display_name": "Picture from yesterday",
+              "arc_hash_alg": "sha256"
+            }
+          ]
+        },
+        "asset_attributes": {
+          "arc_firmware_version": "3.2.1",
+          "arc_home_location_identity": "locations/42054f10-9952-4c10-a082-9fd0d10295ae"
+        },
+        "timestamp_accepted": "2019-11-27T14:44:19Z",
+        "timestamp_declared": "2019-11-27T14:44:19Z",
+        "timestamp_committed": "2019-11-27T14:44:19Z",
+        "principal_declared": {
+          "issuer": "job.idp.server/1234",
+          "subject": "bob@job"
+        },
+        "principal_accepted": {
+          "issuer": "job.idp.server/1234",
+          "subject": "bob@job"
+        },
+        "confirmation_status": "CONFIRMED",
+        "block_number": 12,
+        "transaction_index": 5,
+        "transaction_id": "0x07569"
+      },
+      "properties": {
+        "identity": {
+          "type": "string",
+          "description": "identity of a event resource",
+          "title": "Relative Resource Name for the operation event",
+          "readOnly": true
+        },
+        "asset_identity": {
+          "type": "string",
+          "description": "identity of a related asset resource `assets/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
+          "title": "relative resource name for associated asset ( asset the operation is performed on  - has to have specific behaviour enabled)",
+          "readOnly": true
+        },
+        "event_attributes": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/v2Attribute"
+          },
+          "description": "map of event attributes. Specific behaviours define required and optional event attributes for each supported operation."
+        },
+        "asset_attributes": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/v2Attribute"
+          },
+          "description": "map of asset attributes. Specific behaviours define required and optional asset attributes. These attributes cause the corresponding attributes on the asset to be updated."
+        },
+        "operation": {
+          "type": "string",
+          "description": "The operation represented by the event. `Update`",
+          "title": "name of operation on this behviour",
+          "readOnly": true,
+          "maxLength": 4096
+        },
+        "behaviour": {
+          "type": "string",
+          "description": "The behaviour used to create event. `Firmware`",
+          "title": "name of this behaviour",
+          "readOnly": true,
+          "maxLength": 4096
+        },
+        "timestamp_declared": {
+          "type": "string",
+          "format": "date-time",
+          "description": "time of event as declared by the user",
+          "title": "timestamp when operation was actually performed - if not provided will be set to timestamp_accepted",
+          "readOnly": true
+        },
+        "timestamp_accepted": {
+          "type": "string",
+          "format": "date-time",
+          "description": "time of event as recorded by the server",
+          "title": "timestamp when system received operation request",
+          "readOnly": true
+        },
+        "timestamp_committed": {
+          "type": "string",
+          "format": "date-time",
+          "description": "time of event as recorded on blockchain",
+          "title": "timestamp operation has been committed on the blockchain",
+          "readOnly": true
+        },
+        "principal_declared": {
+          "$ref": "#/definitions/v2Principal",
+          "description": "principal provided by the user",
+          "title": "principal information associated with event - if not provided will be set to principal_accepted",
+          "readOnly": true
+        },
+        "principal_accepted": {
+          "$ref": "#/definitions/v2Principal",
+          "description": "principal recorded by the server",
+          "title": "principal logged into the system that performed the operation",
+          "readOnly": true
+        },
+        "confirmation_status": {
+          "$ref": "#/definitions/v2ConfirmationStatus",
+          "description": "indicates if the event has been succesfully committed to the blockchain",
+          "title": "indicated if operation has been committed to the blockchain",
+          "readOnly": true
+        },
+        "transaction_id": {
+          "type": "string",
+          "description": "hash of the transaction as a hex string `0x11bf5b37e0b842e08dcfdc8c4aefc000`",
+          "title": "hash of transaction committing this operation on blockchain",
+          "maxLength": 4096
+        },
+        "block_number": {
+          "type": "string",
+          "format": "uint64",
+          "description": "number of block event was commited on",
+          "title": "block number of committing transaction",
+          "readOnly": true
+        },
+        "transaction_index": {
+          "type": "string",
+          "format": "uint64",
+          "description": "index of event within commited block",
+          "title": "transaction index of committing transaction",
+          "readOnly": true
+        },
+        "from": {
+          "type": "string",
+          "description": "wallet address for the creator of this event",
+          "title": "wallet address for the creator of this event",
+          "readOnly": true
+        }
+      },
+      "description": "This describes Jitsuin Event."
+    },
+    "v2ListAttr": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v2DictAttr"
+          }
+        }
+      }
+    },
+    "v2Principal": {
+      "type": "object",
+      "example": {
+        "issuer": "job.idp.server/1234",
+        "subject": "bob@job"
+      },
+      "properties": {
+        "issuer": {
+          "type": "string",
+          "description": "optional issuer of the principal identity. Where the issuer is not provided the subject is treated as a free string",
+          "maxLength": 1024
+        },
+        "subject": {
+          "type": "string",
+          "description": "unique identifier of the principal (within issuer context)",
+          "maxLength": 1024
+        },
+        "display_name": {
+          "type": "string",
+          "description": "The displayable name of the end-user.  The name claim is prefered, followed by email claims, then a composite of  given_name, middle_name, family_name",
+          "maxLength": 1024
+        },
+        "email": {
+          "type": "string",
+          "description": "The email for the end-user if available. If email_verified is  available it is preferd. Empty if neither email_verified or email  are provided by the IdP",
+          "maxLength": 1024
+        }
+      },
+      "description": "The principal description assured by the configured Identity  Provider. All values are according to OIDC id token claims and  standard claims.  See https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims"
+    }
+  }
+}

@@ -12,8 +12,8 @@ Define the subjects parameters and store in /path/to/jsonfile:
 
     {
         "display_name": "Some description",
-        "wallet_pub_key": ["key1", "key2"],
-        "tessera_pub_key": ["key3", "key4"]
+        "wallet_pub_key": ["key1"],
+        "tessera_pub_key": ["key2"]
     }
 
 .. note::
@@ -21,10 +21,10 @@ Define the subjects parameters and store in /path/to/jsonfile:
         **required** Friendly name for the location. Displayed in the Archivist GUI.
 
     wallet_pub_key
-        list of organisation wallet keys
+        **required** a list containing a single organisation wallet key.
 
     tessera_pub_key
-        list of organisation tessera keys
+        **required** a list containing the single tessera key for the archivist node the subject has residency on
 
 Create the IAM subject:
 
@@ -44,9 +44,9 @@ The response is:
     {
         "identity": "subjects/3f5be24f-fd1b-40e2-af35-ec7c14c74d53",
         "display_name": "Some description",
-        "wallet_pub_key": ["key1", "key2"],
-        "wallet_address": ["address1", "address2"],
-        "tessera_pub_key": ["key3", "key4"]
+        "wallet_pub_key": ["key1"],
+        "wallet_address": ["address"],
+        "tessera_pub_key": ["key2"]
     }
 
 .. note::

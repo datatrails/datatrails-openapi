@@ -17,7 +17,7 @@ Define the event parameters and store in /path/to/jsonfile:
     {
       "operation": "Maintenance",
       "behaviour": "Maintenance",
-      "attributes": {
+      "event_attributes": {
         "arc_description": "Cleaned and replaced plugs"
       },
       "timestamp_declared": "2019-11-27T14:44:19Z",
@@ -29,7 +29,7 @@ Define the event parameters and store in /path/to/jsonfile:
     }
 
 .. note::
-    attributes.arc_description
+    event_attributes.arc_description
         *Required* Details of the Maintenance request
 
     timestamp_declared
@@ -58,7 +58,7 @@ The response is:
       "asset_identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
       "operation": "Maintenance",
       "behaviour": "Maintenance",
-      "attributes": {
+      "event_attributes": {
         "arc_description": "Cleaned and replaced plugs"
       },
       "timestamp_accepted": "2019-11-27T15:13:21Z",
@@ -91,7 +91,7 @@ Define the event parameters and store in /path/to/jsonfile:
     {
       "operation": "MaintenanceRequired",
       "behaviour": "Maintenance",
-      "attributes": {
+      "event_attributes": {
         "arc_description": "Intermittent telemetry failures are causing yield drops: contract maintenance co to investigate ASAP"
       },
       "timestamp_declared": "2019-11-27T14:44:19Z",
@@ -103,7 +103,7 @@ Define the event parameters and store in /path/to/jsonfile:
     }
 
 .. note::
-    attributes.arc_description
+    event_attributes.arc_description
         *Required* Details of the Maintenance request
 
     timestamp_declared
@@ -132,7 +132,7 @@ The response is:
       "asset_identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
       "operation": "MaintenanceRequired",
       "behaviour": "Maintenance",
-      "attributes": {
+      "event_attributes": {
         "arc_description": "Intermittent telemetry failures are causing yield drops: contract maintenance co to investigate ASAP"
       },
       "timestamp_accepted": "2019-11-27T15:13:21Z",

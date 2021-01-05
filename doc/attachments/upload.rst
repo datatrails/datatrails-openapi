@@ -25,7 +25,7 @@ The response is:
     {
         "identity": "attachments/08838336-c357-460d-902a-3aba9528dd22",
         "hash": {
-            "algorithm": "SHA256",
+            "alg": "SHA256",
             "value": "xxxxxxxxxxxxxxxxxxxxxxx"
         },
         "mime_type": "image/jpeg",

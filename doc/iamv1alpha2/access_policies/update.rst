@@ -50,10 +50,10 @@ Define the access_policies parameters to be changed and store in /path/to/jsonfi
             list of subject identities
 
         behaviours
-            list of behaviours
+            list of behaviours. For all behaviours use [ "*" ]
 
         include_attributes
-            list of included attributes
+            list of included attributes. For all attributes use [ "*" ]
 
         user_attributes
             list of user attributes filters

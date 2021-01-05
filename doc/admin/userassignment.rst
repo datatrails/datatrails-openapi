@@ -59,11 +59,3 @@ Select the user for role assignment
 |userdocs_aad_select_user|
 
 .. |userdocs_aad_select_user| image:: ../screenshots/userdocs_aad_select_user.png
-
-See :ref:`jitsuin-roles` for description of the various roles available.
-
-Assign the user a Jitsuin Archivist role
-````````````````````````````````````````
-|userdocs_aad_select_role|
-
-.. |userdocs_aad_select_role| image:: ../screenshots/userdocs_aad_select_role.png

@@ -17,7 +17,7 @@ Define the event parameters and store in /path/to/jsonfile:
     {
       "operation": "Add",
       "behaviour": "Builtin",
-      "attributes": {
+      "event_attributes": {
         "arc_behaviour_name": "Attachments"
       },
       "timestamp_declared": "2019-11-27T14:44:19Z",
@@ -29,7 +29,7 @@ Define the event parameters and store in /path/to/jsonfile:
     }
 
 .. note::
-    attributes.arc_behaviour_name
+    event_attributes.arc_behaviour_name
         *Required* Name of the behaviour to be added to asset
 
     timestamp_declared
@@ -58,7 +58,7 @@ The response is:
       "asset_identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
       "operation": "Add",
       "behaviour": "Builtin",
-      "attributes": {
+      "event_attributes": {
         "arc_behaviour_name": "Attachments"
       },
       "timestamp_accepted": "2019-11-27T15:13:21Z",
@@ -91,7 +91,7 @@ Define the event parameters and store in /path/to/jsonfile:
     {
       "operation": "Remove",
       "behaviour": "Builtin",
-      "attributes": {
+      "event_attributes": {
         "arc_behaviour_name": "Attachments"
       },
       "timestamp_declared": "2019-11-27T14:44:19Z",
@@ -103,7 +103,7 @@ Define the event parameters and store in /path/to/jsonfile:
     }
 
 .. note::
-    attributes.arc_behaviour_name
+    event_attributes.arc_behaviour_name
         *Required* Name of the behaviour to be added to asset
 
     timestamp_declared
@@ -132,7 +132,7 @@ The response is:
       "asset_identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
       "operation": "Remove",
       "behaviour": "Builtin",
-      "attributes": {
+      "event_attributes": {
         "arc_behaviour_name": "Attachments"
       },
       "timestamp_accepted": "2019-11-27T15:13:21Z",

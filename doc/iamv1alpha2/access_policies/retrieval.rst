@@ -118,4 +118,12 @@ Each of these calls returns a list of matching IAM access_policies records in th
     The number of records returned has a maximum limit. If this limit is too small then one must use 
     :ref:`misc_paging`.
 
-    A full API reference is available in `Swagger GET API <openapi.html#get--archivist-v1alpha2-iam-access_policies>`_
+.. note::
+
+   The total number of assets that exist is returned in the response header field 'x-total-count' if
+   the 'x-request-total-count' header on the request is set to 'true'.
+   The curl option '-i' will emit this to stdout.
+
+.. note::
+
+   A full API reference is available in `Swagger GET API <openapi.html#get--archivist-v1alpha2-iam-access_policies>`_

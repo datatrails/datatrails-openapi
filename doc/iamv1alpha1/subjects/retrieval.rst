@@ -62,16 +62,16 @@ Each of these calls returns a list of matching IAM subjects records in the form:
             {
                 "identity": "subjects/6a951b62-0a26-4c22-a886-1082297b063b",
                 "display_name": "Some description",
-                "wallet_pub_key": ["key1", "key2"],
-                "wallet_address": ["address1", "address2"],
-                "tessera_pub_key": ["key3", "key4"]
+                "wallet_pub_key": ["key1"],
+                "wallet_address": ["address1"],
+                "tessera_pub_key": ["key2"]
             },
             {
                 "identity": "subjects/12345678-0a26-4c22-a886-1082297b063b",
                 "display_name": "Some otherdescription",
-                "wallet_pub_key": ["key5", "key6"],
-                "wallet_address": ["address5", "address6"],
-                "tessera_pub_key": ["key7", "key8"]
+                "wallet_pub_key": ["key5"],
+                "wallet_address": ["address5"],
+                "tessera_pub_key": ["key7"]
             }
         ]
     }
@@ -81,4 +81,12 @@ Each of these calls returns a list of matching IAM subjects records in the form:
     The number of records returned has a maximum limit. If this limit is too small then one must use 
     :ref:`misc_paging`.
 
-    A full API reference is available in `Swagger GET API <openapi.html#get--archivist-v1alpha1-iam-subjects>`_
+.. note::
+
+   The total number of subjects that exist is returned in the response header field 'x-total-count' if
+   the 'x-request-total-count' header on the request is set to 'true'.
+   The curl option '-i' will emit this to stdout.
+
+.. note::
+
+   A full API reference is available in `Swagger GET API <openapi.html#get--archivist-v1alpha1-iam-subjects>`_

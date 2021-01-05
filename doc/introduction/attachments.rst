@@ -29,18 +29,16 @@ type of device.
 
 See :ref:`attachments_behaviour_attach`
 
-The asset 'arc_primary_image_identity'
+The asset 'arc_primary_image'
 ++++++++++++++++++++++++++++++++++++++
 
-Attachments to assets are named in their ``display_name`` property, so 
+Attachments to assets are named in their ``arc_display_name`` property, so 
 that they can be searched and indexed.  Names are arbitrary and may be 
 defined according to the needs of the application, but one name is 
-reserved and interpreted by the Jitsuin stack: ``arc_primary_image_identity``.  
+reserved and interpreted by the Jitsuin stack: ``arc_primary_image``.  
 
-If an asset has an attachment named ``arc_primary_image_identity`` then this will be 
+If an asset has an attachment named ``arc_primary_image`` then this will be 
 used by the user interface and other Jitsuin tools to represent the asset. 
-
-See :ref:`attachments_behaviour_SetPrimaryImage`
 
 Attachments on events
 =====================
@@ -55,7 +53,7 @@ asset status that is difficult to capture in text.  For example:
 * a software manifest to support an update.
 * an x-ray image
 
-To add a attachment(s) to an event simply specify an ``arc_append_attachment`` list 
-in the ``attributes`` of the ``request`` block when posting an event. See :ref:`attachments_behaviour_attach`
-for an example of the JSON layout.
+To add a attachment(s) to an event simply specify an ``attachments`` list 
+in the ``attributes`` of the ``request`` block when posting an event.
+See :ref:`attachments_behaviour_attach` for an example of the JSON layout.
 

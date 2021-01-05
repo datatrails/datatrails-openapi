@@ -17,7 +17,7 @@ Define the event parameters and store in /path/to/jsonfile:
     {
       "operation": "SetHomeLocation",
       "behaviour": "LocationUpdate",
-      "attributes": {
+      "asset_attributes": {
         "arc_home_location_identity": "locations/90ec1b4f-93d9-49b4-b181-d6fe50ce2497"
       },
       "timestamp_declared": "2019-11-27T14:44:19Z",
@@ -29,7 +29,7 @@ Define the event parameters and store in /path/to/jsonfile:
     }
 
 .. note::
-    attributes.arc_home_location_identity
+    asset_attributes.arc_home_location_identity
        *Required* new home location for the asset
 
     timestamp_declared
@@ -58,7 +58,7 @@ The response is:
       "asset_identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
       "operation": "SetHomeLocation",
       "behaviour": "LocationUpdate",
-      "attributes": {
+      "asset_attributes": {
         "arc_home_location_identity": "locations/90ec1b4f-93d9-49b4-b181-d6fe50ce2497"
       },
       "timestamp_accepted": "2019-11-27T15:13:21Z",

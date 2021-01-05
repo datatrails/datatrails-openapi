@@ -17,7 +17,7 @@ Define the event parameters and store in /path/to/jsonfile:
     {
       "operation": "Record",
       "behaviour": "RecordEvidence",
-      "attributes": {
+      "event_attributes": {
         "arc_description": "Safety conformance approved for version 1.6. See attached conformance report",
         "arc_evidence": "DVA Conformance Report attached", 
         "conformance_report": "attachments/e2a1d16c-03cd-45a1-8cd0-690831df1273"
@@ -67,7 +67,7 @@ The response is:
       "asset_identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
       "operation": "Record",
       "behaviour": "RecordEvidence",
-      "attributes": {
+      "event_attributes": {
         "arc_description": "Safety conformance approved for version 1.6. See attached conformance report",
         "arc_evidence": "DVA Conformance Report attached", 
         "conformance_report": "attachments/e2a1d16c-03cd-45a1-8cd0-690831df1273"

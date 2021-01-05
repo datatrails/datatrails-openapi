@@ -86,8 +86,15 @@ Each of these calls returns a list of matching asset records in the form:
                 "arc_serial_number": "vtl-x4-07",
                 "arc_description": "Traffic flow control light at A603 North East",
                 "arc_display_name": "tcl.ccj.003",
-                "arc_primary_image_identity": "attachments/87b1a84c-1c6f-442b-923e-a97516f4d275",
-                "some_custom_attribute": "value"
+                "some_custom_attribute": "value",
+                "arc_attachments": [
+                    {
+                        "arc_display_name": "arc_primary_image",
+                        "arc_attachment_identity": "attachments/87b1a84c-1c6f-442b-923e-a97516f4d275",
+                        "arc_hash_alg": "SHA256",
+                        "arc_hash_value": "246c316e2cd6971ce5c83a3e61f9880fa6e2f14ae2976ee03500eb282fd03a60"
+                    }
+                ]
             },
             "confirmation_status": "CONFIRMED",
             "tracked": "TRACKED"
@@ -129,12 +136,20 @@ arc_display_name is empty.
     the system-reserved ``arc_*`` attributes.
 
     See :ref:`attachments_upload` and/or :ref:`locations_creation` for details
-    of how to handle the ``arc_home_location_identity`` and ``arc_primary_image_identity``
+    of how to handle the ``arc_home_location_identity`` and ``arc_primary_image``
     attributes.
 
 .. note::
 
     The number of records returned has a maximum limit. If this limit is too small then one must use 
     :ref:`misc_paging`.
+
+.. note::
+
+   The total number of assets that exist is returned in the response header field 'x-total-count' if
+   the 'x-request-total-count' header on the request is set to 'true'.
+   The curl option '-i' will emit this to stdout.
+  
+.. note::
 
     A full API reference is available in `Swagger GET API <openapi.html#get--archivist-v2-assets>`_
