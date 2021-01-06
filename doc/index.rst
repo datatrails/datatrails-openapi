@@ -19,6 +19,7 @@ Archivist API documentation
    iamv1alpha1/index
    iamv1alpha2/index
    attachments/index
+   attachmentsv2/index
    locations/index
    assetv2/index
    eventv2/index
