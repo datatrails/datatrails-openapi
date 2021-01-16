@@ -61,11 +61,12 @@ Each of these calls returns a list of matching IAM access_policies records in th
         "access_policies": [
             {
                 "identity": "access_policies/6a951b62-0a26-4c22-a886-1082297b063b",
-                "display_name": "Some description",
-                "filters":"[
+                "display_name": "Name to display",
+                "description": "Description of the policy",
+                "filters": "[
                     [
                         \"attributes.arc_home_location_identity=locations/5ea815f0-4de1-4a84-9377-701e880fe8ae\",
-                        \"attributes.arc_home_location_identity=locations/27eed70b-9e2b-4db1-b8c4-e36505350dcc\",
+                        \"attributes.arc_home_location_identity=locations/27eed70b-9e2b-4db1-b8c4-e36505350dcc\"
                     ],
                     [
                         \"attributes.arc_display_type=Valve\",
@@ -77,12 +78,16 @@ Each of these calls returns a list of matching IAM access_policies records in th
                 ]",
                 "access_permissions": [
                     {
+                        "asset_attributes_read": [ "toner_colour", "toner_type" ],
+                        "asset_attributes_write":["toner_colour"],
+                        "behaviours": [ "Attachments", "Firmware", "Maintenance", "RecordEvidence" ],
+                        "event_arc_display_type_read": ["toner_type", "toner_colour"],
+                        "event_arc_display_type_write": ["toner_replacement"],
+                        "include_attributes": [ "arc_display_name", "arc_display_type", "arc_firmware_version" ],
                         "subjects": [
                             "subjects/6a951b62-0a26-4c22-a886-1082297b063b",
                             "subjects/a24306e5-dc06-41ba-a7d6-2b6b3e1df48d"
                         ],
-                        "behaviours": [  "Attachments", "Firmware", "Maintenance", "RecordEvidence"  ],
-                        "include_attributes": [ "arc_display_name", "arc_display_type", "arc_firmware_version" ],
                         "user_attributes": [
                             {"or": ["group:maintainers", "group:supervisors"]}
                         ]
@@ -97,12 +102,16 @@ Each of these calls returns a list of matching IAM access_policies records in th
                 ]",
                 "access_permissions": [
                     {
+                        "asset_attributes_read": [ "toner_colour", "toner_type" ],
+                        "asset_attributes_write":["toner_colour"],
+                        "behaviours": [ "Attachments", "Firmware", "Maintenance", "RecordEvidence" ],
+                        "event_arc_display_type_read": ["toner_type", "toner_colour"],
+                        "event_arc_display_type_write": ["toner_replacement"],
+                        "include_attributes": [ "arc_display_name", "arc_display_type", "arc_firmware_version" ],
                         "subjects": [
                             "subjects/6a951b62-0a26-4c22-a886-1082297b063b",
                             "subjects/a24306e5-dc06-41ba-a7d6-2b6b3e1df48d"
                         ],
-                        "behaviours": [ "Attachments", "Maintenance", "RecordEvidence" ],
-                        "include_attributes": [ "arc_display_name", "arc_display_type" ],
                         "user_attributes": [
                             {"or": ["group:maintainers", "group:supervisors"]}
                         ]

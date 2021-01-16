@@ -436,6 +436,17 @@
     }
   },
   "definitions": {
+    "ListEventsRequestAssetQuery": {
+      "type": "object",
+      "properties": {
+        "attributes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "protobufAny": {
       "type": "object",
       "properties": {

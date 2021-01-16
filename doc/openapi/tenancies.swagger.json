@@ -20,7 +20,84 @@
   "produces": [
     "application/json"
   ],
-  "paths": {},
+  "paths": {
+    "/archivist/v1/tenancies/root_principals": {
+      "get": {
+        "summary": "Fetch the current list of tenant root user principals",
+        "description": "Fetch the current list of tenant root user principals.",
+        "operationId": "Tenancies_GetTenantRootPrincipals",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetTenantRootPrincipalsResponse"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to update the root principals.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "tags": [
+          "Tenancies"
+        ]
+      },
+      "patch": {
+        "summary": "Update the list of tenant root user principals",
+        "description": "Replace the list of tenant root user principals.  Note that you are not able to remove yourself from the list.",
+        "operationId": "Tenancies_UpdateTenantRootPrincipals",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetTenantRootPrincipalsResponse"
+            }
+          },
+          "400": {
+            "description": "Returned when the request is badly formed.  Including, but not limited to, attempting to remove yourself as a root uesr principal.",
+            "schema": {}
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to update the root principals.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1UpdateTenantRootPrincipalsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Tenancies"
+        ]
+      }
+    }
+  },
   "definitions": {
     "protobufAny": {
       "type": "object",
@@ -58,6 +135,29 @@
         }
       }
     },
+    "v1GetTenantRootPrincipalsResponse": {
+      "type": "object",
+      "example": {
+        "root_principals": [
+          {
+            "display_name": "Bob Smith",
+            "issuer": "job.idp.server/1234",
+            "subject": "08838336-c357-460d-902a-3aba9528dd22",
+            "email": "bob@job"
+          }
+        ]
+      },
+      "properties": {
+        "root_principals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v2Principal"
+          }
+        }
+      },
+      "description": "List of tenant root user principals",
+      "title": "A list of current tenant root user principals"
+    },
     "v1TenantResponse": {
       "type": "object",
       "properties": {
@@ -67,7 +167,8 @@
           "readOnly": true
         },
         "root_principal": {
-          "$ref": "#/definitions/v2Principal"
+          "$ref": "#/definitions/v2Principal",
+          "title": "root_principal is DEPREACTED and will be removed in a future release\nit remains for old installations and for the one true tenant IDP issuer"
         },
         "wallet_key_name": {
           "type": "string"
@@ -80,8 +181,39 @@
         },
         "tessera_public_key": {
           "type": "string"
+        },
+        "root_principals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v2Principal"
+          }
         }
-      }
+      },
+      "title": "Tenant information"
+    },
+    "v1UpdateTenantRootPrincipalsRequest": {
+      "type": "object",
+      "example": {
+        "root_principals": [
+          {
+            "display_name": "Bob Smith",
+            "issuer": "job.idp.server/1234",
+            "subject": "08838336-c357-460d-902a-3aba9528dd22",
+            "email": "bob@job"
+          }
+        ]
+      },
+      "properties": {
+        "root_principals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v2Principal"
+          },
+          "description": "New list of tenant root user principals"
+        }
+      },
+      "description": "Update the list of tenant root user principals",
+      "title": "Update the list of tenant root user principals"
     },
     "v2Principal": {
       "type": "object",

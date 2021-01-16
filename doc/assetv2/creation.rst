@@ -23,7 +23,7 @@ Define the asset parameters and store in /path/to/jsonfile:
             "arc_attachments": [
                 {
                     "arc_display_name": "arc_primary_image",
-                    "arc_attachment_identity": "attachments/87b1a84c-1c6f-442b-923e-a97516f4d275",
+                    "arc_attachment_identity": "blobs/87b1a84c-1c6f-442b-923e-a97516f4d275",
                     "arc_hash_alg": "SHA256",
                     "arc_hash_value": "246c316e2cd6971ce5c83a3e61f9880fa6e2f14ae2976ee03500eb282fd03a60"
                 }
@@ -41,7 +41,7 @@ Define the asset parameters and store in /path/to/jsonfile:
     See :ref:`intro_behaviours` for details of behaviours and the system-
     reserved ``arc_*`` attributes.
 
-    See :ref:`attachments_upload`, :ref:`locations_creation`, and
+    See :ref:`blobsv1_upload`, :ref:`locations_creation`, and
     :ref:`locations_retrieval` for details of how to get the correct values
     for  ``arc_home_location_identity`` and ``arc_primary_image``.
 
@@ -80,7 +80,7 @@ The response is:
             "arc_attachments": [
                 {
                     "arc_display_name": "arc_primary_image",
-                    "arc_attachment_identity": "attachments/87b1a84c-1c6f-442b-923e-a97516f4d275",
+                    "arc_attachment_identity": "blobs/87b1a84c-1c6f-442b-923e-a97516f4d275",
                     "arc_hash_alg": "SHA256",
                     "arc_hash_value": "246c316e2cd6971ce5c83a3e61f9880fa6e2f14ae2976ee03500eb282fd03a60"
                 }

@@ -1,5 +1,5 @@
 
-.. _attachments_retrieval:
+.. _attachmentsv2_retrieval:
 
 Retrieve Attachment
 -------------------

@@ -90,7 +90,7 @@ Each of these calls returns a list of matching asset records in the form:
                 "arc_attachments": [
                     {
                         "arc_display_name": "arc_primary_image",
-                        "arc_attachment_identity": "attachments/87b1a84c-1c6f-442b-923e-a97516f4d275",
+                        "arc_attachment_identity": "blobs/87b1a84c-1c6f-442b-923e-a97516f4d275",
                         "arc_hash_alg": "SHA256",
                         "arc_hash_value": "246c316e2cd6971ce5c83a3e61f9880fa6e2f14ae2976ee03500eb282fd03a60"
                     }
@@ -135,7 +135,7 @@ arc_display_name is empty.
     See :ref:`intro_behaviours` and :ref:`intro_lifecycle` for details of how to interpret
     the system-reserved ``arc_*`` attributes.
 
-    See :ref:`attachments_upload` and/or :ref:`locations_creation` for details
+    See :ref:`blobsv1_upload` and/or :ref:`locations_creation` for details
     of how to handle the ``arc_home_location_identity`` and ``arc_primary_image``
     attributes.
 

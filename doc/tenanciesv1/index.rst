@@ -1,9 +1,8 @@
-Attachments V2 API
--------------------
+Tenancies API
+-------------
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-   retrieval
-
+   tenancies
