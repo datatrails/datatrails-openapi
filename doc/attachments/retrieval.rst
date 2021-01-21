@@ -4,6 +4,10 @@
 Retrieve Attachment
 -------------------
 
+.. warning::
+   This endpoint is currently deprecated and has been replaced by the
+   Blobs endpoint.
+
 .. note::
    Attachments in the Jitsuin Archivist system are not first-order
    objects in their own right: they are properties of other objects

@@ -130,7 +130,7 @@
         "event_attributes": {
           "arc_attachments": [
             {
-              "arc_attachment_identity": "attachments/1754b920-cf20-4d7e-9d36-9ed7d479744d",
+              "arc_attachment_identity": "blobs/1754b920-cf20-4d7e-9d36-9ed7d479744d",
               "arc_hash_value": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
               "arc_display_name": "Picture from yesterday",
               "arc_hash_alg": "sha256"
@@ -211,7 +211,7 @@
         "event_attributes": {
           "arc_attachments": [
             {
-              "arc_attachment_identity": "attachments/1754b920-cf20-4d7e-9d36-9ed7d479744d",
+              "arc_attachment_identity": "blobs/1754b920-cf20-4d7e-9d36-9ed7d479744d",
               "arc_hash_value": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
               "arc_display_name": "Picture from yesterday",
               "arc_hash_alg": "sha256"

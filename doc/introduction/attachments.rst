@@ -13,7 +13,7 @@ Uploading an Attachment
 =======================
 
 The first step is to upload the attachment to the attachments API and noting
-the uuid of the uploaded attachment. See :ref:`attachments_upload`
+the uuid of the uploaded attachment. See :ref:`blobsv1_upload`
 
 Attachments on assets
 =====================

@@ -20,7 +20,7 @@ Define the event parameters and store in /path/to/jsonfile:
       "event_attributes": {
         "arc_description": "Safety conformance approved for version 1.6. See attached conformance report",
         "arc_evidence": "DVA Conformance Report attached", 
-        "conformance_report": "attachments/e2a1d16c-03cd-45a1-8cd0-690831df1273"
+        "conformance_report": "blobs/e2a1d16c-03cd-45a1-8cd0-690831df1273"
       },
       "timestamp_declared": "2019-11-27T14:44:19Z",
       "principal_declared": {
@@ -70,7 +70,7 @@ The response is:
       "event_attributes": {
         "arc_description": "Safety conformance approved for version 1.6. See attached conformance report",
         "arc_evidence": "DVA Conformance Report attached", 
-        "conformance_report": "attachments/e2a1d16c-03cd-45a1-8cd0-690831df1273"
+        "conformance_report": "blobs/e2a1d16c-03cd-45a1-8cd0-690831df1273"
       },
       "timestamp_accepted": "2019-11-27T15:13:21Z",
       "timestamp_declared": "2019-11-27T14:44:19Z",

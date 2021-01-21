@@ -21,38 +21,6 @@
     "application/json"
   ],
   "paths": {
-    "/archivist/v1/attachments": {
-      "post": {
-        "summary": "Create an attachment",
-        "description": "Creates an attachment and returns identifying metadata. Note that this operation is not idempotent - the same request executed twice will create 2 separate objects even if the data is identical.",
-        "operationId": "Attachments_Upload",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1Attachment"
-            }
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to create the attachment.",
-            "schema": {}
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "tags": [
-          "Attachments"
-        ]
-      }
-    },
     "/archivist/v1/{identity}": {
       "get": {
         "summary": "Get an attachment",

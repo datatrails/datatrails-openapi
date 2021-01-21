@@ -6,9 +6,9 @@
 
 .. note::
     The following operations assume that an attachment has been uploaded to
-    Archivist node using the API :ref:`attachments_upload`.
+    Archivist node using the API :ref:`blobsV1_upload`.
     This attachment uuid is generically referred to as
-    ``attachments/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`` in the following text.
+    ``blobs/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`` in the following text.
 
     Each attachment has an associated hash value and the name of tha hash algorithm 
     used. 
@@ -34,13 +34,13 @@ Define the event parameters and store in /path/to/jsonfile:
       "event_attributes": {
         "arc_append_attachments": [
           {
-                "arc_attachment_identity": "attachments/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                "arc_attachment_identity": "blobs/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                 "arc_display_name": "an attachment 1",
                 "arc_hash_value": "jnwpjocoqsssnundwlqalsqiiqsqp;lpiwpldkndwwlskqaalijopjkokkkojijl",
                 "arc_hash_alg": "sha256",
           },
           {
-                "arc_attachment_identity": "attachments/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                "arc_attachment_identity": "blobs/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                 "arc_display_name": "an attachment 2",
                 "arc_hash_value": "042aea10a0f14f2d391373599be69d53a75dde9951fc3d3cd10b6100aa7a9f24",
                 "arc_hash_alg": "sha256",
@@ -98,13 +98,13 @@ The response is:
       "event_attributes": {
         "arc_append_attachments": [
           {
-                "arc_attachment_identity": "attachments/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                "arc_attachment_identity": "blobs/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                 "arc_display_name": "an attachment 1",
                 "arc_hash_value": "jnwpjocoqsssnundwlqalsqiiqsqp;lpiwpldkndwwlskqaalijopjkokkkojijl",
                 "arc_hash_alg": "sha256",
           },
           {
-                "arc_attachment_identity": "attachments/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                "arc_attachment_identity": "blobs/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                 "arc_display_name": "an attachment 2",
                 "arc_hash_value": "042aea10a0f14f2d391373599be69d53a75dde9951fc3d3cd10b6100aa7a9f24",
                 "arc_hash_alg": "sha256",
@@ -114,13 +114,13 @@ The response is:
       "asset_attributes": {
         "arc_attachments": [
           {
-                "arc_attachment_identity": "attachments/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                "arc_attachment_identity": "blobs/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                 "arc_display_name": "an attachment 1",
                 "arc_hash_value": "jnwpjocoqsssnundwlqalsqiiqsqp;lpiwpldkndwwlskqaalijopjkokkkojijl",
                 "arc_hash_alg": "sha256",
           },
           {
-                "arc_attachment_identity": "attachments/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                "arc_attachment_identity": "blobs/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                 "arc_display_name": "an attachment 2",
                 "arc_hash_value": "042aea10a0f14f2d391373599be69d53a75dde9951fc3d3cd10b6100aa7a9f24",
                 "arc_hash_alg": "sha256",

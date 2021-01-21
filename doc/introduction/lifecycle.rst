@@ -181,7 +181,7 @@ photograph of the physical unit) and get their identities.
 3. Create the Asset, including the (optional) identities of the location 
 and attachments.
 
-For more detail, see :ref:`locations_creation`, :ref:`attachments_upload` 
+For more detail, see :ref:`locations_creation`, :ref:`blobsv1_upload` 
 and :ref:`assetv2_creation`
 
 Understanding asset lifecycle events
