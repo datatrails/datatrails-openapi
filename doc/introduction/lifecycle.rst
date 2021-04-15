@@ -21,12 +21,35 @@ and operational history.  By knowing *When Who Did What to a Thing* human
 actors and connected systems can make stronger judgments about the
 trustworthiness of a device and the data it produces. 
 
+Security Twins and Trustworthiness
+==================================
+
+Trust is subjective. Compliance policies are a judgement call. No matter what
+security technology you have in play every trust decision you make will depend
+on the circumstances: who is accessing what; where they're coming from; how
+sensitive an operation they're attempting; the consequences of getting it
+wrong. An asset that is safe in one context may not be in another.
+
+Difficult decisions are slow to be made, and slow decisions means lost time.
+No matter what security mechanisms are in place, if you can't *trust* the
+assets and data in your systems then the chances are you won't be able to
+automate decisions and processes, keeping humans in the loop and losing the
+scale advantages of AI and IoT.
+
+Security Twins take the heavy lifting out of this process by providing a
+simple trust layer that any client or process can ask. They answer the
+question: given all that I know about this asset - its security status, 
+maintenance history, active alarms - can I trust it with what I'm trying
+to do right now? They help you make smarter, faster, better decisions
+*and* provide traceability that enable you to explain those decisions
+later on.
+
 Security Twins (Jitsuin Archivist Asset Records) vs Digital Twins
 =================================================================
 
 A Digital Twin simplifies Digital Transformation by representing real-world
 objects in virtual form that allows business applications to connect to
-Internet Thing data through simple APIs without stressing the
+Internet Thing data through simple APIs. This solution avoids stressing the
 power-constrained devices and unreliable network connectivity that often go
 hand-in-hand with IoT installations.  
 
@@ -34,7 +57,7 @@ Security Twins - built from Asset Records in Jitsuin Archivist - are not
 Digital Twins, although they do share a number of useful characteristics.
 Security Twins provide a trust layer that underpins the trustworthiness of
 Digital Twin applications. Understanding the differences between the two
-will help to get the best out of the Archivist system and your Digital
+will help you to get the best out of the Archivist system and your Digital
 Transformation.
 
 +-------------------------------------------+-------------------------------------------+
@@ -61,10 +84,10 @@ Transformation.
 +-------------------------------------------+-------------------------------------------+
 
 Security Twins and Digital Twins work well together to provide a full picture
-of Internet of Things operation: the Digital Twin offering a reliable and
-efficient view of the most recent known state of the device sensors; and
+of Internet of Things operations: the Digital Twin offering a reliable and
+efficient view of the most recent known state of the device sensors, and
 the Security Twin (Archivist) providing an immutable record of its operational
-history and firmware state at the times of the those readings. 
+history and firmware state at the times of those readings. 
 The APIs in this SDK can be used to integrate Jitsuin Archivist with an IoT 
 platform such as Microsoft Azure IoT Hub, thereby bringing the power of a
 Security Twin layer without disrupting telemetry and data operations.
@@ -87,11 +110,15 @@ concept of *tracked* assets (those that are interesting to the system and
 actively recording lifecycle events), and *untracked* assets (those that are 
 no longer actively interesting, for example as a result of decommissioning). 
 
-Untracked devices are still present in the system, and their Service 
-Histories available, but they are removed from default lists and searches. 
-
 This state is reflected in the ``tracked`` attribute. When an Asset Record is 
 created its ``tracked`` attribute is automatically set to ``TRACKED``. 
+
+When a real asset is disposed of for any reason it may be desirable to remove 
+it from the Jitsuin Archivist system so that it does not appear in  
+lists or searches. Assets can be removed from default lists and searches by 
+setting the ``tracked`` property to ``UNTRACKED``, but they will still be
+present in the system with their Service Histories available. 
+
 
 Asset modification
 ==================
@@ -154,16 +181,6 @@ To aid in analysis and compliance management these events can be linked by
 adding a common tag to the pair of messages: for example, a work order number.
 
 For more detail, see :ref:`maintenance_behaviour`
-
-Asset Disposal
-==============
-
-When a real asset is disposed of for any reason it may be desirable to remove 
-it from the Jitsuin Archivist system so that it does not appear in  
-lists or searches. Because the Full Service History of devices lasts forever 
-it is not possible to delete Asset Records from the system, but they can be 
-removed from default lists and searches by setting the ``tracked`` property 
-to ``UNTRACKED``.
 
 How to create an Asset Record
 =============================

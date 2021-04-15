@@ -111,6 +111,8 @@
             "block_height": "38773",
             "connection_status": "REACHABLE",
             "syncing": null,
+            "genesis_hash": "0x1b526bd9c7f9bf7c43ba91ad07e5530eb7ceedf390396f9fbfeb68722e097e95",
+            "state_root": "0x9606fc44a382938703678ac90581ab1260c9efd20ea8c7f90c87852bc982f3a7",
             "timestamp_committed": "2019-01-01T12:00:27Z",
             "timestamp_created": "2019-01-01T12:00:27Z",
             "peers": [
@@ -200,6 +202,16 @@
             "$ref": "#/definitions/v1PeerBlockchainNode"
           },
           "description": "List of peer blockchain nodes. ",
+          "readOnly": true
+        },
+        "genesis_hash": {
+          "type": "string",
+          "description": "HASH of genesis block.",
+          "readOnly": true
+        },
+        "state_root": {
+          "type": "string",
+          "description": "state root of genesis block.",
           "readOnly": true
         }
       }

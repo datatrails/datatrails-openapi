@@ -23,7 +23,7 @@
   "paths": {
     "/archivist/v1/compliance/{asset_identity}": {
       "get": {
-        "summary": "List all compliance statoos relevant to an asset",
+        "summary": "List all compliance status relevant to an asset",
         "operationId": "Compliance_ListAssetCompliance",
         "responses": {
           "200": {
@@ -94,17 +94,197 @@
           "Compliance"
         ]
       }
+    },
+    "/archivist/v1/compliance_policies": {
+      "get": {
+        "operationId": "Compliance_ListCompliancePolicy",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListCompliancePolicyResponse"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to access the requested resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the asset with the id does not exist.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "page_size",
+            "description": "Maximum results per page.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_token",
+            "description": "The next_page_token returned from a previous list request if any.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "order_by",
+            "description": "Specify the sort order for the results.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "DEFAULT"
+            ],
+            "default": "DEFAULT"
+          }
+        ],
+        "tags": [
+          "Compliance"
+        ]
+      },
+      "post": {
+        "operationId": "Compliance_AddCompliancePolicy",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CompliancePolicyResponse"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to access the requested resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the asset with the id does not exist.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1AddCompliancePolicyRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Compliance"
+        ]
+      }
+    },
+    "/archivist/v1/{identity}": {
+      "get": {
+        "operationId": "Compliance_GetCompliancePolicy",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CompliancePolicyResponse"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to access the requested resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the asset with the id does not exist.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "identity",
+            "description": "Specify compliance policy `identity` as in `compliance_policies/add30235-1424-4fda-840a-d5ef82c4c96f`",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Compliance"
+        ]
+      },
+      "delete": {
+        "operationId": "Compliance_DeleteCompliancePolicy",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CompliancePolicyResponse"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to access the requested resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the asset with the id does not exist.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "identity",
+            "description": "Specify compliance policy `identity` as in `compliance_policies/add30235-1424-4fda-840a-d5ef82c4c96f`",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Compliance"
+        ]
+      }
     }
   },
   "definitions": {
-    "ListAssetComplianceRequestOrderBy": {
-      "type": "string",
-      "enum": [
-        "DEFAULT"
-      ],
-      "default": "DEFAULT",
-      "title": "Supported sort orders"
-    },
     "protobufAny": {
       "type": "object",
       "properties": {
@@ -141,6 +321,100 @@
         }
       }
     },
+    "v1AddCompliancePolicyRequest": {
+      "type": "object",
+      "example": {
+        "compliance_type": "COMPLIANCE_SINCE",
+        "description": "Ensure Maintenance is performed daily",
+        "display_name": "Daily Maintenance",
+        "asset_filter": [
+          {
+            "or": [
+              "attributes.arc_location_identity:locations/5eef2b71-35c1-4376-a166-6c64bfa72f4b"
+            ]
+          }
+        ],
+        "event_display_type": "Maintenance Performed",
+        "time_period_seconds": 86800
+      },
+      "properties": {
+        "compliance_type": {
+          "$ref": "#/definitions/v1ComplianceType"
+        },
+        "description": {
+          "type": "string"
+        },
+        "display_name": {
+          "type": "string"
+        },
+        "asset_filter": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Filter"
+          }
+        },
+        "event_display_type": {
+          "type": "string"
+        },
+        "closing_event_display_type": {
+          "type": "string"
+        },
+        "time_period_seconds": {
+          "type": "string",
+          "format": "int64"
+        }
+      },
+      "description": "request adding new compliance policy"
+    },
+    "v1CompliancePolicyResponse": {
+      "type": "object",
+      "example": {
+        "identity": "compliance_policies/463fab3a-bae5-4349-8f76-f6454da20c9d",
+        "compliance_type": "COMPLIANCE_SINCE",
+        "description": "Ensure Maintenance is performed daily",
+        "display_name": "Daily Maintenance",
+        "asset_filter": [
+          {
+            "or": [
+              "attributes.arc_location_identity:locations/5eef2b71-35c1-4376-a166-6c64bfa72f4b"
+            ]
+          }
+        ],
+        "event_display_type": "Maintenance Performed",
+        "time_period_seconds": 86800
+      },
+      "properties": {
+        "identity": {
+          "type": "string"
+        },
+        "compliance_type": {
+          "$ref": "#/definitions/v1ComplianceType"
+        },
+        "description": {
+          "type": "string"
+        },
+        "display_name": {
+          "type": "string"
+        },
+        "asset_filter": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Filter"
+          }
+        },
+        "event_display_type": {
+          "type": "string"
+        },
+        "closing_event_display_type": {
+          "type": "string"
+        },
+        "time_period_seconds": {
+          "type": "string",
+          "format": "int64"
+        }
+      },
+      "description": "compliance policy"
+    },
     "v1ComplianceStatement": {
       "type": "object",
       "example": {
@@ -164,6 +438,43 @@
       },
       "description": "simple compliance status against a compliance policy.",
       "title": "A ComplianceStatement gives the status of compliance against a specific Compliance Policy"
+    },
+    "v1ComplianceType": {
+      "type": "string",
+      "enum": [
+        "COMPLIANCE_TYPE_UNDEFINED",
+        "COMPLIANCE_SINCE",
+        "COMPLIANCE_CURRENT_OUTSTANDING",
+        "COMPLIANCE_PERIOD_OUTSTANDING"
+      ],
+      "default": "COMPLIANCE_TYPE_UNDEFINED"
+    },
+    "v1Filter": {
+      "type": "object",
+      "example": {
+        "or": [
+          "group=maintainers",
+          "group=supervisors"
+        ]
+      },
+      "properties": {
+        "or": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "The filter list"
+        }
+      },
+      "description": "Filter"
+    },
+    "v1ListAssetComplianceRequestOrderBy": {
+      "type": "string",
+      "enum": [
+        "DEFAULT"
+      ],
+      "default": "DEFAULT",
+      "title": "Supported sort orders"
     },
     "v1ListAssetComplianceResponse": {
       "type": "object",
@@ -194,6 +505,49 @@
         "next_page_token": {
           "type": "string",
           "description": "Token to retrieve the next page of results or empty if there are none."
+        }
+      },
+      "description": "simple compliance status for an Asset."
+    },
+    "v1ListCompliancePolicyRequestOrderBy": {
+      "type": "string",
+      "enum": [
+        "DEFAULT"
+      ],
+      "default": "DEFAULT",
+      "title": "Supported sort orders"
+    },
+    "v1ListCompliancePolicyResponse": {
+      "type": "object",
+      "example": {
+        "compliance_policies": [
+          {
+            "identity": "compliance_policies/463fab3a-bae5-4349-8f76-f6454da20c9d",
+            "compliance_type": "COMPLIANCE_SINCE",
+            "description": "sample compliance policy",
+            "display_name": "my compliance policy",
+            "asset_filter": [
+              {
+                "or": [
+                  "attributes.arc_location_identity:locations/5eef2b71-35c1-4376-a166-6c64bfa72f4b"
+                ]
+              }
+            ],
+            "event_display_type": "tracked event",
+            "time_period_seconds": 86400
+          }
+        ],
+        "next_page_token": "NDYzZmFiM2EtYmFlNS00MzQ5LThmNzYtZjY0NTRkYTIwYzlkCg=="
+      },
+      "properties": {
+        "compliance_policies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1CompliancePolicyResponse"
+          }
+        },
+        "next_page_token": {
+          "type": "string"
         }
       },
       "description": "simple compliance status for an Asset."

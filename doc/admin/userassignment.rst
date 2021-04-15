@@ -1,6 +1,6 @@
 .. _azure-aad-assign-users:
 
-Assign Users for Interactive use
+Assign Users for Interactive Use
 --------------------------------
 
 To enable access for individual users to your Jitsuin Archivist:
@@ -21,8 +21,7 @@ Locate your Jitsuin Archivist Enterprise Application
 Having completed admin consent, locate the enterprise application principals
 for your Jitsuin Archivist. There will be two **Homepage URLs** which match the
 FQDN for the link you received. The URL for the root resource is your API
-principal. This is where assign users their roles. It is also where you asign
-roles for non interactive clients.
+principal. This is where roles are assigned to users and non-interactive clients.
 |userdocs_aad_enterprise_applications|
 
 .. |userdocs_aad_enterprise_applications| image:: ../screenshots/userdocs_aad_enterprise_applications.png

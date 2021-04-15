@@ -19,11 +19,11 @@
 
 import sphinx_rtd_theme
 project = 'Jitsuin Archivist'
-copyright = '2019, Jitsuin, Inc.'
+copyright = '2019-2021, Jitsuin, Inc.'
 author = 'jitsuin.com'
 
 # The full version, including alpha/beta/rc tags
-release = 'v0.0.1'
+release = 'v0.1.0'
 
 
 # -- General configuration ---------------------------------------------------

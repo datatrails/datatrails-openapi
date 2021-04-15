@@ -1,32 +1,8 @@
 
 .. _intro_security_twins:
 
-Security Twins and Trustworthiness
-----------------------------------
-
-Trust is subjective. Compliance policies are a judgement call. No matter what
-security technology you have in play every trust decision you make will depend
-on the circumstances: who is accessing what; where they're coming from; how
-sensitive an operation they're attempting; the consequences of getting it
-wrong. An asset that is safe in one context may not be in another.
-
-Difficult decisions are slow to be made, and slow decisions means lost time.
-No matter what security mechanisms are in place, if you can't *trust* the
-assets and data in your systems then the chances are you won't be able to
-automate decisions and processes, keeping humans in the loop and losing the
-scale advantages of AI and IoT.
-
-Security Twins take the heavy lifting out of this process by providing a
-simple trust layer that any client or process can ask. They answer the
-question: given all that I know about this asset - its security status, 
-maintenance history, active alarms - can I trust it with what I'm trying
-to do right now? They help you make smarter, faster, better decisions
-*and* provide traceability that enable you to explain those decisions
-later on.
-
-
-Compliance policies
-===================
+Compliance Policies
+-------------------
 
 In order to make these trust decisions, Jitsuin Archivist can be configured
 with *Compliance Policies* to check assets against. These policies specify

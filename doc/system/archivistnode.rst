@@ -34,6 +34,8 @@ The response is:
                 },
                 "block_height": "38773",
                 "connection_status": "REACHABLE"
+                "genesis_hash":"0x1b526bd9c7f9bf7c43ba91ad07e5530eb7ceedf390396f9fbfeb68722e097e95",
+                "state_root":"0x9606fc44a382938703678ac90581ab1260c9efd20ea8c7f90c87852bc982f3a7",
                 "timestamp_committed": "2019-01-02T01:03:07Z",
                 "timestamp_created": "2019-01-01T12:00:27Z",
                 "syncing": null,
@@ -80,6 +82,12 @@ The response is:
     connection_status
         - REACHABLE: node is reachable.
         - UNREACHABLE: node is currently unreachable.
+
+    genesis_hash
+        hash of the genesis block - use to verify that the blockchain is unchanged
+
+    state_root
+        state_root for the public state in the genesis block - use to verify that the blockchain is unchanged
 
     timestamp_committed
         timestamp (UTC) of latest block in the blockchain. May be zero (Jan 1st 1970) if node is UNREACHABLE.

@@ -53,7 +53,7 @@ asset status that is difficult to capture in text.  For example:
 * a software manifest to support an update.
 * an x-ray image
 
-To add a attachment(s) to an event simply specify an ``attachments`` list 
+To add attachments to an event simply specify an ``attachments`` list 
 in the ``attributes`` of the ``request`` block when posting an event.
 See :ref:`attachments_behaviour_attach` for an example of the JSON layout.
 

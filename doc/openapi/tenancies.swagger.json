@@ -158,6 +158,20 @@
       "description": "List of tenant root user principals",
       "title": "A list of current tenant root user principals"
     },
+    "v1ListTenantsResponse": {
+      "type": "object",
+      "properties": {
+        "tenants": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1TenantResponse"
+          }
+        },
+        "next_page_token": {
+          "type": "string"
+        }
+      }
+    },
     "v1TenantResponse": {
       "type": "object",
       "properties": {

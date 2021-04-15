@@ -1,5 +1,5 @@
 
-.. _blockchainv1alpha1subjects_retrieval:
+.. _blockchainv1alpha1_retrieval:
 
 Blockchain Retrieval (v1alpha1)
 -------------------------------

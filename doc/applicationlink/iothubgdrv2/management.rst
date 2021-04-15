@@ -8,7 +8,7 @@ IoTHubGDR V2 Management
 
 The **iothubgdr** endpoint allows to query and manage recent imports.
 
-To list all imports issue following GET request:
+To list all imports issue the following GET request:
 
 .. code-block:: shell
 
@@ -20,7 +20,9 @@ To list all imports issue following GET request:
 This call will respond with a list containing all known imports.
 Individual items in list are identical to create :ref:`iothubgdrv2_creation_resp`
 
-To get specific import details (identity of the import has to be known in order to issue that request - for this example assume `47b58286-ff0f-11e9-8f0b-362b9e155667`) issue following request:
+To get specific import details (identity of the import has to be known in order 
+to issue that request - for this example assume `47b58286-ff0f-11e9-8f0b-362b9e155667`)
+issue the following request:
 
 .. code-block:: shell
 
@@ -31,7 +33,7 @@ To get specific import details (identity of the import has to be known in order 
 
 Response has the same format as create :ref:`iothubgdrv2_creation_resp`
 
-To cancel running import issue following request:
+To cancel running import issue the following request:
 
 .. code-block:: shell
 
@@ -42,7 +44,7 @@ To cancel running import issue following request:
 
 Response has the same format as create response but the status is set to `STATUS_CANCELLED`
 
-To delete an import issue following request:
+To delete an import issue the following request:
 
 .. code-block:: shell
 

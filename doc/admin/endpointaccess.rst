@@ -1,13 +1,13 @@
 
 .. _config-for-non-interactive-access:
 
-Configure client credentials for non interactive access
+Configure Client Credentials for Non-Interactive Access
 -------------------------------------------------------
 
-To enable non interactive access to Jitsuin Archivist APIs:
+To enable non-interactive access to Jitsuin Archivist APIs:
 
-#. Create an Application registration in your Azure Active Direcory.
-#. Grant an API access permission for the registration refering to the Jitsuin
+#. Create an Application registration in your Azure Active Directory.
+#. Grant an API access permission for the registration referring to the Jitsuin
    Archivist API
 #. Create a client secret
 
@@ -49,7 +49,7 @@ Your app registration must be granted access to the Jitsuin Archivist API.
 
 The **Application permissions** enable access to the Jitsuin Archivist API using
 client secrets or certificates. The Microsoft `quickstart configure web app
-access`_ guide covers the general process. For non interactive use see
+access`_ guide covers the general process. For non-interactive use see
 **Application permissions**.
 
 .. _`quickstart configure web app access`: https://docs.microsoft.com/bs-latn-ba/azure/active-directory/develop/quickstart-configure-app-access-web-apis

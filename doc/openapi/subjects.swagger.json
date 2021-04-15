@@ -1,19 +1,9 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Location API",
-    "version": "1.0",
-    "contact": {
-      "name": "Jitsuin",
-      "url": "https://www.jitsuin.com"
-    }
+    "title": "api/subjects/v1/subjects/subjects.proto",
+    "version": "version not set"
   },
-  "host": "jitsuin.readthedocs.io",
-  "basePath": "/api/archivist/v2",
-  "schemes": [
-    "http",
-    "https"
-  ],
   "consumes": [
     "application/json"
   ],
@@ -21,24 +11,32 @@
     "application/json"
   ],
   "paths": {
-    "/archivist/v2/locations": {
+    "/archivist/iam/v1/subjects": {
       "get": {
-        "summary": "List locations",
-        "description": "Returns a paginated list of locations",
-        "operationId": "Locations_ListLocations",
+        "summary": "List subjects",
+        "description": "Returns a paginated list of subjects",
+        "operationId": "Subjects_ListIAMSubjects",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v2ListLocationsResponse"
+              "$ref": "#/definitions/v1ListIAMSubjectsResponse"
             }
+          },
+          "400": {
+            "description": "Returned when the request is badly formed.",
+            "schema": {}
           },
           "401": {
             "description": "Returned when the user is not authenticated to the system.",
             "schema": {}
           },
           "403": {
-            "description": "Returned when the user is not authorized to read the location.",
+            "description": "Returned when the user is not authorized to read the subject.",
+            "schema": {}
+          },
+          "500": {
+            "description": "Returned when the underlying storage system returns an error.",
             "schema": {}
           },
           "default": {
@@ -51,7 +49,7 @@
         "parameters": [
           {
             "name": "order_by",
-            "description": "Specify the sort order for the results. By display_name and by named\nextended attribute are supported.",
+            "description": "Specify the sort order for the results.",
             "in": "query",
             "required": false,
             "type": "string",
@@ -63,7 +61,7 @@
           },
           {
             "name": "page_size",
-            "description": "Maximum locations per page.",
+            "description": "Maximum entries per page.",
             "in": "query",
             "required": false,
             "type": "integer",
@@ -78,39 +76,41 @@
           },
           {
             "name": "display_name",
-            "description": "Further fields are bound to query parameters and act to filter the result.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "description",
+            "description": "Further fields are bound to query parameters and act to filter the result. Customer friendly name for the subject.",
             "in": "query",
             "required": false,
             "type": "string"
           }
         ],
         "tags": [
-          "Locations"
+          "Subjects"
         ]
       },
       "post": {
-        "summary": "Create a location",
-        "description": "This request creates a new location. A name and a latitude and longitude must be provided. The display_name is the friendly name. The latitude and longitude must be entered in Degrees Decimal format See [Change of units and format](https://en.wikipedia.org/wiki/Geographic_coordinate_conversion#Change_of_units_and_format). The `attributes` field is a flat map of `{ \"key\": \"value\" }`. The keys and values must be strings.",
-        "operationId": "Locations_CreateLocation",
+        "summary": "Create an subject",
+        "description": "This request creates a new subject. The display_name is the friendly name.",
+        "operationId": "Subjects_CreateIAMSubject",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/archivistv2Location"
+              "$ref": "#/definitions/v1IAMSubject"
             }
+          },
+          "400": {
+            "description": "Returned when the request is badly formed.",
+            "schema": {}
           },
           "401": {
             "description": "Returned when the user is not authenticated to the system.",
             "schema": {}
           },
           "403": {
-            "description": "Returned when the user is not authorized to create a location.",
+            "description": "Returned when the user is not authorized to create a subject.",
+            "schema": {}
+          },
+          "500": {
+            "description": "Returned when the underlying storage system returns an error.",
             "schema": {}
           },
           "default": {
@@ -126,37 +126,45 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/v2CreateLocationRequest"
+              "$ref": "#/definitions/v1CreateIAMSubjectRequest"
             }
           }
         ],
         "tags": [
-          "Locations"
+          "Subjects"
         ]
       }
     },
-    "/archivist/v2/{identity}": {
+    "/archivist/iam/v1/{identity}": {
       "get": {
-        "summary": "Get a location",
-        "description": "Returns the identified location",
-        "operationId": "Locations_GetLocation",
+        "summary": "Get an subject",
+        "description": "Returns the identified subject",
+        "operationId": "Subjects_GetIAMSubject",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/archivistv2Location"
+              "$ref": "#/definitions/v1IAMSubject"
             }
+          },
+          "400": {
+            "description": "Returned when the request is badly formed.",
+            "schema": {}
           },
           "401": {
             "description": "Returned when the user is not authenticated to the system.",
             "schema": {}
           },
           "403": {
-            "description": "Returned when the user is not authorized to read the location.",
+            "description": "Returned when the user is not authorized to read the subject.",
             "schema": {}
           },
           "404": {
-            "description": "Returned when the identified location does not exist.",
+            "description": "Returned when the identified subject does not exist.",
+            "schema": {}
+          },
+          "500": {
+            "description": "Returned when the underlying storage system returns an error.",
             "schema": {}
           },
           "default": {
@@ -169,20 +177,20 @@
         "parameters": [
           {
             "name": "identity",
-            "description": "Specify location `identity` as in `locations/add30235-1424-4fda-840a-d5ef82c4c96f`",
+            "description": "Specify subject `identity` as in `subjects/add30235-1424-4fda-840a-d5ef82c4c96f`",
             "in": "path",
             "required": true,
             "type": "string"
           }
         ],
         "tags": [
-          "Locations"
+          "Subjects"
         ]
       },
       "delete": {
-        "summary": "Delete a location",
-        "description": "Delete the identified location",
-        "operationId": "Locations_DeleteLocation",
+        "summary": "Delete a subject",
+        "description": "Delete the identified subject",
+        "operationId": "Subjects_DeleteIAMSubject",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -190,16 +198,24 @@
               "properties": {}
             }
           },
+          "400": {
+            "description": "Returned when the request is badly formed.",
+            "schema": {}
+          },
           "401": {
             "description": "Returned when the user is not authenticated to the system.",
             "schema": {}
           },
           "403": {
-            "description": "Returned when the user is not authorized to delete the location.",
+            "description": "Returned when the user is not authorized to delete the subject.",
             "schema": {}
           },
           "404": {
-            "description": "Returned when the identified location does not exist.",
+            "description": "Returned when the identified laccess policy does not exist.",
+            "schema": {}
+          },
+          "500": {
+            "description": "Returned when the underlying storage system returns an error.",
             "schema": {}
           },
           "default": {
@@ -212,37 +228,45 @@
         "parameters": [
           {
             "name": "identity",
-            "description": "Specify location `identity` as in `locations/add30235-1424-4fda-840a-d5ef82c4c96f`",
+            "description": "Specify subject `identity` as in `subjects/add30235-1424-4fda-840a-d5ef82c4c96f`",
             "in": "path",
             "required": true,
             "type": "string"
           }
         ],
         "tags": [
-          "Locations"
+          "Subjects"
         ]
       },
       "patch": {
-        "summary": "Update a location's details",
-        "description": "Perform a full or partial update of the identified location",
-        "operationId": "Locations_UpdateLocation",
+        "summary": "Update a subject's details",
+        "description": "Perform a full or partial update of the identified subject",
+        "operationId": "Subjects_UpdateIAMSubject",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/archivistv2Location"
+              "$ref": "#/definitions/v1IAMSubject"
             }
+          },
+          "400": {
+            "description": "Returned when the request is badly formed.",
+            "schema": {}
           },
           "401": {
             "description": "Returned when the user is not authenticated to the system.",
             "schema": {}
           },
           "403": {
-            "description": "Returned when the user is not authorized to update the location.",
+            "description": "Returned when the user is not authorized to update the subject.",
             "schema": {}
           },
           "404": {
-            "description": "Returned when the identified location does not exist.",
+            "description": "Returned when the identified subject does not exist.",
+            "schema": {}
+          },
+          "500": {
+            "description": "Returned when the underlying storage system returns an error.",
             "schema": {}
           },
           "default": {
@@ -255,103 +279,7 @@
         "parameters": [
           {
             "name": "identity",
-            "description": "Specify location `identity` as in `locations/add30235-1424-4fda-840a-d5ef82c4c96f`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "description": "The body provides the location fields to update",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/archivistv2Location"
-            }
-          }
-        ],
-        "tags": [
-          "Locations"
-        ]
-      }
-    },
-    "/archivist/v2/{location_identity}/permissions": {
-      "get": {
-        "summary": "Get location permissions",
-        "description": "Get location permissions for identified location",
-        "operationId": "Locations_GetLocationPermissions",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v2LocationPermissions"
-            }
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to list permissions for the location.",
-            "schema": {}
-          },
-          "404": {
-            "description": "Returned when the identified location does not exist.",
-            "schema": {}
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "location_identity",
-            "description": "Specify location `identity` as in `locations/add30235-1424-4fda-840a-d5ef82c4c96f`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Locations"
-        ]
-      },
-      "patch": {
-        "summary": "Patch location permissions",
-        "description": "Patch location permissions for identified location",
-        "operationId": "Locations_SetLocationPermissions",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v2LocationPermissions"
-            }
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to access permissions for the location.",
-            "schema": {}
-          },
-          "404": {
-            "description": "Returned when the identified location does not exist.",
-            "schema": {}
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "location_identity",
+            "description": "Specify subject `identity` as in `subjects/add30235-1424-4fda-840a-d5ef82c4c96f`",
             "in": "path",
             "required": true,
             "type": "string"
@@ -361,18 +289,18 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/v2SubjectIdentities"
+              "$ref": "#/definitions/v1IAMSubject"
             }
           }
         ],
         "tags": [
-          "Locations"
+          "Subjects"
         ]
       }
     }
   },
   "definitions": {
-    "ListLocationsRequestOrderBy": {
+    "ListIAMSubjectsRequestOrderBy": {
       "type": "string",
       "enum": [
         "DEFAULT",
@@ -380,70 +308,6 @@
       ],
       "default": "DEFAULT",
       "title": "Supported sort orders"
-    },
-    "archivistv2Location": {
-      "type": "object",
-      "example": {
-        "identity": "locations/08838336-c357-460d-902a-3aba9528dd22",
-        "display_name": "Macclesfield, Cheshire",
-        "description": "Manufacturing site, North West England, Macclesfield, Cheshire",
-        "latitude": "53.2546799",
-        "longitude": "-2.1213956,14.54",
-        "attributes": {
-          "director": "John Smith",
-          "address": "Bridgewater, Somerset",
-          "Facility Type": "Manufacture",
-          "support_email": "support@macclesfield.com",
-          "support_phone": "123 456 789"
-        }
-      },
-      "properties": {
-        "identity": {
-          "type": "string",
-          "description": "Unique identification for the location, Relative Resource Name",
-          "title": "Relative Resource Name for the location. Always generated by the system. Allways contains a uuid"
-        },
-        "display_name": {
-          "type": "string",
-          "description": "Customer friendly name for the location.",
-          "maxLength": 128
-        },
-        "description": {
-          "type": "string",
-          "description": "Free text description of the location",
-          "maxLength": 8096
-        },
-        "latitude": {
-          "type": "number",
-          "format": "double",
-          "description": "Latitude in decimal degrees",
-          "title": "Latitude in decimal degrees",
-          "maximum": 90,
-          "minimum": -90
-        },
-        "longitude": {
-          "type": "number",
-          "format": "double",
-          "description": "Longitude in decimal degrees",
-          "title": "Longitude in decimal degrees",
-          "maximum": 180,
-          "minimum": -180
-        },
-        "attributes": {
-          "type": "object",
-          "additionalProperties": {
-            "$ref": "#/definitions/v2Attribute"
-          },
-          "description": "Customer defined flat map of strings."
-        },
-        "tenant": {
-          "type": "string",
-          "description": "Tenent id",
-          "title": "Location creating customer tenant ID",
-          "maxLength": 128
-        }
-      },
-      "description": "Describes a location for asset resources"
     },
     "protobufAny": {
       "type": "object",
@@ -495,156 +359,145 @@
         }
       }
     },
-    "v1ListSuggestionsResponse": {
-      "type": "object",
-      "example": [
-        "Grayslake, Illinois",
-        "Macclesfield"
-      ],
-      "properties": {
-        "suggestions": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "List of lexically sorted string suggestions.\nWhen the named attribute refers to a string value (leaf attribute), for example principal_declared.email, the list is the lexically sorted set of values currently known for that field."
-        },
-        "next_page_token": {
-          "type": "string",
-          "title": "Token to retrieve the next page of results or empty if there are none.\nNote: Paging is partialy supported as a means for the client to limit the number of responses and to know if the response list is complete. Attempts to redeme a page token will fail. Presence of a page token means there are more suggestions but we didn’t return them"
-        }
-      },
-      "description": "List of suggestions (or the next page in a continuing  list request"
-    },
-    "v2Attribute": {
-      "type": "object",
-      "properties": {
-        "str_val": {
-          "type": "string"
-        },
-        "dict_val": {
-          "$ref": "#/definitions/v2DictAttr"
-        },
-        "list_val": {
-          "$ref": "#/definitions/v2ListAttr"
-        }
-      }
-    },
-    "v2CreateLocationRequest": {
+    "v1CreateIAMSubjectRequest": {
       "type": "object",
       "example": {
-        "display_name": "Macclesfield, Cheshire",
-        "description": "Manufacturing site, North West England, Macclesfield, Cheshire",
-        "latitude": "53.2546799",
-        "longitude": "-2.1213956,14.54",
-        "attributes": {
-          "director": "John Smith",
-          "address": "Bridgewater, Somerset",
-          "Facility Type": "Manufacture",
-          "support_email": "support@macclesfield.com",
-          "support_phone": "123 456 789"
-        }
+        "display_name": "Some description",
+        "wallet_pub_key": [
+          "key1",
+          "key2"
+        ],
+        "tessera_pub_key": [
+          "key3",
+          "key4"
+        ]
       },
       "properties": {
         "display_name": {
           "type": "string",
-          "description": "Customer friendly name for the asset.",
+          "description": "Customer friendly name for the subject.",
           "maxLength": 128
         },
-        "description": {
-          "type": "string",
-          "description": "Free text description of the location",
-          "maxLength": 8096
+        "wallet_pub_key": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Organisation's public wallet keys (BNF)",
+          "maxLength": 256
         },
-        "latitude": {
-          "type": "number",
-          "format": "double",
-          "description": "Latitude in decimal degrees format.",
-          "maximum": 90,
-          "minimum": -90
-        },
-        "longitude": {
-          "type": "number",
-          "format": "double",
-          "description": "longitude in decimal degrees format.",
-          "maximum": 180,
-          "minimum": -180
-        },
-        "attributes": {
-          "type": "object",
-          "additionalProperties": {
-            "$ref": "#/definitions/v2Attribute"
-          }
+        "tessera_pub_key": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Organisation's tessara wallet keys (BNF)",
+          "maxLength": 256
         }
       },
-      "description": "The body of a request to create new Jitsuin Asset location.",
+      "description": "The body of a request to create new Jitsuin Subject.",
       "required": [
-        "display_name",
-        "latitude",
-        "longitude"
+        "display_name"
       ]
     },
-    "v2DictAttr": {
+    "v1IAMSubject": {
       "type": "object",
+      "example": {
+        "identity": "subjects/08838336-c357-460d-902a-3aba9528dd22",
+        "display_name": "Some description",
+        "wallet_pub_key": [
+          "key1",
+          "key2"
+        ],
+        "wallet_address": [
+          "address1",
+          "address2"
+        ],
+        "tessera_pub_key": [
+          "key3",
+          "key4"
+        ]
+      },
       "properties": {
-        "value": {
-          "type": "object",
-          "additionalProperties": {
+        "identity": {
+          "type": "string",
+          "description": "Unique identification for the subject, Relative Resource Name",
+          "title": "generated identity for the entry"
+        },
+        "display_name": {
+          "type": "string",
+          "description": "Customer friendly name for the subject.",
+          "title": "user friendly display name for this principal",
+          "maxLength": 128
+        },
+        "wallet_pub_key": {
+          "type": "array",
+          "items": {
             "type": "string"
-          }
-        }
-      }
-    },
-    "v2ListAttr": {
-      "type": "object",
-      "properties": {
-        "value": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v2DictAttr"
-          }
-        }
-      }
-    },
-    "v2ListLocationsResponse": {
-      "type": "object",
-      "properties": {
-        "locations": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/archivistv2Location"
           },
-          "title": "There will be at most ListLocationsRequest.page_size items"
+          "description": "Organisation's public wallet keys (BNF)",
+          "title": "org wallet keys (one to start with) in blockchain native format",
+          "maxLength": 256
+        },
+        "wallet_address": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Organisation's wallet addresses",
+          "title": "org wallet addresses, derived from the org wallet keys.  For each org wallet key there will be a corresponding address",
+          "maxLength": 256
+        },
+        "tessera_pub_key": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Organisation's tessara wallet keys (BNF)",
+          "title": "org tessera keys (one to start with) in blockchain native format",
+          "maxLength": 256
+        },
+        "tenant": {
+          "type": "string",
+          "description": "Tenent id",
+          "title": "customer tenant ID",
+          "maxLength": 128
+        }
+      },
+      "description": "Describes an Access Policy for OBAC"
+    },
+    "v1ListIAMSubjectsResponse": {
+      "type": "object",
+      "example": {
+        "subjects": [
+          {
+            "identity": "subjects/08838336-c357-460d-902a-3aba9528dd22",
+            "display_name": "Some description",
+            "wallet_pub_key": [
+              "key1",
+              "key2"
+            ],
+            "tessera_pub_key": [
+              "key3",
+              "key4"
+            ]
+          }
+        ],
+        "page_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6InN0dW50aWR"
+      },
+      "properties": {
+        "subjects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1IAMSubject"
+          }
         },
         "next_page_token": {
           "type": "string",
           "description": "Token to retrieve the next page of results or empty if there are none."
         }
-      }
-    },
-    "v2LocationPermissions": {
-      "type": "object",
-      "properties": {
-        "location_identity": {
-          "type": "string"
-        },
-        "permissions": {
-          "$ref": "#/definitions/v2SubjectIdentities"
-        }
-      }
-    },
-    "v2SubjectIdentities": {
-      "type": "object",
-      "properties": {
-        "subject_identities": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "list of subject identities this location is shared with",
-          "maxLength": 128
-        }
-      }
+      },
+      "description": "List of subjects (or the next page in a continuing  list request"
     }
   }
 }

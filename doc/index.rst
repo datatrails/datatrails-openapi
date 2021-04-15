@@ -17,8 +17,7 @@ Archivist API documentation
    tlscacertificatesv1/index
    compliancev1/index
    groupsv1/index
-   iamv1alpha1/index
-   iamv1alpha2/index
+   iamv1/index
    attachments/index
    attachmentsv2/index
    blobsv1/index
