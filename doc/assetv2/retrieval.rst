@@ -42,6 +42,19 @@ resource:
         -H "@$BEARER_TOKEN_FILE" \
         $URL/archivist/v2/assets/6a951b62-0a26-4c22-a886-1082297b063b
 
+Fetch specific asset at given point in time by identity
+=======================================================
+
+If you know the unique identity of an Asset Record and want to show its state at any given point in the past, simply GET with following query parameter
+
+.. code-block:: shell
+
+   $ curl -v -X GET \
+        -H "@$BEARER_TOKEN_FILE" \
+        $URL/archivist/v2/assets/6a951b62-0a26-4c22-a886-1082297b063b?at_time=2021-01-13T12:34:21Z
+
+This will return the Asset Record with the values it had on 2021-01-13T12:34:21Z
+
 Fetch assets by name
 ====================
 

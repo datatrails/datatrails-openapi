@@ -8,6 +8,11 @@
       "url": "https://www.jitsuin.com"
     }
   },
+  "tags": [
+    {
+      "name": "Assets"
+    }
+  ],
   "host": "jitsuin.readthedocs.io",
   "basePath": "/archivist/v2",
   "schemes": [
@@ -44,9 +49,9 @@
             "schema": {}
           },
           "default": {
-            "description": "An unexpected error response",
+            "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/runtimeError"
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -128,9 +133,9 @@
             "schema": {}
           },
           "default": {
-            "description": "An unexpected error response",
+            "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/runtimeError"
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -172,9 +177,9 @@
             "schema": {}
           },
           "default": {
-            "description": "An unexpected error response",
+            "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/runtimeError"
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -185,6 +190,14 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "at_time",
+            "description": "specify time in the past to show asset data as it was at time specified",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
           }
         ],
         "tags": [
@@ -215,9 +228,9 @@
             "schema": {}
           },
           "default": {
-            "description": "An unexpected error response",
+            "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/runtimeError"
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -414,9 +427,9 @@
             "schema": {}
           },
           "default": {
-            "description": "An unexpected error response",
+            "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/runtimeError"
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -443,7 +456,8 @@
           "type": "object",
           "additionalProperties": {
             "type": "string"
-          }
+          },
+          "description": "key value mapping of asset attributes"
         }
       }
     },
@@ -451,23 +465,17 @@
       "type": "object",
       "properties": {
         "type_url": {
-          "type": "string",
-          "description": "A URL/resource name that uniquely identifies the type of the serialized\nprotocol buffer message. This string must contain at least\none \"/\" character. The last segment of the URL's path must represent\nthe fully qualified name of the type (as in\n`path/google.protobuf.Duration`). The name should be in a canonical form\n(e.g., leading \".\" is not accepted).\n\nIn practice, teams usually precompile into the binary all types that they\nexpect it to use in the context of Any. However, for URLs which use the\nscheme `http`, `https`, or no scheme, one can optionally set up a type\nserver that maps type URLs to message definitions as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nNote: this functionality is not currently available in the official\nprotobuf release, and it is not used for type URLs beginning with\ntype.googleapis.com.\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics."
+          "type": "string"
         },
         "value": {
           "type": "string",
-          "format": "byte",
-          "description": "Must be a valid serialized protocol buffer of the above specified type."
+          "format": "byte"
         }
-      },
-      "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(&foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\n Example 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\n Example 4: Pack and unpack a message in Go\n\n     foo := &pb.Foo{...}\n     any, err := ptypes.MarshalAny(foo)\n     ...\n     foo := &pb.Foo{}\n     if err := ptypes.UnmarshalAny(any, foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n====\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": <string>,\n      \"lastName\": <string>\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }"
+      }
     },
-    "runtimeError": {
+    "rpcStatus": {
       "type": "object",
       "properties": {
-        "error": {
-          "type": "string"
-        },
         "code": {
           "type": "integer",
           "format": "int32"
@@ -491,6 +499,7 @@
           "Firmware",
           "Location"
         ],
+        "at_time": "2019-11-27T14:44:19Z",
         "attributes": {
           "arc_firmware_version": "3.2.1",
           "arc_attachments": [
@@ -524,6 +533,7 @@
           "additionalProperties": {
             "$ref": "#/definitions/v2Attribute"
           },
+          "description": "key value mapping of asset properties",
           "title": "all the asssets attributes"
         },
         "confirmation_status": {
@@ -543,6 +553,17 @@
           "description": "wallet address of the asset owner",
           "title": "wallet address for the owner of this asset",
           "readOnly": true
+        },
+        "at_time": {
+          "type": "string",
+          "format": "date-time",
+          "description": "indicates time the asset data is from",
+          "readOnly": true
+        },
+        "storage_integrity": {
+          "$ref": "#/definitions/v2StorageIntegrity",
+          "description": "the asset storage integrity level",
+          "title": "storage integrity of the asset (and all its events)"
         }
       },
       "description": "This describes Jitsuin Asset."
@@ -606,7 +627,13 @@
           "additionalProperties": {
             "$ref": "#/definitions/v2Attribute"
           },
-          "title": "event attributes for the assets creation"
+          "description": "key value mapping of event attributes",
+          "title": "event attributes for the assets creation",
+          "maxLength": 1024
+        },
+        "storage_integrity": {
+          "$ref": "#/definitions/v2StorageIntegrity",
+          "description": "specify the asset storage integrity level"
         }
       },
       "description": "This describes the body of a request to create new Jitsuin Asset."
@@ -677,14 +704,14 @@
           "additionalProperties": {
             "$ref": "#/definitions/v2Attribute"
           },
-          "description": "map of event attributes. Specific behaviours define required and optional event attributes for each supported operation."
+          "description": "key value mapping of event attributes"
         },
         "asset_attributes": {
           "type": "object",
           "additionalProperties": {
             "$ref": "#/definitions/v2Attribute"
           },
-          "description": "map of asset attributes. Specific behaviours define required and optional asset attributes. These attributes cause the corresponding attributes on the asset to be updated."
+          "description": "key value mapping of asset attributes"
         },
         "operation": {
           "type": "string",
@@ -856,6 +883,16 @@
         }
       },
       "description": "The principal description assured by the configured Identity  Provider. All values are according to OIDC id token claims and  standard claims.  See https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims"
+    },
+    "v2StorageIntegrity": {
+      "type": "string",
+      "enum": [
+        "STORAGE_INTEGRITY_UNSPECIFIED",
+        "LEDGER",
+        "TENANT_STORAGE"
+      ],
+      "default": "STORAGE_INTEGRITY_UNSPECIFIED",
+      "description": "Specifies how the asset data will be stored. This is set once on creation\nand does not change."
     },
     "v2TrackedStatus": {
       "type": "string",

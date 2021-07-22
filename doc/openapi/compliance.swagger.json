@@ -8,6 +8,11 @@
       "url": "https://www.jitsuin.com"
     }
   },
+  "tags": [
+    {
+      "name": "Compliance"
+    }
+  ],
   "host": "jitsuin.readthedocs.io",
   "basePath": "/archivist/v1",
   "schemes": [
@@ -49,9 +54,9 @@
             "schema": {}
           },
           "default": {
-            "description": "An unexpected error response",
+            "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/runtimeError"
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -88,6 +93,14 @@
               "DEFAULT"
             ],
             "default": "DEFAULT"
+          },
+          {
+            "name": "compliant_at",
+            "description": "timestamp at which compliance is determined. time at which compliance is determined",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
           }
         ],
         "tags": [
@@ -118,9 +131,9 @@
             "schema": {}
           },
           "default": {
-            "description": "An unexpected error response",
+            "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/runtimeError"
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -178,9 +191,9 @@
             "schema": {}
           },
           "default": {
-            "description": "An unexpected error response",
+            "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/runtimeError"
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -222,9 +235,9 @@
             "schema": {}
           },
           "default": {
-            "description": "An unexpected error response",
+            "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/runtimeError"
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -263,9 +276,9 @@
             "schema": {}
           },
           "default": {
-            "description": "An unexpected error response",
+            "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/runtimeError"
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -289,23 +302,17 @@
       "type": "object",
       "properties": {
         "type_url": {
-          "type": "string",
-          "description": "A URL/resource name that uniquely identifies the type of the serialized\nprotocol buffer message. This string must contain at least\none \"/\" character. The last segment of the URL's path must represent\nthe fully qualified name of the type (as in\n`path/google.protobuf.Duration`). The name should be in a canonical form\n(e.g., leading \".\" is not accepted).\n\nIn practice, teams usually precompile into the binary all types that they\nexpect it to use in the context of Any. However, for URLs which use the\nscheme `http`, `https`, or no scheme, one can optionally set up a type\nserver that maps type URLs to message definitions as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nNote: this functionality is not currently available in the official\nprotobuf release, and it is not used for type URLs beginning with\ntype.googleapis.com.\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics."
+          "type": "string"
         },
         "value": {
           "type": "string",
-          "format": "byte",
-          "description": "Must be a valid serialized protocol buffer of the above specified type."
+          "format": "byte"
         }
-      },
-      "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(\u0026foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\n Example 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\n Example 4: Pack and unpack a message in Go\n\n     foo := \u0026pb.Foo{...}\n     any, err := ptypes.MarshalAny(foo)\n     ...\n     foo := \u0026pb.Foo{}\n     if err := ptypes.UnmarshalAny(any, foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n====\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": \u003cstring\u003e,\n      \"lastName\": \u003cstring\u003e\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }"
+      }
     },
-    "runtimeError": {
+    "rpcStatus": {
       "type": "object",
       "properties": {
-        "error": {
-          "type": "string"
-        },
         "code": {
           "type": "integer",
           "format": "int32"
@@ -339,29 +346,64 @@
       },
       "properties": {
         "compliance_type": {
-          "$ref": "#/definitions/v1ComplianceType"
+          "$ref": "#/definitions/v1ComplianceType",
+          "description": "policy type",
+          "readOnly": true
         },
         "description": {
-          "type": "string"
+          "type": "string",
+          "description": "descripton",
+          "readOnly": true
         },
         "display_name": {
-          "type": "string"
+          "type": "string",
+          "description": "display name",
+          "readOnly": true
         },
         "asset_filter": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/v1Filter"
-          }
+          },
+          "description": "filter for asset this compliance policy is for [ { or: [\"a:b\", \"c:d\"]}, { or: [...]}]",
+          "readOnly": true
         },
         "event_display_type": {
-          "type": "string"
+          "type": "string",
+          "description": "this is the target event_display_type - always required",
+          "readOnly": true
         },
         "closing_event_display_type": {
-          "type": "string"
+          "type": "string",
+          "description": "this is the corelated event type",
+          "readOnly": true
         },
         "time_period_seconds": {
           "type": "string",
-          "format": "int64"
+          "format": "int64",
+          "description": "time delta - required for SINCE and PERIOD_OUTSTANDING",
+          "readOnly": true
+        },
+        "dynamic_window": {
+          "type": "string",
+          "format": "int64",
+          "description": "valid period for policy - required for DYNAMIC_TOLERANCE",
+          "readOnly": true
+        },
+        "dynamic_variability": {
+          "type": "number",
+          "format": "float",
+          "description": "number of standard deviations - required for DYNAMIC_TOLERANCE",
+          "readOnly": true
+        },
+        "richness_assertions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Filter"
+          },
+          "description": "assertions for the richness of this compliance policy [ { or: [\"a\u003cb\", \"c\u003e=d\"]}, { or: [...]}]",
+          "title": "richness assertions follows the same pattern as filters [{\"or\":[\"foo=bar\", \"baz=fiz\"]}]",
+          "readOnly": true
         }
       },
       "description": "request adding new compliance policy"
@@ -411,6 +453,20 @@
         "time_period_seconds": {
           "type": "string",
           "format": "int64"
+        },
+        "dynamic_window": {
+          "type": "string",
+          "format": "int64"
+        },
+        "dynamic_variability": {
+          "type": "number",
+          "format": "float"
+        },
+        "richness_assertions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Filter"
+          }
         }
       },
       "description": "compliance policy"
@@ -431,9 +487,14 @@
         },
         "compliant": {
           "type": "boolean",
-          "format": "boolean",
           "description": "status of compliance against the compliance policy",
           "title": "compliance status"
+        },
+        "reason": {
+          "type": "string",
+          "description": "reason for non-compliance",
+          "readOnly": true,
+          "maxLength": 1024
         }
       },
       "description": "simple compliance status against a compliance policy.",
@@ -445,7 +506,9 @@
         "COMPLIANCE_TYPE_UNDEFINED",
         "COMPLIANCE_SINCE",
         "COMPLIANCE_CURRENT_OUTSTANDING",
-        "COMPLIANCE_PERIOD_OUTSTANDING"
+        "COMPLIANCE_PERIOD_OUTSTANDING",
+        "COMPLIANCE_DYNAMIC_TOLERANCE",
+        "COMPLIANCE_RICHNESS"
       ],
       "default": "COMPLIANCE_TYPE_UNDEFINED"
     },
@@ -485,12 +548,12 @@
             "compliant": false
           }
         ],
-        "compliant": false
+        "compliant": false,
+        "compliant_at": "2019-11-27T14:44:19Z"
       },
       "properties": {
         "compliant": {
           "type": "boolean",
-          "format": "boolean",
           "description": "overall compliance status for the asset",
           "title": "Overall compliance status.  Will be true only if compliant is true for all applicable compliance_policies, otherwise false"
         },
@@ -505,6 +568,13 @@
         "next_page_token": {
           "type": "string",
           "description": "Token to retrieve the next page of results or empty if there are none."
+        },
+        "compliant_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "time at which compliance is determined",
+          "title": "timestamp at which compliance is determined",
+          "readOnly": true
         }
       },
       "description": "simple compliance status for an Asset."
