@@ -453,6 +453,11 @@
           "description": "Tenent id",
           "title": "Location creating customer tenant ID",
           "maxLength": 128
+        },
+        "owner": {
+          "type": "string",
+          "description": "wallet address of the location owner",
+          "maxLength": 128
         }
       },
       "description": "Describes a location for asset resources"

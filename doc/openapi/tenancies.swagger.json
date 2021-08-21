@@ -26,58 +26,6 @@
     "application/json"
   ],
   "paths": {
-    "/archivist/v1/tenancies": {
-      "get": {
-        "summary": "get the tenant associated with the given issuer and/or subject.",
-        "description": "Fetch the tenant id associated with the issuer and/or subject.",
-        "operationId": "Tenancies_GetTenantIdentity",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1TenantResponse"
-            }
-          },
-          "400": {
-            "description": "Returned when the user doesn't provide an issuer or subject to filter on.",
-            "schema": {}
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to retrieve the tenant id.",
-            "schema": {}
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "issuer",
-            "description": "optional issuer of the principal identity. Where the issuer is not provided the subject is treated as a free string",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "subject",
-            "description": "unique identifier of the principal (within issuer context)",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Tenancies"
-        ]
-      }
-    },
     "/archivist/v1/tenancies/root_principals": {
       "get": {
         "summary": "Fetch the current list of tenant root user principals",
@@ -147,6 +95,65 @@
             "schema": {
               "$ref": "#/definitions/v1UpdateTenantRootPrincipalsRequest"
             }
+          }
+        ],
+        "tags": [
+          "Tenancies"
+        ]
+      }
+    },
+    "/archivist/v1/tenancies/tenantid": {
+      "get": {
+        "summary": "Get ID of tenant associated with issuer and/or subject, and create if not exists.",
+        "description": "Get ID of tenant associated with issuer and/or subject, and create if not exists.",
+        "operationId": "Tenancies_GetTenantID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1TenantIDResponse"
+            }
+          },
+          "400": {
+            "description": "Returned when the user doesn't provide an issuer or subject to filter on.",
+            "schema": {}
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to retrieve the tenant id.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "issuer",
+            "description": "Issuer of the principal identity.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "subject",
+            "description": "Unique identifier of the principal (within issuer context.) Used if social.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "is_social",
+            "description": "Is the issuer social?",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
           }
         ],
         "tags": [
@@ -223,6 +230,16 @@
         }
       }
     },
+    "v1TenantIDResponse": {
+      "type": "object",
+      "properties": {
+        "identity": {
+          "type": "string",
+          "description": "tenant identity `{UUID}`",
+          "readOnly": true
+        }
+      }
+    },
     "v1TenantLimitsResponse": {
       "type": "object",
       "properties": {
@@ -276,6 +293,13 @@
             "type": "integer",
             "format": "int32"
           }
+        },
+        "storage_integrity": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v2StorageIntegrity"
+          },
+          "title": "storage_integrity includes the enabled storage_integrity values for the tenant.\nCurrently we only support LEDGER *and* TENANT_STORAGE or just TENANT_STORAGE"
         }
       },
       "title": "Tenant information"
@@ -333,6 +357,16 @@
         }
       },
       "description": "The principal description assured by the configured Identity  Provider. All values are according to OIDC id token claims and  standard claims.  See https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims"
+    },
+    "v2StorageIntegrity": {
+      "type": "string",
+      "enum": [
+        "STORAGE_INTEGRITY_UNSPECIFIED",
+        "LEDGER",
+        "TENANT_STORAGE"
+      ],
+      "default": "STORAGE_INTEGRITY_UNSPECIFIED",
+      "description": "Specifies how the asset data will be stored. This is set once on creation\nand does not change."
     }
   }
 }

@@ -12,8 +12,6 @@ Assets API
    retrieval
    ../attachmentsv1/index
    ../builtinv1/index
-   ../firmwarev1/index
-   ../maintenancev1/index
    ../recordevidencev1/index
    openapi
 

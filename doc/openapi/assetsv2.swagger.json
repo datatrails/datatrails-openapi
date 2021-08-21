@@ -2,6 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Assets API",
+    "description": "API for asset and event management.",
     "version": "2.0",
     "contact": {
       "name": "Jitsuin",
@@ -28,6 +29,8 @@
   "paths": {
     "/archivist/v2/assets": {
       "get": {
+        "summary": "List Archivist assets",
+        "description": "Retrieves a list of Archivist assets",
         "operationId": "Assets_ListAssets",
         "responses": {
           "200": {
@@ -109,6 +112,19 @@
               "FAILED"
             ],
             "default": "CONFIRMATION_STATUS_UNSPECIFIED"
+          },
+          {
+            "name": "storage_integrity",
+            "description": "storage integrity of the asset (and all its events). the asset storage integrity level",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "STORAGE_INTEGRITY_UNSPECIFIED",
+              "LEDGER",
+              "TENANT_STORAGE"
+            ],
+            "default": "STORAGE_INTEGRITY_UNSPECIFIED"
           }
         ],
         "tags": [
@@ -116,6 +132,8 @@
         ]
       },
       "post": {
+        "summary": "Create an Archivist asset",
+        "description": "Creates an Archivist asset",
         "operationId": "Assets_CreateAsset",
         "responses": {
           "200": {
@@ -156,6 +174,8 @@
     },
     "/archivist/v2/{asset_identity}": {
       "get": {
+        "summary": "Retrieves a specific Archivist asset",
+        "description": "Retrieves a specific Archivist asset",
         "operationId": "Assets_GetAsset",
         "responses": {
           "200": {
@@ -207,6 +227,8 @@
     },
     "/archivist/v2/{asset_identity}/events": {
       "get": {
+        "summary": "List Archivist events",
+        "description": "Lists Archivist events",
         "operationId": "Assets_ListEvents",
         "responses": {
           "200": {
@@ -404,8 +426,10 @@
         ]
       }
     },
-    "/archivist/v2/{event_identity}": {
+    "/archivist/v2/{asset_identity}/{event_identifier}": {
       "get": {
+        "summary": "Retrieves Archivist event",
+        "description": "Retrieves a specific Archivist event",
         "operationId": "Assets_GetEvent",
         "responses": {
           "200": {
@@ -435,8 +459,15 @@
         },
         "parameters": [
           {
-            "name": "event_identity",
-            "description": "Specify Event `identity` as in full `assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
+            "name": "asset_identity",
+            "description": "Specify Asset `identity` as in `assets/add30235-1424-4fda-840a-d5ef82c4c96f`",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "event_identifier",
+            "description": "Specify Event `identifier` as in `events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
             "in": "path",
             "required": true,
             "type": "string"
@@ -496,10 +527,8 @@
       "example": {
         "identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
         "behaviours": [
-          "Firmware",
-          "Location"
+          "RecordEvidence"
         ],
-        "at_time": "2019-11-27T14:44:19Z",
         "attributes": {
           "arc_firmware_version": "3.2.1",
           "arc_attachments": [
@@ -511,7 +540,12 @@
             }
           ],
           "arc_home_location_identity": "locations/42054f10-9952-4c10-a082-9fd0d10295ae"
-        }
+        },
+        "confirmation_status": "PENDING",
+        "tracked": "TRACKED",
+        "owner": "0x601f5A7D3e6dcB55e87bf2F17bC8A27AaCD3511",
+        "at_time": "2019-11-27T14:44:19Z",
+        "storage_integrity": "TENANT_STORAGE"
       },
       "properties": {
         "identity": {
@@ -534,15 +568,17 @@
             "$ref": "#/definitions/v2Attribute"
           },
           "description": "key value mapping of asset properties",
-          "title": "all the asssets attributes"
+          "title": "all the assets attributes"
         },
         "confirmation_status": {
+          "type": "string",
           "$ref": "#/definitions/v2ConfirmationStatus",
           "description": "indicates if the asset has been succesfully committed to the blockchain",
           "title": "indicated if asset has been committed to the blockchain, possible values are CONFIRMED for committed, PENDING for not yet committed or FAILED for permanent failure",
           "readOnly": true
         },
         "tracked": {
+          "type": "string",
           "$ref": "#/definitions/v2TrackedStatus",
           "description": "indicates whether asset is still being tracked in the system",
           "title": "indicates if asset is being tracked in the system TRACKED or NOT_TRACKED",
@@ -561,6 +597,7 @@
           "readOnly": true
         },
         "storage_integrity": {
+          "type": "string",
           "$ref": "#/definitions/v2StorageIntegrity",
           "description": "the asset storage integrity level",
           "title": "storage integrity of the asset (and all its events)"
@@ -596,8 +633,8 @@
       "type": "object",
       "example": {
         "behaviours": [
-          "Firmware",
-          "Location"
+          "RecordEvidence",
+          "Attachments"
         ],
         "attributes": {
           "arc_firmware_version": "3.2.1",
@@ -632,6 +669,7 @@
           "maxLength": 1024
         },
         "storage_integrity": {
+          "type": "string",
           "$ref": "#/definitions/v2StorageIntegrity",
           "description": "specify the asset storage integrity level"
         }
@@ -654,8 +692,8 @@
       "example": {
         "identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000",
         "asset_identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
-        "operation": "Update",
-        "behaviour": "Firmware",
+        "operation": "Record",
+        "behaviour": "RecordEvidence",
         "event_attributes": {
           "arc_attachments": [
             {
@@ -715,14 +753,14 @@
         },
         "operation": {
           "type": "string",
-          "description": "The operation represented by the event. `Update`",
+          "description": "The operation represented by the event. `Record`",
           "title": "name of operation on this behviour",
           "readOnly": true,
           "maxLength": 4096
         },
         "behaviour": {
           "type": "string",
-          "description": "The behaviour used to create event. `Firmware`",
+          "description": "The behaviour used to create event. `RecordEvidence`",
           "title": "name of this behaviour",
           "readOnly": true,
           "maxLength": 4096
@@ -749,18 +787,21 @@
           "readOnly": true
         },
         "principal_declared": {
+          "type": "object",
           "$ref": "#/definitions/v2Principal",
           "description": "principal provided by the user",
           "title": "principal information associated with event - if not provided will be set to principal_accepted",
           "readOnly": true
         },
         "principal_accepted": {
+          "type": "object",
           "$ref": "#/definitions/v2Principal",
           "description": "principal recorded by the server",
           "title": "principal logged into the system that performed the operation",
           "readOnly": true
         },
         "confirmation_status": {
+          "type": "string",
           "$ref": "#/definitions/v2ConfirmationStatus",
           "description": "indicates if the event has been succesfully committed to the blockchain",
           "title": "indicated if operation has been committed to the blockchain",
@@ -805,6 +846,57 @@
     },
     "v2ListAssetsResponse": {
       "type": "object",
+      "example": {
+        "assets": [
+          {
+            "identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
+            "behaviours": [
+              "RecordEvidence"
+            ],
+            "attributes": {
+              "arc_firmware_version": "3.2.1",
+              "arc_attachments": [
+                {
+                  "arc_attachment_identity": "blobs/1754b920-cf20-4d7e-9d36-9ed7d479744d",
+                  "arc_hash_value": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+                  "arc_display_name": "Picture from yesterday",
+                  "arc_hash_alg": "sha256"
+                }
+              ],
+              "arc_home_location_identity": "locations/42054f10-9952-4c10-a082-9fd0d10295ae"
+            },
+            "confirmation_status": "PENDING",
+            "tracked": "TRACKED",
+            "owner": "0x601f5A7D3e6dcB55e87bf2F17bC8A27AaCD3511",
+            "at_time": "2019-11-27T14:44:19Z",
+            "storage_integrity": "TENANT_STORAGE"
+          },
+          {
+            "identity": "assets/cef61346-2453-5aeb-921c-e6fa93d5b032",
+            "behaviours": [
+              "RecordEvidence"
+            ],
+            "attributes": {
+              "arc_firmware_version": "3.2.1",
+              "arc_attachments": [
+                {
+                  "arc_attachment_identity": "blobs/2865ca31-d01f-5e6f-4621-de562470732e",
+                  "arc_hash_value": "12bc4819d90b6fe911b091a7c05134b65edfce045e09b048caaa7916ecdd458c",
+                  "arc_display_name": "Picture",
+                  "arc_hash_alg": "sha256"
+                }
+              ],
+              "arc_home_location_identity": "locations/53165a2c-6054-dd68-f093-a0e1e21304fd"
+            },
+            "confirmation_status": "PENDING",
+            "tracked": "TRACKED",
+            "owner": "0x601f5A7D3e6dcB55e87bf2F17bC8A27AaCD3511",
+            "at_time": "2019-11-27T14:44:19Z",
+            "storage_integrity": "TENANT_STORAGE"
+          }
+        ],
+        "next_page_token": "abcd"
+      },
       "properties": {
         "assets": {
           "type": "array",
@@ -840,6 +932,81 @@
     },
     "v2ListEventsResponse": {
       "type": "object",
+      "example": {
+        "events": [
+          {
+            "identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000",
+            "asset_identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
+            "operation": "Record",
+            "behaviour": "RecordEvidence",
+            "event_attributes": {
+              "arc_attachments": [
+                {
+                  "arc_attachment_identity": "blobs/1754b920-cf20-4d7e-9d36-9ed7d479744d",
+                  "arc_hash_value": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+                  "arc_display_name": "Picture from yesterday",
+                  "arc_hash_alg": "sha256"
+                }
+              ]
+            },
+            "asset_attributes": {
+              "arc_firmware_version": "3.2.1",
+              "arc_home_location_identity": "locations/42054f10-9952-4c10-a082-9fd0d10295ae"
+            },
+            "timestamp_accepted": "2019-11-27T14:44:19Z",
+            "timestamp_declared": "2019-11-27T14:44:19Z",
+            "timestamp_committed": "2019-11-27T14:44:19Z",
+            "principal_declared": {
+              "issuer": "job.idp.server/1234",
+              "subject": "bob@job"
+            },
+            "principal_accepted": {
+              "issuer": "job.idp.server/1234",
+              "subject": "bob@job"
+            },
+            "confirmation_status": "CONFIRMED",
+            "block_number": 12,
+            "transaction_index": 5,
+            "transaction_id": "0x07569"
+          },
+          {
+            "identity": "assets/bf330235-1424-4fda-840a-d5ef82c4c96f/events/23c06c48-e0b8-42e0-8dcf-dc8c4fdad123",
+            "asset_identity": "assets/bf330235-1424-4fda-840a-d5ef82c4c96f",
+            "operation": "Record",
+            "behaviour": "RecordEvidence",
+            "event_attributes": {
+              "arc_attachments": [
+                {
+                  "arc_attachment_identity": "blobs/1754b920-cf20-4d7e-9d36-9ed7d479744d",
+                  "arc_hash_value": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+                  "arc_display_name": "Picture",
+                  "arc_hash_alg": "sha256"
+                }
+              ]
+            },
+            "asset_attributes": {
+              "arc_firmware_version": "3.2.1",
+              "arc_home_location_identity": "locations/42054f10-9952-4c10-a082-9fd0d10295ae"
+            },
+            "timestamp_accepted": "2019-07-27T14:44:19Z",
+            "timestamp_declared": "2019-07-27T14:44:19Z",
+            "timestamp_committed": "2019-07-27T14:44:19Z",
+            "principal_declared": {
+              "issuer": "job.idp.server/1234",
+              "subject": "bob@job"
+            },
+            "principal_accepted": {
+              "issuer": "job.idp.server/1234",
+              "subject": "bob@job"
+            },
+            "confirmation_status": "CONFIRMED",
+            "block_number": 13,
+            "transaction_index": 6,
+            "transaction_id": "0x12569"
+          }
+        ],
+        "next_page_token": "abcd"
+      },
       "properties": {
         "events": {
           "type": "array",

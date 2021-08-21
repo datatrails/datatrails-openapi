@@ -124,8 +124,8 @@
     "v2CreateEventRequest": {
       "type": "object",
       "example": {
-        "operation": "Update",
-        "behaviour": "FirmwareV1",
+        "operation": "Record",
+        "behaviour": "RecordEvidence",
         "event_attributes": {
           "arc_attachments": [
             {
@@ -187,7 +187,7 @@
           "description": "key value mapping of asset attributes"
         }
       },
-      "description": "Request creating Firmware Update event Specify `operation` to chose which Firmware Update event to create "
+      "description": "Request creating RecordEvidence event Specify `operation` to chose which RecordEvidence event to create "
     },
     "v2DictAttr": {
       "type": "object",
@@ -205,8 +205,8 @@
       "example": {
         "identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000",
         "asset_identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
-        "operation": "Update",
-        "behaviour": "Firmware",
+        "operation": "Record",
+        "behaviour": "RecordEvidence",
         "event_attributes": {
           "arc_attachments": [
             {
@@ -266,14 +266,14 @@
         },
         "operation": {
           "type": "string",
-          "description": "The operation represented by the event. `Update`",
+          "description": "The operation represented by the event. `Record`",
           "title": "name of operation on this behviour",
           "readOnly": true,
           "maxLength": 4096
         },
         "behaviour": {
           "type": "string",
-          "description": "The behaviour used to create event. `Firmware`",
+          "description": "The behaviour used to create event. `RecordEvidence`",
           "title": "name of this behaviour",
           "readOnly": true,
           "maxLength": 4096
@@ -300,18 +300,21 @@
           "readOnly": true
         },
         "principal_declared": {
+          "type": "object",
           "$ref": "#/definitions/v2Principal",
           "description": "principal provided by the user",
           "title": "principal information associated with event - if not provided will be set to principal_accepted",
           "readOnly": true
         },
         "principal_accepted": {
+          "type": "object",
           "$ref": "#/definitions/v2Principal",
           "description": "principal recorded by the server",
           "title": "principal logged into the system that performed the operation",
           "readOnly": true
         },
         "confirmation_status": {
+          "type": "string",
           "$ref": "#/definitions/v2ConfirmationStatus",
           "description": "indicates if the event has been succesfully committed to the blockchain",
           "title": "indicated if operation has been committed to the blockchain",

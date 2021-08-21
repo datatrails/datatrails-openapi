@@ -1,13 +1,23 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "api/subjects/v1/subjects/subjects.proto",
-    "version": "version not set"
+    "title": "IAMSubjects API",
+    "version": "1.0",
+    "contact": {
+      "name": "Jitsuin",
+      "url": "https://www.jitsuin.com"
+    }
   },
   "tags": [
     {
       "name": "Subjects"
     }
+  ],
+  "host": "docs.rkvst.com",
+  "basePath": "/api/archivist/iam/v1",
+  "schemes": [
+    "http",
+    "https"
   ],
   "consumes": [
     "application/json"
