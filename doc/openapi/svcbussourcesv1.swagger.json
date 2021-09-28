@@ -1,0 +1,305 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "SvcBusSources API",
+    "description": "API to manage service bus sources.",
+    "version": "1.0",
+    "contact": {
+      "name": "Jitsuin",
+      "url": "https://www.jitsuin.com"
+    }
+  },
+  "tags": [
+    {
+      "name": "SvcBusSources"
+    }
+  ],
+  "host": "docs.rkvst.com",
+  "basePath": "/api/archivist/v1",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/archivist/v1/svcbussources": {
+      "get": {
+        "summary": "List all SvcBusSources",
+        "description": "List all SvcBusSources, the results will not contain secrets",
+        "operationId": "SvcBusSources_ListSvcBusSources",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListSvcBusSourcesResponse"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to list SvcBusSources.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "SvcBusSources"
+        ]
+      },
+      "post": {
+        "summary": "Create new SvcBusSource",
+        "description": "Create a connection to service bus endpoint - archivist will store credentials provided and sync events",
+        "operationId": "SvcBusSources_CreateSvcBusSource",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1SvcBusSource"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to create SvcBusSource.",
+            "schema": {}
+          },
+          "429": {
+            "description": "Returned when the number of concurrent subscriptions exceeds capacity (default=2).",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateSvcBusSourceRequest"
+            }
+          }
+        ],
+        "tags": [
+          "SvcBusSources"
+        ]
+      }
+    },
+    "/archivist/v1/svcbussources/{uuid}": {
+      "get": {
+        "summary": "Get SvcBusSource with provided identity",
+        "description": "Get SvcBusSource with provided identity, response will not include the secret",
+        "operationId": "SvcBusSources_GetSvcBusSource",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1SvcBusSource"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to get SvcBusSource.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "uuid",
+            "description": "Specify the Sevice Bus Source UUID where `svcbussources/{uuid}` is the Sevice Bus Source Identity e.g. `20c97f42-87fc-482c-9d58-4d11abd33359` from Identity `svcbussources/20c97f42-87fc-482c-9d58-4d11abd33359`",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "SvcBusSources"
+        ]
+      },
+      "delete": {
+        "summary": "Delete SvcBusSource",
+        "description": "Delete SvcBusSource with provided connection_identity",
+        "operationId": "SvcBusSources_DeleteSvcBusSource",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1SvcBusSource"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to delete SvcBusSources.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "uuid",
+            "description": "Specify the Sevice Bus Source UUID where `svcbussources/{uuid}` is the Sevice Bus Source Identity e.g. `20c97f42-87fc-482c-9d58-4d11abd33359` from Identity `svcbussources/20c97f42-87fc-482c-9d58-4d11abd33359`",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "SvcBusSources"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1CreateSvcBusSourceRequest": {
+      "type": "object",
+      "example": {
+        "display_name": "Jitsuin",
+        "connection_string": "Endpoint=sb://svcbussource-ns-jitsuin-te-1521552-cbcab4b965.servicebus.windows.net/;SharedAccessKeyName=iothubowner;SharedAccessKey=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx=;EntityPath=jitsuin-test-iot-hub",
+        "queue_name": "iothub"
+      },
+      "properties": {
+        "display_name": {
+          "type": "string",
+          "description": "The displayable name of the subscription.",
+          "readOnly": true,
+          "maxLength": 4096
+        },
+        "connection_string": {
+          "type": "string",
+          "description": "Connection String to Service bus endpoint",
+          "readOnly": true,
+          "maxLength": 4096
+        },
+        "queue_name": {
+          "type": "string",
+          "description": "Service bus queue name",
+          "title": "Service bus queue name",
+          "readOnly": true,
+          "maxLength": 4096
+        }
+      },
+      "description": "Create a subscription"
+    },
+    "v1ListSvcBusSourcesResponse": {
+      "type": "object",
+      "example": [
+        {
+          "identity": "svcbussources/20c97f42-87fc-482c-9d58-4d11abd33359",
+          "display_name": "Jitsuin"
+        },
+        {
+          "identity": "svcbussources/31d08053-980d-571b-ae67-5c02bcc21350",
+          "display_name": "Archivist"
+        }
+      ],
+      "properties": {
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1SvcBusSource"
+          }
+        }
+      },
+      "description": "Service buses"
+    },
+    "v1SvcBusSource": {
+      "type": "object",
+      "example": {
+        "identity": "svcbussources/20c97f42-87fc-482c-9d58-4d11abd33359",
+        "display_name": "Jitsuin"
+      },
+      "properties": {
+        "identity": {
+          "type": "string",
+          "description": "Relative resource name for the subscription. e.g. svcbussources/20c97f42-87fc-482c-9d58-4d11abd33359",
+          "title": "Unique identifier for the service bus connection string created by the service on POST",
+          "readOnly": true
+        },
+        "display_name": {
+          "type": "string",
+          "description": "The displayable name of the subscription.",
+          "readOnly": true,
+          "maxLength": 4096
+        },
+        "queue_name": {
+          "type": "string",
+          "description": "Service bus queue name",
+          "readOnly": true,
+          "maxLength": 4096
+        },
+        "status": {
+          "type": "string",
+          "description": "Service bus subscription status",
+          "readOnly": true,
+          "maxLength": 128
+        }
+      },
+      "description": "Service bus "
+    }
+  }
+}

@@ -1,0 +1,377 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>IAM Access Policies Update (v1) &mdash; Jitsuin Archivist v0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="IAM Access Policies matching Assets (v1)" href="assets.html" />
+    <link rel="prev" title="IAM Access Policy Deletion (v1)" href="deletion.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/Jitsuin_Logo_RGB.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../admin/index.html">Administrator configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../auth/authentication.html">API Request Authorization and Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tenanciesv1/index.html">Tenancies API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tlscacertificatesv1/index.html">TLS CA Certificates Management (v1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compliancev1/index.html">Compliance API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../groupsv1/index.html">Groups API (v1)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Identity and Access Management (v1)</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">IAM Access Policies API (v1)</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="creation.html">IAM Access Policies Creation (v1)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="retrieval.html">IAM Access Policies Retrieval (v1)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deletion.html">IAM Access Policy Deletion (v1)</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">IAM Access Policies Update (v1)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="assets.html">IAM Access Policies matching Assets (v1)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="openapi.html">IAM access Policies Swagger API</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../subjects/index.html">IAM Subjects API (v1)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../attachments/index.html">Attachments API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../attachmentsv2/index.html">Attachments V2 API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../blobsv1/index.html">BlobsV1 API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../locations/index.html">Locations API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../assetv2/index.html">Assets API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../eventv2/index.html">Events API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../applicationlink/index.html">Application Link APIs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../msiothub/index.html">Microsoft IoTHub API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../blockchainv1alpha1/index.html">Blockchain API (v1alpha1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../system/index.html">System API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../miscellaneous/index.html">Miscellaneous</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Jitsuin Archivist</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Identity and Access Management (v1)</a> &raquo;</li>
+        
+          <li><a href="index.html">IAM Access Policies API (v1)</a> &raquo;</li>
+        
+      <li>IAM Access Policies Update (v1)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="iam-access-policies-update-v1">
+<span id="iamv12access-policies-update"></span><h1>IAM Access Policies Update (v1)<a class="headerlink" href="#iam-access-policies-update-v1" title="Permalink to this headline">¶</a></h1>
+<p>Create the <strong>bearer_token</strong> and store in a file in a secure local directory with 0600 permissions.</p>
+<p>See <a class="reference internal" href="../../auth/authentication.html#bearer-token"><span class="std std-ref">API Request Authorization and Authentication</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following example shows use of the  API over curl in a bash terminal.
+The concepts are fully portable to any other REST client (eg PostMan or
+python requests)</p>
+</div>
+<p>Set the URL (for example):</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">URL</span><span class="o">=</span>https://synsation.1234-5678.nodes.archivist.jitsuin.io
+</pre></div>
+</div>
+<p>Define the access_policies parameters to be changed and store in /path/to/jsonfile:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;filters&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span><span class="nt">&quot;or&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;attributes.arc_home_location_identity=locations/5ea815f0-4de1-4a84-9377-701e880fe8ae&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;attributes.arc_home_location_identity=locations/27eed70b-9e2b-4db1-b8c4-e36505350dcc&quot;</span>
+        <span class="p">]},</span>
+        <span class="p">{</span><span class="nt">&quot;or&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;attributes.arc_display_type=Valve&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;attributes.arc_display_type=Pump&quot;</span>
+        <span class="p">]},</span>
+        <span class="p">{</span><span class="nt">&quot;or&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;attributes.ext_vendor_name=SynsationIndustries&quot;</span>
+        <span class="p">]}</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;access_permissions&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;asset_attributes_read&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;toner_colour&quot;</span><span class="p">,</span> <span class="s2">&quot;toner_type&quot;</span> <span class="p">],</span>
+            <span class="nt">&quot;asset_attributes_write&quot;</span><span class="p">:[</span><span class="s2">&quot;toner_colour&quot;</span><span class="p">],</span>
+            <span class="nt">&quot;behaviours&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;Attachments&quot;</span><span class="p">,</span> <span class="s2">&quot;Firmware&quot;</span><span class="p">,</span> <span class="s2">&quot;Maintenance&quot;</span><span class="p">,</span> <span class="s2">&quot;RecordEvidence&quot;</span> <span class="p">],</span>
+            <span class="nt">&quot;event_arc_display_type_read&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;toner_type&quot;</span><span class="p">,</span> <span class="s2">&quot;toner_colour&quot;</span><span class="p">],</span>
+            <span class="nt">&quot;event_arc_display_type_write&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;toner_replacement&quot;</span><span class="p">],</span>
+            <span class="nt">&quot;include_attributes&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;arc_display_name&quot;</span><span class="p">,</span> <span class="s2">&quot;arc_display_type&quot;</span><span class="p">,</span> <span class="s2">&quot;arc_firmware_version&quot;</span> <span class="p">],</span>
+            <span class="nt">&quot;subjects&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;subjects/6a951b62-0a26-4c22-a886-1082297b063b&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;subjects/a24306e5-dc06-41ba-a7d6-2b6b3e1df48d&quot;</span>
+            <span class="p">],</span>
+            <span class="nt">&quot;user_attributes&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span><span class="nt">&quot;or&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;group:maintainers&quot;</span><span class="p">,</span> <span class="s2">&quot;group:supervisors&quot;</span><span class="p">]}</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<dl>
+<dt>filters</dt><dd><p>list of asset attributes filters.</p>
+</dd>
+<dt>access_permissions</dt><dd><p>A list specifying which subjects and users get what rights for the
+matching assets.</p>
+<dl class="simple">
+<dt>behaviours</dt><dd><p>list of behaviours allowed to update the asset for the matching
+subjects and users. For all behaviours use [ “*” ]</p>
+</dd>
+<dt>asset_attributes_read</dt><dd><p>asset attributes named in this list will be visible.</p>
+</dd>
+<dt>asset_attributes_write</dt><dd><p>asset attributes named in this list will be writable.
+Note they can only be read if also listed in asset_attributes_read.</p>
+</dd>
+<dt>event_arc_display_type_read</dt><dd><p>events which have an event attribute arc_display_type with a value
+from this list will be visible. Matches due to
+event_arc_display_type_read are OR’d with matches due to include_attributes. To share
+all events with the specified users for any asset matching the filters, use [ “*” ].
+Using “*” means the event can have any value in arc_display_type or can omit it all together.</p>
+</dd>
+<dt>event_arc_display_type_write</dt><dd><p>events which have an event attribute arc_display_type with a value
+from this list will be WRITABLE. Matches due to
+event_arc_display_type_write are OR’d with matches due to include_attributes. To share
+all events with the specified users for any asset matching the filters, use [ “*” ].
+Using “*” means the event can set any value in arc_display_type or can omit it all together.</p>
+</dd>
+<dt>include_attributes</dt><dd><p>list of attributes to share with the matching subjects and be
+visible to the matching users. For all attributes use [ “*” ].
+matches due to include_attributes are OR’d with event_arc_display_type_read</p>
+</dd>
+<dt>subjects</dt><dd><p>list of subject identities of subjects who are to be granted
+these rights</p>
+</dd>
+<dt>user_attributes</dt><dd><p>list of user attribute filters that specifies who is allowed to see
+the assets matching the policy filters and use those assets
+behaviours</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<p>Update the access policy:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ curl -v -X PATCH <span class="se">\</span>
+    -H <span class="s2">&quot;@</span><span class="nv">$BEARER_TOKEN_FILE</span><span class="s2">&quot;</span> <span class="se">\</span>
+    -H <span class="s2">&quot;Content-type: application/json&quot;</span> <span class="se">\</span>
+    -d <span class="s2">&quot;@/path/to/jsonfile&quot;</span> <span class="se">\</span>
+    <span class="nv">$URL</span>/archivist/iam/v1/access_policies/47b58286-ff0f-11e9-8f0b-362b9e155667
+</pre></div>
+</div>
+<p>The response is:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;identity&quot;</span><span class="p">:</span> <span class="s2">&quot;access_policies/3f5be24f-fd1b-40e2-af35-ec7c14c74d53&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;display_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Friendly name of the policy&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Description of the policy&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;filters&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span><span class="nt">&quot;or&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;attributes.arc_home_location_identity=locations/5ea815f0-4de1-4a84-9377-701e880fe8ae&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;attributes.arc_home_location_identity=locations/27eed70b-9e2b-4db1-b8c4-e36505350dcc&quot;</span>
+        <span class="p">]},</span>
+        <span class="p">{</span><span class="nt">&quot;or&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;attributes.arc_display_type=Valve&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;attributes.arc_display_type=Pump&quot;</span>
+        <span class="p">]},</span>
+        <span class="p">{</span><span class="nt">&quot;or&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;attributes.ext_vendor_name=SynsationIndustries&quot;</span>
+        <span class="p">]}</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;access_permissions&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;asset_attributes_read&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;toner_colour&quot;</span><span class="p">,</span> <span class="s2">&quot;toner_type&quot;</span> <span class="p">],</span>
+            <span class="nt">&quot;asset_attributes_write&quot;</span><span class="p">:[</span><span class="s2">&quot;toner_colour&quot;</span><span class="p">],</span>
+            <span class="nt">&quot;behaviours&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;Attachments&quot;</span><span class="p">,</span> <span class="s2">&quot;Firmware&quot;</span><span class="p">,</span> <span class="s2">&quot;Maintenance&quot;</span><span class="p">,</span> <span class="s2">&quot;RecordEvidence&quot;</span> <span class="p">],</span>
+            <span class="nt">&quot;event_arc_display_type_read&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;toner_type&quot;</span><span class="p">,</span> <span class="s2">&quot;toner_colour&quot;</span><span class="p">],</span>
+            <span class="nt">&quot;event_arc_display_type_write&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;toner_replacement&quot;</span><span class="p">],</span>
+            <span class="nt">&quot;include_attributes&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;arc_display_name&quot;</span><span class="p">,</span> <span class="s2">&quot;arc_display_type&quot;</span><span class="p">,</span> <span class="s2">&quot;arc_firmware_version&quot;</span> <span class="p">],</span>
+            <span class="nt">&quot;subjects&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;subjects/6a951b62-0a26-4c22-a886-1082297b063b&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;subjects/a24306e5-dc06-41ba-a7d6-2b6b3e1df48d&quot;</span>
+            <span class="p">],</span>
+            <span class="nt">&quot;user_attributes&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span><span class="nt">&quot;or&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;group:maintainers&quot;</span><span class="p">,</span> <span class="s2">&quot;group:supervisors&quot;</span><span class="p">]}</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A full API reference is available in <a class="reference external" href="openapi.html#patch--archivist-iam-v1-identity">Swagger PATCH API</a></p>
+</div>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="assets.html" class="btn btn-neutral float-right" title="IAM Access Policies matching Assets (v1)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="deletion.html" class="btn btn-neutral float-left" title="IAM Access Policy Deletion (v1)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019-2021, Jitsuin, Inc..
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

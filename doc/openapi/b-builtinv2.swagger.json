@@ -13,7 +13,7 @@
       "name": "BehaviourBuiltin"
     }
   ],
-  "host": "jitsuin.readthedocs.io",
+  "host": "docs.rkvst.com",
   "basePath": "/archivist/v2",
   "schemes": [
     "http",
@@ -26,7 +26,7 @@
     "application/json"
   ],
   "paths": {
-    "/archivist/v2/{asset_identity}/events": {
+    "/archivist/v2/assets/{uuid}/events": {
       "post": {
         "operationId": "BehaviourBuiltin_Create",
         "responses": {
@@ -45,8 +45,8 @@
         },
         "parameters": [
           {
-            "name": "asset_identity",
-            "description": "identity of a related asset resource `assets/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
+            "name": "uuid",
+            "description": "Specify the Asset UUID where `assets/{uuid}` is the Asset Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f`",
             "in": "path",
             "required": true,
             "type": "string"
@@ -147,9 +147,9 @@
         }
       },
       "properties": {
-        "asset_identity": {
+        "uuid": {
           "type": "string",
-          "description": "identity of a related asset resource `assets/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
+          "description": "Specify the Asset UUID where `assets/{uuid}` is the Asset Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f`",
           "title": "relative resource name for associated asset ( asset the operation is performed on  - has to have specific behaviour enabled)",
           "readOnly": true
         },

@@ -1,0 +1,509 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>LifeCycle &mdash; Jitsuin Archivist v0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Behaviours" href="behaviours.html" />
+    <link rel="prev" title="Introduction" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/Jitsuin_Logo_RGB.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Introduction</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">LifeCycle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#security-twins-and-trustworthiness">Security Twins and Trustworthiness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#security-twins-jitsuin-archivist-asset-records-vs-digital-twins">Security Twins (Jitsuin Archivist Asset Records) vs Digital Twins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#asset-record-creation">Asset Record Creation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tracked-vs-untracked-assets">Tracked vs Untracked assets</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#asset-modification">Asset modification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#recording-events-in-the-asset-lifecycle">Recording events in the asset lifecycle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#firmware-security-management">Firmware security management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#maintenance-management">Maintenance management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-create-an-asset-record">How to create an Asset Record</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#understanding-asset-lifecycle-events">Understanding asset lifecycle events</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#timestamps">Timestamps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#user-principals">User principals</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="behaviours.html">Behaviours</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attachments.html">Attachments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="locations.html">Locations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access_control.html">Access Policies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security_twins.html">Compliance Policies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../admin/index.html">Administrator configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/authentication.html">API Request Authorization and Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tenanciesv1/index.html">Tenancies API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tlscacertificatesv1/index.html">TLS CA Certificates Management (v1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compliancev1/index.html">Compliance API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../groupsv1/index.html">Groups API (v1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iamv1/index.html">Identity and Access Management (v1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../attachments/index.html">Attachments API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../attachmentsv2/index.html">Attachments V2 API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../blobsv1/index.html">BlobsV1 API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../locations/index.html">Locations API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assetv2/index.html">Assets API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../eventv2/index.html">Events API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../applicationlink/index.html">Application Link APIs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../msiothub/index.html">Microsoft IoTHub API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../blockchainv1alpha1/index.html">Blockchain API (v1alpha1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system/index.html">System API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../miscellaneous/index.html">Miscellaneous</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Jitsuin Archivist</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Introduction</a> &raquo;</li>
+        
+      <li>LifeCycle</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="lifecycle">
+<span id="intro-lifecycle"></span><h1>LifeCycle<a class="headerlink" href="#lifecycle" title="Permalink to this headline">¶</a></h1>
+<p>Jitsuin Archivist is an asset lifecycle assurance system built to lower
+business risk. It enables enterprises to reveal, reduce and report risks
+introduced through connected devices and Digital Transformation. Jitsuin
+Archivist maintains a Full Service History for assets and Internet Things
+by keeping a permanent shared record of <em>When Who Did What to a Thing</em>.
+Following the principle that you can’t secure what you can’t see, this level
+of visibility and traceability is key to lowering the risk of business
+transformation with the Internet of Things.</p>
+<p>Jitsuin Archivist makes recording and auditing the full lifecycle of an asset
+simple: any authorized participant (including an agent or endpoint on the
+device itself) can register the events they know about, from which all
+participants can see a relevant aggregate picture of the asset’s maintenance
+and operational history.  By knowing <em>When Who Did What to a Thing</em> human
+actors and connected systems can make stronger judgments about the
+trustworthiness of a device and the data it produces.</p>
+<section id="security-twins-and-trustworthiness">
+<h2>Security Twins and Trustworthiness<a class="headerlink" href="#security-twins-and-trustworthiness" title="Permalink to this headline">¶</a></h2>
+<p>Trust is subjective. Compliance policies are a judgement call. No matter what
+security technology you have in play every trust decision you make will depend
+on the circumstances: who is accessing what; where they’re coming from; how
+sensitive an operation they’re attempting; the consequences of getting it
+wrong. An asset that is safe in one context may not be in another.</p>
+<p>Difficult decisions are slow to be made, and slow decisions means lost time.
+No matter what security mechanisms are in place, if you can’t <em>trust</em> the
+assets and data in your systems then the chances are you won’t be able to
+automate decisions and processes, keeping humans in the loop and losing the
+scale advantages of AI and IoT.</p>
+<p>Security Twins take the heavy lifting out of this process by providing a
+simple trust layer that any client or process can ask. They answer the
+question: given all that I know about this asset - its security status,
+maintenance history, active alarms - can I trust it with what I’m trying
+to do right now? They help you make smarter, faster, better decisions
+<em>and</em> provide traceability that enable you to explain those decisions
+later on.</p>
+</section>
+<section id="security-twins-jitsuin-archivist-asset-records-vs-digital-twins">
+<h2>Security Twins (Jitsuin Archivist Asset Records) vs Digital Twins<a class="headerlink" href="#security-twins-jitsuin-archivist-asset-records-vs-digital-twins" title="Permalink to this headline">¶</a></h2>
+<p>A Digital Twin simplifies Digital Transformation by representing real-world
+objects in virtual form that allows business applications to connect to
+Internet Thing data through simple APIs. This solution avoids stressing the
+power-constrained devices and unreliable network connectivity that often go
+hand-in-hand with IoT installations.</p>
+<p>Security Twins - built from Asset Records in Jitsuin Archivist - are not
+Digital Twins, although they do share a number of useful characteristics.
+Security Twins provide a trust layer that underpins the trustworthiness of
+Digital Twin applications. Understanding the differences between the two
+will help you to get the best out of the Archivist system and your Digital
+Transformation.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Digital Twin</p></th>
+<th class="head"><p>Security Twin</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">Typically connected to an agent on the</div>
+<div class="line">physical twin via real-time interfaces</div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">Doesn’t rely on a direct connection to</div>
+<div class="line">the physical twin. Any authenticated</div>
+<div class="line">actor may report on asset state</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><div class="line-block">
+<div class="line">Typically seeks to model sensor state</div>
+<div class="line">and ‘hot data’ from the device</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">Concentrates on operational and</div>
+<div class="line">maintenance state of the device. Sensor</div>
+<div class="line">data is typically only reported if it</div>
+<div class="line">is out of safe range or compliance</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">Acts as a proxy for collecting</div>
+<div class="line">any reading from the device when a</div>
+<div class="line">direct connection is not feasible</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">Acts as a Full Service History for the</div>
+<div class="line">device and its maintenance operations</div>
+<div class="line"><br /></div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><div class="line-block">
+<div class="line">Acts as an endpoint for business</div>
+<div class="line">applications to gather data or receive</div>
+<div class="line">commands</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">Provides the necessary information and</div>
+<div class="line">insight from the asset history and</div>
+<div class="line">status to augment Digital Twin data</div>
+<div class="line">with a score of trustworthiness,</div>
+<div class="line">provenance and compliance</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Security Twins and Digital Twins work well together to provide a full picture
+of Internet of Things operations: the Digital Twin offering a reliable and
+efficient view of the most recent known state of the device sensors, and
+the Security Twin (Archivist) providing an immutable record of its operational
+history and firmware state at the times of those readings.
+The APIs in this SDK can be used to integrate Jitsuin Archivist with an IoT
+platform such as Microsoft Azure IoT Hub, thereby bringing the power of a
+Security Twin layer without disrupting telemetry and data operations.</p>
+</section>
+<section id="asset-record-creation">
+<h2>Asset Record Creation<a class="headerlink" href="#asset-record-creation" title="Permalink to this headline">¶</a></h2>
+<p>The first event in an Asset Record’s life is <em>creation</em>. This initializes its
+Full Service History record and begins tracking the device to which that
+record pertains. Devices must be registered in the Archivist system through
+the creation of an Asset Record before any other lifecycle events can be
+recorded and handled.</p>
+<section id="tracked-vs-untracked-assets">
+<h3>Tracked vs Untracked assets<a class="headerlink" href="#tracked-vs-untracked-assets" title="Permalink to this headline">¶</a></h3>
+<p>Because the Full Service History of devices lasts forever it is not possible
+to actually delete Asset Records from the system. Instead there is a
+concept of <em>tracked</em> assets (those that are interesting to the system and
+actively recording lifecycle events), and <em>untracked</em> assets (those that are
+no longer actively interesting, for example as a result of decommissioning).</p>
+<p>This state is reflected in the <code class="docutils literal notranslate"><span class="pre">tracked</span></code> attribute. When an Asset Record is
+created its <code class="docutils literal notranslate"><span class="pre">tracked</span></code> attribute is automatically set to <code class="docutils literal notranslate"><span class="pre">TRACKED</span></code>.</p>
+<p>When a real asset is disposed of for any reason it may be desirable to remove
+it from the Jitsuin Archivist system so that it does not appear in
+lists or searches. Assets can be removed from default lists and searches by
+setting the <code class="docutils literal notranslate"><span class="pre">tracked</span></code> property to <code class="docutils literal notranslate"><span class="pre">UNTRACKED</span></code>, but they will still be
+present in the system with their Service Histories available.</p>
+</section>
+</section>
+<section id="asset-modification">
+<h2>Asset modification<a class="headerlink" href="#asset-modification" title="Permalink to this headline">¶</a></h2>
+<p>Asset attributes can be modified after creation by using the API.
+Only the asset identity is fixed: all other attributes can be modified.</p>
+<p>Modification of significant attributes (such as firmware version) results
+in an audited entry in the asset history.</p>
+</section>
+<section id="recording-events-in-the-asset-lifecycle">
+<h2>Recording events in the asset lifecycle<a class="headerlink" href="#recording-events-in-the-asset-lifecycle" title="Permalink to this headline">¶</a></h2>
+<p>Any interaction with a device can be significant: from user logins to
+unexpected restarts or ad-hoc observations. Keeping a record of these
+events can build up a picture of how an asset came to be in its current
+state and provide crucial insight to future maintenance staff, auditors,
+and security remediation teams.</p>
+<p>Archivist allows recording these general lifecycle events through the
+<code class="docutils literal notranslate"><span class="pre">RecordEvidence</span></code> behaviour.</p>
+<p>For more detail, see <a class="reference internal" href="../recordevidencev1/index.html#recordevidence-behaviour"><span class="std std-ref">RecordEvidence Operations API</span></a></p>
+</section>
+<section id="firmware-security-management">
+<h2>Firmware security management<a class="headerlink" href="#firmware-security-management" title="Permalink to this headline">¶</a></h2>
+<p>One of the most common sources of security breach in connected systems is
+unpatched software in devices. By providing a common platform for all
+relevant participants to collaborate on device maintenance, Jitsuin
+Archivist simplifies effective vulnerability disclosure, device recalls,
+regulatory compliance, and improved decision making.</p>
+<p>As well as recording the current firmware version of each device in its
+Asset Record, a full history of prior versions, vulnerability warnings,
+patches, and times left unpatched is maintained.</p>
+<p>Handling the firmware lifecycle record of an asset is performed through
+the Firmware behaviour. Devices can be marked as requiring an update for
+any reason using the <code class="docutils literal notranslate"><span class="pre">updateRequired</span></code> operation, are marked as vulnerable
+through the <code class="docutils literal notranslate"><span class="pre">vulnerability</span></code> operation, and record successful patching
+through the <code class="docutils literal notranslate"><span class="pre">update</span></code> operation.</p>
+<p>To aid in analysis and compliance management these events can be linked by
+adding a common tag to the pair of messages in the <code class="docutils literal notranslate"><span class="pre">arc_correlation_value</span></code>
+attribute.</p>
+<p>For more detail, see <span class="xref std std-ref">firmware_behaviour</span></p>
+</section>
+<section id="maintenance-management">
+<h2>Maintenance management<a class="headerlink" href="#maintenance-management" title="Permalink to this headline">¶</a></h2>
+<p>There are many factors that affect the security and trustworthiness of a
+device beyond firmware bugs: expired digital IDs, access control failures,
+and physical tampering among them. Jitsuin Archivist records and manages
+these events through the <code class="docutils literal notranslate"><span class="pre">maintenanceRequest</span></code> and <code class="docutils literal notranslate"><span class="pre">maintenance</span></code> event
+types.</p>
+<p>To aid in analysis and compliance management these events can be linked by
+adding a common tag to the pair of messages: for example, a work order number.</p>
+<p>For more detail, see <span class="xref std std-ref">maintenance_behaviour</span></p>
+</section>
+<section id="how-to-create-an-asset-record">
+<h2>How to create an Asset Record<a class="headerlink" href="#how-to-create-an-asset-record" title="Permalink to this headline">¶</a></h2>
+<p>Creating an Asset Record with the APIs is fast and straightforward.
+Follow the steps in this order for best success:</p>
+<p>1. Determine if the asset is associated with a particular location.
+If it is, look up the location identity (if it already exists) or get a
+new location identity by creating one.</p>
+<p>2. Import any attachments associated with the asset (for example,
+photograph of the physical unit) and get their identities.</p>
+<p>3. Create the Asset, including the (optional) identities of the location
+and attachments.</p>
+<p>For more detail, see <a class="reference internal" href="../locations/creation.html#locations-creation"><span class="std std-ref">Location Creation</span></a>, <a class="reference internal" href="../blobsv1/upload.html#blobsv1-upload"><span class="std std-ref">Upload Blob</span></a>
+and <a class="reference internal" href="../assetv2/creation.html#assetv2-creation"><span class="std std-ref">Asset Record Creation</span></a></p>
+</section>
+<section id="understanding-asset-lifecycle-events">
+<h2>Understanding asset lifecycle events<a class="headerlink" href="#understanding-asset-lifecycle-events" title="Permalink to this headline">¶</a></h2>
+<p>For details of how to retrieve Asset Records from the system see
+<a class="reference internal" href="../assetv2/retrieval.html#assetv2-retrieval"><span class="std std-ref">Asset Record Retrieval</span></a>.</p>
+<p>Lifecycle events in the Archivist system give stakeholders a shared view
+of “When Who did What to a Thing”.  The “What” and the “Thing” are quite
+straightforward, but the “When” and “Who” can be more nuanced.</p>
+<section id="timestamps">
+<h3>Timestamps<a class="headerlink" href="#timestamps" title="Permalink to this headline">¶</a></h3>
+<p>Once committed to the Jitsuin Archivist system, each lifecycle event record
+carries 3 separate timestamps:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">timestamp_declared</span></code> - an optional user-supplied value that tells when
+an event happened. This is useful for cases where the client system is
+off-line for a period but the user still wishes to record the accurate
+time and order of activities (eg inspection rounds in an air-gapped
+facility).
+If unspecified, the system sets <code class="docutils literal notranslate"><span class="pre">timestamp_declared</span></code> equal to
+<code class="docutils literal notranslate"><span class="pre">timestamp_accepted</span></code> (see below).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timestamp_accepted</span></code> - the time the event was actually received on the
+Jitsuin Archivist node’s REST interface. Set by the system, cannot be
+changed by the client.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timestamp_committed</span></code> - the time the event was confirmed distributed to
+all DLT nodes in the value chain.  Set by the system, cannot be changed
+by the client.</p></li>
+</ul>
+<p>Having these 3 fields enables users of Jitsuin Archivist to accurately reflect
+what is claimed, whilst also preventing tampering and backdating of entries.</p>
+</section>
+<section id="user-principals">
+<h3>User principals<a class="headerlink" href="#user-principals" title="Permalink to this headline">¶</a></h3>
+<p>Once committed to the Jitsuin Archivist system, each lifecycle event record
+carries 2 separate user identities:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">principal_declared</span></code> - an optional user-supplied value that tells who
+performed an event. This is useful for cases where the user principal/
+credential used to connect to the Archivist system does not accurately or
+usefully reflect the real-world agent (eg a multi-user application with
+device-based credentials).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">principal_accepted</span></code> - the actual user principal information belonging
+to the credential used to access the Jitsuin Archivist node’s REST interface.
+Set by the system and retrieved from the authorizing IDP, cannot be changed
+by the client.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="behaviours.html" class="btn btn-neutral float-right" title="Behaviours" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019-2021, Jitsuin, Inc..
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

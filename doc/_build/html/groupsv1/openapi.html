@@ -1,0 +1,283 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Groups Swagger API &mdash; Jitsuin Archivist v0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Identity and Access Management (v1)" href="../iamv1/index.html" />
+    <link rel="prev" title="Groups Retrieval (v1)" href="retrieval.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/Jitsuin_Logo_RGB.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../admin/index.html">Administrator configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/authentication.html">API Request Authorization and Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tenanciesv1/index.html">Tenancies API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tlscacertificatesv1/index.html">TLS CA Certificates Management (v1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compliancev1/index.html">Compliance API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Groups API (v1)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="retrieval.html">Groups Retrieval (v1)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Groups Swagger API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../iamv1/index.html">Identity and Access Management (v1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../attachments/index.html">Attachments API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../attachmentsv2/index.html">Attachments V2 API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../blobsv1/index.html">BlobsV1 API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../locations/index.html">Locations API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assetv2/index.html">Assets API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../eventv2/index.html">Events API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../applicationlink/index.html">Application Link APIs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../msiothub/index.html">Microsoft IoTHub API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../blockchainv1alpha1/index.html">Blockchain API (v1alpha1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system/index.html">System API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../miscellaneous/index.html">Miscellaneous</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Jitsuin Archivist</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Groups API (v1)</a> &raquo;</li>
+        
+      <li>Groups Swagger API</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="groups-swagger-api">
+<h1>Groups Swagger API<a class="headerlink" href="#groups-swagger-api" title="Permalink to this headline">¶</a></h1>
+<dl class="http get">
+<dt id="get--archivist-v1-groups">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/archivist/v1/groups</code><a class="headerlink" href="#get--archivist-v1-groups" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>List all groups</strong></p>
+<p>Returns a list of groups</p>
+<dl class="field-list simple">
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – A successful response.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Returned when the request is badly formed.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Returned when the user is not authenticated to the system.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.4">403 Forbidden</a> – Returned when the user is not authorized to read the subject.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Returned when the microsoft graph api returns an error.</p></li>
+<li><p><span class="problematic">default</span> – An unexpected error response.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response JSON Object</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>groups[].display_name</strong> (<em>string</em>) – Group display name</p></li>
+<li><p><strong>groups[].name</strong> (<em>string</em>) – Name of group in the form &lt;issuer&gt;:&lt;uid in issuer&gt; (read only)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--archivist-v1-groups-user_principal_name">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/archivist/v1/groups/{user_principal_name}</code><a class="headerlink" href="#get--archivist-v1-groups-user_principal_name" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Get a list of groups for a user</strong></p>
+<p>Returns the list of groups for a user</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>user_principal_name</strong> (<em>string</em>) – User principal name in AAD</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – A successful response.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Returned when the request is badly formed.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Returned when the user is not authenticated to the system.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.4">403 Forbidden</a> – Returned when the user is not authorized to read the subject.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Returned when the identified access policy does not exist.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – Returned when the microsoft graph api returns an error.</p></li>
+<li><p><span class="problematic">default</span> – An unexpected error response.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Response JSON Object</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>groups[].display_name</strong> (<em>string</em>) – Group display name</p></li>
+<li><p><strong>groups[].name</strong> (<em>string</em>) – Name of group in the form &lt;issuer&gt;:&lt;uid in issuer&gt; (read only)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../iamv1/index.html" class="btn btn-neutral float-right" title="Identity and Access Management (v1)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="retrieval.html" class="btn btn-neutral float-left" title="Groups Retrieval (v1)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019-2021, Jitsuin, Inc..
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

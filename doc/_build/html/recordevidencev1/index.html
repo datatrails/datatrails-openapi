@@ -1,0 +1,321 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>RecordEvidence Operations API &mdash; Jitsuin Archivist v0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Assets Swagger API" href="../assetv2/openapi.html" />
+    <link rel="prev" title="Builtin Operations API" href="../builtinv1/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/Jitsuin_Logo_RGB.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../admin/index.html">Administrator configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/authentication.html">API Request Authorization and Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tenanciesv1/index.html">Tenancies API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tlscacertificatesv1/index.html">TLS CA Certificates Management (v1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compliancev1/index.html">Compliance API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../groupsv1/index.html">Groups API (v1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iamv1/index.html">Identity and Access Management (v1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../attachments/index.html">Attachments API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../attachmentsv2/index.html">Attachments V2 API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../blobsv1/index.html">BlobsV1 API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../locations/index.html">Locations API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../assetv2/index.html">Assets API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../assetv2/creation.html">Asset Record Creation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../assetv2/retrieval.html">Asset Record Retrieval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attachmentsv1/index.html">Attachments Operations API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../builtinv1/index.html">Builtin Operations API</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">RecordEvidence Operations API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#recordevidence-record">RecordEvidence Record</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../assetv2/openapi.html">Assets Swagger API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../eventv2/index.html">Events API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../applicationlink/index.html">Application Link APIs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../msiothub/index.html">Microsoft IoTHub API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../blockchainv1alpha1/index.html">Blockchain API (v1alpha1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system/index.html">System API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../miscellaneous/index.html">Miscellaneous</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Jitsuin Archivist</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../assetv2/index.html">Assets API</a> &raquo;</li>
+        
+      <li>RecordEvidence Operations API</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p>Create the <strong>bearer_token</strong> and store in a file in a secure local directory with 0600 permissions.</p>
+<p>See <a class="reference internal" href="../auth/authentication.html#bearer-token"><span class="std std-ref">API Request Authorization and Authentication</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following example shows use of the  API over curl in a bash terminal.
+The concepts are fully portable to any other REST client (eg PostMan or
+python requests)</p>
+</div>
+<p>Set the URL (for example):</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">URL</span><span class="o">=</span>https://synsation.1234-5678.nodes.archivist.jitsuin.io
+</pre></div>
+</div>
+<section id="recordevidence-operations-api">
+<span id="recordevidence-behaviour"></span><h1>RecordEvidence Operations API<a class="headerlink" href="#recordevidence-operations-api" title="Permalink to this headline">¶</a></h1>
+<section id="recordevidence-record">
+<span id="recordevidence-behaviour-record"></span><h2>RecordEvidence Record<a class="headerlink" href="#recordevidence-record" title="Permalink to this headline">¶</a></h2>
+<p>Define the event parameters and store in /path/to/jsonfile:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;operation&quot;</span><span class="p">:</span> <span class="s2">&quot;Record&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;behaviour&quot;</span><span class="p">:</span> <span class="s2">&quot;RecordEvidence&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;event_attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;arc_description&quot;</span><span class="p">:</span> <span class="s2">&quot;Safety conformance approved for version 1.6. See attached conformance report&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;arc_evidence&quot;</span><span class="p">:</span> <span class="s2">&quot;DVA Conformance Report attached&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;conformance_report&quot;</span><span class="p">:</span> <span class="s2">&quot;blobs/e2a1d16c-03cd-45a1-8cd0-690831df1273&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;timestamp_declared&quot;</span><span class="p">:</span> <span class="s2">&quot;2019-11-27T14:44:19Z&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;principal_declared&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;issuer&quot;</span><span class="p">:</span> <span class="s2">&quot;idp.synsation.io/1234&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;subject&quot;</span><span class="p">:</span> <span class="s2">&quot;phil.b&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;phil.b@synsation.io&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<dl class="simple">
+<dt>attributes.arc_description</dt><dd><p><em>Required</em> Details of the RecordEvidence request</p>
+</dd>
+<dt>attributes.arc_evidence</dt><dd><p><em>Required</em> The evidence to be retained in the asset history</p>
+</dd>
+<dt>attributes.conformance_report</dt><dd><p><em>Example</em> Client can add any additional information in further
+attributes, including free text or attachments</p>
+</dd>
+<dt>timestamp_declared</dt><dd><p><em>Optional</em> Client-claimed time at which the maintenance was performed</p>
+</dd>
+<dt>principal_declared</dt><dd><p><em>Optional</em> Client-claimed identity of person performing the operation</p>
+</dd>
+</dl>
+</div>
+<p>Add the RecordEvidence request to the Asset Record by POSTing it to the resource:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ curl -v -X POST <span class="se">\</span>
+    -H <span class="s2">&quot;@</span><span class="nv">$BEARER_TOKEN_FILE</span><span class="s2">&quot;</span> <span class="se">\</span>
+    -H <span class="s2">&quot;Content-type: application/json&quot;</span> <span class="se">\</span>
+    -d <span class="s2">&quot;@/path/to/jsonfile&quot;</span> <span class="se">\</span>
+    <span class="nv">$URL</span>/archivist/v2/assets/add30235-1424-4fda-840a-d5ef82c4c96f/events
+</pre></div>
+</div>
+<p>The response is:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;identity&quot;</span><span class="p">:</span> <span class="s2">&quot;assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;asset_identity&quot;</span><span class="p">:</span> <span class="s2">&quot;assets/add30235-1424-4fda-840a-d5ef82c4c96f&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;operation&quot;</span><span class="p">:</span> <span class="s2">&quot;Record&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;behaviour&quot;</span><span class="p">:</span> <span class="s2">&quot;RecordEvidence&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;event_attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;arc_description&quot;</span><span class="p">:</span> <span class="s2">&quot;Safety conformance approved for version 1.6. See attached conformance report&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;arc_evidence&quot;</span><span class="p">:</span> <span class="s2">&quot;DVA Conformance Report attached&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;conformance_report&quot;</span><span class="p">:</span> <span class="s2">&quot;blobs/e2a1d16c-03cd-45a1-8cd0-690831df1273&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;timestamp_accepted&quot;</span><span class="p">:</span> <span class="s2">&quot;2019-11-27T15:13:21Z&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;timestamp_declared&quot;</span><span class="p">:</span> <span class="s2">&quot;2019-11-27T14:44:19Z&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;timestamp_committed&quot;</span><span class="p">:</span> <span class="s2">&quot;2019-11-27T15:15:02Z&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;principal_declared&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;issuer&quot;</span><span class="p">:</span> <span class="s2">&quot;idp.synsation.io/1234&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;subject&quot;</span><span class="p">:</span> <span class="s2">&quot;phil.b&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;phil.b@synsation.io&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;principal_accepted&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;issuer&quot;</span><span class="p">:</span> <span class="s2">&quot;job.idp.server/1234&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;subject&quot;</span><span class="p">:</span> <span class="s2">&quot;bob@job&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;confirmation_status&quot;</span><span class="p">:</span> <span class="s2">&quot;CONFIRMED&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;block_number&quot;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+  <span class="nt">&quot;transaction_index&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+  <span class="nt">&quot;transaction_id&quot;</span><span class="p">:</span> <span class="s2">&quot;0x07569&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../assetv2/openapi.html" class="btn btn-neutral float-right" title="Assets Swagger API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../builtinv1/index.html" class="btn btn-neutral float-left" title="Builtin Operations API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019-2021, Jitsuin, Inc..
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,575 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "AppRegistrations API",
+    "version": "1.0",
+    "contact": {
+      "name": "Jitsuin",
+      "url": "https://www.jitsuin.com"
+    }
+  },
+  "tags": [
+    {
+      "name": "AppRegistrations"
+    }
+  ],
+  "host": "docs.rkvst.con",
+  "basePath": "/archivist/iam/v1",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/archivist/iam/v1/applications": {
+      "get": {
+        "summary": "List applications for the user's tenant",
+        "description": "Lists all applications for the user's tenant",
+        "operationId": "AppRegistrations_ListAppRegistrations",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListAppRegistrationsResponse"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized.",
+            "schema": {}
+          },
+          "429": {
+            "description": "Returned when the user has issued too many requests for their tenant's subscription level.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_token",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "AppRegistrations"
+        ]
+      },
+      "post": {
+        "summary": "Registers a new application",
+        "description": "Registers a new application, generating a client ID and secret for use in machine authentication. Regenerates the client secret for the application matching the supplied UUID. The response will include the client secret, but it will not be possible to retrieve it afterwards.",
+        "operationId": "AppRegistrations_CreateAppRegistration",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Application"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "402": {
+            "description": "Returned when the user has created too many applications for their tenant's subscription level.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized.",
+            "schema": {}
+          },
+          "429": {
+            "description": "Returned when the user has issued too many requests for their tenant's subscription level.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateAppRegistrationRequest"
+            }
+          }
+        ],
+        "tags": [
+          "AppRegistrations"
+        ]
+      }
+    },
+    "/archivist/iam/v1/applications/{uuid}": {
+      "get": {
+        "summary": "Fetch an application record",
+        "description": "Fetches the application record for the supplied UUID",
+        "operationId": "AppRegistrations_GetAppRegistration",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Application"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the Application does not exist.",
+            "schema": {}
+          },
+          "429": {
+            "description": "Returned when the user has issued too many requests for their tenant's subscription level.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "AppRegistrations"
+        ]
+      },
+      "delete": {
+        "summary": "Delete an application",
+        "description": "Deletes the application matching the supplied UUID",
+        "operationId": "AppRegistrations_DeleteAppRegistration",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the Application does not exist.",
+            "schema": {}
+          },
+          "429": {
+            "description": "Returned when the user has issued too many requests for their tenant's subscription level.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "AppRegistrations"
+        ]
+      },
+      "patch": {
+        "summary": "Update an existing application",
+        "description": "Allows updating of the display name and custom claims for an application",
+        "operationId": "AppRegistrations_UpdateAppRegistration",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Application"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the Application does not exist.",
+            "schema": {}
+          },
+          "429": {
+            "description": "Returned when the user has issued too many requests for their tenant's subscription level.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1Application"
+            }
+          },
+          {
+            "name": "mask",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "AppRegistrations"
+        ]
+      }
+    },
+    "/archivist/iam/v1/applications/{uuid}:regenerate-secret": {
+      "post": {
+        "summary": "Regenerate the client secret for an application",
+        "description": "Regenerates the client secret for the application matching the supplied UUID. The response will include the client secret, but it will not be possible to retrieve it afterwards.",
+        "operationId": "AppRegistrations_RegenerateAppRegistrationSecret",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Application"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the Application does not exist.",
+            "schema": {}
+          },
+          "429": {
+            "description": "Returned when the user has issued too many requests for their tenant's subscription level.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "AppRegistrations"
+        ]
+      }
+    },
+    "/archivist/internal/iam/v1/applications/{uuid}": {
+      "get": {
+        "operationId": "AppRegistrations_InternalGetAppRegistration",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ApplicationWithTier"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "AppRegistrations",
+          "Unsupported"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1Application": {
+      "type": "object",
+      "example": {
+        "identity": "applications/ffaa0f30-a503-4de7-b085-d857ed34a7cd",
+        "display_name": "test",
+        "client_id": "ffaa0f30-a503-4de7-b085-d857ed34a7cd",
+        "tenant_id": "tenant/fafb2d41-5237-45c7-9740-66d1635f549b",
+        "credentials": [
+          {
+            "secret": "2acc636e8439fa2ea1a613fe547a1d435b0b0ab3793f11751559d7431a3414eb",
+            "valid_from": "2021-09-17T16:54:08Z",
+            "valid_until": "2022-09-17T16:54:08Z"
+          }
+        ],
+        "custom_claims": {
+          "asf": "asbdf"
+        }
+      },
+      "properties": {
+        "identity": {
+          "type": "string"
+        },
+        "display_name": {
+          "type": "string",
+          "description": "Validated since this field is used during updates."
+        },
+        "client_id": {
+          "type": "string"
+        },
+        "tenant_id": {
+          "type": "string"
+        },
+        "credentials": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Credential"
+          }
+        },
+        "custom_claims": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Validated since this field is used during updates."
+        }
+      },
+      "description": "Describes a single application used for machine authentication",
+      "title": "Response types"
+    },
+    "v1ApplicationWithTier": {
+      "type": "object",
+      "properties": {
+        "identity": {
+          "type": "string"
+        },
+        "display_name": {
+          "type": "string"
+        },
+        "client_id": {
+          "type": "string"
+        },
+        "tenant_id": {
+          "type": "string"
+        },
+        "credentials": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Credential"
+          }
+        },
+        "custom_claims": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "tier": {
+          "$ref": "#/definitions/v1Tier"
+        }
+      },
+      "title": "Internal response types"
+    },
+    "v1CreateAppRegistrationRequest": {
+      "type": "object",
+      "properties": {
+        "display_name": {
+          "type": "string"
+        },
+        "custom_claims": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "Request types"
+    },
+    "v1Credential": {
+      "type": "object",
+      "example": {
+        "secret": "2acc636e8439fa2ea1a613fe547a1d435b0b0ab3793f11751559d7431a3414eb",
+        "valid_from": "2021-09-17T16:54:08Z",
+        "valid_until": "2022-09-17T16:54:08Z"
+      },
+      "properties": {
+        "secret": {
+          "type": "string",
+          "description": "The secret will be redacted for certain methods."
+        },
+        "valid_from": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "valid_until": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "description": "Describes a single time-limited secret"
+    },
+    "v1ListAppRegistrationsResponse": {
+      "type": "object",
+      "example": {
+        "applications": [
+          {
+            "identity": "applications/b222a12e-03d8-40b0-8d28-b851c2caadd0",
+            "display_name": "a",
+            "client_id": "b222a12e-03d8-40b0-8d28-b851c2caadd0",
+            "tenant_id": "tenant/fafb2d41-5237-45c7-9740-66d1635f549b",
+            "credentials": [
+              {
+                "secret": "",
+                "valid_from": "2021-09-17T16:48:32Z",
+                "valid_until": "2022-09-17T16:48:32Z"
+              }
+            ],
+            "custom_claims": {
+              "a": "b"
+            }
+          },
+          {
+            "identity": "applications/288e8cef-62fa-4eb0-9d36-ab01db27c182",
+            "display_name": "test",
+            "client_id": "288e8cef-62fa-4eb0-9d36-ab01db27c182",
+            "tenant_id": "tenant/fafb2d41-5237-45c7-9740-66d1635f549b",
+            "credentials": [
+              {
+                "secret": "",
+                "valid_from": "2021-09-17T16:54:05Z",
+                "valid_until": "2022-09-17T16:54:05Z"
+              }
+            ],
+            "custom_claims": {
+              "asf": "asbdf"
+            }
+          }
+        ],
+        "next_page_token": "eyJvcmlnX3JlcSI6eyJwYWdlX3NpemUiOjJ9LCJza2lwIjoyfQ=="
+      },
+      "properties": {
+        "applications": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Application"
+          }
+        },
+        "next_page_token": {
+          "type": "string"
+        }
+      },
+      "description": "Describes a set of RKVST locations"
+    },
+    "v1Tier": {
+      "type": "string",
+      "enum": [
+        "TIER_UNSPECIFIED",
+        "FREE",
+        "PREMIUM"
+      ],
+      "default": "TIER_UNSPECIFIED"
+    }
+  }
+}

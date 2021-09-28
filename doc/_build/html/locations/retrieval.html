@@ -1,0 +1,317 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Location Retrieval &mdash; Jitsuin Archivist v0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Locations Swagger API" href="openapi.html" />
+    <link rel="prev" title="Location Creation" href="creation.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/Jitsuin_Logo_RGB.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../admin/index.html">Administrator configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/authentication.html">API Request Authorization and Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tenanciesv1/index.html">Tenancies API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tlscacertificatesv1/index.html">TLS CA Certificates Management (v1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compliancev1/index.html">Compliance API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../groupsv1/index.html">Groups API (v1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iamv1/index.html">Identity and Access Management (v1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../attachments/index.html">Attachments API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../attachmentsv2/index.html">Attachments V2 API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../blobsv1/index.html">BlobsV1 API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Locations API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="creation.html">Location Creation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Location Retrieval</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#fetch-all-locations">Fetch all locations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fetch-specific-location-by-identity">Fetch specific location by identity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fetch-location-by-name">Fetch location by name</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="openapi.html">Locations Swagger API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../assetv2/index.html">Assets API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../eventv2/index.html">Events API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../applicationlink/index.html">Application Link APIs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../msiothub/index.html">Microsoft IoTHub API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../blockchainv1alpha1/index.html">Blockchain API (v1alpha1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system/index.html">System API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../miscellaneous/index.html">Miscellaneous</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Jitsuin Archivist</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Locations API</a> &raquo;</li>
+        
+      <li>Location Retrieval</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="location-retrieval">
+<span id="locations-retrieval"></span><h1>Location Retrieval<a class="headerlink" href="#location-retrieval" title="Permalink to this headline">¶</a></h1>
+<p>Create the <strong>bearer_token</strong> and store in a file in a secure local directory with 0600 permissions.</p>
+<p>See <a class="reference internal" href="../auth/authentication.html#bearer-token"><span class="std std-ref">API Request Authorization and Authentication</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following example shows use of the  API over curl in a bash terminal.
+The concepts are fully portable to any other REST client (eg PostMan or
+python requests)</p>
+</div>
+<p>Set the URL (for example):</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">URL</span><span class="o">=</span>https://synsation.1234-5678.nodes.archivist.jitsuin.io
+</pre></div>
+</div>
+<section id="fetch-all-locations">
+<h2>Fetch all locations<a class="headerlink" href="#fetch-all-locations" title="Permalink to this headline">¶</a></h2>
+<p>To fetch all locations, simply GET the <code class="docutils literal notranslate"><span class="pre">locations</span></code> resource:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ curl -v -X GET <span class="se">\</span>
+     -H <span class="s2">&quot;@</span><span class="nv">$BEARER_TOKEN_FILE</span><span class="s2">&quot;</span> <span class="se">\</span>
+     <span class="nv">$URL</span>/archivist/v2/locations
+</pre></div>
+</div>
+</section>
+<section id="fetch-specific-location-by-identity">
+<h2>Fetch specific location by identity<a class="headerlink" href="#fetch-specific-location-by-identity" title="Permalink to this headline">¶</a></h2>
+<p>If you know the unique identity of the location record, simply GET the
+resource:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ curl -v -X GET <span class="se">\</span>
+     -H <span class="s2">&quot;@</span><span class="nv">$BEARER_TOKEN_FILE</span><span class="s2">&quot;</span> <span class="se">\</span>
+     <span class="nv">$URL</span>/archivist/v2/locations/08838336-c357-460d-902a-3aba9528dd22
+</pre></div>
+</div>
+</section>
+<section id="fetch-location-by-name">
+<h2>Fetch location by name<a class="headerlink" href="#fetch-location-by-name" title="Permalink to this headline">¶</a></h2>
+<p>To fetch all locations with a specific name,  GET the <code class="docutils literal notranslate"><span class="pre">assets</span></code> resource and
+filter on <code class="docutils literal notranslate"><span class="pre">display_name</span></code>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ curl -v -X GET <span class="se">\</span>
+    -H <span class="s2">&quot;@</span><span class="nv">$BEARER_TOKEN_FILE</span><span class="s2">&quot;</span> <span class="se">\</span>
+    <span class="nv">$URL</span>/archivist/v2/locations?display_name<span class="o">=</span>Macclesfield%2C%20Cheshire
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is advisable to implement a unique naming scheme for location names,
+but this is not enforced by the system. If multiple locations exist with
+the same name they will all be returned, and the client will need to
+differentiate based on other attributes.</p>
+</div>
+<p>Each of these calls returns a list of matching asset records in the form:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;locations&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;identity&quot;</span><span class="p">:</span> <span class="s2">&quot;locations/08838336-c357-460d-902a-3aba9528dd22&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;display_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Macclesfield, Cheshire&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Manufacturing site, North West England, Macclesfield, Cheshire&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;latitude&quot;</span><span class="p">:</span> <span class="s2">&quot;53.2546799&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;longitude&quot;</span><span class="p">:</span> <span class="s2">&quot;-2.1213956,14.54&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;director&quot;</span><span class="p">:</span> <span class="s2">&quot;John Smith&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;address&quot;</span><span class="p">:</span> <span class="s2">&quot;Bridgewater, Somerset&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;Facility Type&quot;</span><span class="p">:</span> <span class="s2">&quot;Manufacture&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;support_email&quot;</span><span class="p">:</span> <span class="s2">&quot;support@macclesfield.com&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;support_phone&quot;</span><span class="p">:</span> <span class="s2">&quot;123 456 789&quot;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The number of records returned has a maximum limit. If this limit is too small then one must use
+<a class="reference internal" href="../miscellaneous/paging.html#misc-paging"><span class="std std-ref">API Request Paging</span></a>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The total number of assets that exist is returned in the response header field ‘x-total-count’ if
+the ‘x-request-total-count’ header on the request is set to ‘true’.
+The curl option ‘-i’ will emit this to stdout.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A full API reference is available in <a class="reference external" href="openapi.html#get--archivist-v2-locations">Swagger GET API</a></p>
+</div>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="openapi.html" class="btn btn-neutral float-right" title="Locations Swagger API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="creation.html" class="btn btn-neutral float-left" title="Location Creation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019-2021, Jitsuin, Inc..
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

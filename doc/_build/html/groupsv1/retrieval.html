@@ -1,0 +1,309 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Groups Retrieval (v1) &mdash; Jitsuin Archivist v0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Groups Swagger API" href="openapi.html" />
+    <link rel="prev" title="Groups API (v1)" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/Jitsuin_Logo_RGB.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../admin/index.html">Administrator configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/authentication.html">API Request Authorization and Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tenanciesv1/index.html">Tenancies API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tlscacertificatesv1/index.html">TLS CA Certificates Management (v1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compliancev1/index.html">Compliance API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Groups API (v1)</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Groups Retrieval (v1)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#fetch-groups-for-a-user-principal-name">Fetch Groups for a user principal name</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fetch-all-groups">Fetch All Groups</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="openapi.html">Groups Swagger API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../iamv1/index.html">Identity and Access Management (v1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../attachments/index.html">Attachments API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../attachmentsv2/index.html">Attachments V2 API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../blobsv1/index.html">BlobsV1 API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../locations/index.html">Locations API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assetv2/index.html">Assets API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../eventv2/index.html">Events API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../applicationlink/index.html">Application Link APIs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../msiothub/index.html">Microsoft IoTHub API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../blockchainv1alpha1/index.html">Blockchain API (v1alpha1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system/index.html">System API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../miscellaneous/index.html">Miscellaneous</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Jitsuin Archivist</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Groups API (v1)</a> &raquo;</li>
+        
+      <li>Groups Retrieval (v1)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="groups-retrieval-v1">
+<span id="groupsv1-retrieval"></span><h1>Groups Retrieval (v1)<a class="headerlink" href="#groups-retrieval-v1" title="Permalink to this headline">¶</a></h1>
+<p>Create the <strong>bearer_token</strong> and store in a file in a secure local directory with 0600 permissions.</p>
+<p>See <a class="reference internal" href="../auth/authentication.html#bearer-token"><span class="std std-ref">API Request Authorization and Authentication</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following example shows use of the  API over curl in a bash terminal.
+The concepts are fully portable to any other REST client (eg PostMan or
+python requests)</p>
+</div>
+<p>Set the URL (for example):</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">URL</span><span class="o">=</span>https://synsation.1234-5678.nodes.archivist.jitsuin.io
+</pre></div>
+</div>
+<p>Group membership in Jitsuin Archivist are available via this interface.
+The groups are available from the <code class="docutils literal notranslate"><span class="pre">groups</span></code> endpoint using the user principal name
+as a parameter:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">groups</span><span class="o">/</span><span class="n">joe</span><span class="o">.</span><span class="n">bloggs</span><span class="nd">@acme</span><span class="o">.</span><span class="n">com</span>
+</pre></div>
+</div>
+<section id="fetch-groups-for-a-user-principal-name">
+<h2>Fetch Groups for a user principal name<a class="headerlink" href="#fetch-groups-for-a-user-principal-name" title="Permalink to this headline">¶</a></h2>
+<p>To fetch all groups for a user  GET the <code class="docutils literal notranslate"><span class="pre">groups</span></code> resource:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ curl -v -X GET <span class="se">\</span>
+     -H <span class="s2">&quot;@</span><span class="nv">$BEARER_TOKEN_FILE</span><span class="s2">&quot;</span> <span class="se">\</span>
+     <span class="nv">$URL</span>/archivist/v1/groups/joe.bloggs@acme.com
+</pre></div>
+</div>
+<p>This call returns a list of groups for that user:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;groups&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;https://sts.windows.net/e6cd7cbd-4331-4942-b28d-xxxxxxxxxxxx/:04a01aa7-9d83-461a-b246-xxxxxxxxxxxx&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;display_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Maintainers&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;https://sts.windows.net/e6cd7cbd-4331-4942-b28d-xxxxxxxxxxxx/:0d678218-2147-4d3b-a2df-zzzzzzzzzzzz&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;display_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Supervisors&quot;</span>
+        <span class="p">},</span>
+   <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A full API reference is available in <a class="reference external" href="openapi.html#get--archivist-v1-groups">Swagger GET API</a></p>
+</div>
+</section>
+<section id="fetch-all-groups">
+<h2>Fetch All Groups<a class="headerlink" href="#fetch-all-groups" title="Permalink to this headline">¶</a></h2>
+<p>To fetch all groups GET the <code class="docutils literal notranslate"><span class="pre">groups</span></code> resource:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ curl -v -X GET <span class="se">\</span>
+     -H <span class="s2">&quot;@</span><span class="nv">$BEARER_TOKEN_FILE</span><span class="s2">&quot;</span> <span class="se">\</span>
+     <span class="nv">$URL</span>/archivist/v1/groups
+</pre></div>
+</div>
+<p>This call returns a list of groups:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;groups&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;https://sts.windows.net/e6cd7cbd-4331-4942-b28d-xxxxxxxxxxxx/:04a01aa7-9d83-461a-b246-xxxxxxxxxxxx&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;display_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Maintainers&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;https://sts.windows.net/e6cd7cbd-4331-4942-b28d-xxxxxxxxxxxx/:0bd8e5f1-4788-4b6e-b505-yyyyyyyyyyyy&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;display_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Gurus&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;https://sts.windows.net/e6cd7cbd-4331-4942-b28d-xxxxxxxxxxxx/:0d678218-2147-4d3b-a2df-zzzzzzzzzzzz&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;display_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Supervisors&quot;</span>
+        <span class="p">},</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A full API reference is available in <a class="reference external" href="openapi.html#get--archivist-v1-groups">Swagger GET API</a></p>
+</div>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="openapi.html" class="btn btn-neutral float-right" title="Groups Swagger API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Groups API (v1)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019-2021, Jitsuin, Inc..
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

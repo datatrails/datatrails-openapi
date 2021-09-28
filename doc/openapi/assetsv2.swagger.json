@@ -14,7 +14,7 @@
       "name": "Assets"
     }
   ],
-  "host": "jitsuin.readthedocs.io",
+  "host": "docs.rkvst.com",
   "basePath": "/archivist/v2",
   "schemes": [
     "http",
@@ -115,7 +115,7 @@
           },
           {
             "name": "storage_integrity",
-            "description": "storage integrity of the asset (and all its events). the asset storage integrity level",
+            "description": "XXX: #4483 DEPRECATED use proof_mechanism. DEPRECATED use proof_mechanism",
             "in": "query",
             "required": false,
             "type": "string",
@@ -125,6 +125,20 @@
               "TENANT_STORAGE"
             ],
             "default": "STORAGE_INTEGRITY_UNSPECIFIED"
+          },
+          {
+            "name": "proof_mechanism",
+            "description": "prrof mechanism of the asset (and all its events). the mechanism used to provide evidential proof",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "PROOF_MECHANISM_UNSPECIFIED",
+              "KHIPU",
+              "SIMPLE_HASH",
+              "TRIE_HASH"
+            ],
+            "default": "PROOF_MECHANISM_UNSPECIFIED"
           }
         ],
         "tags": [
@@ -172,7 +186,59 @@
         ]
       }
     },
-    "/archivist/v2/{asset_identity}": {
+    "/archivist/v2/assets/{asset_uuid}/events/{uuid}": {
+      "get": {
+        "summary": "Retrieves Archivist event",
+        "description": "Retrieves a specific Archivist event",
+        "operationId": "Assets_GetEvent",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v2EventResponse"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to view Event.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the event does not exist.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "asset_uuid",
+            "description": "Specify the Asset UUID where `assets/{asset_uuid}/events/{uuid}` is the Event Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "uuid",
+            "description": "Specify the Event UUID where `assets/{asset_uuid}/events/{uuid}` is the Event Identity e.g. `11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Assets"
+        ]
+      }
+    },
+    "/archivist/v2/assets/{uuid}": {
       "get": {
         "summary": "Retrieves a specific Archivist asset",
         "description": "Retrieves a specific Archivist asset",
@@ -205,15 +271,15 @@
         },
         "parameters": [
           {
-            "name": "asset_identity",
-            "description": "Specify asset `identity` as in `assets/add30235-1424-4fda-840a-d5ef82c4c96f`",
+            "name": "uuid",
+            "description": "Specify the Asset UUID where `assets/{uuid}` is the Asset Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f`",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
             "name": "at_time",
-            "description": "specify time in the past to show asset data as it was at time specified",
+            "description": "Specify time in the past to show asset data as it was at time specified",
             "in": "query",
             "required": false,
             "type": "string",
@@ -225,7 +291,7 @@
         ]
       }
     },
-    "/archivist/v2/{asset_identity}/events": {
+    "/archivist/v2/assets/{uuid}/events": {
       "get": {
         "summary": "List Archivist events",
         "description": "Lists Archivist events",
@@ -258,8 +324,8 @@
         },
         "parameters": [
           {
-            "name": "asset_identity",
-            "description": "Specify asset `identity` as in `assets/add30235-1424-4fda-840a-d5ef82c4c96f`",
+            "name": "uuid",
+            "description": "Specify the Asset UUID where `assets/{uuid}` is the Asset Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f`.  Use `-` to list Events for all Assets",
             "in": "path",
             "required": true,
             "type": "string"
@@ -425,58 +491,6 @@
           "Assets"
         ]
       }
-    },
-    "/archivist/v2/{asset_identity}/{event_identifier}": {
-      "get": {
-        "summary": "Retrieves Archivist event",
-        "description": "Retrieves a specific Archivist event",
-        "operationId": "Assets_GetEvent",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v2EventResponse"
-            }
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to view Event.",
-            "schema": {}
-          },
-          "404": {
-            "description": "Returned when the event does not exist.",
-            "schema": {}
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "asset_identity",
-            "description": "Specify Asset `identity` as in `assets/add30235-1424-4fda-840a-d5ef82c4c96f`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "event_identifier",
-            "description": "Specify Event `identifier` as in `events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Assets"
-        ]
-      }
     }
   },
   "definitions": {
@@ -545,7 +559,7 @@
         "tracked": "TRACKED",
         "owner": "0x601f5A7D3e6dcB55e87bf2F17bC8A27AaCD3511",
         "at_time": "2019-11-27T14:44:19Z",
-        "storage_integrity": "TENANT_STORAGE"
+        "proof_mechanism": "SIMPLE_HASH"
       },
       "properties": {
         "identity": {
@@ -599,8 +613,13 @@
         "storage_integrity": {
           "type": "string",
           "$ref": "#/definitions/v2StorageIntegrity",
-          "description": "the asset storage integrity level",
-          "title": "storage integrity of the asset (and all its events)"
+          "description": "DEPRECATED use proof_mechanism",
+          "title": "XXX: #4483 DEPRECATED use proof_mechanism"
+        },
+        "proof_mechanism": {
+          "type": "string",
+          "$ref": "#/definitions/v2ProofMechanism",
+          "description": "the mechanism used to provide evidential proof"
         }
       },
       "description": "This describes Jitsuin Asset."
@@ -647,7 +666,8 @@
             }
           ],
           "arc_home_location_identity": "locations/42054f10-9952-4c10-a082-9fd0d10295ae"
-        }
+        },
+        "proof_mechanism": "SIMPLE_HASH"
       },
       "properties": {
         "behaviours": {
@@ -671,7 +691,14 @@
         "storage_integrity": {
           "type": "string",
           "$ref": "#/definitions/v2StorageIntegrity",
-          "description": "specify the asset storage integrity level"
+          "description": "DEPRECATED use proof_mechanism",
+          "title": "XXX: #4483 DEPRECATED use proof_mechanism"
+        },
+        "proof_mechanism": {
+          "type": "string",
+          "$ref": "#/definitions/v2ProofMechanism",
+          "description": "specify the mechanism used to provide evidential proof for Events on this Asset",
+          "title": "mechanism for evidential proof for Events on this Asset"
         }
       },
       "description": "This describes the body of a request to create new Jitsuin Asset."
@@ -869,7 +896,7 @@
             "tracked": "TRACKED",
             "owner": "0x601f5A7D3e6dcB55e87bf2F17bC8A27AaCD3511",
             "at_time": "2019-11-27T14:44:19Z",
-            "storage_integrity": "TENANT_STORAGE"
+            "proof_mechanism": "SIMPLE_HASH"
           },
           {
             "identity": "assets/cef61346-2453-5aeb-921c-e6fa93d5b032",
@@ -892,7 +919,7 @@
             "tracked": "TRACKED",
             "owner": "0x601f5A7D3e6dcB55e87bf2F17bC8A27AaCD3511",
             "at_time": "2019-11-27T14:44:19Z",
-            "storage_integrity": "TENANT_STORAGE"
+            "proof_mechanism": "KHIPU"
           }
         ],
         "next_page_token": "abcd"
@@ -1050,6 +1077,16 @@
         }
       },
       "description": "The principal description assured by the configured Identity  Provider. All values are according to OIDC id token claims and  standard claims.  See https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims"
+    },
+    "v2ProofMechanism": {
+      "type": "string",
+      "enum": [
+        "PROOF_MECHANISM_UNSPECIFIED",
+        "KHIPU",
+        "SIMPLE_HASH",
+        "TRIE_HASH"
+      ],
+      "default": "PROOF_MECHANISM_UNSPECIFIED"
     },
     "v2StorageIntegrity": {
       "type": "string",

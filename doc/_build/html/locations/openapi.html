@@ -1,0 +1,481 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Locations Swagger API &mdash; Jitsuin Archivist v0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Assets API" href="../assetv2/index.html" />
+    <link rel="prev" title="Location Retrieval" href="retrieval.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/Jitsuin_Logo_RGB.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../admin/index.html">Administrator configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/authentication.html">API Request Authorization and Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tenanciesv1/index.html">Tenancies API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tlscacertificatesv1/index.html">TLS CA Certificates Management (v1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compliancev1/index.html">Compliance API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../groupsv1/index.html">Groups API (v1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iamv1/index.html">Identity and Access Management (v1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../attachments/index.html">Attachments API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../attachmentsv2/index.html">Attachments V2 API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../blobsv1/index.html">BlobsV1 API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Locations API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="creation.html">Location Creation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="retrieval.html">Location Retrieval</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Locations Swagger API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../assetv2/index.html">Assets API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../eventv2/index.html">Events API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../applicationlink/index.html">Application Link APIs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../msiothub/index.html">Microsoft IoTHub API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../blockchainv1alpha1/index.html">Blockchain API (v1alpha1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system/index.html">System API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../miscellaneous/index.html">Miscellaneous</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Jitsuin Archivist</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Locations API</a> &raquo;</li>
+        
+      <li>Locations Swagger API</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="locations-swagger-api">
+<h1>Locations Swagger API<a class="headerlink" href="#locations-swagger-api" title="Permalink to this headline">¶</a></h1>
+<dl class="http get">
+<dt id="get--archivist-v2-locations">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/archivist/v2/locations</code><a class="headerlink" href="#get--archivist-v2-locations" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>List locations</strong></p>
+<p>Returns a paginated list of locations</p>
+<dl class="field-list simple">
+<dt class="field-odd">Query Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>order_by</strong> (<em>string</em>) – Specify the sort order for the results. By display_name and by named
+extended attribute are supported.</p></li>
+<li><p><strong>page_size</strong> (<em>integer</em>) – Maximum locations per page.</p></li>
+<li><p><strong>page_token</strong> (<em>string</em>) – The next_page_token returned from a previous list request if any.</p></li>
+<li><p><strong>display_name</strong> (<em>string</em>) – Further fields are bound to query parameters and act to filter the result.</p></li>
+<li><p><strong>description</strong> (<em>string</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – A successful response.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Returned when the user is not authenticated to the system.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.4">403 Forbidden</a> – Returned when the user is not authorized to read the location.</p></li>
+<li><p><span class="problematic">default</span> – An unexpected error response.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Response JSON Object</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>locations[].attributes</strong> (<em>object</em>) – key value mapping of asset properties</p></li>
+<li><p><strong>locations[].description</strong> (<em>string</em>) – Free text description of the location</p></li>
+<li><p><strong>locations[].display_name</strong> (<em>string</em>) – Customer friendly name for the location.</p></li>
+<li><p><strong>locations[].identity</strong> (<em>string</em>) – Unique identification for the location, Relative Resource Name</p></li>
+<li><p><strong>locations[].latitude</strong> (<em>number</em>) – Latitude in decimal degrees</p></li>
+<li><p><strong>locations[].longitude</strong> (<em>number</em>) – Longitude in decimal degrees</p></li>
+<li><p><strong>locations[].owner</strong> (<em>string</em>) – wallet address of the location owner</p></li>
+<li><p><strong>locations[].tenant</strong> (<em>string</em>) – Tenent id</p></li>
+<li><p><strong>next_page_token</strong> (<em>string</em>) – Token to retrieve the next page of results or empty if there are none.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http post">
+<dt id="post--archivist-v2-locations">
+<code class="sig-name descname">POST </code><code class="sig-name descname">/archivist/v2/locations</code><a class="headerlink" href="#post--archivist-v2-locations" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Create a location</strong></p>
+<p>This request creates a new location. A name and a latitude and longitude must be provided. The display_name is the friendly name. The latitude and longitude must be entered in Degrees Decimal format See [Change of units and format](<a class="reference external" href="https://en.wikipedia.org/wiki/Geographic_coordinate_conversion#Change_of_units_and_format">https://en.wikipedia.org/wiki/Geographic_coordinate_conversion#Change_of_units_and_format</a>). The <cite>attributes</cite> field is a flat map of <cite>{ “key”: “value” }</cite>. The keys and values must be strings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Request JSON Object</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>attributes</strong> (<em>object</em>) – key value mapping of location properties</p></li>
+<li><p><strong>description</strong> (<em>string</em>) – Free text description of the location</p></li>
+<li><p><strong>display_name</strong> (<em>string</em>) – Customer friendly name for the asset. (required)</p></li>
+<li><p><strong>latitude</strong> (<em>number</em>) – Latitude in decimal degrees format. (required)</p></li>
+<li><p><strong>longitude</strong> (<em>number</em>) – longitude in decimal degrees format. (required)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – A successful response.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Returned when the user is not authenticated to the system.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.4">403 Forbidden</a> – Returned when the user is not authorized to create a location.</p></li>
+<li><p><span class="problematic">default</span> – An unexpected error response.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Response JSON Object</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>attributes</strong> (<em>object</em>) – key value mapping of asset properties</p></li>
+<li><p><strong>description</strong> (<em>string</em>) – Free text description of the location</p></li>
+<li><p><strong>display_name</strong> (<em>string</em>) – Customer friendly name for the location.</p></li>
+<li><p><strong>identity</strong> (<em>string</em>) – Unique identification for the location, Relative Resource Name</p></li>
+<li><p><strong>latitude</strong> (<em>number</em>) – Latitude in decimal degrees</p></li>
+<li><p><strong>longitude</strong> (<em>number</em>) – Longitude in decimal degrees</p></li>
+<li><p><strong>owner</strong> (<em>string</em>) – wallet address of the location owner</p></li>
+<li><p><strong>tenant</strong> (<em>string</em>) – Tenent id</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--archivist-v2-locations-uuid">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/archivist/v2/locations/{uuid}</code><a class="headerlink" href="#get--archivist-v2-locations-uuid" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Get a location</strong></p>
+<p>Returns the identified location</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uuid</strong> (<em>string</em>) – Specify the Location UUID where <cite>locations/{uuid}</cite> is the Location Identity e.g. <cite>add30235-1424-4fda-840a-d5ef82c4c96f</cite> from Identity <cite>locations/add30235-1424-4fda-840a-d5ef82c4c96f</cite></p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – A successful response.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Returned when the user is not authenticated to the system.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.4">403 Forbidden</a> – Returned when the user is not authorized to read the location.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Returned when the identified location does not exist.</p></li>
+<li><p><span class="problematic">default</span> – An unexpected error response.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Response JSON Object</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>attributes</strong> (<em>object</em>) – key value mapping of asset properties</p></li>
+<li><p><strong>description</strong> (<em>string</em>) – Free text description of the location</p></li>
+<li><p><strong>display_name</strong> (<em>string</em>) – Customer friendly name for the location.</p></li>
+<li><p><strong>identity</strong> (<em>string</em>) – Unique identification for the location, Relative Resource Name</p></li>
+<li><p><strong>latitude</strong> (<em>number</em>) – Latitude in decimal degrees</p></li>
+<li><p><strong>longitude</strong> (<em>number</em>) – Longitude in decimal degrees</p></li>
+<li><p><strong>owner</strong> (<em>string</em>) – wallet address of the location owner</p></li>
+<li><p><strong>tenant</strong> (<em>string</em>) – Tenent id</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http delete">
+<dt id="delete--archivist-v2-locations-uuid">
+<code class="sig-name descname">DELETE </code><code class="sig-name descname">/archivist/v2/locations/{uuid}</code><a class="headerlink" href="#delete--archivist-v2-locations-uuid" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Delete a location</strong></p>
+<p>Delete the identified location</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uuid</strong> (<em>string</em>) – Specify the Location UUID where <cite>locations/{uuid}</cite> is the Location Identity e.g. <cite>add30235-1424-4fda-840a-d5ef82c4c96f</cite> from Identity <cite>locations/add30235-1424-4fda-840a-d5ef82c4c96f</cite></p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – A successful response.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Returned when the user is not authenticated to the system.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.4">403 Forbidden</a> – Returned when the user is not authorized to delete the location.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Returned when the identified location does not exist.</p></li>
+<li><p><span class="problematic">default</span> – An unexpected error response.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http patch">
+<dt id="patch--archivist-v2-locations-uuid">
+<code class="sig-name descname">PATCH </code><code class="sig-name descname">/archivist/v2/locations/{uuid}</code><a class="headerlink" href="#patch--archivist-v2-locations-uuid" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Update a location’s details</strong></p>
+<p>Perform a full or partial update of the identified location</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uuid</strong> (<em>string</em>) – Specify the Location UUID where <cite>locations/{uuid}</cite> is the Location Identity e.g. <cite>add30235-1424-4fda-840a-d5ef82c4c96f</cite> from Identity <cite>locations/add30235-1424-4fda-840a-d5ef82c4c96f</cite></p></li>
+</ul>
+</dd>
+<dt class="field-even">Query Parameters</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>mask</strong> (<em>string</em>) – The mask says exactly which fields are to be updated. This
+removes the ambiguity caused by ‘zero’ valued fields.
+<a class="reference external" href="https://grpc-ecosystem.github.io/grpc-gateway/docs/patch.html">https://grpc-ecosystem.github.io/grpc-gateway/docs/patch.html</a>.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Request JSON Object</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>attributes</strong> (<em>object</em>) – key value mapping of asset properties</p></li>
+<li><p><strong>description</strong> (<em>string</em>) – Free text description of the location</p></li>
+<li><p><strong>display_name</strong> (<em>string</em>) – Customer friendly name for the location.</p></li>
+<li><p><strong>identity</strong> (<em>string</em>) – Unique identification for the location, Relative Resource Name</p></li>
+<li><p><strong>latitude</strong> (<em>number</em>) – Latitude in decimal degrees</p></li>
+<li><p><strong>longitude</strong> (<em>number</em>) – Longitude in decimal degrees</p></li>
+<li><p><strong>owner</strong> (<em>string</em>) – wallet address of the location owner</p></li>
+<li><p><strong>tenant</strong> (<em>string</em>) – Tenent id</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – A successful response.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Returned when the user is not authenticated to the system.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.4">403 Forbidden</a> – Returned when the user is not authorized to update the location.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Returned when the identified location does not exist.</p></li>
+<li><p><span class="problematic">default</span> – An unexpected error response.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Response JSON Object</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>attributes</strong> (<em>object</em>) – key value mapping of asset properties</p></li>
+<li><p><strong>description</strong> (<em>string</em>) – Free text description of the location</p></li>
+<li><p><strong>display_name</strong> (<em>string</em>) – Customer friendly name for the location.</p></li>
+<li><p><strong>identity</strong> (<em>string</em>) – Unique identification for the location, Relative Resource Name</p></li>
+<li><p><strong>latitude</strong> (<em>number</em>) – Latitude in decimal degrees</p></li>
+<li><p><strong>longitude</strong> (<em>number</em>) – Longitude in decimal degrees</p></li>
+<li><p><strong>owner</strong> (<em>string</em>) – wallet address of the location owner</p></li>
+<li><p><strong>tenant</strong> (<em>string</em>) – Tenent id</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--archivist-v2-locations-uuid-permissions">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/archivist/v2/locations/{uuid}/permissions</code><a class="headerlink" href="#get--archivist-v2-locations-uuid-permissions" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Get location permissions</strong></p>
+<p>Get location permissions for identified location</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uuid</strong> (<em>string</em>) – Specify the Location UUID where <cite>locations/{uuid}</cite> is the Location Identity e.g. <cite>add30235-1424-4fda-840a-d5ef82c4c96f</cite> from Identity <cite>locations/add30235-1424-4fda-840a-d5ef82c4c96f</cite></p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – A successful response.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Returned when the user is not authenticated to the system.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.4">403 Forbidden</a> – Returned when the user is not authorized to list permissions for the location.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Returned when the identified location does not exist.</p></li>
+<li><p><span class="problematic">default</span> – An unexpected error response.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Response JSON Object</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>location_identity</strong> (<em>string</em>) – </p></li>
+<li><p><strong>permissions.subject_identities[]</strong> (<em>string</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http patch">
+<dt id="patch--archivist-v2-locations-uuid-permissions">
+<code class="sig-name descname">PATCH </code><code class="sig-name descname">/archivist/v2/locations/{uuid}/permissions</code><a class="headerlink" href="#patch--archivist-v2-locations-uuid-permissions" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Patch location permissions</strong></p>
+<p>Patch location permissions for identified location</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uuid</strong> (<em>string</em>) – Specify the Location UUID where <cite>locations/{uuid}</cite> is the Location Identity e.g. <cite>add30235-1424-4fda-840a-d5ef82c4c96f</cite> from Identity <cite>locations/add30235-1424-4fda-840a-d5ef82c4c96f</cite></p></li>
+</ul>
+</dd>
+<dt class="field-even">Request JSON Object</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>subject_identities[]</strong> (<em>string</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – A successful response.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Returned when the user is not authenticated to the system.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.4">403 Forbidden</a> – Returned when the user is not authorized to access permissions for the location.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Returned when the identified location does not exist.</p></li>
+<li><p><span class="problematic">default</span> – An unexpected error response.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response JSON Object</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>location_identity</strong> (<em>string</em>) – </p></li>
+<li><p><strong>permissions.subject_identities[]</strong> (<em>string</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../assetv2/index.html" class="btn btn-neutral float-right" title="Assets API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="retrieval.html" class="btn btn-neutral float-left" title="Location Retrieval" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019-2021, Jitsuin, Inc..
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

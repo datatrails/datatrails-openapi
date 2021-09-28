@@ -1,0 +1,500 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "IAMSubjects API",
+    "version": "1.0",
+    "contact": {
+      "name": "Jitsuin",
+      "url": "https://www.jitsuin.com"
+    }
+  },
+  "tags": [
+    {
+      "name": "Subjects"
+    }
+  ],
+  "host": "docs.rkvst.com",
+  "basePath": "/api/archivist/iam/v1",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/archivist/iam/v1/subjects": {
+      "get": {
+        "summary": "List subjects",
+        "description": "Returns a paginated list of subjects",
+        "operationId": "Subjects_ListIAMSubjects",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListIAMSubjectsResponse"
+            }
+          },
+          "400": {
+            "description": "Returned when the request is badly formed.",
+            "schema": {}
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to read the subject.",
+            "schema": {}
+          },
+          "500": {
+            "description": "Returned when the underlying storage system returns an error.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "order_by",
+            "description": "Specify the sort order for the results.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "DEFAULT",
+              "DISPLAY_NAME"
+            ],
+            "default": "DEFAULT"
+          },
+          {
+            "name": "page_size",
+            "description": "Maximum entries per page.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_token",
+            "description": "The next_page_token returned from a previous list request if any.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "display_name",
+            "description": "Further fields are bound to query parameters and act to filter the result. Customer friendly name for the subject.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Subjects"
+        ]
+      },
+      "post": {
+        "summary": "Create an subject",
+        "description": "This request creates a new subject. The display_name is the friendly name.",
+        "operationId": "Subjects_CreateIAMSubject",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1IAMSubject"
+            }
+          },
+          "400": {
+            "description": "Returned when the request is badly formed.",
+            "schema": {}
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to create a subject.",
+            "schema": {}
+          },
+          "500": {
+            "description": "Returned when the underlying storage system returns an error.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateIAMSubjectRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Subjects"
+        ]
+      }
+    },
+    "/archivist/iam/v1/subjects/{uuid}": {
+      "get": {
+        "summary": "Get an subject",
+        "description": "Returns the identified subject",
+        "operationId": "Subjects_GetIAMSubject",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1IAMSubject"
+            }
+          },
+          "400": {
+            "description": "Returned when the request is badly formed.",
+            "schema": {}
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to read the subject.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the identified subject does not exist.",
+            "schema": {}
+          },
+          "500": {
+            "description": "Returned when the underlying storage system returns an error.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "uuid",
+            "description": "Specify the Subject UUID where `subjects/{uuid}` is the Subject Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `subjects/add30235-1424-4fda-840a-d5ef82c4c96f`.  Note the special subject `00000000-0000-0000-0000-000000000000` represents the `self` subject, or your own organisation.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Subjects"
+        ]
+      },
+      "delete": {
+        "summary": "Delete a subject",
+        "description": "Delete the identified subject",
+        "operationId": "Subjects_DeleteIAMSubject",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "400": {
+            "description": "Returned when the request is badly formed.",
+            "schema": {}
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to delete the subject.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the identified laccess policy does not exist.",
+            "schema": {}
+          },
+          "500": {
+            "description": "Returned when the underlying storage system returns an error.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "uuid",
+            "description": "Specify the Subject UUID where `subjects/{uuid}` is the Subject Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `subjects/add30235-1424-4fda-840a-d5ef82c4c96f`",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Subjects"
+        ]
+      },
+      "patch": {
+        "summary": "Update a subject's details",
+        "description": "Perform a full or partial update of the identified subject",
+        "operationId": "Subjects_UpdateIAMSubject",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1IAMSubject"
+            }
+          },
+          "400": {
+            "description": "Returned when the request is badly formed.",
+            "schema": {}
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to update the subject.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the identified subject does not exist.",
+            "schema": {}
+          },
+          "500": {
+            "description": "Returned when the underlying storage system returns an error.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "uuid",
+            "description": "Specify the Subject UUID where `subjects/{uuid}` is the Subject Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `subjects/add30235-1424-4fda-840a-d5ef82c4c96f`",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1IAMSubject"
+            }
+          },
+          {
+            "name": "mask",
+            "description": "The mask says exactly which fields are to be updated. This\nremoves the ambiguity caused by 'zero' valued fields.\nhttps://grpc-ecosystem.github.io/grpc-gateway/docs/patch.html.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Subjects"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "ListIAMSubjectsRequestOrderBy": {
+      "type": "string",
+      "enum": [
+        "DEFAULT",
+        "DISPLAY_NAME"
+      ],
+      "default": "DEFAULT",
+      "title": "Supported sort orders"
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1CreateIAMSubjectRequest": {
+      "type": "object",
+      "example": {
+        "display_name": "Some description",
+        "wallet_pub_key": [
+          "key1"
+        ],
+        "tessera_pub_key": [
+          "key3"
+        ]
+      },
+      "properties": {
+        "display_name": {
+          "type": "string",
+          "description": "Customer friendly name for the subject.",
+          "maxLength": 128
+        },
+        "wallet_pub_key": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Organisation's public wallet keys (BNF)",
+          "title": "validate against hexstring - the subjects service will validate as a crypto key",
+          "maxLength": 256
+        },
+        "tessera_pub_key": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Organisation's tessara wallet keys (BNF)",
+          "title": "validate against base64 - the subjects service will validate as a crypto key",
+          "maxLength": 256
+        }
+      },
+      "description": "The body of a request to create new Jitsuin Subject.",
+      "required": [
+        "display_name"
+      ]
+    },
+    "v1IAMSubject": {
+      "type": "object",
+      "example": {
+        "identity": "subjects/08838336-c357-460d-902a-3aba9528dd22",
+        "display_name": "Some description",
+        "wallet_pub_key": [
+          "key1"
+        ],
+        "wallet_address": [
+          "address1"
+        ],
+        "tessera_pub_key": [
+          "key3"
+        ]
+      },
+      "properties": {
+        "identity": {
+          "type": "string",
+          "description": "Unique identification for the subject, Relative Resource Name",
+          "title": "generated identity for the entry"
+        },
+        "display_name": {
+          "type": "string",
+          "description": "Customer friendly name for the subject.",
+          "title": "user friendly display name for this principal",
+          "maxLength": 128
+        },
+        "wallet_pub_key": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Organisation's public wallet keys (BNF)",
+          "title": "org wallet keys (one to start with) in blockchain native format\nvalidate against hexstring - the subjects service will validate as a crypto key",
+          "maxLength": 256
+        },
+        "wallet_address": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Organisation's wallet addresses",
+          "title": "org wallet addresses, derived from the org wallet keys.  For each org wallet key there will be a corresponding address",
+          "maxLength": 256
+        },
+        "tessera_pub_key": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Organisation's tessara wallet keys (BNF)",
+          "title": "org tessera keys (one to start with) in blockchain native format\nvalidate against base64 - the subjects service will validate as a crypto key",
+          "maxLength": 256
+        },
+        "tenant": {
+          "type": "string",
+          "description": "Tenent id",
+          "title": "customer tenant ID",
+          "maxLength": 128
+        }
+      },
+      "description": "Describes an Access Policy for OBAC"
+    },
+    "v1ListIAMSubjectsResponse": {
+      "type": "object",
+      "example": {
+        "subjects": [
+          {
+            "identity": "subjects/08838336-c357-460d-902a-3aba9528dd22",
+            "display_name": "Some description",
+            "wallet_pub_key": [
+              "key1"
+            ],
+            "tessera_pub_key": [
+              "key3"
+            ]
+          }
+        ],
+        "page_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6InN0dW50aWR"
+      },
+      "properties": {
+        "subjects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1IAMSubject"
+          }
+        },
+        "next_page_token": {
+          "type": "string",
+          "description": "Token to retrieve the next page of results or empty if there are none."
+        }
+      },
+      "description": "List of subjects (or the next page in a continuing  list request"
+    }
+  }
+}

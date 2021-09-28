@@ -1,0 +1,454 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "TLSCACertificates API",
+    "description": "API to manage tls ca certificates.",
+    "version": "1.0",
+    "contact": {
+      "name": "Jitsuin",
+      "url": "https://www.jitsuin.com"
+    }
+  },
+  "tags": [
+    {
+      "name": "TLSCACertificates"
+    }
+  ],
+  "host": "docs.rkvst.com",
+  "basePath": "/api/archivist/v1/tlscacertificates",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/archivist/v1/tlscacertificates": {
+      "get": {
+        "summary": "List TLS CA certificates",
+        "description": "Returns a paginated list of TLS CA certificates",
+        "operationId": "TLSCACertificates_ListTLSCACertificates",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListTLSCACertificatesResponse"
+            }
+          },
+          "400": {
+            "description": "Returned when the request is badly formed.",
+            "schema": {}
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to read the TLS CA certificate.",
+            "schema": {}
+          },
+          "500": {
+            "description": "Returned when the underlying storage system returns an error.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "order_by",
+            "description": "Specify the sort order for the results.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "DEFAULT",
+              "DISPLAY_NAME"
+            ],
+            "default": "DEFAULT"
+          },
+          {
+            "name": "page_size",
+            "description": "Maximum entries per page.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_token",
+            "description": "The next_page_token returned from a previous list request if any.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "display_name",
+            "description": "Further fields are bound to query parameters and act to filter the result. Customer friendly name for the TLS CA certificate.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TLSCACertificates"
+        ]
+      },
+      "post": {
+        "summary": "Upload a TLS CA certificate",
+        "description": "This request uploads a TLS CA certificate. The display_name is the friendly name.",
+        "operationId": "TLSCACertificates_UploadTLSCACertificate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1TLSCACertificate"
+            }
+          },
+          "400": {
+            "description": "Returned when the request is badly formed.",
+            "schema": {}
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to create a tlscacertificate.",
+            "schema": {}
+          },
+          "500": {
+            "description": "Returned when the underlying storage system returns an error.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1UploadTLSCACertificateRequest"
+            }
+          }
+        ],
+        "tags": [
+          "TLSCACertificates"
+        ]
+      }
+    },
+    "/archivist/v1/tlscacertificates/{uuid}": {
+      "get": {
+        "summary": "Get a TLS CA certificate",
+        "description": "Returns the identified tlscacertificate",
+        "operationId": "TLSCACertificates_GetTLSCACertificate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1TLSCACertificate"
+            }
+          },
+          "400": {
+            "description": "Returned when the request is badly formed.",
+            "schema": {}
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to read the TLS CA certificate.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the identified TLS CA certificate does not exist.",
+            "schema": {}
+          },
+          "500": {
+            "description": "Returned when the underlying storage system returns an error.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "uuid",
+            "description": "Specify the TLS CA Certificate UUID where `tlscacertificates/{uuid}` is the TLS CA Certificate Identity e.g. `08838336-c357-460d-902a-3aba9528dd22` from Identity `tlscacertificates/08838336-c357-460d-902a-3aba9528dd22`",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TLSCACertificates"
+        ]
+      },
+      "delete": {
+        "summary": "Delete a TLS C Acertificate",
+        "description": "Delete the identified tLS CA Certificate",
+        "operationId": "TLSCACertificates_DeleteTLSCACertificate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "400": {
+            "description": "Returned when the request is badly formed.",
+            "schema": {}
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to delete the TLS CA certificate.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the identified laccess policy does not exist.",
+            "schema": {}
+          },
+          "500": {
+            "description": "Returned when the underlying storage system returns an error.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "uuid",
+            "description": "Specify the TLS CA Certificate UUID where `tlscacertificates/{uuid}` is the TLS CA Certificate Identity e.g. `08838336-c357-460d-902a-3aba9528dd22` from Identity `tlscacertificates/08838336-c357-460d-902a-3aba9528dd22`",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TLSCACertificates"
+        ]
+      },
+      "patch": {
+        "summary": "Update a TLS CA certificate's details",
+        "description": "Perform a full or partial update of the identified TLS CA certificate",
+        "operationId": "TLSCACertificates_UpdateTLSCACertificate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1TLSCACertificate"
+            }
+          },
+          "400": {
+            "description": "Returned when the request is badly formed.",
+            "schema": {}
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to update the TLS CA certificate.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the identified TLS C Acertificate does not exist.",
+            "schema": {}
+          },
+          "500": {
+            "description": "Returned when the underlying storage system returns an error.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "uuid",
+            "description": "Specify the TLS CA Certificate UUID where `tlscacertificates/{uuid}` is the TLS CA Certificate Identity e.g. `08838336-c357-460d-902a-3aba9528dd22` from Identity `tlscacertificates/08838336-c357-460d-902a-3aba9528dd22`",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1TLSCACertificate"
+            }
+          },
+          {
+            "name": "mask",
+            "description": "The mask says exactly which fields are to be updated. This\nremoves the ambiguity caused by 'zero' valued fields.\nhttps://grpc-ecosystem.github.io/grpc-gateway/docs/patch.html.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TLSCACertificates"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "ListTLSCACertificatesRequestOrderBy": {
+      "type": "string",
+      "enum": [
+        "DEFAULT",
+        "DISPLAY_NAME"
+      ],
+      "default": "DEFAULT",
+      "title": "Supported sort orders"
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1ListTLSCACertificatesResponse": {
+      "type": "object",
+      "example": {
+        "tlscacertificates": [
+          {
+            "identity": "tlscacertificates/08838336-c357-460d-902a-3aba9528dd22",
+            "display_name": "Some description"
+          }
+        ],
+        "page_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6InN0dW50aWR"
+      },
+      "properties": {
+        "tlscacertificates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1TLSCACertificate"
+          }
+        },
+        "next_page_token": {
+          "type": "string",
+          "description": "Token to retrieve the next page of results or empty if there are none."
+        }
+      },
+      "description": "List of TLS CA certificates (or the next page in a continuing  list request"
+    },
+    "v1TLSCACertificate": {
+      "type": "object",
+      "example": {
+        "identity": "tlscacertificates/08838336-c357-460d-902a-3aba9528dd22",
+        "display_name": "Some description",
+        "tlscacertificate": "-----BEGIN CERTIFICATE----- MIIEBDCCAuygAwIBAgIDAjppMA0GCSqGSIb3DQEBBQUAMEIxCzAJBgNVBAYTAlVT -----END CERTIFICATE-----"
+      },
+      "properties": {
+        "identity": {
+          "type": "string",
+          "description": "Unique identification for the TLS CA ertificate, Relative Resource Name",
+          "title": "generated identity for the entry"
+        },
+        "display_name": {
+          "type": "string",
+          "description": "Customer friendly name for the TLS CA certificate.",
+          "title": "user friendly display name for this tlscacertificate",
+          "maxLength": 128
+        },
+        "tlscacertificate": {
+          "type": "string",
+          "description": "TLS CA Certificate as base64 string representing the contents of the PEM file",
+          "title": "TLS CA certificate as string representing the contents of the PEM file",
+          "maxLength": 300000
+        }
+      },
+      "description": "Describes TLS CA certificate in PEM file format."
+    },
+    "v1TenantID": {
+      "type": "object",
+      "properties": {
+        "identity": {
+          "type": "string",
+          "title": "tenancies/UUID"
+        }
+      }
+    },
+    "v1UploadTLSCACertificateRequest": {
+      "type": "object",
+      "example": {
+        "display_name": "Some description",
+        "tlscacertificate": "-----BEGIN CERTIFICATE----- MIIEBDCCAuygAwIBAgIDAjppMA0GCSqGSIb3DQEBBQUAMEIxCzAJBgNVBAYTAlVT -----END CERTIFICATE-----"
+      },
+      "properties": {
+        "display_name": {
+          "type": "string",
+          "description": "Customer friendly name for the TLS CA certificate.",
+          "title": "user friendly display name for this tlscacertificate",
+          "maxLength": 128
+        },
+        "tlscacertificate": {
+          "type": "string",
+          "description": "TLS CA Certificate as string representing the contents of the PEM file",
+          "title": "TLS CA certificate as string representing the contents of the PEM file",
+          "maxLength": 300000
+        }
+      },
+      "description": "The body of a request to upload new TLS CA Certificate.",
+      "required": [
+        "display_name",
+        "tlscacertificate"
+      ]
+    }
+  }
+}

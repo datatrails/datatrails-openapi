@@ -1,0 +1,195 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Groups API",
+    "version": "1.0",
+    "contact": {
+      "name": "Jitsuin",
+      "url": "https://www.jitsuin.com"
+    }
+  },
+  "tags": [
+    {
+      "name": "Groups"
+    }
+  ],
+  "host": "docs.rkvst.com",
+  "basePath": "/api/archivist/v1/groups",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/archivist/v1/groups": {
+      "get": {
+        "summary": "List all groups",
+        "description": "Returns a list of groups",
+        "operationId": "Groups_ListGroups",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GroupsResponse"
+            }
+          },
+          "400": {
+            "description": "Returned when the request is badly formed.",
+            "schema": {}
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to read the subject.",
+            "schema": {}
+          },
+          "500": {
+            "description": "Returned when the microsoft graph api returns an error.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Groups"
+        ]
+      }
+    },
+    "/archivist/v1/groups/{user_principal_name}": {
+      "get": {
+        "summary": "Get a list of groups for a user",
+        "description": "Returns the list of groups for a user",
+        "operationId": "Groups_GetGroups",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GroupsResponse"
+            }
+          },
+          "400": {
+            "description": "Returned when the request is badly formed.",
+            "schema": {}
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to read the subject.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the identified access policy does not exist.",
+            "schema": {}
+          },
+          "500": {
+            "description": "Returned when the microsoft graph api returns an error.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_principal_name",
+            "description": "User principal name in AAD",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Groups"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1Group": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of group in the form \u003cissuer\u003e:\u003cuid in issuer\u003e",
+          "readOnly": true,
+          "maxLength": 4096
+        },
+        "display_name": {
+          "type": "string",
+          "description": "Group display name",
+          "maxLength": 256
+        }
+      }
+    },
+    "v1GroupsResponse": {
+      "type": "object",
+      "example": {
+        "groups": [
+          {
+            "name": "https://sts.windows.net/e6cd7cbd-4331-4942-b28d-xxxxxxxxxxxx/:1754b920-cf20-4d7e-9d36-xxxxxxxxxxxx",
+            "display_name": "Maintainers"
+          },
+          {
+            "name": "https://sts.windows.net/e6cd7cbd-4331-4942-b28d-xxxxxxxxxxxx/:1754b920-1234-4d7e-9d36-yyyyyyyyyyyy",
+            "display_name": "Supervisors"
+          }
+        ]
+      },
+      "properties": {
+        "groups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Group"
+          }
+        }
+      },
+      "description": "List of groups"
+    }
+  }
+}

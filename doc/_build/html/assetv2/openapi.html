@@ -1,0 +1,357 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Assets Swagger API &mdash; Jitsuin Archivist v0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Events API" href="../eventv2/index.html" />
+    <link rel="prev" title="RecordEvidence Operations API" href="../recordevidencev1/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/Jitsuin_Logo_RGB.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../admin/index.html">Administrator configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/authentication.html">API Request Authorization and Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tenanciesv1/index.html">Tenancies API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tlscacertificatesv1/index.html">TLS CA Certificates Management (v1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compliancev1/index.html">Compliance API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../groupsv1/index.html">Groups API (v1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iamv1/index.html">Identity and Access Management (v1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../attachments/index.html">Attachments API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../attachmentsv2/index.html">Attachments V2 API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../blobsv1/index.html">BlobsV1 API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../locations/index.html">Locations API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Assets API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="creation.html">Asset Record Creation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="retrieval.html">Asset Record Retrieval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attachmentsv1/index.html">Attachments Operations API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../builtinv1/index.html">Builtin Operations API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../recordevidencev1/index.html">RecordEvidence Operations API</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Assets Swagger API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../eventv2/index.html">Events API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../applicationlink/index.html">Application Link APIs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../msiothub/index.html">Microsoft IoTHub API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../blockchainv1alpha1/index.html">Blockchain API (v1alpha1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system/index.html">System API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../miscellaneous/index.html">Miscellaneous</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Jitsuin Archivist</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Assets API</a> &raquo;</li>
+        
+      <li>Assets Swagger API</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="assets-swagger-api">
+<h1>Assets Swagger API<a class="headerlink" href="#assets-swagger-api" title="Permalink to this headline">¶</a></h1>
+<dl class="http get">
+<dt id="get--archivist-v2-assets">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/archivist/v2/assets</code><a class="headerlink" href="#get--archivist-v2-assets" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>List Archivist assets</strong></p>
+<p>Retrieves a list of Archivist assets</p>
+<dl class="field-list simple">
+<dt class="field-odd">Query Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>page_size</strong> (<em>integer</em>) – Maximum results per page.</p></li>
+<li><p><strong>page_token</strong> (<em>string</em>) – The next_page_token returned from a previous list request if any.</p></li>
+<li><p><strong>order_by</strong> (<em>string</em>) – Specify the sort order for the results.</p></li>
+<li><p><strong>tracked</strong> (<em>string</em>) – indicates whether asset is still being tracked in the system.</p></li>
+<li><p><strong>confirmation_status</strong> (<em>string</em>) – indicates if the asset has been succesfully committed to the blockchain.</p></li>
+<li><p><strong>storage_integrity</strong> (<em>string</em>) – XXX: #4483 DEPRECATED use proof_mechanism. DEPRECATED use proof_mechanism</p></li>
+<li><p><strong>proof_mechanism</strong> (<em>string</em>) – prrof mechanism of the asset (and all its events). the mechanism used to provide evidential proof</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – A successful response.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.7">206 Partial Content</a> – The number of assets exceeds the servers limit. The approximate number of matching results is provided by the x-total-count header if the ‘x-request-total-count’ header on the request is set to ‘true’. The exact limit is available in the content-range header. The value format is ‘items 0-LIMIT/TOTAL’. Note that x-total-count is always present for 200 and 206 responses. It is the servers best available approximation. Similarly, in any result set, you may get a few more than LIMIT items.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Returned when the user is not authenticated to the system.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.4">403 Forbidden</a> – Returned when the user is not authorized to list Assets.</p></li>
+<li><p><span class="problematic">default</span> – An unexpected error response.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Response JSON Object</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>assets[].at_time</strong> (<em>string</em>) – indicates time the asset data is from (read only)</p></li>
+<li><p><strong>assets[].attributes</strong> (<em>object</em>) – key value mapping of asset properties</p></li>
+<li><p><strong>assets[].behaviours[]</strong> (<em>string</em>) – </p></li>
+<li><p><strong>assets[].confirmation_status</strong> (<em>string</em>) – </p></li>
+<li><p><strong>assets[].identity</strong> (<em>string</em>) – relative resource address <cite>assets/{UUID}</cite> (read only)</p></li>
+<li><p><strong>assets[].owner</strong> (<em>string</em>) – wallet address of the asset owner (read only)</p></li>
+<li><p><strong>assets[].proof_mechanism</strong> (<em>string</em>) – </p></li>
+<li><p><strong>assets[].storage_integrity</strong> (<em>string</em>) – Specifies how the asset data will be stored. This is set once on creation
+and does not change.</p></li>
+<li><p><strong>assets[].tracked</strong> (<em>string</em>) – </p></li>
+<li><p><strong>next_page_token</strong> (<em>string</em>) – Token to retrieve the next page of results or empty if there are none.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http post">
+<dt id="post--archivist-v2-assets">
+<code class="sig-name descname">POST </code><code class="sig-name descname">/archivist/v2/assets</code><a class="headerlink" href="#post--archivist-v2-assets" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Create an Archivist asset</strong></p>
+<p>Creates an Archivist asset</p>
+<dl class="field-list simple">
+<dt class="field-odd">Request JSON Object</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>attributes</strong> (<em>object</em>) – key value mapping of event attributes</p></li>
+<li><p><strong>behaviours[]</strong> (<em>string</em>) – </p></li>
+<li><p><strong>proof_mechanism</strong> (<em>string</em>) – </p></li>
+<li><p><strong>storage_integrity</strong> (<em>string</em>) – Specifies how the asset data will be stored. This is set once on creation
+and does not change.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – A successful response.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Returned when the user is not authenticated to the system.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.4">403 Forbidden</a> – Returned when the user is not authorized to create an Asset.</p></li>
+<li><p><span class="problematic">default</span> – An unexpected error response.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Response JSON Object</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>at_time</strong> (<em>string</em>) – indicates time the asset data is from (read only)</p></li>
+<li><p><strong>attributes</strong> (<em>object</em>) – key value mapping of asset properties</p></li>
+<li><p><strong>behaviours[]</strong> (<em>string</em>) – </p></li>
+<li><p><strong>confirmation_status</strong> (<em>string</em>) – </p></li>
+<li><p><strong>identity</strong> (<em>string</em>) – relative resource address <cite>assets/{UUID}</cite> (read only)</p></li>
+<li><p><strong>owner</strong> (<em>string</em>) – wallet address of the asset owner (read only)</p></li>
+<li><p><strong>proof_mechanism</strong> (<em>string</em>) – </p></li>
+<li><p><strong>storage_integrity</strong> (<em>string</em>) – Specifies how the asset data will be stored. This is set once on creation
+and does not change.</p></li>
+<li><p><strong>tracked</strong> (<em>string</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--archivist-v2-assets-uuid">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/archivist/v2/assets/{uuid}</code><a class="headerlink" href="#get--archivist-v2-assets-uuid" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Retrieves a specific Archivist asset</strong></p>
+<p>Retrieves a specific Archivist asset</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uuid</strong> (<em>string</em>) – Specify the Asset UUID where <cite>assets/{uuid}</cite> is the Asset Identity e.g. <cite>add30235-1424-4fda-840a-d5ef82c4c96f</cite> from Identity <cite>assets/add30235-1424-4fda-840a-d5ef82c4c96f</cite></p></li>
+</ul>
+</dd>
+<dt class="field-even">Query Parameters</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>at_time</strong> (<em>string</em>) – Specify time in the past to show asset data as it was at time specified</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – A successful response.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Returned when the user is not authenticated to the system.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.4">403 Forbidden</a> – Returned when the user is not authorized to view an Asset.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – Returned when the asset with the id does not exist.</p></li>
+<li><p><span class="problematic">default</span> – An unexpected error response.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response JSON Object</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>at_time</strong> (<em>string</em>) – indicates time the asset data is from (read only)</p></li>
+<li><p><strong>attributes</strong> (<em>object</em>) – key value mapping of asset properties</p></li>
+<li><p><strong>behaviours[]</strong> (<em>string</em>) – </p></li>
+<li><p><strong>confirmation_status</strong> (<em>string</em>) – </p></li>
+<li><p><strong>identity</strong> (<em>string</em>) – relative resource address <cite>assets/{UUID}</cite> (read only)</p></li>
+<li><p><strong>owner</strong> (<em>string</em>) – wallet address of the asset owner (read only)</p></li>
+<li><p><strong>proof_mechanism</strong> (<em>string</em>) – </p></li>
+<li><p><strong>storage_integrity</strong> (<em>string</em>) – Specifies how the asset data will be stored. This is set once on creation
+and does not change.</p></li>
+<li><p><strong>tracked</strong> (<em>string</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../eventv2/index.html" class="btn btn-neutral float-right" title="Events API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../recordevidencev1/index.html" class="btn btn-neutral float-left" title="RecordEvidence Operations API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019-2021, Jitsuin, Inc..
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
