@@ -60,6 +60,7 @@
         "parameters": [
           {
             "name": "page_size",
+            "description": "Maximum no. of entries requested.",
             "in": "query",
             "required": false,
             "type": "integer",
@@ -67,6 +68,7 @@
           },
           {
             "name": "page_token",
+            "description": "Pagination token. Empty on first request. On subsequent requests copied from response.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -163,6 +165,7 @@
         "parameters": [
           {
             "name": "uuid",
+            "description": "UUID identifying the application",
             "in": "path",
             "required": true,
             "type": "string"
@@ -209,6 +212,7 @@
         "parameters": [
           {
             "name": "uuid",
+            "description": "UUID identifying the application",
             "in": "path",
             "required": true,
             "type": "string"
@@ -255,16 +259,19 @@
         "parameters": [
           {
             "name": "uuid",
+            "description": "UUID identifying the application",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
             "name": "body",
+            "description": "Application containing updates to `display_name` and/or `custom_claims`",
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/v1Application"
+              "$ref": "#/definitions/v1Application",
+              "description": "Application containing updates to `display_name` and/or `custom_claims`"
             }
           },
           {
@@ -317,6 +324,7 @@
         "parameters": [
           {
             "name": "uuid",
+            "description": "UUID identifying the application",
             "in": "path",
             "required": true,
             "type": "string"
@@ -329,6 +337,8 @@
     },
     "/archivist/internal/iam/v1/applications/{uuid}": {
       "get": {
+        "summary": "Unsupported and for internal use only.",
+        "description": "Unsupported and for internal use only.",
         "operationId": "AppRegistrations_InternalGetAppRegistration",
         "responses": {
           "200": {
@@ -347,6 +357,7 @@
         "parameters": [
           {
             "name": "uuid",
+            "description": "UUID identifying the application",
             "in": "path",
             "required": true,
             "type": "string"
@@ -410,30 +421,38 @@
       },
       "properties": {
         "identity": {
-          "type": "string"
+          "type": "string",
+          "description": "Resource name for the application",
+          "readOnly": true
         },
         "display_name": {
           "type": "string",
-          "description": "Validated since this field is used during updates."
+          "description": "Human-readable display name for this Application."
         },
         "client_id": {
-          "type": "string"
+          "type": "string",
+          "description": "Client ID for use in OIDC client credentials flow",
+          "readOnly": true
         },
         "tenant_id": {
-          "type": "string"
+          "type": "string",
+          "description": "Identity of the tenant owning this application",
+          "readOnly": true
         },
         "credentials": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/v1Credential"
-          }
+          },
+          "description": "Credentials this application can use to authenticate",
+          "readOnly": true
         },
         "custom_claims": {
           "type": "object",
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Validated since this field is used during updates."
+          "description": "Custom claims to add to Application for use in access policies."
         }
       },
       "description": "Describes a single application used for machine authentication",
@@ -476,13 +495,15 @@
       "type": "object",
       "properties": {
         "display_name": {
-          "type": "string"
+          "type": "string",
+          "description": "Human-readable display name for this Application."
         },
         "custom_claims": {
           "type": "object",
           "additionalProperties": {
             "type": "string"
-          }
+          },
+          "description": "Custom claims to add to Application for use in access policies."
         }
       },
       "title": "Request types"
@@ -497,15 +518,20 @@
       "properties": {
         "secret": {
           "type": "string",
-          "description": "The secret will be redacted for certain methods."
+          "description": "Client secret used in authentication",
+          "readOnly": true
         },
         "valid_from": {
           "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "description": "Timestamp indicating when the secret can be used from",
+          "readOnly": true
         },
         "valid_until": {
           "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "description": "Timestamp indicating when the secret can be used until",
+          "readOnly": true
         }
       },
       "description": "Describes a single time-limited secret"
@@ -554,10 +580,14 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/v1Application"
-          }
+          },
+          "description": "Current page of applications owned by the requesting tenant",
+          "readOnly": true
         },
         "next_page_token": {
-          "type": "string"
+          "type": "string",
+          "description": "Pagination token. Empty on first request. On subsequent requests copied from response.",
+          "readOnly": true
         }
       },
       "description": "Describes a set of RKVST locations"
