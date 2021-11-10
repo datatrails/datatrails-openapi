@@ -16,7 +16,6 @@ Archivist API documentation
    tenanciesv1/index
    tlscacertificatesv1/index
    compliancev1/index
-   groupsv1/index
    iamv1/index
    attachments/index
    attachmentsv2/index
@@ -25,7 +24,6 @@ Archivist API documentation
    assetv2/index
    eventv2/index
    applicationlink/index
-   msiothub/index
    blockchainv1alpha1/index
    system/index
    miscellaneous/index

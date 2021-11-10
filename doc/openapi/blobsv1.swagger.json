@@ -382,6 +382,35 @@
                     "Blobs"
                 ]
             }             
+        },
+        "/archivist/v1/blobs:caps": {
+          "get": {
+            "summary": "Get remaining capped resources for Blobs",
+            "description": "Not stable or officially supported. Get remaining capped resources for Blobs",
+            "operationId": "Blobs_GetCaps",
+            "responses": {
+              "200": {
+                "description": "A successful response.",
+                "schema": {
+                  "$ref": "#/definitions/v1Caps"
+                }
+              },
+              "401": {
+                "description": "Returned when the user is not authenticated to the system.",
+                "schema": {}
+              },
+              "default": {
+                "description": "An unexpected error response.",
+                "schema": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              }
+            },
+            "tags": [
+              "Blobs",
+              "Unsupported"
+            ]
+          }
         }
     },
     "definitions": {
@@ -450,6 +479,62 @@
                 "tenantid": {
                     "type": "string",
                     "description": "identity of the tenant the blob belongs to."
+                }
+            }
+        },
+        "protobufAny": {
+            "type": "object",
+            "properties": {
+                "type_url": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string",
+                    "format": "byte"
+                }
+            }
+        },
+        "rpcStatus": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "details": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/protobufAny"
+                    }
+                }
+            }
+        },
+        "v1Cap": {
+            "type": "object",
+            "properties": {
+                "resource_type": {
+                    "type": "string",
+                    "description": "String identifying the capped resource type"
+                },
+                "resource_remaining": {
+                    "type": "string",
+                    "format": "int64",
+                    "description": "Number of capped resources remaining"
+                }
+            }
+        },
+        "v1Caps": {
+            "type": "object",
+            "properties": {
+                "caps": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/v1Cap"
+                    },
+                    "description": "List of relevant capped resources"
                 }
             }
         }

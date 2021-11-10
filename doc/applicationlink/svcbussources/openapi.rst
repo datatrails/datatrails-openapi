@@ -1,5 +1,0 @@
-SvcBusSources Swagger API
--------------------------
-
-.. openapi:: ../../openapi/svcbussourcesv1.swagger.json
-                                                      

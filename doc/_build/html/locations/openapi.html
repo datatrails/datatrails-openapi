@@ -96,7 +96,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../tenanciesv1/index.html">Tenancies API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tlscacertificatesv1/index.html">TLS CA Certificates Management (v1)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../compliancev1/index.html">Compliance API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../groupsv1/index.html">Groups API (v1)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../iamv1/index.html">Identity and Access Management (v1)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../attachments/index.html">Attachments API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../attachmentsv2/index.html">Attachments V2 API</a></li>
@@ -109,8 +108,6 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../assetv2/index.html">Assets API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../eventv2/index.html">Events API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../applicationlink/index.html">Application Link APIs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../msiothub/index.html">Microsoft IoTHub API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../blockchainv1alpha1/index.html">Blockchain API (v1alpha1)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../system/index.html">System API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../miscellaneous/index.html">Miscellaneous</a></li>
@@ -227,13 +224,13 @@ extended attribute are supported.</p></li>
 <dt id="post--archivist-v2-locations">
 <code class="sig-name descname">POST </code><code class="sig-name descname">/archivist/v2/locations</code><a class="headerlink" href="#post--archivist-v2-locations" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Create a location</strong></p>
-<p>This request creates a new location. A name and a latitude and longitude must be provided. The display_name is the friendly name. The latitude and longitude must be entered in Degrees Decimal format See [Change of units and format](<a class="reference external" href="https://en.wikipedia.org/wiki/Geographic_coordinate_conversion#Change_of_units_and_format">https://en.wikipedia.org/wiki/Geographic_coordinate_conversion#Change_of_units_and_format</a>). The <cite>attributes</cite> field is a flat map of <cite>{ “key”: “value” }</cite>. The keys and values must be strings.</p>
+<p>Create a new location.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Request JSON Object</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>attributes</strong> (<em>object</em>) – key value mapping of location properties</p></li>
 <li><p><strong>description</strong> (<em>string</em>) – Free text description of the location</p></li>
-<li><p><strong>display_name</strong> (<em>string</em>) – Customer friendly name for the asset. (required)</p></li>
+<li><p><strong>display_name</strong> (<em>string</em>) – Customer friendly name for the location. (required)</p></li>
 <li><p><strong>latitude</strong> (<em>number</em>) – Latitude in decimal degrees format. (required)</p></li>
 <li><p><strong>longitude</strong> (<em>number</em>) – longitude in decimal degrees format. (required)</p></li>
 </ul>
@@ -395,7 +392,7 @@ removes the ambiguity caused by ‘zero’ valued fields.
 </dd>
 <dt class="field-odd">Response JSON Object</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>location_identity</strong> (<em>string</em>) – </p></li>
+<li><p><strong>location_identity</strong> (<em>string</em>) – The location identity in the form: <cite>locations/{uuid}</cite> (read only)</p></li>
 <li><p><strong>permissions.subject_identities[]</strong> (<em>string</em>) – </p></li>
 </ul>
 </dd>
@@ -429,8 +426,30 @@ removes the ambiguity caused by ‘zero’ valued fields.
 </dd>
 <dt class="field-even">Response JSON Object</dt>
 <dd class="field-even"><ul class="simple">
-<li><p><strong>location_identity</strong> (<em>string</em>) – </p></li>
+<li><p><strong>location_identity</strong> (<em>string</em>) – The location identity in the form: <cite>locations/{uuid}</cite> (read only)</p></li>
 <li><p><strong>permissions.subject_identities[]</strong> (<em>string</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--archivist-v2-locations-caps">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/archivist/v2/locations:caps</code><a class="headerlink" href="#get--archivist-v2-locations-caps" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Get remaining capped resources for Locations</strong></p>
+<p>Not stable or officially supported. Get remaining capped resources for Locations</p>
+<dl class="field-list simple">
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – A successful response.</p></li>
+<li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Returned when the user is not authenticated to the system.</p></li>
+<li><p><span class="problematic">default</span> – An unexpected error response.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response JSON Object</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>caps[].resource_remaining</strong> (<em>string</em>) – Number of capped resources remaining</p></li>
+<li><p><strong>caps[].resource_type</strong> (<em>string</em>) – String identifying the capped resource type</p></li>
 </ul>
 </dd>
 </dl>

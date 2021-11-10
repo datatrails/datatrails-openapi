@@ -100,7 +100,6 @@
 <li class="toctree-l1"><a class="reference internal" href="tenanciesv1/index.html">Tenancies API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tlscacertificatesv1/index.html">TLS CA Certificates Management (v1)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="compliancev1/index.html">Compliance API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="groupsv1/index.html">Groups API (v1)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="iamv1/index.html">Identity and Access Management (v1)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="attachments/index.html">Attachments API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="attachmentsv2/index.html">Attachments V2 API</a></li>
@@ -108,8 +107,6 @@
 <li class="toctree-l1"><a class="reference internal" href="locations/index.html">Locations API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="assetv2/index.html">Assets API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="eventv2/index.html">Events API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="applicationlink/index.html">Application Link APIs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="msiothub/index.html">Microsoft IoTHub API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="blockchainv1alpha1/index.html">Blockchain API (v1alpha1)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="system/index.html">System API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="miscellaneous/index.html">Miscellaneous</a></li>
@@ -205,6 +202,11 @@
      <tr>
        <td></td>
        <td>
+       <a href="iamv1/access_policies/openapi.html#get--archivist-iam-v1-access_policies-caps"><code class="xref">GET /archivist/iam/v1/access_policies:caps</code></a></td><td>
+       <em>Get remaining capped resources for AccessPolicies</em></td></tr>
+     <tr>
+       <td></td>
+       <td>
        <a href="iamv1/access_policies/openapi.html#get--archivist-iam-v1-assets-uuid-access_policies"><code class="xref">GET /archivist/iam/v1/assets/{uuid}/access_policies</code></a></td><td>
        <em>Get matching access policies</em></td></tr>
      <tr>
@@ -250,23 +252,8 @@
      <tr>
        <td></td>
        <td>
-       <a href="groupsv1/openapi.html#get--archivist-v1-groups"><code class="xref">GET /archivist/v1/groups</code></a></td><td>
-       <em>List all groups</em></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="groupsv1/openapi.html#get--archivist-v1-groups-user_principal_name"><code class="xref">GET /archivist/v1/groups/{user_principal_name}</code></a></td><td>
-       <em>Get a list of groups for a user</em></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="applicationlink/svcbussources/openapi.html#get--archivist-v1-svcbussources"><code class="xref">GET /archivist/v1/svcbussources</code></a></td><td>
-       <em>List all SvcBusSources</em></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="applicationlink/svcbussources/openapi.html#get--archivist-v1-svcbussources-uuid"><code class="xref">GET /archivist/v1/svcbussources/{uuid}</code></a></td><td>
-       <em>Get SvcBusSource with provided identity</em></td></tr>
+       <a href="compliancev1/openapi.html#get--archivist-v1-compliance_policies-caps"><code class="xref">GET /archivist/v1/compliance_policies:caps</code></a></td><td>
+       <em>Get remaining capped resources for CompliancePolicies</em></td></tr>
      <tr>
        <td></td>
        <td>
@@ -277,6 +264,11 @@
        <td>
        <a href="tlscacertificatesv1/openapi.html#get--archivist-v1-tlscacertificates-uuid"><code class="xref">GET /archivist/v1/tlscacertificates/{uuid}</code></a></td><td>
        <em>Get a TLS CA certificate</em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="tlscacertificatesv1/openapi.html#get--archivist-v1-tlscacertificates-caps"><code class="xref">GET /archivist/v1/tlscacertificates:caps</code></a></td><td>
+       <em>Get remaining capped resources for TLSCACertificates</em></td></tr>
      <tr>
        <td></td>
        <td>
@@ -305,16 +297,6 @@
      <tr>
        <td></td>
        <td>
-       <a href="applicationlink/iothubgdrv2/openapi.html#get--archivist-v2-iothubgdr"><code class="xref">GET /archivist/v2/iothubgdr</code></a></td><td>
-       <em>List IoTHub GDR connections.</em></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="applicationlink/iothubgdrv2/openapi.html#get--archivist-v2-iothubgdr-uuid"><code class="xref">GET /archivist/v2/iothubgdr/{uuid}</code></a></td><td>
-       <em>Retrieve an IoTHub GDR connection.</em></td></tr>
-     <tr>
-       <td></td>
-       <td>
        <a href="locations/openapi.html#get--archivist-v2-locations"><code class="xref">GET /archivist/v2/locations</code></a></td><td>
        <em>List locations</em></td></tr>
      <tr>
@@ -327,6 +309,11 @@
        <td>
        <a href="locations/openapi.html#get--archivist-v2-locations-uuid-permissions"><code class="xref">GET /archivist/v2/locations/{uuid}/permissions</code></a></td><td>
        <em>Get location permissions</em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="locations/openapi.html#get--archivist-v2-locations-caps"><code class="xref">GET /archivist/v2/locations:caps</code></a></td><td>
+       <em>Get remaining capped resources for Locations</em></td></tr>
      <tr>
        <td></td>
        <td>
@@ -345,11 +332,6 @@
      <tr>
        <td></td>
        <td>
-       <a href="applicationlink/svcbussources/openapi.html#post--archivist-v1-svcbussources"><code class="xref">POST /archivist/v1/svcbussources</code></a></td><td>
-       <em>Create new SvcBusSource</em></td></tr>
-     <tr>
-       <td></td>
-       <td>
        <a href="tlscacertificatesv1/openapi.html#post--archivist-v1-tlscacertificates"><code class="xref">POST /archivist/v1/tlscacertificates</code></a></td><td>
        <em>Upload a TLS CA certificate</em></td></tr>
      <tr>
@@ -357,16 +339,6 @@
        <td>
        <a href="assetv2/openapi.html#post--archivist-v2-assets"><code class="xref">POST /archivist/v2/assets</code></a></td><td>
        <em>Create an Archivist asset</em></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="applicationlink/iothubgdrv2/openapi.html#post--archivist-v2-iothubgdr"><code class="xref">POST /archivist/v2/iothubgdr</code></a></td><td>
-       <em>Create an IoTHub GDR connection.</em></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="applicationlink/iothubgdrv2/openapi.html#post--archivist-v2-iothubgdr-uuid-cancel"><code class="xref">POST /archivist/v2/iothubgdr/{uuid}:cancel</code></a></td><td>
-       <em>Cancel an IoTHub GDR connection.</em></td></tr>
      <tr>
        <td></td>
        <td>
@@ -390,18 +362,8 @@
      <tr>
        <td></td>
        <td>
-       <a href="applicationlink/svcbussources/openapi.html#delete--archivist-v1-svcbussources-uuid"><code class="xref">DELETE /archivist/v1/svcbussources/{uuid}</code></a></td><td>
-       <em>Delete SvcBusSource</em></td></tr>
-     <tr>
-       <td></td>
-       <td>
        <a href="tlscacertificatesv1/openapi.html#delete--archivist-v1-tlscacertificates-uuid"><code class="xref">DELETE /archivist/v1/tlscacertificates/{uuid}</code></a></td><td>
        <em>Delete a TLS C Acertificate</em></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="applicationlink/iothubgdrv2/openapi.html#delete--archivist-v2-iothubgdr-uuid"><code class="xref">DELETE /archivist/v2/iothubgdr/{uuid}</code></a></td><td>
-       <em>Delete an IoTHub GDR connection.</em></td></tr>
      <tr>
        <td></td>
        <td>

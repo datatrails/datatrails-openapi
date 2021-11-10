@@ -1,4 +1,0 @@
-Groups Swagger API
-------------------
-
-.. openapi:: ../openapi/groupsv1.swagger.json

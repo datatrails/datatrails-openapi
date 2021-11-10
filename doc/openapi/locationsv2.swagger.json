@@ -2,6 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Location API",
+    "description": "API to manage locations.",
     "version": "1.0",
     "contact": {
       "name": "Jitsuin",
@@ -101,7 +102,7 @@
       },
       "post": {
         "summary": "Create a location",
-        "description": "This request creates a new location. A name and a latitude and longitude must be provided. The display_name is the friendly name. The latitude and longitude must be entered in Degrees Decimal format See [Change of units and format](https://en.wikipedia.org/wiki/Geographic_coordinate_conversion#Change_of_units_and_format). The `attributes` field is a flat map of `{ \"key\": \"value\" }`. The keys and values must be strings.",
+        "description": "Create a new location.",
         "operationId": "Locations_CreateLocation",
         "responses": {
           "200": {
@@ -382,6 +383,35 @@
           "Locations"
         ]
       }
+    },
+    "/archivist/v2/locations:caps": {
+      "get": {
+        "summary": "Get remaining capped resources for Locations",
+        "description": "Not stable or officially supported. Get remaining capped resources for Locations",
+        "operationId": "Locations_GetCaps",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Caps"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Locations",
+          "Unsupported"
+        ]
+      }
     }
   },
   "definitions": {
@@ -493,26 +523,31 @@
         }
       }
     },
-    "v1ListSuggestionsResponse": {
+    "v1Cap": {
       "type": "object",
-      "example": [
-        "Grayslake, Illinois",
-        "Macclesfield"
-      ],
       "properties": {
-        "suggestions": {
+        "resource_type": {
+          "type": "string",
+          "description": "String identifying the capped resource type"
+        },
+        "resource_remaining": {
+          "type": "string",
+          "format": "int64",
+          "description": "Number of capped resources remaining"
+        }
+      }
+    },
+    "v1Caps": {
+      "type": "object",
+      "properties": {
+        "caps": {
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "#/definitions/v1Cap"
           },
-          "description": "List of lexically sorted string suggestions.\nWhen the named attribute refers to a string value (leaf attribute), for example principal_declared.email, the list is the lexically sorted set of values currently known for that field."
-        },
-        "next_page_token": {
-          "type": "string",
-          "title": "Token to retrieve the next page of results or empty if there are none.\nNote: Paging is partialy supported as a means for the client to limit the number of responses and to know if the response list is complete. Attempts to redeme a page token will fail. Presence of a page token means there are more suggestions but we didn’t return them"
+          "description": "List of relevant capped resources"
         }
-      },
-      "description": "List of suggestions (or the next page in a continuing  list request"
+      }
     },
     "v2Attribute": {
       "type": "object",
@@ -546,7 +581,7 @@
       "properties": {
         "display_name": {
           "type": "string",
-          "description": "Customer friendly name for the asset.",
+          "description": "Customer friendly name for the location.",
           "maxLength": 128
         },
         "description": {
@@ -607,6 +642,39 @@
     },
     "v2ListLocationsResponse": {
       "type": "object",
+      "example": {
+        "locations": [
+          {
+            "identity": "locations/08838336-c357-460d-902a-3aba9528dd22",
+            "display_name": "Macclesfield, Cheshire",
+            "description": "Manufacturing site, North West England, Macclesfield, Cheshire",
+            "latitude": "53.2546799",
+            "longitude": "-2.1213956,14.54",
+            "attributes": {
+              "director": "John Smith",
+              "address": "Bridgewater, Somerset",
+              "Facility Type": "Manufacture",
+              "support_email": "support@macclesfield.com",
+              "support_phone": "123 456 789"
+            }
+          },
+          {
+            "identity": "locations/19749457-d468-572c-6e3b-3acb0417ec13",
+            "display_name": "Cardiff, Glamorganshire",
+            "description": "Distribution Centre, Wales, Cardiff, Glamorganshire",
+            "latitude": "51.481583",
+            "longitude": "-3.179090",
+            "attributes": {
+              "director": "June Smith",
+              "address": "Newtown",
+              "Facility Type": "Distribution",
+              "support_email": "support@example.com",
+              "support_phone": "321 654 987"
+            }
+          }
+        ],
+        "next_page_token": "eyJvcmlnX3JlcSI6eyJwYWdlX3NpemUiOjJ9LCJza2lwIjoyfQ=="
+      },
       "properties": {
         "locations": {
           "type": "array",
@@ -619,31 +687,53 @@
           "type": "string",
           "description": "Token to retrieve the next page of results or empty if there are none."
         }
-      }
+      },
+      "description": "Describes a location for asset resources"
     },
     "v2LocationPermissions": {
       "type": "object",
+      "example": {
+        "location_identity": "locations/08838336-c357-460d-902a-3aba9528dd22",
+        "permissions": {
+          "subject_identities": [
+            "bob@example.com",
+            "orgb"
+          ]
+        }
+      },
       "properties": {
         "location_identity": {
-          "type": "string"
+          "type": "string",
+          "description": "The location identity in the form: `locations/{uuid}`",
+          "readOnly": true
         },
         "permissions": {
-          "$ref": "#/definitions/v2SubjectIdentities"
+          "$ref": "#/definitions/v2SubjectIdentities",
+          "description": "Subject identities this location is shared with",
+          "readOnly": true
         }
-      }
+      },
+      "description": "Permissions for a location."
     },
     "v2SubjectIdentities": {
       "type": "object",
+      "example": {
+        "subject_identities": [
+          "bob@example.com",
+          "orgb"
+        ]
+      },
       "properties": {
         "subject_identities": {
           "type": "array",
           "items": {
             "type": "string"
           },
-          "description": "list of subject identities this location is shared with",
+          "description": "List of subject identities",
           "maxLength": 128
         }
-      }
+      },
+      "description": "Subject permissions."
     }
   }
 }

@@ -295,6 +295,35 @@
           "Compliance"
         ]
       }
+    },
+    "/archivist/v1/compliance_policies:caps": {
+      "get": {
+        "summary": "Get remaining capped resources for CompliancePolicies",
+        "description": "Not stable or officially supported. Get remaining capped resources for CompliancePolicies",
+        "operationId": "Compliance_GetCaps",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Caps"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "CompliancePolicies",
+          "Unsupported"
+        ]
+      }
     }
   },
   "definitions": {
@@ -407,6 +436,32 @@
         }
       },
       "description": "request adding new compliance policy"
+    },
+    "v1Cap": {
+      "type": "object",
+      "properties": {
+        "resource_type": {
+          "type": "string",
+          "description": "String identifying the capped resource type"
+        },
+        "resource_remaining": {
+          "type": "string",
+          "format": "int64",
+          "description": "Number of capped resources remaining"
+        }
+      }
+    },
+    "v1Caps": {
+      "type": "object",
+      "properties": {
+        "caps": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Cap"
+          },
+          "description": "List of relevant capped resources"
+        }
+      }
     },
     "v1CompliancePolicyResponse": {
       "type": "object",
