@@ -516,9 +516,12 @@
           "type": "string",
           "title": "generated identity for the entry"
         },
-        "author": {
-          "type": "string",
-          "title": "who created the sbom"
+        "authors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "SBOM scraped metadata starts here"
         },
         "supplier": {
           "type": "string",
@@ -530,11 +533,14 @@
         "version": {
           "type": "string"
         },
-        "hash": {
-          "type": "string",
+        "hashes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
           "title": "the component hash"
         },
-        "uniqueid": {
+        "unique_id": {
           "type": "string",
           "title": "the sbom uniqueid"
         },
