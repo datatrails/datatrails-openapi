@@ -978,6 +978,11 @@
           "type": "string",
           "$ref": "#/definitions/v2ProofMechanism",
           "description": "the mechanism used to provide evidential proof"
+        },
+        "chain_id": {
+          "type": "string",
+          "description": "chain id of the blockchain associated with this asset",
+          "readOnly": true
         }
       },
       "description": "This describes Jitsuin Asset."

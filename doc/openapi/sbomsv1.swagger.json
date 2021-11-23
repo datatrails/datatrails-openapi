@@ -104,8 +104,20 @@
             "default": "LIFECYCLESTATUS_UNSPECIFIED"
           },
           {
-            "name": "private",
-            "description": "whether the request is private, defaults to false.",
+            "name": "privacy",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "PRIVATESTATUS_UNKNOWN",
+              "PRIVATE",
+              "PUBLIC"
+            ],
+            "default": "PRIVATESTATUS_UNKNOWN"
+          },
+          {
+            "name": "tenant_only",
+            "description": "whether the sboms returned should belong to the tenant, defaults to false.",
             "in": "query",
             "required": false,
             "type": "boolean"
@@ -226,8 +238,20 @@
             "default": "LIFECYCLESTATUS_UNSPECIFIED"
           },
           {
-            "name": "private",
-            "description": "whether the request is private, defaults to false.",
+            "name": "privacy",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "PRIVATESTATUS_UNKNOWN",
+              "PRIVATE",
+              "PUBLIC"
+            ],
+            "default": "PRIVATESTATUS_UNKNOWN"
+          },
+          {
+            "name": "tenant_only",
+            "description": "whether the sboms returned should belong to the tenant, defaults to false.",
             "in": "query",
             "required": false,
             "type": "boolean"
@@ -417,6 +441,16 @@
     }
   },
   "definitions": {
+    "ListSbomsRequestPrivateStatus": {
+      "type": "string",
+      "enum": [
+        "PRIVATESTATUS_UNKNOWN",
+        "PRIVATE",
+        "PUBLIC"
+      ],
+      "default": "PRIVATESTATUS_UNKNOWN",
+      "title": "whether the sboms are private, public\n  or both"
+    },
     "ListSbomsRequestTrustedStatus": {
       "type": "string",
       "enum": [
@@ -425,7 +459,7 @@
         "UNTRUSTED"
       ],
       "default": "TRUSTEDSTATUS_UNSPECIFIED",
-      "description": "whether the uploader is trusted\nhas to be a truthy or falsy value."
+      "title": "whether the uploader is trusted"
     },
     "protobufAny": {
       "type": "object",
@@ -560,6 +594,16 @@
         },
         "lifecycle_status": {
           "$ref": "#/definitions/v1SbomMetadataLifecycleStatus"
+        },
+        "withdrawn_date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp that this SBOM was withdrawn, if withdrawn."
+        },
+        "published_date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp that this SBOM was published, if public."
         }
       }
     },

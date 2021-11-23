@@ -281,6 +281,35 @@
         }
       }
     },
+    "v1QuorumNetwork": {
+      "type": "object",
+      "properties": {
+        "node_address": {
+          "type": "string",
+          "description": "scheme://host:port for the tenants resident quorum node",
+          "maxLength": 1024,
+          "minLength": 1
+        },
+        "tessera_address": {
+          "type": "string",
+          "description": "scheme://host:port of tenants resident tessera node if privacy preserving transactions are enabled for the tenant",
+          "maxLength": 1024,
+          "minLength": 1
+        },
+        "tessera_key": {
+          "type": "string",
+          "description": "Tessera key.",
+          "title": "DLT tessera public key. Not currently used anywhere?",
+          "maxLength": 1024,
+          "minLength": 1
+        },
+        "is_private": {
+          "type": "boolean",
+          "description": "Is the tessaera private?"
+        }
+      },
+      "title": "Models the interface between creators and the blockchain. Used in an internal LRU for each\ncreator service"
+    },
     "v1TenantIDResponse": {
       "type": "object",
       "properties": {
@@ -331,12 +360,6 @@
         "wallet_address": {
           "type": "string"
         },
-        "tessera_key_name": {
-          "type": "string"
-        },
-        "tessera_public_key": {
-          "type": "string"
-        },
         "root_principals": {
           "type": "array",
           "items": {
@@ -366,6 +389,13 @@
         },
         "tier": {
           "$ref": "#/definitions/v1Tier"
+        },
+        "quorum_networks": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/v1QuorumNetwork"
+          },
+          "title": "map of DLT networks indexed by chain ID"
         }
       },
       "title": "Tenant information"

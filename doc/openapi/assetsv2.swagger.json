@@ -139,6 +139,13 @@
               "TRIE_HASH"
             ],
             "default": "PROOF_MECHANISM_UNSPECIFIED"
+          },
+          {
+            "name": "chain_id",
+            "description": "chain id of the blockchain associated with this asset",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -675,6 +682,11 @@
           "type": "string",
           "$ref": "#/definitions/v2ProofMechanism",
           "description": "the mechanism used to provide evidential proof"
+        },
+        "chain_id": {
+          "type": "string",
+          "description": "chain id of the blockchain associated with this asset",
+          "readOnly": true
         }
       },
       "description": "This describes Jitsuin Asset."
@@ -754,6 +766,11 @@
           "$ref": "#/definitions/v2ProofMechanism",
           "description": "specify the mechanism used to provide evidential proof for Events on this Asset",
           "title": "mechanism for evidential proof for Events on this Asset"
+        },
+        "chain_id": {
+          "type": "string",
+          "description": "chain id of the blockchain associated with this asset",
+          "maxLength": 1024
         }
       },
       "description": "This describes the body of a request to create new Jitsuin Asset."
