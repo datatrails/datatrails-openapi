@@ -4,7 +4,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
@@ -186,12 +186,12 @@
 <dd><p><strong>List Archivist events</strong></p>
 <p>Lists Archivist events</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>uuid</strong> (<em>string</em>) – Specify the Asset UUID where <cite>assets/{uuid}</cite> is the Asset Identity e.g. <cite>add30235-1424-4fda-840a-d5ef82c4c96f</cite> from Identity <cite>assets/add30235-1424-4fda-840a-d5ef82c4c96f</cite>.  Use <cite>-</cite> to list Events for all Assets</p></li>
 </ul>
 </dd>
-<dt class="field-even">Query Parameters</dt>
+<dt class="field-even">Query Parameters<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>page_size</strong> (<em>integer</em>) – Maximum results per page.</p></li>
 <li><p><strong>page_token</strong> (<em>string</em>) – The next_page_token returned from a previous list request if any.</p></li>
@@ -215,7 +215,7 @@
 <li><p><strong>timestamp_declared_before</strong> (<em>string</em>) – Only list events when timestamp_declared is lesser</p></li>
 </ul>
 </dd>
-<dt class="field-odd">Status Codes</dt>
+<dt class="field-odd">Status Codes<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – A successful response.</p></li>
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.7">206 Partial Content</a> – The number of events exceeds the servers limit. The approximate number of matching results is provided by the x-total-count header, the exact limit is available in the content-range header. The value format is ‘items 0-LIMIT/TOTAL’.  Note that x-total-count is always present for 200 and 206 responses. It is the servers best available approximation. Similarly, in any result set, you may get a few more than LIMIT items.</p></li>
@@ -224,7 +224,7 @@
 <li><p><span class="problematic">default</span> – An unexpected error response.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Response JSON Object</dt>
+<dt class="field-even">Response JSON Object<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>events[].asset_attributes</strong> (<em>object</em>) – key value mapping of asset attributes</p></li>
 <li><p><strong>events[].asset_identity</strong> (<em>string</em>) – identity of a related asset resource <cite>assets/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000</cite> (read only)</p></li>
@@ -260,13 +260,13 @@
 <dd><p><strong>Retrieves Archivist event</strong></p>
 <p>Retrieves a specific Archivist event</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>asset_uuid</strong> (<em>string</em>) – Specify the Asset UUID where <cite>assets/{asset_uuid}/events/{uuid}</cite> is the Event Identity e.g. <cite>add30235-1424-4fda-840a-d5ef82c4c96f</cite> from Identity <cite>assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000</cite></p></li>
 <li><p><strong>uuid</strong> (<em>string</em>) – Specify the Event UUID where <cite>assets/{asset_uuid}/events/{uuid}</cite> is the Event Identity e.g. <cite>11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000</cite> from Identity <cite>assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000</cite></p></li>
 </ul>
 </dd>
-<dt class="field-even">Status Codes</dt>
+<dt class="field-even">Status Codes<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – A successful response.</p></li>
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Returned when the user is not authenticated to the system.</p></li>
@@ -275,7 +275,7 @@
 <li><p><span class="problematic">default</span> – An unexpected error response.</p></li>
 </ul>
 </dd>
-<dt class="field-odd">Response JSON Object</dt>
+<dt class="field-odd">Response JSON Object<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>asset_attributes</strong> (<em>object</em>) – key value mapping of asset attributes</p></li>
 <li><p><strong>asset_identity</strong> (<em>string</em>) – identity of a related asset resource <cite>assets/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000</cite> (read only)</p></li>

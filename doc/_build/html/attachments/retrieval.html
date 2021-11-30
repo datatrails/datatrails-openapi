@@ -4,7 +4,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
@@ -183,7 +183,7 @@
 <p class="admonition-title">Warning</p>
 <p>This endpoint is currently deprecated and has been replaced by the
 Blobs endpoint.</p>
-</div>
+</aside>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Attachments in the Jitsuin Archivist system are not first-order
@@ -192,7 +192,7 @@ such as Asset Records or events. Due to this, Attachments MUST
 be retrieved by full unique resource identity as stored in an
 asset Record or Event property. They cannot be listed, filtered,
 or searched.</p>
-</div>
+</aside>
 <p>Create the <strong>bearer_token</strong> and store in a file in a secure local directory with 0600 permissions.</p>
 <p>See <a class="reference internal" href="../auth/authentication.html#bearer-token"><span class="std std-ref">API Request Authorization and Authentication</span></a>.</p>
 <div class="admonition note">
@@ -200,7 +200,7 @@ or searched.</p>
 <p>The following example shows use of the  API over curl in a bash terminal.
 The concepts are fully portable to any other REST client (eg PostMan or
 python requests)</p>
-</div>
+</aside>
 <p>Set the URL (for example):</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">URL</span><span class="o">=</span>https://synsation.1234-5678.nodes.archivist.jitsuin.io
 </pre></div>
@@ -231,7 +231,7 @@ python requests)</p>
 <p>The number of records returned has a maximum limit. If this limit is too small then one must use
 <a class="reference internal" href="../miscellaneous/paging.html#misc-paging"><span class="std std-ref">API Request Paging</span></a>.</p>
 <p>A full API reference is available in <a class="reference external" href="openapi.html#get--archivist-v2-attachments">Swagger GET API</a></p>
-</div>
+</aside>
 </section>
 
 

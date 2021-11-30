@@ -4,7 +4,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
@@ -185,12 +185,12 @@
 <dd><p><strong>Get an attachment</strong></p>
 <p>Returns the attachment associated with the relative resource name</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>uuid</strong> (<em>string</em>) – Specify the Attachment UUID where <cite>attachments/{uuid}</cite> is the Attachment Identity e.g. <cite>add30235-1424-4fda-840a-d5ef82c4c96f</cite> from Identity <cite>attachments/add30235-1424-4fda-840a-d5ef82c4c96f</cite></p></li>
 </ul>
 </dd>
-<dt class="field-even">Status Codes</dt>
+<dt class="field-even">Status Codes<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – A successful response.(streaming responses)</p></li>
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Returned when the user is not authenticated to the system.</p></li>
@@ -199,7 +199,7 @@
 <li><p><span class="problematic">default</span> – An unexpected error response.</p></li>
 </ul>
 </dd>
-<dt class="field-odd">Response JSON Object</dt>
+<dt class="field-odd">Response JSON Object<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>error.code</strong> (<em>integer</em>) – </p></li>
 <li><p><strong>error.details[].type_url</strong> (<em>string</em>) – A URL/resource name that uniquely identifies the type of the serialized
@@ -272,12 +272,12 @@ used with implementation specific semantics.</p></li>
 <dd><p><strong>Get attachment metadata</strong></p>
 <p>Gets the metadata associated an attachment uuid</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>uuid</strong> (<em>string</em>) – Specify the Attachment UUID where <cite>attachments/{uuid}</cite> is the Attachment Identity e.g. <cite>add30235-1424-4fda-840a-d5ef82c4c96f</cite> from Identity <cite>attachments/add30235-1424-4fda-840a-d5ef82c4c96f</cite></p></li>
 </ul>
 </dd>
-<dt class="field-even">Status Codes</dt>
+<dt class="field-even">Status Codes<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – A successful response.</p></li>
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Returned when the user is not authenticated to the system.</p></li>
@@ -286,7 +286,7 @@ used with implementation specific semantics.</p></li>
 <li><p><span class="problematic">default</span> – An unexpected error response.</p></li>
 </ul>
 </dd>
-<dt class="field-odd">Response JSON Object</dt>
+<dt class="field-odd">Response JSON Object<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>hash.alg</strong> (<em>string</em>) – </p></li>
 <li><p><strong>hash.value</strong> (<em>string</em>) – Calculated hash.</p></li>

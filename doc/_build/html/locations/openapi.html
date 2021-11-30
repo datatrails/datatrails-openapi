@@ -4,7 +4,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
@@ -186,7 +186,7 @@
 <dd><p><strong>List locations</strong></p>
 <p>Returns a paginated list of locations</p>
 <dl class="field-list simple">
-<dt class="field-odd">Query Parameters</dt>
+<dt class="field-odd">Query Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>order_by</strong> (<em>string</em>) – Specify the sort order for the results. By display_name and by named
 extended attribute are supported.</p></li>
@@ -196,7 +196,7 @@ extended attribute are supported.</p></li>
 <li><p><strong>description</strong> (<em>string</em>) – </p></li>
 </ul>
 </dd>
-<dt class="field-even">Status Codes</dt>
+<dt class="field-even">Status Codes<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – A successful response.</p></li>
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Returned when the user is not authenticated to the system.</p></li>
@@ -204,7 +204,7 @@ extended attribute are supported.</p></li>
 <li><p><span class="problematic">default</span> – An unexpected error response.</p></li>
 </ul>
 </dd>
-<dt class="field-odd">Response JSON Object</dt>
+<dt class="field-odd">Response JSON Object<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>locations[].attributes</strong> (<em>object</em>) – key value mapping of asset properties</p></li>
 <li><p><strong>locations[].description</strong> (<em>string</em>) – Free text description of the location</p></li>
@@ -226,7 +226,7 @@ extended attribute are supported.</p></li>
 <dd><p><strong>Create a location</strong></p>
 <p>Create a new location.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Request JSON Object</dt>
+<dt class="field-odd">Request JSON Object<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>attributes</strong> (<em>object</em>) – key value mapping of location properties</p></li>
 <li><p><strong>description</strong> (<em>string</em>) – Free text description of the location</p></li>
@@ -235,7 +235,7 @@ extended attribute are supported.</p></li>
 <li><p><strong>longitude</strong> (<em>number</em>) – longitude in decimal degrees format. (required)</p></li>
 </ul>
 </dd>
-<dt class="field-even">Status Codes</dt>
+<dt class="field-even">Status Codes<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – A successful response.</p></li>
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Returned when the user is not authenticated to the system.</p></li>
@@ -243,7 +243,7 @@ extended attribute are supported.</p></li>
 <li><p><span class="problematic">default</span> – An unexpected error response.</p></li>
 </ul>
 </dd>
-<dt class="field-odd">Response JSON Object</dt>
+<dt class="field-odd">Response JSON Object<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>attributes</strong> (<em>object</em>) – key value mapping of asset properties</p></li>
 <li><p><strong>description</strong> (<em>string</em>) – Free text description of the location</p></li>
@@ -264,12 +264,12 @@ extended attribute are supported.</p></li>
 <dd><p><strong>Get a location</strong></p>
 <p>Returns the identified location</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>uuid</strong> (<em>string</em>) – Specify the Location UUID where <cite>locations/{uuid}</cite> is the Location Identity e.g. <cite>add30235-1424-4fda-840a-d5ef82c4c96f</cite> from Identity <cite>locations/add30235-1424-4fda-840a-d5ef82c4c96f</cite></p></li>
 </ul>
 </dd>
-<dt class="field-even">Status Codes</dt>
+<dt class="field-even">Status Codes<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – A successful response.</p></li>
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Returned when the user is not authenticated to the system.</p></li>
@@ -278,7 +278,7 @@ extended attribute are supported.</p></li>
 <li><p><span class="problematic">default</span> – An unexpected error response.</p></li>
 </ul>
 </dd>
-<dt class="field-odd">Response JSON Object</dt>
+<dt class="field-odd">Response JSON Object<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>attributes</strong> (<em>object</em>) – key value mapping of asset properties</p></li>
 <li><p><strong>description</strong> (<em>string</em>) – Free text description of the location</p></li>
@@ -299,12 +299,12 @@ extended attribute are supported.</p></li>
 <dd><p><strong>Delete a location</strong></p>
 <p>Delete the identified location</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>uuid</strong> (<em>string</em>) – Specify the Location UUID where <cite>locations/{uuid}</cite> is the Location Identity e.g. <cite>add30235-1424-4fda-840a-d5ef82c4c96f</cite> from Identity <cite>locations/add30235-1424-4fda-840a-d5ef82c4c96f</cite></p></li>
 </ul>
 </dd>
-<dt class="field-even">Status Codes</dt>
+<dt class="field-even">Status Codes<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – A successful response.</p></li>
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Returned when the user is not authenticated to the system.</p></li>
@@ -322,19 +322,19 @@ extended attribute are supported.</p></li>
 <dd><p><strong>Update a location’s details</strong></p>
 <p>Perform a full or partial update of the identified location</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>uuid</strong> (<em>string</em>) – Specify the Location UUID where <cite>locations/{uuid}</cite> is the Location Identity e.g. <cite>add30235-1424-4fda-840a-d5ef82c4c96f</cite> from Identity <cite>locations/add30235-1424-4fda-840a-d5ef82c4c96f</cite></p></li>
 </ul>
 </dd>
-<dt class="field-even">Query Parameters</dt>
+<dt class="field-even">Query Parameters<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>mask</strong> (<em>string</em>) – The mask says exactly which fields are to be updated. This
 removes the ambiguity caused by ‘zero’ valued fields.
 <a class="reference external" href="https://grpc-ecosystem.github.io/grpc-gateway/docs/patch.html">https://grpc-ecosystem.github.io/grpc-gateway/docs/patch.html</a>.</p></li>
 </ul>
 </dd>
-<dt class="field-odd">Request JSON Object</dt>
+<dt class="field-odd">Request JSON Object<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>attributes</strong> (<em>object</em>) – key value mapping of asset properties</p></li>
 <li><p><strong>description</strong> (<em>string</em>) – Free text description of the location</p></li>
@@ -346,7 +346,7 @@ removes the ambiguity caused by ‘zero’ valued fields.
 <li><p><strong>tenant</strong> (<em>string</em>) – Tenent id</p></li>
 </ul>
 </dd>
-<dt class="field-even">Status Codes</dt>
+<dt class="field-even">Status Codes<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – A successful response.</p></li>
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Returned when the user is not authenticated to the system.</p></li>
@@ -355,7 +355,7 @@ removes the ambiguity caused by ‘zero’ valued fields.
 <li><p><span class="problematic">default</span> – An unexpected error response.</p></li>
 </ul>
 </dd>
-<dt class="field-odd">Response JSON Object</dt>
+<dt class="field-odd">Response JSON Object<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>attributes</strong> (<em>object</em>) – key value mapping of asset properties</p></li>
 <li><p><strong>description</strong> (<em>string</em>) – Free text description of the location</p></li>
@@ -376,12 +376,12 @@ removes the ambiguity caused by ‘zero’ valued fields.
 <dd><p><strong>Get location permissions</strong></p>
 <p>Get location permissions for identified location</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>uuid</strong> (<em>string</em>) – Specify the Location UUID where <cite>locations/{uuid}</cite> is the Location Identity e.g. <cite>add30235-1424-4fda-840a-d5ef82c4c96f</cite> from Identity <cite>locations/add30235-1424-4fda-840a-d5ef82c4c96f</cite></p></li>
 </ul>
 </dd>
-<dt class="field-even">Status Codes</dt>
+<dt class="field-even">Status Codes<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – A successful response.</p></li>
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Returned when the user is not authenticated to the system.</p></li>
@@ -390,7 +390,7 @@ removes the ambiguity caused by ‘zero’ valued fields.
 <li><p><span class="problematic">default</span> – An unexpected error response.</p></li>
 </ul>
 </dd>
-<dt class="field-odd">Response JSON Object</dt>
+<dt class="field-odd">Response JSON Object<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>location_identity</strong> (<em>string</em>) – The location identity in the form: <cite>locations/{uuid}</cite> (read only)</p></li>
 <li><p><strong>permissions.subject_identities[]</strong> (<em>string</em>) – </p></li>
@@ -405,17 +405,17 @@ removes the ambiguity caused by ‘zero’ valued fields.
 <dd><p><strong>Patch location permissions</strong></p>
 <p>Patch location permissions for identified location</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>uuid</strong> (<em>string</em>) – Specify the Location UUID where <cite>locations/{uuid}</cite> is the Location Identity e.g. <cite>add30235-1424-4fda-840a-d5ef82c4c96f</cite> from Identity <cite>locations/add30235-1424-4fda-840a-d5ef82c4c96f</cite></p></li>
 </ul>
 </dd>
-<dt class="field-even">Request JSON Object</dt>
+<dt class="field-even">Request JSON Object<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>subject_identities[]</strong> (<em>string</em>) – </p></li>
 </ul>
 </dd>
-<dt class="field-odd">Status Codes</dt>
+<dt class="field-odd">Status Codes<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – A successful response.</p></li>
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Returned when the user is not authenticated to the system.</p></li>
@@ -424,7 +424,7 @@ removes the ambiguity caused by ‘zero’ valued fields.
 <li><p><span class="problematic">default</span> – An unexpected error response.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Response JSON Object</dt>
+<dt class="field-even">Response JSON Object<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>location_identity</strong> (<em>string</em>) – The location identity in the form: <cite>locations/{uuid}</cite> (read only)</p></li>
 <li><p><strong>permissions.subject_identities[]</strong> (<em>string</em>) – </p></li>
@@ -439,14 +439,14 @@ removes the ambiguity caused by ‘zero’ valued fields.
 <dd><p><strong>Get remaining capped resources for Locations</strong></p>
 <p>Not stable or officially supported. Get remaining capped resources for Locations</p>
 <dl class="field-list simple">
-<dt class="field-odd">Status Codes</dt>
+<dt class="field-odd">Status Codes<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – A successful response.</p></li>
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Returned when the user is not authenticated to the system.</p></li>
 <li><p><span class="problematic">default</span> – An unexpected error response.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Response JSON Object</dt>
+<dt class="field-even">Response JSON Object<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>caps[].resource_remaining</strong> (<em>string</em>) – Number of capped resources remaining</p></li>
 <li><p><strong>caps[].resource_type</strong> (<em>string</em>) – String identifying the capped resource type</p></li>

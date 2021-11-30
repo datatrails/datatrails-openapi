@@ -4,7 +4,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
@@ -188,7 +188,7 @@
 <dd><p><strong>List TLS CA certificates</strong></p>
 <p>Returns a paginated list of TLS CA certificates</p>
 <dl class="field-list simple">
-<dt class="field-odd">Query Parameters</dt>
+<dt class="field-odd">Query Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>order_by</strong> (<em>string</em>) – Specify the sort order for the results.</p></li>
 <li><p><strong>page_size</strong> (<em>integer</em>) – Maximum entries per page.</p></li>
@@ -196,7 +196,7 @@
 <li><p><strong>display_name</strong> (<em>string</em>) – Further fields are bound to query parameters and act to filter the result. Customer friendly name for the TLS CA certificate.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Status Codes</dt>
+<dt class="field-even">Status Codes<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – A successful response.</p></li>
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Returned when the request is badly formed.</p></li>
@@ -206,7 +206,7 @@
 <li><p><span class="problematic">default</span> – An unexpected error response.</p></li>
 </ul>
 </dd>
-<dt class="field-odd">Response JSON Object</dt>
+<dt class="field-odd">Response JSON Object<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>next_page_token</strong> (<em>string</em>) – Token to retrieve the next page of results or empty if there are none.</p></li>
 <li><p><strong>tlscacertificates[].display_name</strong> (<em>string</em>) – Customer friendly name for the TLS CA certificate.</p></li>
@@ -223,13 +223,13 @@
 <dd><p><strong>Upload a TLS CA certificate</strong></p>
 <p>This request uploads a TLS CA certificate. The display_name is the friendly name.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Request JSON Object</dt>
+<dt class="field-odd">Request JSON Object<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>display_name</strong> (<em>string</em>) – Customer friendly name for the TLS CA certificate. (required)</p></li>
 <li><p><strong>tlscacertificate</strong> (<em>string</em>) – TLS CA Certificate as string representing the contents of the PEM file (required)</p></li>
 </ul>
 </dd>
-<dt class="field-even">Status Codes</dt>
+<dt class="field-even">Status Codes<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – A successful response.</p></li>
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Returned when the request is badly formed.</p></li>
@@ -239,7 +239,7 @@
 <li><p><span class="problematic">default</span> – An unexpected error response.</p></li>
 </ul>
 </dd>
-<dt class="field-odd">Response JSON Object</dt>
+<dt class="field-odd">Response JSON Object<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>display_name</strong> (<em>string</em>) – Customer friendly name for the TLS CA certificate.</p></li>
 <li><p><strong>identity</strong> (<em>string</em>) – Unique identification for the TLS CA ertificate, Relative Resource Name</p></li>
@@ -255,12 +255,12 @@
 <dd><p><strong>Get a TLS CA certificate</strong></p>
 <p>Returns the identified tlscacertificate</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>uuid</strong> (<em>string</em>) – Specify the TLS CA Certificate UUID where <cite>tlscacertificates/{uuid}</cite> is the TLS CA Certificate Identity e.g. <cite>08838336-c357-460d-902a-3aba9528dd22</cite> from Identity <cite>tlscacertificates/08838336-c357-460d-902a-3aba9528dd22</cite></p></li>
 </ul>
 </dd>
-<dt class="field-even">Status Codes</dt>
+<dt class="field-even">Status Codes<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – A successful response.</p></li>
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Returned when the request is badly formed.</p></li>
@@ -271,7 +271,7 @@
 <li><p><span class="problematic">default</span> – An unexpected error response.</p></li>
 </ul>
 </dd>
-<dt class="field-odd">Response JSON Object</dt>
+<dt class="field-odd">Response JSON Object<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>display_name</strong> (<em>string</em>) – Customer friendly name for the TLS CA certificate.</p></li>
 <li><p><strong>identity</strong> (<em>string</em>) – Unique identification for the TLS CA ertificate, Relative Resource Name</p></li>
@@ -287,12 +287,12 @@
 <dd><p><strong>Delete a TLS C Acertificate</strong></p>
 <p>Delete the identified tLS CA Certificate</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>uuid</strong> (<em>string</em>) – Specify the TLS CA Certificate UUID where <cite>tlscacertificates/{uuid}</cite> is the TLS CA Certificate Identity e.g. <cite>08838336-c357-460d-902a-3aba9528dd22</cite> from Identity <cite>tlscacertificates/08838336-c357-460d-902a-3aba9528dd22</cite></p></li>
 </ul>
 </dd>
-<dt class="field-even">Status Codes</dt>
+<dt class="field-even">Status Codes<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – A successful response.</p></li>
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Returned when the request is badly formed.</p></li>
@@ -312,26 +312,26 @@
 <dd><p><strong>Update a TLS CA certificate’s details</strong></p>
 <p>Perform a full or partial update of the identified TLS CA certificate</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>uuid</strong> (<em>string</em>) – Specify the TLS CA Certificate UUID where <cite>tlscacertificates/{uuid}</cite> is the TLS CA Certificate Identity e.g. <cite>08838336-c357-460d-902a-3aba9528dd22</cite> from Identity <cite>tlscacertificates/08838336-c357-460d-902a-3aba9528dd22</cite></p></li>
 </ul>
 </dd>
-<dt class="field-even">Query Parameters</dt>
+<dt class="field-even">Query Parameters<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>mask</strong> (<em>string</em>) – The mask says exactly which fields are to be updated. This
 removes the ambiguity caused by ‘zero’ valued fields.
 <a class="reference external" href="https://grpc-ecosystem.github.io/grpc-gateway/docs/patch.html">https://grpc-ecosystem.github.io/grpc-gateway/docs/patch.html</a>.</p></li>
 </ul>
 </dd>
-<dt class="field-odd">Request JSON Object</dt>
+<dt class="field-odd">Request JSON Object<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>display_name</strong> (<em>string</em>) – Customer friendly name for the TLS CA certificate.</p></li>
 <li><p><strong>identity</strong> (<em>string</em>) – Unique identification for the TLS CA ertificate, Relative Resource Name</p></li>
 <li><p><strong>tlscacertificate</strong> (<em>string</em>) – TLS CA Certificate as base64 string representing the contents of the PEM file</p></li>
 </ul>
 </dd>
-<dt class="field-even">Status Codes</dt>
+<dt class="field-even">Status Codes<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – A successful response.</p></li>
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Returned when the request is badly formed.</p></li>
@@ -342,7 +342,7 @@ removes the ambiguity caused by ‘zero’ valued fields.
 <li><p><span class="problematic">default</span> – An unexpected error response.</p></li>
 </ul>
 </dd>
-<dt class="field-odd">Response JSON Object</dt>
+<dt class="field-odd">Response JSON Object<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>display_name</strong> (<em>string</em>) – Customer friendly name for the TLS CA certificate.</p></li>
 <li><p><strong>identity</strong> (<em>string</em>) – Unique identification for the TLS CA ertificate, Relative Resource Name</p></li>
@@ -358,14 +358,14 @@ removes the ambiguity caused by ‘zero’ valued fields.
 <dd><p><strong>Get remaining capped resources for TLSCACertificates</strong></p>
 <p>Not stable or officially supported. Get remaining capped resources for TLSCACertificates</p>
 <dl class="field-list simple">
-<dt class="field-odd">Status Codes</dt>
+<dt class="field-odd">Status Codes<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – A successful response.</p></li>
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> – Returned when the user is not authenticated to the system.</p></li>
 <li><p><span class="problematic">default</span> – An unexpected error response.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Response JSON Object</dt>
+<dt class="field-even">Response JSON Object<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>caps[].resource_remaining</strong> (<em>string</em>) – Number of capped resources remaining</p></li>
 <li><p><strong>caps[].resource_type</strong> (<em>string</em>) – String identifying the capped resource type</p></li>

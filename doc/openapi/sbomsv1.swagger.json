@@ -109,11 +109,11 @@
             "required": false,
             "type": "string",
             "enum": [
-              "PRIVATESTATUS_UNKNOWN",
+              "PRIVATESTATUS_UNSPECIFIED",
               "PRIVATE",
               "PUBLIC"
             ],
-            "default": "PRIVATESTATUS_UNKNOWN"
+            "default": "PRIVATESTATUS_UNSPECIFIED"
           },
           {
             "name": "tenant_only",
@@ -243,11 +243,11 @@
             "required": false,
             "type": "string",
             "enum": [
-              "PRIVATESTATUS_UNKNOWN",
+              "PRIVATESTATUS_UNSPECIFIED",
               "PRIVATE",
               "PUBLIC"
             ],
-            "default": "PRIVATESTATUS_UNKNOWN"
+            "default": "PRIVATESTATUS_UNSPECIFIED"
           },
           {
             "name": "tenant_only",
@@ -444,12 +444,12 @@
     "ListSbomsRequestPrivateStatus": {
       "type": "string",
       "enum": [
-        "PRIVATESTATUS_UNKNOWN",
+        "PRIVATESTATUS_UNSPECIFIED",
         "PRIVATE",
         "PUBLIC"
       ],
-      "default": "PRIVATESTATUS_UNKNOWN",
-      "title": "whether the sboms are private, public\n  or both"
+      "default": "PRIVATESTATUS_UNSPECIFIED",
+      "title": "whether the sboms are private, public"
     },
     "ListSbomsRequestTrustedStatus": {
       "type": "string",

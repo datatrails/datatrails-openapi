@@ -72,6 +72,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "display_name",
+            "description": "Further fields are bound to query parameters and act to filter the result. Customer friendly name for the app registration.",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [

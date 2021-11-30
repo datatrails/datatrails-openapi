@@ -4,7 +4,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
@@ -196,7 +196,7 @@
 <p>The following example shows use of the  API over curl in a bash terminal.
 The concepts are fully portable to any other REST client (eg PostMan or
 python requests)</p>
-</div>
+</aside>
 <p>Set the URL (for example):</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">URL</span><span class="o">=</span>https://synsation.1234-5678.nodes.archivist.jitsuin.io
 </pre></div>
@@ -313,22 +313,22 @@ fields. For example:</p>
 <p class="admonition-title">Note</p>
 <p>See <a class="reference internal" href="../introduction/behaviours.html#intro-behaviours"><span class="std std-ref">Behaviours</span></a> and <a class="reference internal" href="../introduction/lifecycle.html#intro-lifecycle"><span class="std std-ref">LifeCycle</span></a> for details of how to interpret
 the system-reserved <code class="docutils literal notranslate"><span class="pre">arc_*</span></code> attributes.</p>
-</div>
+</aside>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The number of records returned has a maximum limit. If this limit is too small then one must use
 <a class="reference internal" href="../miscellaneous/paging.html#misc-paging"><span class="std std-ref">API Request Paging</span></a>.</p>
-</div>
+</aside>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The total number of assets that exist is returned in the response header field ‘x-total-count’ if
 the ‘x-request-total-count’ header on the request is set to ‘true’.
 The curl option ‘-i’ will emit this to stdout.</p>
-</div>
+</aside>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>A full API reference is available in <a class="reference external" href="openapi.html#get--archivist-v2-assets">Swagger GET API</a></p>
-</div>
+</aside>
 </section>
 </section>
 

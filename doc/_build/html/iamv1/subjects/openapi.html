@@ -4,7 +4,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
@@ -195,7 +195,7 @@
 <dd><p><strong>List subjects</strong></p>
 <p>Returns a paginated list of subjects</p>
 <dl class="field-list simple">
-<dt class="field-odd">Query Parameters</dt>
+<dt class="field-odd">Query Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>order_by</strong> (<em>string</em>) – Specify the sort order for the results.</p></li>
 <li><p><strong>page_size</strong> (<em>integer</em>) – Maximum entries per page.</p></li>
@@ -203,7 +203,7 @@
 <li><p><strong>display_name</strong> (<em>string</em>) – Further fields are bound to query parameters and act to filter the result. Customer friendly name for the subject.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Status Codes</dt>
+<dt class="field-even">Status Codes<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – A successful response.</p></li>
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Returned when the request is badly formed.</p></li>
@@ -213,7 +213,7 @@
 <li><p><span class="problematic">default</span> – An unexpected error response.</p></li>
 </ul>
 </dd>
-<dt class="field-odd">Response JSON Object</dt>
+<dt class="field-odd">Response JSON Object<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>next_page_token</strong> (<em>string</em>) – Token to retrieve the next page of results or empty if there are none.</p></li>
 <li><p><strong>subjects[].display_name</strong> (<em>string</em>) – Customer friendly name for the subject.</p></li>
@@ -233,14 +233,14 @@
 <dd><p><strong>Create an subject</strong></p>
 <p>This request creates a new subject. The display_name is the friendly name.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Request JSON Object</dt>
+<dt class="field-odd">Request JSON Object<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>display_name</strong> (<em>string</em>) – Customer friendly name for the subject. (required)</p></li>
 <li><p><strong>tessera_pub_key[]</strong> (<em>string</em>) – </p></li>
 <li><p><strong>wallet_pub_key[]</strong> (<em>string</em>) – </p></li>
 </ul>
 </dd>
-<dt class="field-even">Status Codes</dt>
+<dt class="field-even">Status Codes<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – A successful response.</p></li>
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Returned when the request is badly formed.</p></li>
@@ -250,7 +250,7 @@
 <li><p><span class="problematic">default</span> – An unexpected error response.</p></li>
 </ul>
 </dd>
-<dt class="field-odd">Response JSON Object</dt>
+<dt class="field-odd">Response JSON Object<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>display_name</strong> (<em>string</em>) – Customer friendly name for the subject.</p></li>
 <li><p><strong>identity</strong> (<em>string</em>) – Unique identification for the subject, Relative Resource Name</p></li>
@@ -269,12 +269,12 @@
 <dd><p><strong>Get an subject</strong></p>
 <p>Returns the identified subject</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>uuid</strong> (<em>string</em>) – Specify the Subject UUID where <cite>subjects/{uuid}</cite> is the Subject Identity e.g. <cite>add30235-1424-4fda-840a-d5ef82c4c96f</cite> from Identity <cite>subjects/add30235-1424-4fda-840a-d5ef82c4c96f</cite>.  Note the special subject <cite>00000000-0000-0000-0000-000000000000</cite> represents the <cite>self</cite> subject, or your own organisation.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Status Codes</dt>
+<dt class="field-even">Status Codes<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – A successful response.</p></li>
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Returned when the request is badly formed.</p></li>
@@ -285,7 +285,7 @@
 <li><p><span class="problematic">default</span> – An unexpected error response.</p></li>
 </ul>
 </dd>
-<dt class="field-odd">Response JSON Object</dt>
+<dt class="field-odd">Response JSON Object<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>display_name</strong> (<em>string</em>) – Customer friendly name for the subject.</p></li>
 <li><p><strong>identity</strong> (<em>string</em>) – Unique identification for the subject, Relative Resource Name</p></li>
@@ -304,12 +304,12 @@
 <dd><p><strong>Delete a subject</strong></p>
 <p>Delete the identified subject</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>uuid</strong> (<em>string</em>) – Specify the Subject UUID where <cite>subjects/{uuid}</cite> is the Subject Identity e.g. <cite>add30235-1424-4fda-840a-d5ef82c4c96f</cite> from Identity <cite>subjects/add30235-1424-4fda-840a-d5ef82c4c96f</cite></p></li>
 </ul>
 </dd>
-<dt class="field-even">Status Codes</dt>
+<dt class="field-even">Status Codes<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – A successful response.</p></li>
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Returned when the request is badly formed.</p></li>
@@ -329,19 +329,19 @@
 <dd><p><strong>Update a subject’s details</strong></p>
 <p>Perform a full or partial update of the identified subject</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>uuid</strong> (<em>string</em>) – Specify the Subject UUID where <cite>subjects/{uuid}</cite> is the Subject Identity e.g. <cite>add30235-1424-4fda-840a-d5ef82c4c96f</cite> from Identity <cite>subjects/add30235-1424-4fda-840a-d5ef82c4c96f</cite></p></li>
 </ul>
 </dd>
-<dt class="field-even">Query Parameters</dt>
+<dt class="field-even">Query Parameters<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>mask</strong> (<em>string</em>) – The mask says exactly which fields are to be updated. This
 removes the ambiguity caused by ‘zero’ valued fields.
 <a class="reference external" href="https://grpc-ecosystem.github.io/grpc-gateway/docs/patch.html">https://grpc-ecosystem.github.io/grpc-gateway/docs/patch.html</a>.</p></li>
 </ul>
 </dd>
-<dt class="field-odd">Request JSON Object</dt>
+<dt class="field-odd">Request JSON Object<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>display_name</strong> (<em>string</em>) – Customer friendly name for the subject.</p></li>
 <li><p><strong>identity</strong> (<em>string</em>) – Unique identification for the subject, Relative Resource Name</p></li>
@@ -351,7 +351,7 @@ removes the ambiguity caused by ‘zero’ valued fields.
 <li><p><strong>wallet_pub_key[]</strong> (<em>string</em>) – </p></li>
 </ul>
 </dd>
-<dt class="field-even">Status Codes</dt>
+<dt class="field-even">Status Codes<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – A successful response.</p></li>
 <li><p><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Returned when the request is badly formed.</p></li>
@@ -362,7 +362,7 @@ removes the ambiguity caused by ‘zero’ valued fields.
 <li><p><span class="problematic">default</span> – An unexpected error response.</p></li>
 </ul>
 </dd>
-<dt class="field-odd">Response JSON Object</dt>
+<dt class="field-odd">Response JSON Object<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>display_name</strong> (<em>string</em>) – Customer friendly name for the subject.</p></li>
 <li><p><strong>identity</strong> (<em>string</em>) – Unique identification for the subject, Relative Resource Name</p></li>
