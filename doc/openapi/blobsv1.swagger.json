@@ -47,12 +47,16 @@
                         "description": "Returned when the user is not authenticated to the system.",
                         "schema": {}
                     },
+                    "402": {
+                        "description": "Returned when the number of blobs would exceed the user's quota or the size of the blob exceeds the user's allocation.",
+                        "schema": {}
+                    },
                     "403": {
                         "description": "Returned when the user is not authorized to create a blob.",
                         "schema": {}
                     },
                     "429": {
-                        "description": "Returned when the user blob limit has been reached.",
+                        "description": "Returned when a user exceeds their subscription's rate limit for requests.",
                         "schema": {}
                     },
                     "500": {
@@ -96,6 +100,10 @@
                     },
                     "403": {
                         "description": "Returned when the user is not authorized to get the blob.",
+                        "schema": {}
+                    },
+                    "429": {
+                        "description": "Returned when a user exceeds their subscription's rate limit for requests.",
                         "schema": {}
                     },
                     "500": {
@@ -144,6 +152,10 @@
                         "description": "Returned when the user is not authorized to get the blob metadata.",
                         "schema": {}
                     },
+                    "429": {
+                        "description": "Returned when a user exceeds their subscription's rate limit for requests.",
+                        "schema": {}
+                    },
                     "500": {
                         "description": "Returned when the underlying system returns an error.",
                         "schema": {}
@@ -189,6 +201,10 @@
                     },
                     "404": {
                         "description": "Returned when the underlying system can't find the event.",
+                        "schema": {}
+                    },
+                    "429": {
+                        "description": "Returned when a user exceeds their subscription's rate limit for requests.",
                         "schema": {}
                     }
                 },
@@ -250,7 +266,12 @@
                     "404": {
                         "description": "Returned when the underlying system can't find the event.",
                         "schema": {}
+                    },
+                    "429": {
+                        "description": "Returned when a user exceeds their subscription's rate limit for requests.",
+                        "schema": {}
                     }
+
                 },
                 "parameters": [
                     {
@@ -307,6 +328,10 @@
                     "404": {
                         "description": "Returned when the underlying system can't find the asset.",
                         "schema": {}
+                    },
+                    "429": {
+                        "description": "Returned when a user exceeds their subscription's rate limit for requests.",
+                        "schema": {}
                     }
                 },
                 "parameters": [
@@ -360,6 +385,10 @@
                     "404": {
                         "description": "Returned when the underlying system can't find the asset.",
                         "schema": {}
+                    },
+                    "429": {
+                        "description": "Returned when a user exceeds their subscription's rate limit for requests.",
+                        "schema": {}
                     }
                 },
                 "parameters": [
@@ -397,6 +426,10 @@
               },
               "401": {
                 "description": "Returned when the user is not authenticated to the system.",
+                "schema": {}
+              },
+              "429": {
+                "description": "Returned when a user exceeds their subscription's rate limit for requests.",
                 "schema": {}
               },
               "default": {
@@ -443,6 +476,9 @@
                 "mime_type": "image/jpeg",
                 "timestamp_accepted": "2019-11-07T15:31:49Z",
                 "size": 31424,
+                "scanned_status": "SCANNED_OK",
+                "scanned_timestamp": "2019-11-07T15:31:49Z",
+                "scanned_bad_reason": "", 
                 "subject":"user-xxxx@example.com",
                 "tenantid": "tenant/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
             }, 
@@ -472,6 +508,20 @@
                     "type": "integer",
                     "description": "size of the blob."
                 },
+                "scanned_status": {
+                    "type": "string",
+                    "$ref": "#/definitions/v1ScannedStatus",
+                    "description": "status of scan."
+                },
+                "scanned_timestamp": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "date and time when the attachments has been scanned."
+                },
+                "scanned_bad_reason": {
+                    "type": "string",
+                    "description": "if scanned as SCANNED_BAD contains a hint of scan result."
+                },
                 "subject": {
                     "type": "string",
                     "description": "principal subject."
@@ -481,6 +531,15 @@
                     "description": "identity of the tenant the blob belongs to."
                 }
             }
+        },
+        "v1ScannedStatus": {
+            "type": "string",
+            "enum": [
+              "NOT_SCANNED",
+              "SCANNED_OK",
+              "SCANNED_BAD"
+            ],
+            "default": "NOT_SCANNED"
         },
         "protobufAny": {
             "type": "object",

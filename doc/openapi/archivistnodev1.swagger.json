@@ -51,6 +51,10 @@
             "description": "Returned when the identified archivist node does not exist",
             "schema": {}
           },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
+            "schema": {}
+          },
           "default": {
             "description": "An unexpected error response.",
             "schema": {
@@ -68,14 +72,11 @@
     "protobufAny": {
       "type": "object",
       "properties": {
-        "type_url": {
+        "@type": {
           "type": "string"
-        },
-        "value": {
-          "type": "string",
-          "format": "byte"
         }
-      }
+      },
+      "additionalProperties": {}
     },
     "rpcStatus": {
       "type": "object",

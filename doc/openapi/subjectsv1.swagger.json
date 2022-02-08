@@ -50,6 +50,10 @@
             "description": "Returned when the user is not authorized to read the subject.",
             "schema": {}
           },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
+            "schema": {}
+          },
           "500": {
             "description": "Returned when the underlying storage system returns an error.",
             "schema": {}
@@ -91,7 +95,14 @@
           },
           {
             "name": "display_name",
-            "description": "Further fields are bound to query parameters and act to filter the result. Customer friendly name for the subject.",
+            "description": "Display name for filtering. Customer friendly name for the subject.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "wallet_address",
+            "description": "XXX: Investigate max length. Its 256 elsewhere in this file, but that doesn't seem right.\nWallet address for filtering. Customer friendly name for the subject.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -122,6 +133,10 @@
           },
           "403": {
             "description": "Returned when the user is not authorized to create a subject.",
+            "schema": {}
+          },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
             "schema": {}
           },
           "500": {
@@ -178,6 +193,10 @@
             "description": "Returned when the identified subject does not exist.",
             "schema": {}
           },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
+            "schema": {}
+          },
           "500": {
             "description": "Returned when the underlying storage system returns an error.",
             "schema": {}
@@ -227,6 +246,10 @@
           },
           "404": {
             "description": "Returned when the identified laccess policy does not exist.",
+            "schema": {}
+          },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
             "schema": {}
           },
           "500": {
@@ -280,6 +303,10 @@
             "description": "Returned when the identified subject does not exist.",
             "schema": {}
           },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
+            "schema": {}
+          },
           "500": {
             "description": "Returned when the underlying storage system returns an error.",
             "schema": {}
@@ -304,7 +331,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/v1IAMSubject"
+              "$ref": "#/definitions/v1UpdatableIAMSubject"
             }
           },
           {
@@ -334,14 +361,11 @@
     "protobufAny": {
       "type": "object",
       "properties": {
-        "type_url": {
+        "@type": {
           "type": "string"
-        },
-        "value": {
-          "type": "string",
-          "format": "byte"
         }
-      }
+      },
+      "additionalProperties": {}
     },
     "rpcStatus": {
       "type": "object",
@@ -415,6 +439,116 @@
         ],
         "tessera_pub_key": [
           "key3"
+        ],
+        "confirmation_status": "PENDING"
+      },
+      "properties": {
+        "identity": {
+          "type": "string",
+          "description": "Unique identification for the subject, Relative Resource Name",
+          "title": "generated identity for the entry"
+        },
+        "display_name": {
+          "type": "string",
+          "description": "Customer friendly name for the subject.",
+          "title": "user friendly display name for this principal",
+          "maxLength": 128
+        },
+        "wallet_pub_key": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Organisation's public wallet keys (BNF)",
+          "title": "org wallet keys (one to start with) in blockchain native format\nvalidate against hexstring - the subjects service will validate as a crypto key",
+          "maxLength": 256
+        },
+        "wallet_address": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Organisation's wallet addresses",
+          "title": "org wallet addresses, derived from the org wallet keys.  For each org wallet key there will be a corresponding address",
+          "maxLength": 256
+        },
+        "tessera_pub_key": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Organisation's tessara wallet keys (BNF)",
+          "title": "org tessera keys (one to start with) in blockchain native format\nvalidate against base64 - the subjects service will validate as a crypto key",
+          "maxLength": 256
+        },
+        "tenant": {
+          "type": "string",
+          "description": "Tenent id",
+          "title": "customer tenant ID",
+          "maxLength": 128
+        },
+        "confirmation_status": {
+          "$ref": "#/definitions/v1SubjectsConfirmationStatus",
+          "title": "confirmation status"
+        }
+      },
+      "description": "Describes Organization including wallet addresses and public keys used to create assets and events."
+    },
+    "v1ListIAMSubjectsResponse": {
+      "type": "object",
+      "example": {
+        "subjects": [
+          {
+            "identity": "subjects/08838336-c357-460d-902a-3aba9528dd22",
+            "display_name": "Some description",
+            "wallet_pub_key": [
+              "key1"
+            ],
+            "tessera_pub_key": [
+              "key3"
+            ],
+            "confirmation_status": "PENDING"
+          }
+        ],
+        "page_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6InN0dW50aWR"
+      },
+      "properties": {
+        "subjects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1IAMSubject"
+          }
+        },
+        "next_page_token": {
+          "type": "string",
+          "description": "Token to retrieve the next page of results or empty if there are none."
+        }
+      },
+      "description": "List of subjects (or the next page in a continuing  list request"
+    },
+    "v1SubjectsConfirmationStatus": {
+      "type": "string",
+      "enum": [
+        "CONFIRMATION_STATUS_UNSPECIFIED",
+        "PENDING",
+        "CONFIRMED"
+      ],
+      "default": "CONFIRMATION_STATUS_UNSPECIFIED",
+      "title": "Supported confirmation statuses"
+    },
+    "v1UpdatableIAMSubject": {
+      "type": "object",
+      "example": {
+        "identity": "subjects/08838336-c357-460d-902a-3aba9528dd22",
+        "display_name": "Some description",
+        "wallet_pub_key": [
+          "key1"
+        ],
+        "wallet_address": [
+          "address1"
+        ],
+        "tessera_pub_key": [
+          "key3"
         ]
       },
       "properties": {
@@ -463,38 +597,10 @@
           "maxLength": 128
         }
       },
-      "description": "Describes an Access Policy for OBAC"
+      "description": "Describes Organization including wallet addresses and public keys used to create assets and events."
     },
-    "v1ListIAMSubjectsResponse": {
-      "type": "object",
-      "example": {
-        "subjects": [
-          {
-            "identity": "subjects/08838336-c357-460d-902a-3aba9528dd22",
-            "display_name": "Some description",
-            "wallet_pub_key": [
-              "key1"
-            ],
-            "tessera_pub_key": [
-              "key3"
-            ]
-          }
-        ],
-        "page_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6InN0dW50aWR"
-      },
-      "properties": {
-        "subjects": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1IAMSubject"
-          }
-        },
-        "next_page_token": {
-          "type": "string",
-          "description": "Token to retrieve the next page of results or empty if there are none."
-        }
-      },
-      "description": "List of subjects (or the next page in a continuing  list request"
+    "v1UpdateConfirmationStatusResponse": {
+      "type": "object"
     }
   }
 }

@@ -47,6 +47,10 @@
             "description": "Returned when the user is not authorized to read the location.",
             "schema": {}
           },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
+            "schema": {}
+          },
           "default": {
             "description": "An unexpected error response.",
             "schema": {
@@ -115,8 +119,16 @@
             "description": "Returned when the user is not authenticated to the system.",
             "schema": {}
           },
+          "402": {
+            "description": "Returned when the user's quota of locations policies has been reached.",
+            "schema": {}
+          },
           "403": {
             "description": "Returned when the user is not authorized to create a location.",
+            "schema": {}
+          },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
             "schema": {}
           },
           "default": {
@@ -165,6 +177,10 @@
             "description": "Returned when the identified location does not exist.",
             "schema": {}
           },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
+            "schema": {}
+          },
           "default": {
             "description": "An unexpected error response.",
             "schema": {
@@ -208,6 +224,10 @@
             "description": "Returned when the identified location does not exist.",
             "schema": {}
           },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
+            "schema": {}
+          },
           "default": {
             "description": "An unexpected error response.",
             "schema": {
@@ -249,6 +269,10 @@
           },
           "404": {
             "description": "Returned when the identified location does not exist.",
+            "schema": {}
+          },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
             "schema": {}
           },
           "default": {
@@ -312,6 +336,10 @@
             "description": "Returned when the identified location does not exist.",
             "schema": {}
           },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
+            "schema": {}
+          },
           "default": {
             "description": "An unexpected error response.",
             "schema": {
@@ -353,6 +381,10 @@
           },
           "404": {
             "description": "Returned when the identified location does not exist.",
+            "schema": {}
+          },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
             "schema": {}
           },
           "default": {
@@ -398,6 +430,10 @@
           },
           "401": {
             "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
             "schema": {}
           },
           "default": {
@@ -496,14 +532,11 @@
     "protobufAny": {
       "type": "object",
       "properties": {
-        "type_url": {
+        "@type": {
           "type": "string"
-        },
-        "value": {
-          "type": "string",
-          "format": "byte"
         }
-      }
+      },
+      "additionalProperties": {}
     },
     "rpcStatus": {
       "type": "object",

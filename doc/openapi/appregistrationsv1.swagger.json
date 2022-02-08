@@ -47,7 +47,7 @@
             "schema": {}
           },
           "429": {
-            "description": "Returned when the user has issued too many requests for their tenant's subscription level.",
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
             "schema": {}
           },
           "default": {
@@ -101,7 +101,7 @@
             "schema": {}
           },
           "402": {
-            "description": "Returned when the user has created too many applications for their tenant's subscription level.",
+            "description": "Returned when the user's quota of app registrations policies has been reached.",
             "schema": {}
           },
           "403": {
@@ -109,7 +109,7 @@
             "schema": {}
           },
           "429": {
-            "description": "Returned when the user has issued too many requests for their tenant's subscription level.",
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
             "schema": {}
           },
           "default": {
@@ -159,7 +159,7 @@
             "schema": {}
           },
           "429": {
-            "description": "Returned when the user has issued too many requests for their tenant's subscription level.",
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
             "schema": {}
           },
           "default": {
@@ -206,7 +206,7 @@
             "schema": {}
           },
           "429": {
-            "description": "Returned when the user has issued too many requests for their tenant's subscription level.",
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
             "schema": {}
           },
           "default": {
@@ -253,7 +253,7 @@
             "schema": {}
           },
           "429": {
-            "description": "Returned when the user has issued too many requests for their tenant's subscription level.",
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
             "schema": {}
           },
           "default": {
@@ -318,7 +318,7 @@
             "schema": {}
           },
           "429": {
-            "description": "Returned when the user has issued too many requests for their tenant's subscription level.",
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
             "schema": {}
           },
           "default": {
@@ -381,14 +381,11 @@
     "protobufAny": {
       "type": "object",
       "properties": {
-        "type_url": {
+        "@type": {
           "type": "string"
-        },
-        "value": {
-          "type": "string",
-          "format": "byte"
         }
-      }
+      },
+      "additionalProperties": {}
     },
     "rpcStatus": {
       "type": "object",

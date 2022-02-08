@@ -53,6 +53,10 @@
             "description": "Returned when the asset with the id does not exist.",
             "schema": {}
           },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
+            "schema": {}
+          },
           "default": {
             "description": "An unexpected error response.",
             "schema": {
@@ -130,6 +134,10 @@
             "description": "Returned when the asset with the id does not exist.",
             "schema": {}
           },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
+            "schema": {}
+          },
           "default": {
             "description": "An unexpected error response.",
             "schema": {
@@ -163,6 +171,36 @@
               "DEFAULT"
             ],
             "default": "DEFAULT"
+          },
+          {
+            "name": "compliance_type",
+            "description": "policy type",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "COMPLIANCE_TYPE_UNDEFINED",
+              "COMPLIANCE_SINCE",
+              "COMPLIANCE_CURRENT_OUTSTANDING",
+              "COMPLIANCE_PERIOD_OUTSTANDING",
+              "COMPLIANCE_DYNAMIC_TOLERANCE",
+              "COMPLIANCE_RICHNESS"
+            ],
+            "default": "COMPLIANCE_TYPE_UNDEFINED"
+          },
+          {
+            "name": "description",
+            "description": "Customer description of the compliance policy.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "display_name",
+            "description": "Customer friendly name for the compliance policy.",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -182,12 +220,20 @@
             "description": "Returned when the user is not authenticated to the system.",
             "schema": {}
           },
+          "402": {
+            "description": "Returned when the user's quota of compliance policies has been reached.",
+            "schema": {}
+          },
           "403": {
             "description": "Returned when the user is not authorized to access the requested resource.",
             "schema": {}
           },
           "404": {
             "description": "Returned when the asset with the id does not exist.",
+            "schema": {}
+          },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
             "schema": {}
           },
           "default": {
@@ -234,6 +280,10 @@
             "description": "Returned when the asset with the id does not exist.",
             "schema": {}
           },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
+            "schema": {}
+          },
           "default": {
             "description": "An unexpected error response.",
             "schema": {
@@ -275,6 +325,10 @@
             "description": "Returned when the asset with the id does not exist.",
             "schema": {}
           },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
+            "schema": {}
+          },
           "default": {
             "description": "An unexpected error response.",
             "schema": {
@@ -312,6 +366,10 @@
             "description": "Returned when the user is not authenticated to the system.",
             "schema": {}
           },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
+            "schema": {}
+          },
           "default": {
             "description": "An unexpected error response.",
             "schema": {
@@ -330,14 +388,11 @@
     "protobufAny": {
       "type": "object",
       "properties": {
-        "type_url": {
+        "@type": {
           "type": "string"
-        },
-        "value": {
-          "type": "string",
-          "format": "byte"
         }
-      }
+      },
+      "additionalProperties": {}
     },
     "rpcStatus": {
       "type": "object",
@@ -381,13 +436,15 @@
         },
         "description": {
           "type": "string",
-          "description": "descripton",
-          "readOnly": true
+          "description": "Customer description of the compliance policy.",
+          "readOnly": true,
+          "maxLength": 4096
         },
         "display_name": {
           "type": "string",
           "description": "display name",
-          "readOnly": true
+          "readOnly": true,
+          "maxLength": 1024
         },
         "asset_filter": {
           "type": "array",
@@ -404,7 +461,7 @@
         },
         "closing_event_display_type": {
           "type": "string",
-          "description": "this is the corelated event type",
+          "description": "this is the correlated event type",
           "readOnly": true
         },
         "time_period_seconds": {

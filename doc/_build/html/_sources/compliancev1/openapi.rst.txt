@@ -1,5 +1,0 @@
-Compliance Swagger API
--------------------------
-
-.. openapi:: ../openapi/compliancev1.swagger.json
-                                                      

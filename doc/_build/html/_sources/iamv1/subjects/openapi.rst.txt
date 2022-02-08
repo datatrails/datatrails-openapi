@@ -1,5 +1,0 @@
-IAM Subjects Swagger API
-------------------------
-
-.. openapi:: ../../openapi/subjectsv1.swagger.json
-

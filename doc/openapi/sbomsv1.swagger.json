@@ -1,8 +1,8 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Sboms API",
-    "description": "API to manage sboms.",
+    "title": "SBOMs API",
+    "description": "API to manage SBOMs.",
     "version": "1.0",
     "contact": {
       "name": "Jitsuin",
@@ -27,140 +27,10 @@
     "application/json"
   ],
   "paths": {
-    "/archivist/v1/sboms": {
-      "get": {
-        "summary": "List Sboms",
-        "description": "Returns a paginated list of Sboms",
-        "operationId": "Sboms_ListSboms",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1ListSbomsResponse"
-            }
-          },
-          "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to read the TLS CA certificate.",
-            "schema": {}
-          },
-          "500": {
-            "description": "Returned when the underlying storage system returns an error.",
-            "schema": {}
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "uploaded_before",
-            "description": "Threshold Timestamp for all uploads before.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "date-time"
-          },
-          {
-            "name": "uploaded_since",
-            "description": "Threshold Timestamp for all uploads since.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "date-time"
-          },
-          {
-            "name": "trusted",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "enum": [
-              "TRUSTEDSTATUS_UNSPECIFIED",
-              "TRUSTED",
-              "UNTRUSTED"
-            ],
-            "default": "TRUSTEDSTATUS_UNSPECIFIED"
-          },
-          {
-            "name": "lifecycle_status",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "enum": [
-              "LIFECYCLESTATUS_UNSPECIFIED",
-              "ACTIVE",
-              "WITHDRAWN"
-            ],
-            "default": "LIFECYCLESTATUS_UNSPECIFIED"
-          },
-          {
-            "name": "privacy",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "enum": [
-              "PRIVATESTATUS_UNSPECIFIED",
-              "PRIVATE",
-              "PUBLIC"
-            ],
-            "default": "PRIVATESTATUS_UNSPECIFIED"
-          },
-          {
-            "name": "tenant_only",
-            "description": "whether the sboms returned should belong to the tenant, defaults to false.",
-            "in": "query",
-            "required": false,
-            "type": "boolean"
-          },
-          {
-            "name": "search",
-            "description": "search term.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "order_by",
-            "description": "Specify the sort order for the results.\ne.g. `version desc`.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "page_size",
-            "description": "Maximum entries per page.",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "page_token",
-            "description": "The next_page_token returned from a previous list request if any.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Sboms"
-        ]
-      }
-    },
     "/archivist/v1/sboms/-/metadata": {
       "get": {
-        "summary": "Get Sbom metadata",
-        "description": "Returns the identified Sbom metadata",
+        "summary": "List SBOM metadata",
+        "description": "Returns a list of SBOM metadata.",
         "operationId": "Sboms_ListMetadata",
         "responses": {
           "200": {
@@ -178,11 +48,11 @@
             "schema": {}
           },
           "403": {
-            "description": "Returned when the user is not authorized to read the TLS CA certificate.",
+            "description": "Returned when the user is not authorized to read the SBOM.",
             "schema": {}
           },
           "404": {
-            "description": "Returned when the identified TLS CA certificate does not exist.",
+            "description": "Returned when the identified SBOM does not exist.",
             "schema": {}
           },
           "500": {
@@ -215,6 +85,7 @@
           },
           {
             "name": "trusted",
+            "description": "Filter SBOMs based on whether the uploading organisation is verified.",
             "in": "query",
             "required": false,
             "type": "string",
@@ -227,6 +98,7 @@
           },
           {
             "name": "lifecycle_status",
+            "description": "Filter SBOMS based on Lifecycle status.",
             "in": "query",
             "required": false,
             "type": "string",
@@ -239,6 +111,7 @@
           },
           {
             "name": "privacy",
+            "description": "Filter SBOMs based on Privacy status.",
             "in": "query",
             "required": false,
             "type": "string",
@@ -251,28 +124,28 @@
           },
           {
             "name": "tenant_only",
-            "description": "whether the sboms returned should belong to the tenant, defaults to false.",
+            "description": "Filter SBOMs based on requesters organisation.",
             "in": "query",
             "required": false,
             "type": "boolean"
           },
           {
             "name": "search",
-            "description": "search term.",
+            "description": "Search term for SBOMs.",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "order_by",
-            "description": "Specify the sort order for the results.\ne.g. `version desc`.",
+            "description": "Specify sort order for resultant SBOMs. For example: 'version desc'",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "page_size",
-            "description": "Maximum entries per page.",
+            "description": "SBOM list page size. Maximum 50.",
             "in": "query",
             "required": false,
             "type": "integer",
@@ -280,7 +153,7 @@
           },
           {
             "name": "page_token",
-            "description": "The next_page_token returned from a previous list request if any.",
+            "description": "next_page_token returned from a previous list request, if any.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -293,8 +166,8 @@
     },
     "/archivist/v1/sboms/{uuid}/metadata": {
       "get": {
-        "summary": "Get Sbom metadata",
-        "description": "Returns the identified Sbom metadata",
+        "summary": "Get SBOM metadata",
+        "description": "Returns the identified SBOM metadata",
         "operationId": "Sboms_GetMetadata",
         "responses": {
           "200": {
@@ -345,8 +218,8 @@
     },
     "/archivist/v1/sboms/{uuid}:publish": {
       "post": {
-        "summary": "Publishes an Sbom",
-        "description": "Publicly publishes an Sbom",
+        "summary": "Publishes an SBOM",
+        "description": "Publicly publishes an SBOM",
         "operationId": "Sboms_PublishSbom",
         "responses": {
           "200": {
@@ -364,7 +237,7 @@
             "schema": {}
           },
           "403": {
-            "description": "Returned when the user is not authorized to read the TLS CA certificate.",
+            "description": "Returned when the user is not authorized to read the SBOM.",
             "schema": {}
           },
           "500": {
@@ -393,8 +266,8 @@
     },
     "/archivist/v1/sboms/{uuid}:withdraw": {
       "post": {
-        "summary": "Withdraws an Sbom",
-        "description": "Withdraws an Sbom",
+        "summary": "Withdraws an SBOM",
+        "description": "Withdraws an SBOM",
         "operationId": "Sboms_WithdrawSbom",
         "responses": {
           "200": {
@@ -412,7 +285,7 @@
             "schema": {}
           },
           "403": {
-            "description": "Returned when the user is not authorized to read the TLS CA certificate.",
+            "description": "Returned when the user is not authorized to read the SBOM.",
             "schema": {}
           },
           "500": {
@@ -448,8 +321,7 @@
         "PRIVATE",
         "PUBLIC"
       ],
-      "default": "PRIVATESTATUS_UNSPECIFIED",
-      "title": "whether the sboms are private, public"
+      "default": "PRIVATESTATUS_UNSPECIFIED"
     },
     "ListSbomsRequestTrustedStatus": {
       "type": "string",
@@ -458,20 +330,16 @@
         "TRUSTED",
         "UNTRUSTED"
       ],
-      "default": "TRUSTEDSTATUS_UNSPECIFIED",
-      "title": "whether the uploader is trusted"
+      "default": "TRUSTEDSTATUS_UNSPECIFIED"
     },
     "protobufAny": {
       "type": "object",
       "properties": {
-        "type_url": {
+        "@type": {
           "type": "string"
-        },
-        "value": {
-          "type": "string",
-          "format": "byte"
         }
-      }
+      },
+      "additionalProperties": {}
     },
     "rpcStatus": {
       "type": "object",
@@ -506,13 +374,19 @@
         "sboms": [
           {
             "identity": "sboms/01038663-c357-470d-912a-3abc9528dd21",
-            "author": "jitsuin",
+            "authors": [
+              "jitsuin"
+            ],
             "supplier": "jitsuin",
             "component": "archivist",
             "version": "5.3.2-stable",
-            "hash": "9209FE5A352860A4920DF6E2597A2413248754463BE35A0A9430F9B9F51C5A52",
+            "hashes": [
+              "SHA-1:9209FE5A352860A4920DF6E2597A2413248754463BE35A0A9430F9B9F51C5A52"
+            ],
             "uniqueid": "597A2413248754463",
             "upload_date": "2019-08-11 10:06:43",
+            "withdrawn_date": null,
+            "publish_date": "2020-07-12 12:59:45",
             "trusted": "true",
             "lifecycle_status": "ACTIVE"
           }
@@ -531,69 +405,79 @@
           "description": "Token to retrieve the next page of results or empty if there are none."
         }
       },
-      "description": "List of Sboms (or the next page in a continuing  list request"
-    },
-    "v1Sbom": {
-      "type": "object",
-      "properties": {
-        "sbom": {
-          "type": "string",
-          "format": "byte",
-          "title": "sbom file contents"
-        }
-      }
+      "description": "List of SBOMs (or the next page in a continuing  list request"
     },
     "v1SbomMetadata": {
       "type": "object",
+      "example": {
+        "identity": "sboms/01038663-c357-470d-912a-3abc9528dd21",
+        "authors": [
+          "jitsuin"
+        ],
+        "supplier": "jitsuin",
+        "component": "archivist",
+        "version": "5.3.2-stable",
+        "hashes": [
+          "SHA-1:9209FE5A352860A4920DF6E2597A2413248754463BE35A0A9430F9B9F51C5A52"
+        ],
+        "uniqueid": "597A2413248754463",
+        "upload_date": "2019-08-11 10:06:43",
+        "withdrawn_date": null,
+        "publish_date": "2020-07-12 12:59:45",
+        "trusted": "true",
+        "lifecycle_status": "ACTIVE"
+      },
       "properties": {
         "identity": {
           "type": "string",
-          "title": "generated identity for the entry"
+          "description": "Unique identification for the SBOM, Relative Resource Name."
         },
         "authors": {
           "type": "array",
           "items": {
             "type": "string"
           },
-          "title": "SBOM scraped metadata starts here"
+          "description": "SBOM authors."
         },
         "supplier": {
           "type": "string",
-          "title": "who supplies the component"
+          "description": "Component supplier."
         },
         "component": {
-          "type": "string"
+          "type": "string",
+          "description": "Component name."
         },
         "version": {
-          "type": "string"
+          "type": "string",
+          "description": "Component version."
         },
         "hashes": {
           "type": "array",
           "items": {
             "type": "string"
           },
-          "title": "the component hash"
+          "description": "Component hashes."
         },
         "unique_id": {
           "type": "string",
-          "title": "the sbom uniqueid"
+          "description": "Unique ID from the SBOM."
         },
         "upload_date": {
           "type": "string",
           "format": "date-time",
-          "description": "Timestamp for the upload date.",
-          "title": "the date uploaded"
+          "description": "Timestamp for the upload date."
         },
         "uploaded_by": {
           "type": "string",
-          "title": "the organisation who uploaded the sbom"
+          "description": "Organisation who uploaded the SBOM."
         },
         "trusted": {
           "type": "boolean",
-          "title": "whether the uploader is trusted"
+          "description": "Whether the uploading organisation is verified."
         },
         "lifecycle_status": {
-          "$ref": "#/definitions/v1SbomMetadataLifecycleStatus"
+          "$ref": "#/definitions/v1SbomMetadataLifecycleStatus",
+          "description": "Lifecycle status of the SBOM."
         },
         "withdrawn_date": {
           "type": "string",
@@ -603,9 +487,14 @@
         "published_date": {
           "type": "string",
           "format": "date-time",
-          "description": "Timestamp that this SBOM was published, if public."
+          "description": "Timestamp that this SBOM was published, if published."
+        },
+        "rkvst_link": {
+          "type": "string",
+          "description": "Optional link to an asset in RKVST."
         }
-      }
+      },
+      "description": "SBOM Metadata"
     },
     "v1SbomMetadataLifecycleStatus": {
       "type": "string",

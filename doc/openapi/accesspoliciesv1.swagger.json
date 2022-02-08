@@ -51,6 +51,10 @@
             "description": "Returned when the user is not authorized to list the access policy.",
             "schema": {}
           },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
+            "schema": {}
+          },
           "500": {
             "description": "Returned when the underlying storage system returns an error.",
             "schema": {}
@@ -128,12 +132,16 @@
             "description": "Returned when the user is not authenticated to the system.",
             "schema": {}
           },
+          "402": {
+            "description": "Returned when the user's quota of access policies has been reached.",
+            "schema": {}
+          },
           "403": {
             "description": "Returned when the user is not authorized to create an access policy.",
             "schema": {}
           },
           "429": {
-            "description": "Returned when the allowed number of access_policies exceeds internal limit.",
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
             "schema": {}
           },
           "500": {
@@ -190,6 +198,10 @@
             "description": "Returned when the identified access policy does not exist.",
             "schema": {}
           },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
+            "schema": {}
+          },
           "500": {
             "description": "Returned when the underlying storage system returns an error.",
             "schema": {}
@@ -241,6 +253,10 @@
             "description": "Returned when the identified access policy does not exist.",
             "schema": {}
           },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
+            "schema": {}
+          },
           "500": {
             "description": "Returned when the underlying storage system returns an error.",
             "schema": {}
@@ -290,6 +306,10 @@
           },
           "404": {
             "description": "Returned when the identified access policy does not exist.",
+            "schema": {}
+          },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
             "schema": {}
           },
           "500": {
@@ -360,6 +380,10 @@
             "description": "Returned when the identified access policy does not exist.",
             "schema": {}
           },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
+            "schema": {}
+          },
           "500": {
             "description": "Returned when the underlying storage system returns an error.",
             "schema": {}
@@ -399,6 +423,10 @@
           },
           "401": {
             "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
             "schema": {}
           },
           "default": {
@@ -442,6 +470,10 @@
             "description": "Returned when the identified access policy does not exist.",
             "schema": {}
           },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
+            "schema": {}
+          },
           "500": {
             "description": "Returned when the underlying storage system returns an error.",
             "schema": {}
@@ -480,14 +512,11 @@
     "protobufAny": {
       "type": "object",
       "properties": {
-        "type_url": {
+        "@type": {
           "type": "string"
-        },
-        "value": {
-          "type": "string",
-          "format": "byte"
         }
-      }
+      },
+      "additionalProperties": {}
     },
     "rpcStatus": {
       "type": "object",
