@@ -623,6 +623,25 @@
         }
       }
     },
+    "v1Filter": {
+      "type": "object",
+      "example": {
+        "or": [
+          "group=maintainers",
+          "group=supervisors"
+        ]
+      },
+      "properties": {
+        "or": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "The filter list"
+        }
+      },
+      "description": "Filter"
+    },
     "v2AssetResponse": {
       "type": "object",
       "example": {

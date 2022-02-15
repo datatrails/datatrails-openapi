@@ -402,6 +402,32 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "order_by",
+            "description": "Specify the sort order for the results.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "DEFAULT"
+            ],
+            "default": "DEFAULT"
+          },
+          {
+            "name": "page_size",
+            "description": "Maximum entries per page.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_token",
+            "description": "The next_page_token returned from a previous list request if any.",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -812,6 +838,14 @@
         }
       },
       "description": "List of access policies (or the next page in a continuing  list request"
+    },
+    "v1ListIAMAccessPolicyMatchingAssetsRequestOrderBy": {
+      "type": "string",
+      "enum": [
+        "DEFAULT"
+      ],
+      "default": "DEFAULT",
+      "title": "Supported sort orders"
     },
     "v1Permission": {
       "type": "object",
