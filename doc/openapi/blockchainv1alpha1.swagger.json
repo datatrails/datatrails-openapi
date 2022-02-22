@@ -13,10 +13,8 @@
       "name": "BlockChain"
     }
   ],
-  "host": "docs.rkvst.com",
-  "basePath": "/archivist/v1alpha1",
+  "basePath": "/_api",
   "schemes": [
-    "http",
     "https"
   ],
   "consumes": [
@@ -75,6 +73,66 @@
             "type": "string"
           }
         ],
+        "tags": [
+          "BlockChain"
+        ]
+      }
+    },
+    "/archivist/v1alpha1/blockchain:openapi": {
+      "get": {
+        "summary": "Get OpenAPI spec for Blockchain",
+        "description": "Get OpenAPI v2.0 spec for Blockchain",
+        "operationId": "Blockchain_GetOpenAPI",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "BlockChain"
+        ]
+      }
+    },
+    "/archivist/v1alpha1/blockchain:openapi-ui": {
+      "get": {
+        "summary": "Get OpenAPI UI for Blockchain",
+        "description": "Get OpenAPI v2.0 UI for Blockchain",
+        "operationId": "Blockchain_GetOpenAPIUI",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
         "tags": [
           "BlockChain"
         ]

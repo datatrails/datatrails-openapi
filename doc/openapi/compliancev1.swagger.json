@@ -13,10 +13,8 @@
       "name": "Compliance"
     }
   ],
-  "host": "docs.rkvst.com",
-  "basePath": "/archivist/v1",
+  "basePath": "/_api",
   "schemes": [
-    "http",
     "https"
   ],
   "consumes": [
@@ -382,6 +380,66 @@
           "Unsupported"
         ]
       }
+    },
+    "/archivist/v1/compliance_policies:openapi": {
+      "get": {
+        "summary": "Get OpenAPI spec for Compliance",
+        "description": "Get OpenAPI v2.0 spec for Compliance",
+        "operationId": "Compliance_GetOpenAPI",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Compliance"
+        ]
+      }
+    },
+    "/archivist/v1/compliance_policies:openapi-ui": {
+      "get": {
+        "summary": "Get OpenAPI UI for Compliance",
+        "description": "Get OpenAPI v2.0 UI for Compliance",
+        "operationId": "Compliance_GetOpenAPIUI",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Compliance"
+        ]
+      }
     }
   },
   "definitions": {
@@ -487,7 +545,7 @@
           "items": {
             "$ref": "#/definitions/v1Filter"
           },
-          "description": "assertions for the richness of this compliance policy [ { or: [\"a\u003cb\", \"c\u003e=d\"]}, { or: [...]}]",
+          "description": "assertions for the richness of this compliance policy [ { or: [\"a<b\", \"c>=d\"]}, { or: [...]}]",
           "title": "richness assertions follows the same pattern as filters [{\"or\":[\"foo=bar\", \"baz=fiz\"]}]",
           "readOnly": true
         }

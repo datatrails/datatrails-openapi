@@ -13,10 +13,7 @@
       "name": "BehaviourAttachments"
     }
   ],
-  "host": "docs.rkvst.com",
-  "basePath": "/archivist/v2",
   "schemes": [
-    "http",
     "https"
   ],
   "consumes": [

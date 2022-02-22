@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "SBOMs API",
-    "description": "API to manage SBOMs.",
+    "description": "Simple SBOM repository API",
     "version": "1.0",
     "contact": {
       "name": "Jitsuin",
@@ -14,10 +14,7 @@
       "name": "Sboms"
     }
   ],
-  "host": "docs.rkvst.com",
-  "basePath": "/api/archivist/v1/sboms",
   "schemes": [
-    "http",
     "https"
   ],
   "consumes": [
@@ -69,7 +66,7 @@
         "parameters": [
           {
             "name": "uploaded_before",
-            "description": "Threshold Timestamp for all uploads before.",
+            "description": "Only return records for SBOMs uploaded on or before this date.",
             "in": "query",
             "required": false,
             "type": "string",
@@ -77,7 +74,7 @@
           },
           {
             "name": "uploaded_since",
-            "description": "Threshold Timestamp for all uploads since.",
+            "description": "Only return records for SBOMs uploaded on or after this date.",
             "in": "query",
             "required": false,
             "type": "string",
@@ -124,28 +121,28 @@
           },
           {
             "name": "tenant_only",
-            "description": "Filter SBOMs based on requesters organisation.",
+            "description": "Only return records for SBOMs uploaded by the calling tenant.",
             "in": "query",
             "required": false,
             "type": "boolean"
           },
           {
             "name": "search",
-            "description": "Search term for SBOMs.",
+            "description": "Search term to match across all fields in SBOM metadata.",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "order_by",
-            "description": "Specify sort order for resultant SBOMs. For example: 'version desc'",
+            "description": "Specify sort order for results. For example: 'version desc'.",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "page_size",
-            "description": "SBOM list page size. Maximum 50.",
+            "description": "Results list page size. Maximum 50.",
             "in": "query",
             "required": false,
             "type": "integer",
@@ -311,6 +308,189 @@
           "Sboms"
         ]
       }
+    },
+    "/archivist/v1/sboms": {
+      "post": {
+        "summary": "Upload SBOM.",
+        "description": "Uploads an SBOM file.",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "operationId": "SBOMs_Upload",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1SbomMetadata"
+            }
+          },
+          "400": {
+            "description": "Returned when the request is badly formed.",
+            "schema": {}
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to create a blob.",
+            "schema": {}
+          },
+          "429": {
+            "description": "Returned when the user blob limit has been reached.",
+            "schema": {}
+          },
+          "500": {
+            "description": "Returned when the underlying system returns an error.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "sbom",
+            "description": "SBOM file to upload",
+            "in": "formData",
+            "type": "file",
+            "required": true
+          },
+          {
+            "name": "privacy",
+            "description": "Privacy of the SBOM to upload. Defaults to PRIVATE.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "PRIVATESTATUS_UNSPECIFIED",
+              "PRIVATE",
+              "PUBLIC"
+            ],
+            "default": "PRIVATESTATUS_UNSPECIFIED"
+          },
+          {
+            "name": "sbomtype",
+            "description": "Type of SBOM file being uploaded. Defaults to cyclonedx-xml.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "cyclonedx-xml",
+              "cyclonedx-json",
+              "spdx-tag",
+              "spdx-json"
+            ],
+            "default": "cyclonedx"
+          }
+        ],
+        "tags": [
+          "SBOMs"
+        ]
+      }
+    },
+    "/archivist/v1/sboms:openapi": {
+      "get": {
+        "summary": "Get OpenAPI spec for SBOMs",
+        "description": "Get OpenAPI v2.0 spec for SBOMs",
+        "operationId": "Sboms_GetOpenAPI",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "SBOMs"
+        ]
+      }
+    },
+    "/archivist/v1/sboms:openapi-ui": {
+      "get": {
+        "summary": "Get OpenAPI UI for SBOMs",
+        "description": "Get OpenAPI v2.0 UI for SBOMs",
+        "operationId": "Sboms_GetOpenAPI",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "SBOMs"
+        ]
+      }
+    },
+    "/archivist/v1/sboms/{uuid}": {
+      "get": {
+        "summary": "Download SBOM.",
+        "description": "Downloads an SBOM file.",
+        "operationId": "SBOMs_Download",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "file"
+            }
+          },
+          "400": {
+            "description": "Returned when the request is badly formed.",
+            "schema": {}
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to get the blob.",
+            "schema": {}
+          },
+          "500": {
+            "description": "Returned when the underlying system returns an error.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "uuid",
+            "description": "Specify the SBOMs UUID where `sboms/{uuid}` is the SBOMs Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `sboms/add30235-1424-4fda-840a-d5ef82c4c96f`",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "SBOMs"
+        ]
+      }
     }
   },
   "definitions": {
@@ -460,7 +640,8 @@
         },
         "unique_id": {
           "type": "string",
-          "description": "Unique ID from the SBOM."
+          "description": "Unique Identity for the SBOM.",
+          "title": "Unique ID from the SBOM"
         },
         "upload_date": {
           "type": "string",
@@ -477,7 +658,7 @@
         },
         "lifecycle_status": {
           "$ref": "#/definitions/v1SbomMetadataLifecycleStatus",
-          "description": "Lifecycle status of the SBOM."
+          "description": "Lifecycle status of the SBOM"
         },
         "withdrawn_date": {
           "type": "string",
@@ -491,7 +672,7 @@
         },
         "rkvst_link": {
           "type": "string",
-          "description": "Optional link to an asset in RKVST."
+          "description": "Optional link to an SBOM managed as an asset in RKVST."
         }
       },
       "description": "SBOM Metadata"
