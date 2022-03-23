@@ -189,6 +189,20 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "oid",
+            "description": "B2C User ID if available",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "is_new_user",
+            "description": "True if the user was just created (only valid when invokted from b2c)",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
           }
         ],
         "tags": [
