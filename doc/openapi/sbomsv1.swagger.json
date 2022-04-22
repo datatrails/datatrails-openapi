@@ -370,7 +370,7 @@
             "default": "PRIVATESTATUS_UNSPECIFIED"
           },
           {
-            "name": "sbomtype",
+            "name": "sbomType",
             "description": "Type of SBOM file being uploaded. Defaults to cyclonedx-xml.",
             "in": "query",
             "required": false,
@@ -378,8 +378,7 @@
             "enum": [
               "cyclonedx-xml",
               "cyclonedx-json",
-              "spdx-tag",
-              "spdx-json"
+              "spdx-tag"
             ],
             "default": "cyclonedx"
           }

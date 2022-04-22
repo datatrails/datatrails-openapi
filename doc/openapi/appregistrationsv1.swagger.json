@@ -73,7 +73,7 @@
           },
           {
             "name": "display_name",
-            "description": "Further fields are bound to query parameters and act to filter the result. Customer friendly name for the app registration.",
+            "description": "Further fields are bound to query parameters and act to filter the result\n\nCustomer friendly name for the app registration.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -270,8 +270,7 @@
             "type": "string"
           },
           {
-            "name": "body",
-            "description": "Application containing updates to `display_name` and/or `custom_claims`",
+            "name": "application",
             "in": "body",
             "required": true,
             "schema": {

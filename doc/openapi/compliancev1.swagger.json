@@ -98,7 +98,7 @@
           },
           {
             "name": "compliant_at",
-            "description": "timestamp at which compliance is determined. time at which compliance is determined",
+            "description": "timestamp at which compliance is determined\n\ntime at which compliance is determined",
             "in": "query",
             "required": false,
             "type": "string",

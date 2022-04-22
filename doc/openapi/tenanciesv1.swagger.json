@@ -54,6 +54,62 @@
         ]
       }
     },
+    "/archivist/v1/tenancies/invitetokenhint": {
+      "get": {
+        "summary": "Create an invite token",
+        "description": "Internal api to allow creation of invite token.",
+        "operationId": "Tenancies_GetInviteTokenHint",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1InviteTokenHintResponse"
+            }
+          },
+          "400": {
+            "description": "Supplied parameters were invalid",
+            "schema": {}
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to retrieve the tenant id.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "identity",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "tenant_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Tenancies"
+        ]
+      }
+    },
     "/archivist/v1/tenancies/root_principals": {
       "get": {
         "summary": "Fetch the current list of tenant root user principals",
@@ -203,6 +259,27 @@
             "in": "query",
             "required": false,
             "type": "boolean"
+          },
+          {
+            "name": "jit_loginhint_tenant_id",
+            "description": "Login hint for the tenant the existing user is requesting to login to.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "jit_invitehint_tenant_id",
+            "description": "Invite hint carrying the id of the tenant the new users was invited to",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "jit_invitehint_recipient_email",
+            "description": "Invite hint carrying the email the invitation was sent to",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -210,7 +287,7 @@
         ]
       }
     },
-    "/archivist/v1/tenancies/{tenant_uuid}/users": {
+    "/archivist/v1/tenancies/users": {
       "get": {
         "summary": "List Users",
         "description": "Returns a list of Users active in or invited to the tenant.",
@@ -251,13 +328,6 @@
         },
         "parameters": [
           {
-            "name": "tenant_uuid",
-            "description": "tenant UUID, found in the identifier `tenancies/{UUID}`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
             "name": "user_uuid",
             "description": "user UUID, found in the identifier `users/{UUID}`",
             "in": "query",
@@ -272,31 +342,24 @@
             "type": "string"
           },
           {
-            "name": "issuer",
-            "description": "optional issuer of the principal identity. Where the issuer is not provided the subject is treated as a free string",
+            "name": "displayName",
+            "description": "display name for the user",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
-            "name": "subject",
-            "description": "unique identifier of the principal (within issuer context)",
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_token",
             "in": "query",
             "required": false,
             "type": "string"
-          },
-          {
-            "name": "user_status",
-            "description": "User status, either active or pending.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "enum": [
-              "STATUS_UNSPECIFIED",
-              "ACTIVE",
-              "INVITED"
-            ],
-            "default": "STATUS_UNSPECIFIED"
           }
         ],
         "tags": [
@@ -304,7 +367,7 @@
         ]
       }
     },
-    "/archivist/v1/tenancies/{tenant_uuid}/users/{user_uuid}": {
+    "/archivist/v1/tenancies/users/{user_uuid}": {
       "delete": {
         "summary": "Deletes User",
         "description": "Deletes a User from the tenancy.",
@@ -341,13 +404,6 @@
         },
         "parameters": [
           {
-            "name": "tenant_uuid",
-            "description": "tenant UUID, found in the identifier `tenancies/{UUID}`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
             "name": "user_uuid",
             "description": "user UUID, found in the identifier `users/{UUID}`",
             "in": "path",
@@ -360,7 +416,7 @@
         ]
       }
     },
-    "/archivist/v1/tenancies/{tenant_uuid}/users:caps": {
+    "/archivist/v1/tenancies/users:caps": {
       "get": {
         "summary": "Get the remaining number of users that can be added to the tenant.",
         "description": "Not stable or officially supported. Get the remaining number of users that can be added to the tenant.",
@@ -387,184 +443,13 @@
             }
           }
         },
-        "parameters": [
-          {
-            "name": "tenant_uuid",
-            "description": "tenant UUID, found in the identifier `tenancies/{UUID}`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
         "tags": [
           "Users",
           "Unsupported"
         ]
       }
     },
-    "/archivist/v1/tenancies/{tenant_uuid}/users:checkactive": {
-      "get": {
-        "summary": "Check Active User",
-        "description": "Checks if a user has access to the tenant.",
-        "operationId": "Tenancies_CheckActiveUser",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1User"
-            }
-          },
-          "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to read the users.",
-            "schema": {}
-          },
-          "404": {
-            "description": "Returned when the identified user doesn't exist.",
-            "schema": {}
-          },
-          "500": {
-            "description": "Returned when the underlying storage system returns an error.",
-            "schema": {}
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "tenant_uuid",
-            "description": "tenant UUID, found in the identifier `tenancies/{UUID}`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "user_uuid",
-            "description": "user UUID, found in the identifier `users/{UUID}`",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "userprincipalname",
-            "description": "Unique user principal name.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "issuer",
-            "description": "optional issuer of the principal identity. Where the issuer is not provided the subject is treated as a free string",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "subject",
-            "description": "unique identifier of the principal (within issuer context)",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Tenancies"
-        ]
-      }
-    },
-    "/archivist/v1/tenancies/{tenant_uuid}/users:checkinvited": {
-      "get": {
-        "summary": "Check Invited User",
-        "description": "Checks if there is an outstanding invite for the user. Once the invite is redeemed the user will be active.",
-        "operationId": "Tenancies_CheckInvitedUser",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1User"
-            }
-          },
-          "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to read the users.",
-            "schema": {}
-          },
-          "404": {
-            "description": "Returned when the identified user doesn't exist.",
-            "schema": {}
-          },
-          "500": {
-            "description": "Returned when the underlying storage system returns an error.",
-            "schema": {}
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "tenant_uuid",
-            "description": "tenant UUID, found in the identifier `tenancies/{UUID}`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "user_uuid",
-            "description": "user UUID, found in the identifier `users/{UUID}`",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "userprincipalname",
-            "description": "Unique user principal name.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "issuer",
-            "description": "optional issuer of the principal identity. Where the issuer is not provided the subject is treated as a free string",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "subject",
-            "description": "unique identifier of the principal (within issuer context)",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Tenancies"
-        ]
-      }
-    },
-    "/archivist/v1/users/{uuid}/tenants": {
+    "/archivist/v1/users/tenants": {
       "get": {
         "summary": "List User Tenants",
         "description": "Returns a list of tenancies the user has access to.",
@@ -603,21 +488,12 @@
             }
           }
         },
-        "parameters": [
-          {
-            "name": "uuid",
-            "description": "active directory object id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
         "tags": [
           "Users"
         ]
       }
     },
-    "/archivist/v1/users/{uuid}:caps": {
+    "/archivist/v1/users:caps": {
       "get": {
         "summary": "Get the number of additional tenants a user is allowed to create or join",
         "description": "Not stable or officially supported. Get the number of additional tenants a user is allowed to create or join",
@@ -644,15 +520,6 @@
             }
           }
         },
-        "parameters": [
-          {
-            "name": "uuid",
-            "description": "user UUID, found in the identifier `users/{UUID}`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
         "tags": [
           "Users",
           "Unsupported"
@@ -811,6 +678,14 @@
       "description": "List of tenant root user principals",
       "title": "A list of current tenant root user principals"
     },
+    "v1InviteTokenHintResponse": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        }
+      }
+    },
     "v1ListTenantsResponse": {
       "type": "object",
       "properties": {
@@ -899,6 +774,11 @@
         "tier": {
           "$ref": "#/definitions/v1Tier",
           "description": "tenant tier FREE or PREMIUM",
+          "readOnly": true
+        },
+        "new_tenant": {
+          "type": "boolean",
+          "description": "true if this request created a new tenant",
           "readOnly": true
         }
       }
@@ -1048,22 +928,21 @@
           "description": "unique identifier of the principal (within issuer context)",
           "maxLength": 1024
         },
-        "user_status": {
-          "$ref": "#/definitions/v1UserStatus",
-          "description": "User status, either active or pending."
+        "displayName": {
+          "type": "string",
+          "description": "display name for the user",
+          "maxLength": 1024
         }
       },
       "description": "User Data"
     },
-    "v1UserStatus": {
-      "type": "string",
-      "enum": [
-        "STATUS_UNSPECIFIED",
-        "ACTIVE",
-        "INVITED"
-      ],
-      "default": "STATUS_UNSPECIFIED",
-      "title": "status of the user in the tenancy"
+    "v1UserTenantIDTokenHintResponse": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        }
+      }
     },
     "v2Principal": {
       "type": "object",

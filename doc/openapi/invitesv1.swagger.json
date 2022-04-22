@@ -1,8 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "TLSCACertificates API",
-    "description": "API to manage tls ca certificates.",
+    "title": "Invites API",
     "version": "1.0",
     "contact": {
       "name": "Jitsuin",
@@ -11,7 +10,7 @@
   },
   "tags": [
     {
-      "name": "TLSCACertificates"
+      "name": "Invites"
     }
   ],
   "basePath": "/_api",
@@ -25,16 +24,16 @@
     "application/json"
   ],
   "paths": {
-    "/archivist/v1/tlscacertificates": {
+    "/archivist/v1/invites": {
       "get": {
-        "summary": "List TLS CA certificates",
-        "description": "Returns a paginated list of TLS CA certificates",
-        "operationId": "TLSCACertificates_ListTLSCACertificates",
+        "summary": "List invites",
+        "description": "Returns a paginated list of invites",
+        "operationId": "Invites_ListInvites",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1ListTLSCACertificatesResponse"
+              "$ref": "#/definitions/v1ListInvitesResponse"
             }
           },
           "400": {
@@ -46,7 +45,7 @@
             "schema": {}
           },
           "403": {
-            "description": "Returned when the user is not authorized to read the TLS CA certificate.",
+            "description": "Returned when the user is not authorized to read the invite.",
             "schema": {}
           },
           "429": {
@@ -94,25 +93,25 @@
           },
           {
             "name": "display_name",
-            "description": "Further fields are bound to query parameters and act to filter the result\n\nCustomer friendly name for the TLS CA certificate.",
+            "description": "Display name for filtering\n\nCustomer friendly name for the invite.",
             "in": "query",
             "required": false,
             "type": "string"
           }
         ],
         "tags": [
-          "TLSCACertificates"
+          "Invites"
         ]
       },
       "post": {
-        "summary": "Upload a TLS CA certificate",
-        "description": "This request uploads a TLS CA certificate. The display_name is the friendly name.",
-        "operationId": "TLSCACertificates_UploadTLSCACertificate",
+        "summary": "Create an invite",
+        "description": "This request creates a new invite. The display_name is the friendly name.",
+        "operationId": "Invites_CreateInvite",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1TLSCACertificate"
+              "$ref": "#/definitions/v1Invite"
             }
           },
           "400": {
@@ -123,12 +122,8 @@
             "description": "Returned when the user is not authenticated to the system.",
             "schema": {}
           },
-          "402": {
-            "description": "Returned when the user's quota of certificates has been reached.",
-            "schema": {}
-          },
           "403": {
-            "description": "Returned when the user is not authorized to create a tlscacertificate.",
+            "description": "Returned when the user is not authorized to create a invite.",
             "schema": {}
           },
           "429": {
@@ -152,25 +147,25 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/v1UploadTLSCACertificateRequest"
+              "$ref": "#/definitions/v1CreateInviteRequest"
             }
           }
         ],
         "tags": [
-          "TLSCACertificates"
+          "Invites"
         ]
       }
     },
-    "/archivist/v1/tlscacertificates/{uuid}": {
+    "/archivist/v1/invites/{uuid}": {
       "get": {
-        "summary": "Get a TLS CA certificate",
-        "description": "Returns the identified tlscacertificate",
-        "operationId": "TLSCACertificates_GetTLSCACertificate",
+        "summary": "Get an invite",
+        "description": "Returns the identified invite",
+        "operationId": "Invites_GetInvite",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1TLSCACertificate"
+              "$ref": "#/definitions/v1Invite"
             }
           },
           "400": {
@@ -182,11 +177,11 @@
             "schema": {}
           },
           "403": {
-            "description": "Returned when the user is not authorized to read the TLS CA certificate.",
+            "description": "Returned when the user is not authorized to read the invite.",
             "schema": {}
           },
           "404": {
-            "description": "Returned when the identified TLS CA certificate does not exist.",
+            "description": "Returned when the identified invite does not exist.",
             "schema": {}
           },
           "429": {
@@ -207,20 +202,20 @@
         "parameters": [
           {
             "name": "uuid",
-            "description": "Specify the TLS CA Certificate UUID where `tlscacertificates/{uuid}` is the TLS CA Certificate Identity e.g. `08838336-c357-460d-902a-3aba9528dd22` from Identity `tlscacertificates/08838336-c357-460d-902a-3aba9528dd22`",
+            "description": "Specify the Invite UUID where `invites/{uuid}` is the Invite Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `invites/add30235-1424-4fda-840a-d5ef82c4c96f`.",
             "in": "path",
             "required": true,
             "type": "string"
           }
         ],
         "tags": [
-          "TLSCACertificates"
+          "Invites"
         ]
       },
       "delete": {
-        "summary": "Delete a TLS C Acertificate",
-        "description": "Delete the identified tLS CA Certificate",
-        "operationId": "TLSCACertificates_DeleteTLSCACertificate",
+        "summary": "Delete a invite",
+        "description": "Delete the identified invite",
+        "operationId": "Invites_DeleteInvite",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -237,7 +232,7 @@
             "schema": {}
           },
           "403": {
-            "description": "Returned when the user is not authorized to delete the TLS CA certificate.",
+            "description": "Returned when the user is not authorized to delete the invite.",
             "schema": {}
           },
           "404": {
@@ -262,92 +257,22 @@
         "parameters": [
           {
             "name": "uuid",
-            "description": "Specify the TLS CA Certificate UUID where `tlscacertificates/{uuid}` is the TLS CA Certificate Identity e.g. `08838336-c357-460d-902a-3aba9528dd22` from Identity `tlscacertificates/08838336-c357-460d-902a-3aba9528dd22`",
+            "description": "Specify the Invite UUID where `invites/{uuid}` is the Invite Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `invites/add30235-1424-4fda-840a-d5ef82c4c96f`",
             "in": "path",
             "required": true,
             "type": "string"
           }
         ],
         "tags": [
-          "TLSCACertificates"
-        ]
-      },
-      "patch": {
-        "summary": "Update a TLS CA certificate's details",
-        "description": "Perform a full or partial update of the identified TLS CA certificate",
-        "operationId": "TLSCACertificates_UpdateTLSCACertificate",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1TLSCACertificate"
-            }
-          },
-          "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to update the TLS CA certificate.",
-            "schema": {}
-          },
-          "404": {
-            "description": "Returned when the identified TLS C Acertificate does not exist.",
-            "schema": {}
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
-          },
-          "500": {
-            "description": "Returned when the underlying storage system returns an error.",
-            "schema": {}
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "uuid",
-            "description": "Specify the TLS CA Certificate UUID where `tlscacertificates/{uuid}` is the TLS CA Certificate Identity e.g. `08838336-c357-460d-902a-3aba9528dd22` from Identity `tlscacertificates/08838336-c357-460d-902a-3aba9528dd22`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "tlscacertificate",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1TLSCACertificate"
-            }
-          },
-          {
-            "name": "mask",
-            "description": "The mask says exactly which fields are to be updated. This\nremoves the ambiguity caused by 'zero' valued fields.\nhttps://grpc-ecosystem.github.io/grpc-gateway/docs/patch.html",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "TLSCACertificates"
+          "Invites"
         ]
       }
     },
-    "/archivist/v1/tlscacertificates:caps": {
+    "/archivist/v1/invites:caps": {
       "get": {
-        "summary": "Get remaining capped resources for TLSCACertificates",
-        "description": "Not stable or officially supported. Get remaining capped resources for TLSCACertificates",
-        "operationId": "TLSCACertificates_GetCaps",
+        "summary": "Get remaining capped resources for Invites",
+        "description": "Not stable or officially supported. Get remaining capped resources for Invites",
+        "operationId": "Invites_GetCaps",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -371,16 +296,16 @@
           }
         },
         "tags": [
-          "TLSCACertificates",
+          "Invites",
           "Unsupported"
         ]
       }
     },
-    "/archivist/v1/tlscacertificates:openapi": {
+    "/archivist/v1/invites:openapi": {
       "get": {
-        "summary": "Get OpenAPI spec for TLSCACertificates",
-        "description": "Get OpenAPI v2.0 spec for TLSCACertificates",
-        "operationId": "TLSCACertificates_GetOpenAPI",
+        "summary": "Get OpenAPI spec for Invites",
+        "description": "Get OpenAPI v2.0 spec for Invites",
+        "operationId": "Invites_GetOpenAPI",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -402,15 +327,15 @@
           }
         },
         "tags": [
-          "TLSCACertificates"
+          "Invites"
         ]
       }
     },
-    "/archivist/v1/tlscacertificates:openapi-ui": {
+    "/archivist/v1/invites:openapi-ui": {
       "get": {
-        "summary": "Get OpenAPI UI for TLSCACertificates",
-        "description": "Get OpenAPI v2.0 UI for TLSCACertificates",
-        "operationId": "TLSCACertificates_GetOpenAPIUI",
+        "summary": "Get OpenAPI UI for Invites",
+        "description": "Get OpenAPI v2.0 UI for Invites",
+        "operationId": "Invites_GetOpenAPIUI",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -432,13 +357,13 @@
           }
         },
         "tags": [
-          "TLSCACertificates"
+          "Invites"
         ]
       }
     }
   },
   "definitions": {
-    "ListTLSCACertificatesRequestOrderBy": {
+    "ListInvitesRequestOrderBy": {
       "type": "string",
       "enum": [
         "DEFAULT",
@@ -500,22 +425,70 @@
         }
       }
     },
-    "v1ListTLSCACertificatesResponse": {
+    "v1CreateInviteRequest": {
       "type": "object",
       "example": {
-        "tlscacertificates": [
+        "display_name": "Some description",
+        "email": "bob@job"
+      },
+      "properties": {
+        "display_name": {
+          "type": "string",
+          "description": "Customer friendly name for the invite.",
+          "maxLength": 128
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of the invitee."
+        }
+      },
+      "description": "The body of a request to create new Invite.",
+      "required": [
+        "display_name"
+      ]
+    },
+    "v1Invite": {
+      "type": "object",
+      "example": {
+        "identity": "invites/08838336-c357-460d-902a-3aba9528dd22",
+        "display_name": "Some description"
+      },
+      "properties": {
+        "identity": {
+          "type": "string",
+          "description": "Unique identification for the invite, Relative Resource Name",
+          "title": "generated identity for the entry"
+        },
+        "display_name": {
+          "type": "string",
+          "description": "Customer friendly name for the invite.",
+          "title": "user friendly display name for this principal",
+          "maxLength": 128
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of the invitee."
+        }
+      },
+      "description": "Describes Invite."
+    },
+    "v1ListInvitesResponse": {
+      "type": "object",
+      "example": {
+        "invites": [
           {
-            "identity": "tlscacertificates/08838336-c357-460d-902a-3aba9528dd22",
-            "display_name": "Some description"
+            "identity": "invites/08838336-c357-460d-902a-3aba9528dd22",
+            "display_name": "Some description",
+            "email": "bob@job"
           }
         ],
         "page_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6InN0dW50aWR"
       },
       "properties": {
-        "tlscacertificates": {
+        "invites": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/v1TLSCACertificate"
+            "$ref": "#/definitions/v1Invite"
           }
         },
         "next_page_token": {
@@ -523,70 +496,7 @@
           "description": "Token to retrieve the next page of results or empty if there are none."
         }
       },
-      "description": "List of TLS CA certificates (or the next page in a continuing  list request"
-    },
-    "v1TLSCACertificate": {
-      "type": "object",
-      "example": {
-        "identity": "tlscacertificates/08838336-c357-460d-902a-3aba9528dd22",
-        "display_name": "Some description",
-        "tlscacertificate": "-----BEGIN CERTIFICATE----- MIIEBDCCAuygAwIBAgIDAjppMA0GCSqGSIb3DQEBBQUAMEIxCzAJBgNVBAYTAlVT -----END CERTIFICATE-----"
-      },
-      "properties": {
-        "identity": {
-          "type": "string",
-          "description": "Unique identification for the TLS CA ertificate, Relative Resource Name",
-          "title": "generated identity for the entry"
-        },
-        "display_name": {
-          "type": "string",
-          "description": "Customer friendly name for the TLS CA certificate.",
-          "title": "user friendly display name for this tlscacertificate",
-          "maxLength": 128
-        },
-        "tlscacertificate": {
-          "type": "string",
-          "description": "TLS CA Certificate as base64 string representing the contents of the PEM file",
-          "title": "TLS CA certificate as string representing the contents of the PEM file",
-          "maxLength": 300000
-        }
-      },
-      "description": "Describes TLS CA certificate in PEM file format."
-    },
-    "v1TenantID": {
-      "type": "object",
-      "properties": {
-        "identity": {
-          "type": "string",
-          "title": "tenancies/UUID"
-        }
-      }
-    },
-    "v1UploadTLSCACertificateRequest": {
-      "type": "object",
-      "example": {
-        "display_name": "Some description",
-        "tlscacertificate": "-----BEGIN CERTIFICATE----- MIIEBDCCAuygAwIBAgIDAjppMA0GCSqGSIb3DQEBBQUAMEIxCzAJBgNVBAYTAlVT -----END CERTIFICATE-----"
-      },
-      "properties": {
-        "display_name": {
-          "type": "string",
-          "description": "Customer friendly name for the TLS CA certificate.",
-          "title": "user friendly display name for this tlscacertificate",
-          "maxLength": 128
-        },
-        "tlscacertificate": {
-          "type": "string",
-          "description": "TLS CA Certificate as string representing the contents of the PEM file",
-          "title": "TLS CA certificate as string representing the contents of the PEM file",
-          "maxLength": 300000
-        }
-      },
-      "description": "The body of a request to upload new TLS CA Certificate.",
-      "required": [
-        "display_name",
-        "tlscacertificate"
-      ]
+      "description": "List of invites (or the next page in a continuing  list request"
     }
   }
 }

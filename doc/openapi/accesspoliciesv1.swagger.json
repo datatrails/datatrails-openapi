@@ -79,7 +79,7 @@
           },
           {
             "name": "page_size",
-            "description": "Maximum entries per page.",
+            "description": "Maximum entries per page",
             "in": "query",
             "required": false,
             "type": "integer",
@@ -94,7 +94,7 @@
           },
           {
             "name": "display_name",
-            "description": "Further fields are bound to query parameters and act to filter the result. Customer friendly name for the access policy.",
+            "description": "Further fields are bound to query parameters and act to filter the result\n\nCustomer friendly name for the access policy.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -330,7 +330,7 @@
             "type": "string"
           },
           {
-            "name": "body",
+            "name": "access_policy",
             "in": "body",
             "required": true,
             "schema": {
@@ -339,7 +339,7 @@
           },
           {
             "name": "mask",
-            "description": "The mask says exactly which fields are to be updated. This\nremoves the ambiguity caused by 'zero' valued fields.\nhttps://grpc-ecosystem.github.io/grpc-gateway/docs/patch.html.",
+            "description": "The mask says exactly which fields are to be updated. This\nremoves the ambiguity caused by 'zero' valued fields.\nhttps://grpc-ecosystem.github.io/grpc-gateway/docs/patch.html",
             "in": "query",
             "required": false,
             "type": "string"
@@ -414,7 +414,7 @@
           },
           {
             "name": "page_size",
-            "description": "Maximum entries per page.",
+            "description": "Maximum entries per page",
             "in": "query",
             "required": false,
             "type": "integer",

@@ -89,7 +89,7 @@
           },
           {
             "name": "tracked",
-            "description": "indicates whether asset is still being tracked in the system.",
+            "description": "indicates whether asset is still being tracked in the system",
             "in": "query",
             "required": false,
             "type": "string",
@@ -103,7 +103,7 @@
           },
           {
             "name": "confirmation_status",
-            "description": "indicates if the asset has been succesfully committed to the blockchain.",
+            "description": "indicates if the asset has been succesfully committed to the blockchain",
             "in": "query",
             "required": false,
             "type": "string",
@@ -117,7 +117,7 @@
           },
           {
             "name": "storage_integrity",
-            "description": "XXX: #4483 DEPRECATED use proof_mechanism. DEPRECATED use proof_mechanism",
+            "description": "XXX: #4483 DEPRECATED use proof_mechanism\n\nDEPRECATED use proof_mechanism",
             "in": "query",
             "required": false,
             "type": "string",
@@ -130,7 +130,7 @@
           },
           {
             "name": "proof_mechanism",
-            "description": "prrof mechanism of the asset (and all its events). the mechanism used to provide evidential proof",
+            "description": "prrof mechanism of the asset (and all its events)\n\nthe mechanism used to provide evidential proof",
             "in": "query",
             "required": false,
             "type": "string",
@@ -399,7 +399,7 @@
           },
           {
             "name": "confirmation_status",
-            "description": "indicates if the asset has been succesfully committed to the blockchain.",
+            "description": "indicates if the asset has been succesfully committed to the blockchain",
             "in": "query",
             "required": false,
             "type": "string",
@@ -469,7 +469,7 @@
           },
           {
             "name": "timestamp_accepted_since",
-            "description": "Filtering. Only list events when timestamp_accepted is greater",
+            "description": "Filtering\n\nOnly list events when timestamp_accepted is greater",
             "in": "query",
             "required": false,
             "type": "string",

@@ -78,7 +78,7 @@
           },
           {
             "name": "page_size",
-            "description": "Maximum entries per page.",
+            "description": "Maximum entries per page",
             "in": "query",
             "required": false,
             "type": "integer",
@@ -93,14 +93,14 @@
           },
           {
             "name": "display_name",
-            "description": "Display name for filtering. Customer friendly name for the subject.",
+            "description": "Display name for filtering\n\nCustomer friendly name for the subject.",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "wallet_address",
-            "description": "XXX: Investigate max length. Its 256 elsewhere in this file, but that doesn't seem right.\nWallet address for filtering. Customer friendly name for the subject.",
+            "description": "XXX: Investigate max length. Its 256 elsewhere in this file, but that doesn't seem right.\nWallet address for filtering\n\nCustomer friendly name for the subject.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -325,7 +325,7 @@
             "type": "string"
           },
           {
-            "name": "body",
+            "name": "subject",
             "in": "body",
             "required": true,
             "schema": {
@@ -334,7 +334,7 @@
           },
           {
             "name": "mask",
-            "description": "The mask says exactly which fields are to be updated. This\nremoves the ambiguity caused by 'zero' valued fields.\nhttps://grpc-ecosystem.github.io/grpc-gateway/docs/patch.html.",
+            "description": "The mask says exactly which fields are to be updated. This\nremoves the ambiguity caused by 'zero' valued fields.\nhttps://grpc-ecosystem.github.io/grpc-gateway/docs/patch.html",
             "in": "query",
             "required": false,
             "type": "string"

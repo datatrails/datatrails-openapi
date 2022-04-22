@@ -59,7 +59,7 @@
           },
           {
             "name": "page_size",
-            "description": "Maximum entries per page.",
+            "description": "Maximum entries per page",
             "in": "query",
             "required": false,
             "type": "integer",
