@@ -280,6 +280,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "jit_invitehint_invite_id",
+            "description": "Invite idenity.",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
