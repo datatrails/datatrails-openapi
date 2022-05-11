@@ -1030,7 +1030,8 @@
         "tracked": "TRACKED",
         "owner": "0x601f5A7D3e6dcB55e87bf2F17bC8A27AaCD3511",
         "at_time": "2019-11-27T14:44:19Z",
-        "proof_mechanism": "SIMPLE_HASH"
+        "proof_mechanism": "SIMPLE_HASH",
+        "public": false
       },
       "properties": {
         "identity": {
@@ -1104,6 +1105,10 @@
           "type": "string",
           "description": "chain id of the blockchain associated with this asset",
           "readOnly": true
+        },
+        "public": {
+          "type": "boolean",
+          "description": "Public asset"
         }
       },
       "description": "This describes Jitsuin Asset."
@@ -1168,7 +1173,8 @@
             "tracked": "TRACKED",
             "owner": "0x601f5A7D3e6dcB55e87bf2F17bC8A27AaCD3511",
             "at_time": "2019-11-27T14:44:19Z",
-            "proof_mechanism": "SIMPLE_HASH"
+            "proof_mechanism": "SIMPLE_HASH",
+            "public": false
           },
           {
             "identity": "assets/cef61346-2453-5aeb-921c-e6fa93d5b032",
@@ -1191,7 +1197,8 @@
             "tracked": "TRACKED",
             "owner": "0x601f5A7D3e6dcB55e87bf2F17bC8A27AaCD3511",
             "at_time": "2019-11-27T14:44:19Z",
-            "proof_mechanism": "KHIPU"
+            "proof_mechanism": "KHIPU",
+            "public": false
           }
         ],
         "next_page_token": "abcd"

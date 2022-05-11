@@ -255,7 +255,7 @@
           },
           {
             "name": "is_new_user",
-            "description": "True if the user was just created (only valid when invokted from b2c)",
+            "description": "True if the user was just created (only valid when invoked from b2c)",
             "in": "query",
             "required": false,
             "type": "boolean"
@@ -690,6 +690,12 @@
       "properties": {
         "token": {
           "type": "string"
+        },
+        "expiry_time": {
+          "type": "string",
+          "format": "date-time",
+          "description": "invite expiry time",
+          "readOnly": true
         }
       }
     },

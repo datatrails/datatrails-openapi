@@ -92,8 +92,8 @@
             "type": "string"
           },
           {
-            "name": "display_name",
-            "description": "Display name for filtering\n\nCustomer friendly name for the invite.",
+            "name": "email",
+            "description": "email name for filtering\n\nEmail address of the invitee.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -105,7 +105,7 @@
       },
       "post": {
         "summary": "Create an invite",
-        "description": "This request creates a new invite. The display_name is the friendly name.",
+        "description": "This request creates a new invite. The message is the text that will be inserted into email.",
         "operationId": "Invites_CreateInvite",
         "responses": {
           "200": {
@@ -428,30 +428,33 @@
     "v1CreateInviteRequest": {
       "type": "object",
       "example": {
-        "display_name": "Some description",
+        "message": "Some text",
         "email": "bob@job"
       },
       "properties": {
-        "display_name": {
+        "message": {
           "type": "string",
-          "description": "Customer friendly name for the invite.",
-          "maxLength": 128
+          "description": "Text to be inserted into email.",
+          "maxLength": 256
         },
         "email": {
           "type": "string",
-          "description": "Email address of the invitee."
+          "description": "Email address of the invitee.",
+          "maxLength": 128
         }
       },
       "description": "The body of a request to create new Invite.",
       "required": [
-        "display_name"
+        "message"
       ]
     },
     "v1Invite": {
       "type": "object",
       "example": {
         "identity": "invites/08838336-c357-460d-902a-3aba9528dd22",
-        "display_name": "Some description"
+        "message": "Text to be inserted in email",
+        "email": "bob@job",
+        "expiry_time": "2022-05-06T07:35:21Z"
       },
       "properties": {
         "identity": {
@@ -459,15 +462,22 @@
           "description": "Unique identification for the invite, Relative Resource Name",
           "title": "generated identity for the entry"
         },
-        "display_name": {
+        "message": {
           "type": "string",
-          "description": "Customer friendly name for the invite.",
-          "title": "user friendly display name for this principal",
-          "maxLength": 128
+          "description": "Text to be inserted into email invite.",
+          "title": "user friendly message",
+          "maxLength": 256
         },
         "email": {
           "type": "string",
-          "description": "Email address of the invitee."
+          "description": "Email address of the invitee.",
+          "maxLength": 128
+        },
+        "expiry_time": {
+          "type": "string",
+          "format": "date-time",
+          "description": "invite expiry time",
+          "readOnly": true
         }
       },
       "description": "Describes Invite."
@@ -478,8 +488,9 @@
         "invites": [
           {
             "identity": "invites/08838336-c357-460d-902a-3aba9528dd22",
-            "display_name": "Some description",
-            "email": "bob@job"
+            "message": "Some text",
+            "email": "bob@job",
+            "expiry_time": "2022-05-06T07:35:21Z"
           }
         ],
         "page_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6InN0dW50aWR"
