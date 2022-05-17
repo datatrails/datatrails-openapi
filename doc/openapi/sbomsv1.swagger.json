@@ -381,6 +381,34 @@
               "spdx-tag"
             ],
             "default": "cyclonedx"
+          },
+          {
+            "name": "component",
+            "description": "Component name for SPDX SBOM.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "version",
+            "description": "Version for SPDX SBOM.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "supplier",
+            "description": "Supplier of software described by SPDX SBOM.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "hash",
+            "description": "Component hash for SPDX SBOM.",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [

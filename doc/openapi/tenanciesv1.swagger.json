@@ -342,8 +342,8 @@
             "type": "string"
           },
           {
-            "name": "userprincipalname",
-            "description": "Unique user principal name.",
+            "name": "email",
+            "description": "user email.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -497,39 +497,6 @@
         },
         "tags": [
           "Users"
-        ]
-      }
-    },
-    "/archivist/v1/users:caps": {
-      "get": {
-        "summary": "Get the number of additional tenants a user is allowed to create or join",
-        "description": "Not stable or officially supported. Get the number of additional tenants a user is allowed to create or join",
-        "operationId": "Users_GetUserTenantCaps",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1Caps"
-            }
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "tags": [
-          "Users",
-          "Unsupported"
         ]
       }
     },
@@ -719,7 +686,7 @@
         "users": [
           {
             "identity": "users/87d349ed-44d7-43e1-9a83-5f2406dee5bd",
-            "userprincipalname": "frank123@example.com",
+            "email": "frank123@example.com",
             "issuer": "frank@example.com",
             "subject": "franky123",
             "user_status": "ACTIVE"
@@ -916,7 +883,7 @@
       "type": "object",
       "example": {
         "identity": "users/87d349ed-44d7-43e1-9a83-5f2406dee5bd",
-        "userprincipalname": "frank123@example.com",
+        "email": "frank123@example.com",
         "issuer": "frank@example.com",
         "subject": "franky123",
         "user_status": "ACTIVE"
@@ -927,9 +894,9 @@
           "description": "user identity `{UUID}`",
           "maxLength": 1024
         },
-        "userprincipalname": {
+        "email": {
           "type": "string",
-          "description": "Unique user principal name."
+          "description": "User email."
         },
         "issuer": {
           "type": "string",
