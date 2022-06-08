@@ -700,7 +700,7 @@
           "items": {
             "$ref": "#/definitions/v1Filter"
           },
-          "description": "filters"
+          "description": "Filters. Public assets will not match any filter."
         },
         "access_permissions": {
           "type": "array",

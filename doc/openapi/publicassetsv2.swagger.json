@@ -1,8 +1,8 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Assets API",
-    "description": "API for asset and event management.",
+    "title": "Public Assets API",
+    "description": "API for public asset and event management.",
     "version": "2.0",
     "contact": {
       "name": "Jitsuin",
@@ -11,10 +11,9 @@
   },
   "tags": [
     {
-      "name": "Assets"
+      "name": "PublicAssets"
     }
   ],
-  "basePath": "/_api",
   "schemes": [
     "https"
   ],
@@ -25,196 +24,11 @@
     "application/json"
   ],
   "paths": {
-    "/archivist/v2/assets": {
+    "/archivist/v2/publicassets/{asset_uuid}/events/{uuid}": {
       "get": {
-        "summary": "List Archivist assets",
-        "description": "Retrieves a list of Archivist assets",
-        "operationId": "Assets_ListAssets",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v2ListAssetsResponse"
-            }
-          },
-          "206": {
-            "description": "The number of assets exceeds the servers limit. The approximate number of matching results is provided by the x-total-count header if the 'x-request-total-count' header on the request is set to 'true'. The exact limit is available in the content-range header. The value format is 'items 0-LIMIT/TOTAL'. Note that x-total-count is always present for 200 and 206 responses. It is the servers best available approximation. Similarly, in any result set, you may get a few more than LIMIT items.",
-            "schema": {}
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to list Assets.",
-            "schema": {}
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "page_size",
-            "description": "Maximum results per page.",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "page_token",
-            "description": "The next_page_token returned from a previous list request if any.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "order_by",
-            "description": "Specify the sort order for the results.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "enum": [
-              "DEFAULT"
-            ],
-            "default": "DEFAULT"
-          },
-          {
-            "name": "tracked",
-            "description": "indicates whether asset is still being tracked in the system",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "enum": [
-              "TRACKED_STATUS_UNSPECIFIED",
-              "TRACKED",
-              "NOT_TRACKED",
-              "ANY"
-            ],
-            "default": "TRACKED_STATUS_UNSPECIFIED"
-          },
-          {
-            "name": "confirmation_status",
-            "description": "indicates if the asset has been succesfully committed to the blockchain",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "enum": [
-              "CONFIRMATION_STATUS_UNSPECIFIED",
-              "PENDING",
-              "CONFIRMED",
-              "FAILED"
-            ],
-            "default": "CONFIRMATION_STATUS_UNSPECIFIED"
-          },
-          {
-            "name": "storage_integrity",
-            "description": "XXX: #4483 DEPRECATED use proof_mechanism\n\nDEPRECATED use proof_mechanism",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "enum": [
-              "STORAGE_INTEGRITY_UNSPECIFIED",
-              "LEDGER",
-              "TENANT_STORAGE"
-            ],
-            "default": "STORAGE_INTEGRITY_UNSPECIFIED"
-          },
-          {
-            "name": "proof_mechanism",
-            "description": "prrof mechanism of the asset (and all its events)\n\nthe mechanism used to provide evidential proof",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "enum": [
-              "PROOF_MECHANISM_UNSPECIFIED",
-              "KHIPU",
-              "SIMPLE_HASH",
-              "TRIE_HASH"
-            ],
-            "default": "PROOF_MECHANISM_UNSPECIFIED"
-          },
-          {
-            "name": "chain_id",
-            "description": "chain id of the blockchain associated with this asset",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "public",
-            "description": "Public asset",
-            "in": "query",
-            "required": false,
-            "type": "boolean"
-          }
-        ],
-        "tags": [
-          "Assets"
-        ]
-      },
-      "post": {
-        "summary": "Create an Archivist asset",
-        "description": "Creates an Archivist asset",
-        "operationId": "Assets_CreateAsset",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v2AssetResponse"
-            }
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
-          },
-          "402": {
-            "description": "Returned when the user either has not enabled blockchain storage orthe number of assets would exceed the user's quota",
-            "schema": {}
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to create an Asset.",
-            "schema": {}
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v2CreateAssetRequest"
-            }
-          }
-        ],
-        "tags": [
-          "Assets"
-        ]
-      }
-    },
-    "/archivist/v2/assets/{asset_uuid}/events/{uuid}": {
-      "get": {
-        "summary": "Retrieves Archivist event",
-        "description": "Retrieves a specific Archivist event",
-        "operationId": "Assets_GetEvent",
+        "summary": "Retrieves Archivist event for public asset",
+        "description": "Retrieves a specific Archivist event for a public asset",
+        "operationId": "PublicAssets_GetPublicEvent",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -222,20 +36,8 @@
               "$ref": "#/definitions/v2EventResponse"
             }
           },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to view Event.",
-            "schema": {}
-          },
           "404": {
             "description": "Returned when the event does not exist.",
-            "schema": {}
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
             "schema": {}
           },
           "default": {
@@ -262,15 +64,15 @@
           }
         ],
         "tags": [
-          "Assets"
+          "PublicAssets"
         ]
       }
     },
-    "/archivist/v2/assets/{uuid}": {
+    "/archivist/v2/publicassets/{uuid}": {
       "get": {
-        "summary": "Retrieves a specific Archivist asset",
-        "description": "Retrieves a specific Archivist asset",
-        "operationId": "Assets_GetAsset",
+        "summary": "Retrieves a specific public Archivist asset",
+        "description": "Retrieves a specific public Archivist asset",
+        "operationId": "PublicAssets_GetPublicAsset",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -278,20 +80,8 @@
               "$ref": "#/definitions/v2AssetResponse"
             }
           },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to view an Asset.",
-            "schema": {}
-          },
           "404": {
             "description": "Returned when the asset with the id does not exist.",
-            "schema": {}
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
             "schema": {}
           },
           "default": {
@@ -319,15 +109,15 @@
           }
         ],
         "tags": [
-          "Assets"
+          "PublicAssets"
         ]
       }
     },
-    "/archivist/v2/assets/{uuid}/events": {
+    "/archivist/v2/publicassets/{uuid}/events": {
       "get": {
-        "summary": "List Archivist events",
-        "description": "Lists Archivist events",
-        "operationId": "Assets_ListEvents",
+        "summary": "List Archivist events for a public asset",
+        "description": "Lists Archivist events for a public asset",
+        "operationId": "PublicAssets_ListPublicEvents",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -337,18 +127,6 @@
           },
           "206": {
             "description": "The number of events exceeds the servers limit. The approximate number of matching results is provided by the x-total-count header, the exact limit is available in the content-range header. The value format is 'items 0-LIMIT/TOTAL'.  Note that x-total-count is always present for 200 and 206 responses. It is the servers best available approximation. Similarly, in any result set, you may get a few more than LIMIT items.",
-            "schema": {}
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to list Events.",
-            "schema": {}
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
             "schema": {}
           },
           "default": {
@@ -524,100 +302,7 @@
           }
         ],
         "tags": [
-          "Assets"
-        ]
-      }
-    },
-    "/archivist/v2/assets:caps": {
-      "get": {
-        "summary": "Get remaining capped resources for Assets",
-        "description": "Not stable or officially supported. Get remaining capped resources for Assets",
-        "operationId": "Assets_GetCaps",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1Caps"
-            }
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "tags": [
-          "Assets",
-          "Unsupported"
-        ]
-      }
-    },
-    "/archivist/v2/assets:openapi": {
-      "get": {
-        "summary": "Get OpenAPI spec for Assets",
-        "description": "Get OpenAPI v2.0 spec for Assets",
-        "operationId": "Assets_GetOpenAPI",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {}
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "tags": [
-          "Assets"
-        ]
-      }
-    },
-    "/archivist/v2/assets:openapi-ui": {
-      "get": {
-        "summary": "Get OpenAPI UI for Assets",
-        "description": "Get OpenAPI v2.0 UI for Assets",
-        "operationId": "Assets_GetOpenAPIUI",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {}
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "tags": [
-          "Assets"
+          "PublicAssets"
         ]
       }
     }
@@ -661,51 +346,6 @@
           }
         }
       }
-    },
-    "v1Cap": {
-      "type": "object",
-      "properties": {
-        "resource_type": {
-          "type": "string",
-          "description": "String identifying the capped resource type"
-        },
-        "resource_remaining": {
-          "type": "string",
-          "format": "int64",
-          "description": "Number of capped resources remaining"
-        }
-      }
-    },
-    "v1Caps": {
-      "type": "object",
-      "properties": {
-        "caps": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1Cap"
-          },
-          "description": "List of relevant capped resources"
-        }
-      }
-    },
-    "v1Filter": {
-      "type": "object",
-      "example": {
-        "or": [
-          "group=maintainers",
-          "group=supervisors"
-        ]
-      },
-      "properties": {
-        "or": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "The filter list"
-        }
-      },
-      "description": "Filter"
     },
     "v2AssetResponse": {
       "type": "object",
@@ -770,6 +410,14 @@
           "title": "indicates if asset is being tracked in the system TRACKED or NOT_TRACKED",
           "readOnly": true
         },
+        "access_policy": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/v2Attribute"
+          },
+          "description": "key value mapping of behaviour to private for keys",
+          "title": "describes the access policy for this asset"
+        },
         "owner": {
           "type": "string",
           "description": "wallet address of the asset owner",
@@ -828,71 +476,6 @@
         "FAILED"
       ],
       "default": "CONFIRMATION_STATUS_UNSPECIFIED"
-    },
-    "v2CreateAssetRequest": {
-      "type": "object",
-      "example": {
-        "behaviours": [
-          "RecordEvidence",
-          "Attachments"
-        ],
-        "attributes": {
-          "arc_firmware_version": "3.2.1",
-          "arc_attachments": [
-            {
-              "arc_attachment_identity": "blobs/1754b920-cf20-4d7e-9d36-9ed7d479744d",
-              "arc_hash_value": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
-              "arc_display_name": "Picture from yesterday",
-              "arc_hash_alg": "sha256"
-            }
-          ],
-          "arc_home_location_identity": "locations/42054f10-9952-4c10-a082-9fd0d10295ae"
-        },
-        "proof_mechanism": "SIMPLE_HASH",
-        "public": false
-      },
-      "properties": {
-        "behaviours": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "list of behaviours enabled for this asset",
-          "title": "list of enabled behaviours",
-          "maxLength": 1024
-        },
-        "attributes": {
-          "type": "object",
-          "additionalProperties": {
-            "$ref": "#/definitions/v2Attribute"
-          },
-          "description": "key value mapping of event attributes",
-          "title": "event attributes for the assets creation",
-          "maxLength": 1024
-        },
-        "storage_integrity": {
-          "type": "string",
-          "$ref": "#/definitions/v2StorageIntegrity",
-          "description": "DEPRECATED use proof_mechanism",
-          "title": "XXX: #4483 DEPRECATED use proof_mechanism"
-        },
-        "proof_mechanism": {
-          "type": "string",
-          "$ref": "#/definitions/v2ProofMechanism",
-          "description": "specify the mechanism used to provide evidential proof for Events on this Asset",
-          "title": "mechanism for evidential proof for Events on this Asset"
-        },
-        "chain_id": {
-          "type": "string",
-          "description": "chain id of the blockchain associated with this asset",
-          "maxLength": 1024
-        },
-        "public": {
-          "type": "boolean",
-          "description": "Public asset. A public asset and all its events are visible to the general public.Sharing to specific organisations is not available for public assets."
-        }
-      },
-      "description": "This describes the body of a request to create new Jitsuin Asset."
     },
     "v2DictAttr": {
       "type": "object",
@@ -1053,83 +636,6 @@
         }
       },
       "description": "This describes Jitsuin Event."
-    },
-    "v2ListAssetsRequestOrderBy": {
-      "type": "string",
-      "enum": [
-        "DEFAULT"
-      ],
-      "default": "DEFAULT",
-      "title": "Supported sort orders"
-    },
-    "v2ListAssetsResponse": {
-      "type": "object",
-      "example": {
-        "assets": [
-          {
-            "identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
-            "behaviours": [
-              "RecordEvidence"
-            ],
-            "attributes": {
-              "arc_firmware_version": "3.2.1",
-              "arc_attachments": [
-                {
-                  "arc_attachment_identity": "blobs/1754b920-cf20-4d7e-9d36-9ed7d479744d",
-                  "arc_hash_value": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
-                  "arc_display_name": "Picture from yesterday",
-                  "arc_hash_alg": "sha256"
-                }
-              ],
-              "arc_home_location_identity": "locations/42054f10-9952-4c10-a082-9fd0d10295ae"
-            },
-            "confirmation_status": "PENDING",
-            "tracked": "TRACKED",
-            "owner": "0x601f5A7D3e6dcB55e87bf2F17bC8A27AaCD3511",
-            "at_time": "2019-11-27T14:44:19Z",
-            "proof_mechanism": "SIMPLE_HASH",
-            "public": false
-          },
-          {
-            "identity": "assets/cef61346-2453-5aeb-921c-e6fa93d5b032",
-            "behaviours": [
-              "RecordEvidence"
-            ],
-            "attributes": {
-              "arc_firmware_version": "3.2.1",
-              "arc_attachments": [
-                {
-                  "arc_attachment_identity": "blobs/2865ca31-d01f-5e6f-4621-de562470732e",
-                  "arc_hash_value": "12bc4819d90b6fe911b091a7c05134b65edfce045e09b048caaa7916ecdd458c",
-                  "arc_display_name": "Picture",
-                  "arc_hash_alg": "sha256"
-                }
-              ],
-              "arc_home_location_identity": "locations/53165a2c-6054-dd68-f093-a0e1e21304fd"
-            },
-            "confirmation_status": "PENDING",
-            "tracked": "TRACKED",
-            "owner": "0x601f5A7D3e6dcB55e87bf2F17bC8A27AaCD3511",
-            "at_time": "2019-11-27T14:44:19Z",
-            "proof_mechanism": "KHIPU",
-            "public": false
-          }
-        ],
-        "next_page_token": "abcd"
-      },
-      "properties": {
-        "assets": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v2AssetResponse"
-          }
-        },
-        "next_page_token": {
-          "type": "string",
-          "description": "Token to retrieve the next page of results or empty if there are none."
-        }
-      },
-      "description": "A list of assets returned data identical to `Asset`"
     },
     "v2ListAttr": {
       "type": "object",
