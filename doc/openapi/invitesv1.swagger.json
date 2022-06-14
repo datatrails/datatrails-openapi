@@ -425,6 +425,15 @@
         }
       }
     },
+    "v1CountInvitesResponse": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "v1CreateInviteRequest": {
       "type": "object",
       "example": {

@@ -615,6 +615,15 @@
         }
       }
     },
+    "v1CountUsersResponse": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "v1GetLimitsForCurrentTenantResponse": {
       "type": "object",
       "properties": {
