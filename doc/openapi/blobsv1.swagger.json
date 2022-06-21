@@ -72,7 +72,7 @@
           }
         ],
         "tags": [
-          "BLOBs"
+          "Blobs"
         ]
       }
     },
@@ -119,7 +119,7 @@
           }
         ],
         "tags": [
-          "BLOBs"
+          "Blobs"
         ]
       }
     },
@@ -169,243 +169,7 @@
           }
         ],
         "tags": [
-          "BLOBs"
-        ]
-      }
-    },
-    "/archivist/v2/attachments/assets/{asset_uuid}/events/{event_uuid}/{uuid}": {
-      "get": {
-        "summary": "Downloads an event attachment.",
-        "description": "Downloads an event attachment, if the given attachment is present in the 'arc_attachments' event atttribute.",
-        "operationId": "Blobs_Event_Download",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "file"
-            }
-          },
-          "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to get the blob.",
-            "schema": {}
-          },
-          "404": {
-            "description": "Returned when the underlying system can't find the event.",
-            "schema": {}
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
-          }
-        },
-        "parameters": [
-          {
-            "name": "asset_uuid",
-            "description": "Specify the Asset UUID where `assets/{uuid}` is the Asset Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "event_uuid",
-            "description": "Specify the Event UUID where `assets/{asset_uuid}/events/{uuid}` is the Event Identity e.g. `11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "uuid",
-            "description": "Specify the Attachent UUID where `attachments/{uuid}` is the Attachment Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `attachments/add30235-1424-4fda-840a-d5ef82c4c96f`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "BLOBs"
-        ]
-      }
-    },
-    "/archivist/v2/attachments/assets/{asset_uuid}/events/{event_uuid}/{uuid}/info": {
-      "get": {
-        "summary": "Retrieve metadata on an attachment.",
-        "description": "Retrieve metadata on an attachment, if the given attachment is present in the 'arc_attachments' event atttribute.",
-        "operationId": "Blobs_Event_Info",
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1BlobsResponse"
-            }
-          },
-          "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to get the blob metadata.",
-            "schema": {}
-          },
-          "404": {
-            "description": "Returned when the underlying system can't find the event.",
-            "schema": {}
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
-          }
-        },
-        "parameters": [
-          {
-            "name": "asset_uuid",
-            "description": "Specify the Asset UUID where `assets/{uuid}` is the Asset Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "event_uuid",
-            "description": "Specify the Event UUID where `assets/{asset_uuid}/events/{uuid}` is the Event Identity e.g. `11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "uuid",
-            "description": "Specify the Attachent UUID where `attachments/{uuid}` is the Attachment Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `attachments/add30235-1424-4fda-840a-d5ef82c4c96f`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "BLOBs"
-        ]
-      }
-    },
-    "/archivist/v2/attachments/assets/{asset_uuid}/{uuid}": {
-      "get": {
-        "summary": "Downloads an asset attachment.",
-        "description": "Downloads an asset attachment, if the given attachment is present in the 'arc_attachments' asset atttribute.",
-        "operationId": "Blobs_Asset_Download",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "file"
-            }
-          },
-          "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to get the blob.",
-            "schema": {}
-          },
-          "404": {
-            "description": "Returned when the underlying system can't find the asset.",
-            "schema": {}
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
-          }
-        },
-        "parameters": [
-          {
-            "name": "asset_uuid",
-            "description": "Specify the Asset UUID where `assets/{uuid}` is the Asset Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "uuid",
-            "description": "Specify the Attachent UUID where `attachments/{uuid}` is the Attachment Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `attachments/add30235-1424-4fda-840a-d5ef82c4c96f`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "BLOBs"
-        ]
-      }
-    },
-    "/archivist/v2/attachments/assets/{asset_uuid}/{uuid}/info": {
-      "get": {
-        "summary": "Retrieve metadata on an attachment.",
-        "description": "Retrieve metadata on an attachment, if the given attachment is present in the 'arc_attachments' asset atttribute.",
-        "operationId": "Blobs_Asset_Info",
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1BlobsResponse"
-            }
-          },
-          "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to get the blob metadata.",
-            "schema": {}
-          },
-          "404": {
-            "description": "Returned when the underlying system can't find the asset.",
-            "schema": {}
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
-          }
-        },
-        "parameters": [
-          {
-            "name": "asset_uuid",
-            "description": "Specify the Asset UUID where `assets/{uuid}` is the Asset Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "uuid",
-            "description": "Specify the Attachent UUID where `attachments/{uuid}` is the Attachment Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `attachments/add30235-1424-4fda-840a-d5ef82c4c96f`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "BLOBs"
+          "Blobs"
         ]
       }
     },
@@ -435,7 +199,7 @@
           }
         },
         "tags": [
-          "BLOBs",
+          "Blobs",
           "Unsupported"
         ]
       }
@@ -464,7 +228,10 @@
               "$ref": "#/definitions/rpcStatus"
             }
           }
-        }
+        },
+        "tags": [
+          "Blobs"
+        ]
       }
     },
     "/archivist/v1/blobs:openapi-ui": {
@@ -491,7 +258,10 @@
               "$ref": "#/definitions/rpcStatus"
             }
           }
-        }
+        },
+        "tags": [
+          "Blobs"
+        ]
       }
     }
   },

@@ -130,7 +130,7 @@
           },
           {
             "name": "proof_mechanism",
-            "description": "prrof mechanism of the asset (and all its events)\n\nthe mechanism used to provide evidential proof",
+            "description": "proof mechanism of the asset (and all its events)\n\nthe mechanism used to provide evidential proof",
             "in": "query",
             "required": false,
             "type": "string",
@@ -150,11 +150,17 @@
             "type": "string"
           },
           {
-            "name": "public",
-            "description": "Public asset",
+            "name": "privacy",
+            "description": "privacy filter of the asset (and all its events)\n\nthe privacy status of the asset",
             "in": "query",
             "required": false,
-            "type": "boolean"
+            "type": "string",
+            "enum": [
+              "PRIVACY_UNSPECIFIED",
+              "RESTRICTED",
+              "PUBLIC"
+            ],
+            "default": "PRIVACY_UNSPECIFIED"
           }
         ],
         "tags": [
@@ -1270,6 +1276,15 @@
         }
       },
       "description": "The principal description assured by the configured Identity  Provider. All values are according to OIDC id token claims and  standard claims.  See https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims"
+    },
+    "v2Privacy": {
+      "type": "string",
+      "enum": [
+        "PRIVACY_UNSPECIFIED",
+        "RESTRICTED",
+        "PUBLIC"
+      ],
+      "default": "PRIVACY_UNSPECIFIED"
     },
     "v2ProofMechanism": {
       "type": "string",

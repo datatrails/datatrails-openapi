@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "SBOMs API",
+    "title": "Sboms API",
     "description": "Simple SBOM repository API",
     "version": "1.0",
     "contact": {
@@ -319,7 +319,7 @@
         "produces": [
           "application/json"
         ],
-        "operationId": "SBOMs_Upload",
+        "operationId": "Sboms_Upload",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -380,7 +380,7 @@
               "cyclonedx-json",
               "spdx-tag"
             ],
-            "default": "cyclonedx"
+            "default": "cyclonedx-xml"
           },
           {
             "name": "component",
@@ -412,67 +412,7 @@
           }
         ],
         "tags": [
-          "SBOMs"
-        ]
-      }
-    },
-    "/archivist/v1/sboms:openapi": {
-      "get": {
-        "summary": "Get OpenAPI spec for SBOMs",
-        "description": "Get OpenAPI v2.0 spec for SBOMs",
-        "operationId": "Sboms_GetOpenAPI",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {}
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "tags": [
-          "SBOMs"
-        ]
-      }
-    },
-    "/archivist/v1/sboms:openapi-ui": {
-      "get": {
-        "summary": "Get OpenAPI UI for SBOMs",
-        "description": "Get OpenAPI v2.0 UI for SBOMs",
-        "operationId": "Sboms_GetOpenAPI",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {}
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "tags": [
-          "SBOMs"
+          "Sboms"
         ]
       }
     },
@@ -480,7 +420,7 @@
       "get": {
         "summary": "Download SBOM.",
         "description": "Downloads an SBOM file.",
-        "operationId": "SBOMs_Download",
+        "operationId": "Sboms_Download",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -508,14 +448,74 @@
         "parameters": [
           {
             "name": "uuid",
-            "description": "Specify the SBOMs UUID where `sboms/{uuid}` is the SBOMs Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `sboms/add30235-1424-4fda-840a-d5ef82c4c96f`",
+            "description": "Specify the Sboms UUID where `sboms/{uuid}` is the Sboms Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `sboms/add30235-1424-4fda-840a-d5ef82c4c96f`",
             "in": "path",
             "required": true,
             "type": "string"
           }
         ],
         "tags": [
-          "SBOMs"
+          "Sboms"
+        ]
+      }
+    },
+    "/archivist/v1/sboms:openapi": {
+      "get": {
+        "summary": "Get OpenAPI spec for Sboms",
+        "description": "Get OpenAPI v2.0 spec for Sboms",
+        "operationId": "Sboms_GetOpenAPI",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Sboms"
+        ]
+      }
+    },
+    "/archivist/v1/sboms:openapi-ui": {
+      "get": {
+        "summary": "Get OpenAPI UI for Sboms",
+        "description": "Get OpenAPI v2.0 UI for Sboms",
+        "operationId": "Sboms_GetOpenAPIUI",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Sboms"
         ]
       }
     }

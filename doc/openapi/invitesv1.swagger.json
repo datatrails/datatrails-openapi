@@ -213,7 +213,7 @@
         ]
       },
       "delete": {
-        "summary": "Delete a invite",
+        "summary": "Delete an invite",
         "description": "Delete the identified invite",
         "operationId": "Invites_DeleteInvite",
         "responses": {

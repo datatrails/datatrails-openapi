@@ -89,7 +89,10 @@
               "$ref": "#/definitions/rpcStatus"
             }
           }
-        }
+        },
+        "tags": [
+          "ArchivistNode"
+        ]
       }
     },
     "/archivist/v1/archivistnode:openapi-ui": {
@@ -116,7 +119,10 @@
               "$ref": "#/definitions/rpcStatus"
             }
           }
-        }
+        },
+        "tags": [
+          "ArchivistNode"
+        ]
       }
     }
   },

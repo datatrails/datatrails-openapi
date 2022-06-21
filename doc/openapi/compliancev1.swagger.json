@@ -202,7 +202,7 @@
           }
         ],
         "tags": [
-          "Compliance"
+          "CompliancePolicies"
         ]
       },
       "post": {
@@ -252,7 +252,7 @@
           }
         ],
         "tags": [
-          "Compliance"
+          "CompliancePolicies"
         ]
       }
     },
@@ -299,7 +299,7 @@
           }
         ],
         "tags": [
-          "Compliance"
+          "CompliancePolicies"
         ]
       },
       "delete": {
@@ -344,7 +344,7 @@
           }
         ],
         "tags": [
-          "Compliance"
+          "CompliancePolicies"
         ]
       }
     },
@@ -407,7 +407,7 @@
           }
         },
         "tags": [
-          "Compliance"
+          "CompliancePolicies"
         ]
       }
     },
@@ -437,7 +437,7 @@
           }
         },
         "tags": [
-          "Compliance"
+          "CompliancePolicies"
         ]
       }
     }
