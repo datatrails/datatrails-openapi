@@ -287,6 +287,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "jit_loginhint_new_tenant",
+            "description": "Hint that this is new tenant request.",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
           }
         ],
         "tags": [
