@@ -207,6 +207,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
             }
           },
@@ -524,8 +525,8 @@
         "identity": "locations/08838336-c357-460d-902a-3aba9528dd22",
         "display_name": "Macclesfield, Cheshire",
         "description": "Manufacturing site, North West England, Macclesfield, Cheshire",
-        "latitude": "53.2546799",
-        "longitude": "-2.1213956,14.54",
+        "latitude": 53.2546799,
+        "longitude": -2.1213956,
         "attributes": {
           "director": "John Smith",
           "address": "Bridgewater, Somerset",
@@ -659,8 +660,8 @@
       "example": {
         "display_name": "Macclesfield, Cheshire",
         "description": "Manufacturing site, North West England, Macclesfield, Cheshire",
-        "latitude": "53.2546799",
-        "longitude": "-2.1213956,14.54",
+        "latitude": 53.2546799,
+        "longitude": -2.1213956,
         "attributes": {
           "director": "John Smith",
           "address": "Bridgewater, Somerset",
@@ -739,8 +740,8 @@
             "identity": "locations/08838336-c357-460d-902a-3aba9528dd22",
             "display_name": "Macclesfield, Cheshire",
             "description": "Manufacturing site, North West England, Macclesfield, Cheshire",
-            "latitude": "53.2546799",
-            "longitude": "-2.1213956,14.54",
+            "latitude": 53.2546799,
+            "longitude": -2.1213956,
             "attributes": {
               "director": "John Smith",
               "address": "Bridgewater, Somerset",
@@ -753,8 +754,8 @@
             "identity": "locations/19749457-d468-572c-6e3b-3acb0417ec13",
             "display_name": "Cardiff, Glamorganshire",
             "description": "Distribution Centre, Wales, Cardiff, Glamorganshire",
-            "latitude": "51.481583",
-            "longitude": "-3.179090",
+            "latitude": 51.481583,
+            "longitude": -3.17909,
             "attributes": {
               "director": "June Smith",
               "address": "Newtown",

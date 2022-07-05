@@ -272,6 +272,62 @@
         ]
       }
     },
+    "/archivist/v2/assets/{asset_uuid}/events/{uuid}:publicurl": {
+      "get": {
+        "summary": "Retrieves the public url for a specific Archivist event.",
+        "description": "Retrieves the public url for a specific Archivist event.",
+        "operationId": "Assets_GetEventPublicURL",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v2PublicEventURLResponse"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to view an Asset.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the asset with the id does not exist.",
+            "schema": {}
+          },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "asset_uuid",
+            "description": "Specify the Asset UUID where `assets/{asset_uuid}/events/{uuid}` is the Event Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "uuid",
+            "description": "Specify the Event UUID where `assets/{asset_uuid}/events/{uuid}` is the Event Identity e.g. `11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Assets"
+        ]
+      }
+    },
     "/archivist/v2/assets/{uuid}": {
       "get": {
         "summary": "Retrieves a specific Archivist asset",
@@ -534,6 +590,55 @@
         ]
       }
     },
+    "/archivist/v2/assets/{uuid}:publicurl": {
+      "get": {
+        "summary": "Retrieves the public url for a specific Archivist asset.",
+        "description": "Retrieves the public url for a specific Archivist asset.",
+        "operationId": "Assets_GetAssetPublicURL",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v2PublicAssetURLResponse"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to view an Asset.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the asset with the id does not exist.",
+            "schema": {}
+          },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "uuid",
+            "description": "Specify the Asset UUID where `assets/{uuid}` is the Asset Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f`",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Assets"
+        ]
+      }
+    },
     "/archivist/v2/assets:caps": {
       "get": {
         "summary": "Get remaining capped resources for Assets",
@@ -737,7 +842,8 @@
         "owner": "0x601f5A7D3e6dcB55e87bf2F17bC8A27AaCD3511",
         "at_time": "2019-11-27T14:44:19Z",
         "proof_mechanism": "SIMPLE_HASH",
-        "public": false
+        "public": false,
+        "tenant_identity": "tenant/8e0b600c-8234-43e4-860c-e95bdcd695a9"
       },
       "properties": {
         "identity": {
@@ -807,6 +913,11 @@
         "public": {
           "type": "boolean",
           "description": "Public asset"
+        },
+        "tenant_identity": {
+          "type": "string",
+          "description": "Identity of the tenant the that created this asset",
+          "maxLength": 1024
         }
       },
       "description": "This describes Jitsuin Asset."
@@ -946,7 +1057,8 @@
         "confirmation_status": "CONFIRMED",
         "block_number": 12,
         "transaction_index": 5,
-        "transaction_id": "0x07569"
+        "transaction_id": "0x07569",
+        "tenant_identity": "tenant/8e0b600c-8234-43e4-860c-e95bdcd695a9"
       },
       "properties": {
         "identity": {
@@ -1056,6 +1168,11 @@
           "description": "wallet address for the creator of this event",
           "title": "wallet address for the creator of this event",
           "readOnly": true
+        },
+        "tenant_identity": {
+          "type": "string",
+          "description": "Identity of the tenant the that created this event",
+          "maxLength": 1024
         }
       },
       "description": "This describes Jitsuin Event."
@@ -1094,7 +1211,8 @@
             "owner": "0x601f5A7D3e6dcB55e87bf2F17bC8A27AaCD3511",
             "at_time": "2019-11-27T14:44:19Z",
             "proof_mechanism": "SIMPLE_HASH",
-            "public": false
+            "public": false,
+            "tenant_identity": "tenant/8e0b600c-8234-43e4-860c-e95bdcd695a9"
           },
           {
             "identity": "assets/cef61346-2453-5aeb-921c-e6fa93d5b032",
@@ -1118,7 +1236,8 @@
             "owner": "0x601f5A7D3e6dcB55e87bf2F17bC8A27AaCD3511",
             "at_time": "2019-11-27T14:44:19Z",
             "proof_mechanism": "KHIPU",
-            "public": false
+            "public": false,
+            "tenant_identity": "tenant/8e0b600c-8234-43e4-860c-e95bdcd695a9"
           }
         ],
         "next_page_token": "abcd"
@@ -1193,7 +1312,8 @@
             "confirmation_status": "CONFIRMED",
             "block_number": 12,
             "transaction_index": 5,
-            "transaction_id": "0x07569"
+            "transaction_id": "0x07569",
+            "tenant_identity": "tenant/8e0b600c-8234-43e4-860c-e95bdcd695a9"
           },
           {
             "identity": "assets/bf330235-1424-4fda-840a-d5ef82c4c96f/events/23c06c48-e0b8-42e0-8dcf-dc8c4fdad123",
@@ -1228,7 +1348,8 @@
             "confirmation_status": "CONFIRMED",
             "block_number": 13,
             "transaction_index": 6,
-            "transaction_id": "0x12569"
+            "transaction_id": "0x12569",
+            "tenant_identity": "tenant/8e0b600c-8234-43e4-860c-e95bdcd695a9"
           }
         ],
         "next_page_token": "abcd"
@@ -1295,6 +1416,32 @@
         "TRIE_HASH"
       ],
       "default": "PROOF_MECHANISM_UNSPECIFIED"
+    },
+    "v2PublicAssetURLResponse": {
+      "type": "object",
+      "example": {
+        "publicurl": "https://app.rkvst.io/archivist/publicassets/add30235-1424-4fda-840a-d5ef82c4c96f"
+      },
+      "properties": {
+        "publicurl": {
+          "type": "string"
+        }
+      },
+      "description": "A url that can be used to access the public asset.",
+      "title": "PublicAssetURLResponse is the public url response when calling the :publicurl verb"
+    },
+    "v2PublicEventURLResponse": {
+      "type": "object",
+      "example": {
+        "publicurl": "https://app.rkvst.io/archivist/publicassets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000"
+      },
+      "properties": {
+        "publicurl": {
+          "type": "string"
+        }
+      },
+      "description": "A url that can be used to access the public event.",
+      "title": "PublicEventURLResponse is the public url response when calling the :publicurl verb"
     },
     "v2StorageIntegrity": {
       "type": "string",

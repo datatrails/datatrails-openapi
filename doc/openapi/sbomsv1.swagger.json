@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Sboms API",
+    "title": "SBOMs API",
     "description": "Simple SBOM repository API",
     "version": "1.0",
     "contact": {
@@ -11,7 +11,7 @@
   },
   "tags": [
     {
-      "name": "Sboms"
+      "name": "SBOMs"
     }
   ],
   "schemes": [
@@ -28,12 +28,12 @@
       "get": {
         "summary": "List SBOM metadata",
         "description": "Returns a list of SBOM metadata.",
-        "operationId": "Sboms_ListMetadata",
+        "operationId": "SBOMs_ListMetadata",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1ListSbomsResponse"
+              "$ref": "#/definitions/v1ListSBOMsResponse"
             }
           },
           "400": {
@@ -157,7 +157,7 @@
           }
         ],
         "tags": [
-          "Sboms"
+          "SBOMs"
         ]
       }
     },
@@ -165,12 +165,12 @@
       "get": {
         "summary": "Get SBOM metadata",
         "description": "Returns the identified SBOM metadata",
-        "operationId": "Sboms_GetMetadata",
+        "operationId": "SBOMs_GetMetadata",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1SbomMetadata"
+              "$ref": "#/definitions/v1SBOMMetadata"
             }
           },
           "400": {
@@ -209,7 +209,7 @@
           }
         ],
         "tags": [
-          "Sboms"
+          "SBOMs"
         ]
       }
     },
@@ -217,12 +217,12 @@
       "post": {
         "summary": "Publishes an SBOM",
         "description": "Publicly publishes an SBOM",
-        "operationId": "Sboms_PublishSbom",
+        "operationId": "SBOMs_PublishSBOM",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1SbomMetadata"
+              "$ref": "#/definitions/v1SBOMMetadata"
             }
           },
           "400": {
@@ -257,7 +257,7 @@
           }
         ],
         "tags": [
-          "Sboms"
+          "SBOMs"
         ]
       }
     },
@@ -265,12 +265,12 @@
       "post": {
         "summary": "Withdraws an SBOM",
         "description": "Withdraws an SBOM",
-        "operationId": "Sboms_WithdrawSbom",
+        "operationId": "SBOMs_WithdrawSBOM",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1SbomMetadata"
+              "$ref": "#/definitions/v1SBOMMetadata"
             }
           },
           "400": {
@@ -305,7 +305,7 @@
           }
         ],
         "tags": [
-          "Sboms"
+          "SBOMs"
         ]
       }
     },
@@ -319,12 +319,12 @@
         "produces": [
           "application/json"
         ],
-        "operationId": "Sboms_Upload",
+        "operationId": "SBOMs_Upload",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1SbomMetadata"
+              "$ref": "#/definitions/v1SBOMMetadata"
             }
           },
           "400": {
@@ -412,7 +412,7 @@
           }
         ],
         "tags": [
-          "Sboms"
+          "SBOMs"
         ]
       }
     },
@@ -420,7 +420,7 @@
       "get": {
         "summary": "Download SBOM.",
         "description": "Downloads an SBOM file.",
-        "operationId": "Sboms_Download",
+        "operationId": "SBOMs_Download",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -448,22 +448,22 @@
         "parameters": [
           {
             "name": "uuid",
-            "description": "Specify the Sboms UUID where `sboms/{uuid}` is the Sboms Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `sboms/add30235-1424-4fda-840a-d5ef82c4c96f`",
+            "description": "Specify the SBOMs UUID where `sboms/{uuid}` is the SBOMs Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `sboms/add30235-1424-4fda-840a-d5ef82c4c96f`",
             "in": "path",
             "required": true,
             "type": "string"
           }
         ],
         "tags": [
-          "Sboms"
+          "SBOMs"
         ]
       }
     },
     "/archivist/v1/sboms:openapi": {
       "get": {
-        "summary": "Get OpenAPI spec for Sboms",
-        "description": "Get OpenAPI v2.0 spec for Sboms",
-        "operationId": "Sboms_GetOpenAPI",
+        "summary": "Get OpenAPI spec for SBOMs",
+        "description": "Get OpenAPI v2.0 spec for SBOMs",
+        "operationId": "SBOMs_GetOpenAPI",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -485,15 +485,15 @@
           }
         },
         "tags": [
-          "Sboms"
+          "SBOMs"
         ]
       }
     },
     "/archivist/v1/sboms:openapi-ui": {
       "get": {
-        "summary": "Get OpenAPI UI for Sboms",
-        "description": "Get OpenAPI v2.0 UI for Sboms",
-        "operationId": "Sboms_GetOpenAPIUI",
+        "summary": "Get OpenAPI UI for SBOMs",
+        "description": "Get OpenAPI v2.0 UI for SBOMs",
+        "operationId": "SBOMs_GetOpenAPIUI",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -515,13 +515,13 @@
           }
         },
         "tags": [
-          "Sboms"
+          "SBOMs"
         ]
       }
     }
   },
   "definitions": {
-    "ListSbomsRequestPrivateStatus": {
+    "ListSBOMsRequestPrivateStatus": {
       "type": "string",
       "enum": [
         "PRIVATESTATUS_UNSPECIFIED",
@@ -530,7 +530,7 @@
       ],
       "default": "PRIVATESTATUS_UNSPECIFIED"
     },
-    "ListSbomsRequestTrustedStatus": {
+    "ListSBOMsRequestTrustedStatus": {
       "type": "string",
       "enum": [
         "TRUSTEDSTATUS_UNSPECIFIED",
@@ -566,7 +566,7 @@
         }
       }
     },
-    "v1ListSbomsRequestLifecycleStatus": {
+    "v1ListSBOMsRequestLifecycleStatus": {
       "type": "string",
       "enum": [
         "LIFECYCLESTATUS_UNSPECIFIED",
@@ -575,7 +575,7 @@
       ],
       "default": "LIFECYCLESTATUS_UNSPECIFIED"
     },
-    "v1ListSbomsResponse": {
+    "v1ListSBOMsResponse": {
       "type": "object",
       "example": {
         "sboms": [
@@ -604,7 +604,7 @@
         "sboms": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/v1SbomMetadata"
+            "$ref": "#/definitions/v1SBOMMetadata"
           }
         },
         "next_page_token": {
@@ -614,7 +614,7 @@
       },
       "description": "List of SBOMs (or the next page in a continuing  list request"
     },
-    "v1SbomMetadata": {
+    "v1SBOMMetadata": {
       "type": "object",
       "example": {
         "identity": "sboms/01038663-c357-470d-912a-3abc9528dd21",
@@ -684,7 +684,7 @@
           "description": "Whether the uploading organisation is verified."
         },
         "lifecycle_status": {
-          "$ref": "#/definitions/v1SbomMetadataLifecycleStatus",
+          "$ref": "#/definitions/v1SBOMMetadataLifecycleStatus",
           "description": "Lifecycle status of the SBOM"
         },
         "withdrawn_date": {
@@ -704,7 +704,7 @@
       },
       "description": "SBOM Metadata"
     },
-    "v1SbomMetadataLifecycleStatus": {
+    "v1SBOMMetadataLifecycleStatus": {
       "type": "string",
       "enum": [
         "LIFECYCLESTATUS_UNSPECIFIED",

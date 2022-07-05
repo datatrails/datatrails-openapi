@@ -371,7 +371,8 @@
         "owner": "0x601f5A7D3e6dcB55e87bf2F17bC8A27AaCD3511",
         "at_time": "2019-11-27T14:44:19Z",
         "proof_mechanism": "SIMPLE_HASH",
-        "public": false
+        "public": false,
+        "tenant_identity": "tenant/8e0b600c-8234-43e4-860c-e95bdcd695a9"
       },
       "properties": {
         "identity": {
@@ -449,6 +450,11 @@
         "public": {
           "type": "boolean",
           "description": "Public asset"
+        },
+        "tenant_identity": {
+          "type": "string",
+          "description": "Identity of the tenant the that created this asset",
+          "maxLength": 1024
         }
       },
       "description": "This describes Jitsuin Asset."
@@ -523,7 +529,8 @@
         "confirmation_status": "CONFIRMED",
         "block_number": 12,
         "transaction_index": 5,
-        "transaction_id": "0x07569"
+        "transaction_id": "0x07569",
+        "tenant_identity": "tenant/8e0b600c-8234-43e4-860c-e95bdcd695a9"
       },
       "properties": {
         "identity": {
@@ -633,6 +640,11 @@
           "description": "wallet address for the creator of this event",
           "title": "wallet address for the creator of this event",
           "readOnly": true
+        },
+        "tenant_identity": {
+          "type": "string",
+          "description": "Identity of the tenant the that created this event",
+          "maxLength": 1024
         }
       },
       "description": "This describes Jitsuin Event."
@@ -693,7 +705,8 @@
             "confirmation_status": "CONFIRMED",
             "block_number": 12,
             "transaction_index": 5,
-            "transaction_id": "0x07569"
+            "transaction_id": "0x07569",
+            "tenant_identity": "tenant/8e0b600c-8234-43e4-860c-e95bdcd695a9"
           },
           {
             "identity": "assets/bf330235-1424-4fda-840a-d5ef82c4c96f/events/23c06c48-e0b8-42e0-8dcf-dc8c4fdad123",
@@ -728,7 +741,8 @@
             "confirmation_status": "CONFIRMED",
             "block_number": 13,
             "transaction_index": 6,
-            "transaction_id": "0x12569"
+            "transaction_id": "0x12569",
+            "tenant_identity": "tenant/8e0b600c-8234-43e4-860c-e95bdcd695a9"
           }
         ],
         "next_page_token": "abcd"

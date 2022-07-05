@@ -232,6 +232,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
             }
           },
@@ -1031,7 +1032,8 @@
         "owner": "0x601f5A7D3e6dcB55e87bf2F17bC8A27AaCD3511",
         "at_time": "2019-11-27T14:44:19Z",
         "proof_mechanism": "SIMPLE_HASH",
-        "public": false
+        "public": false,
+        "tenant_identity": "tenant/8e0b600c-8234-43e4-860c-e95bdcd695a9"
       },
       "properties": {
         "identity": {
@@ -1109,6 +1111,11 @@
         "public": {
           "type": "boolean",
           "description": "Public asset"
+        },
+        "tenant_identity": {
+          "type": "string",
+          "description": "Identity of the tenant the that created this asset",
+          "maxLength": 1024
         }
       },
       "description": "This describes Jitsuin Asset."
@@ -1174,7 +1181,8 @@
             "owner": "0x601f5A7D3e6dcB55e87bf2F17bC8A27AaCD3511",
             "at_time": "2019-11-27T14:44:19Z",
             "proof_mechanism": "SIMPLE_HASH",
-            "public": false
+            "public": false,
+            "tenant_identity": "tenant/8e0b600c-8234-43e4-860c-e95bdcd695a9"
           },
           {
             "identity": "assets/cef61346-2453-5aeb-921c-e6fa93d5b032",
@@ -1198,7 +1206,8 @@
             "owner": "0x601f5A7D3e6dcB55e87bf2F17bC8A27AaCD3511",
             "at_time": "2019-11-27T14:44:19Z",
             "proof_mechanism": "KHIPU",
-            "public": false
+            "public": false,
+            "tenant_identity": "tenant/8e0b600c-8234-43e4-860c-e95bdcd695a9"
           }
         ],
         "next_page_token": "abcd"

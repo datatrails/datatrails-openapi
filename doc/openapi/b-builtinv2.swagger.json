@@ -223,7 +223,8 @@
         "confirmation_status": "CONFIRMED",
         "block_number": 12,
         "transaction_index": 5,
-        "transaction_id": "0x07569"
+        "transaction_id": "0x07569",
+        "tenant_identity": "tenant/8e0b600c-8234-43e4-860c-e95bdcd695a9"
       },
       "properties": {
         "identity": {
@@ -333,6 +334,11 @@
           "description": "wallet address for the creator of this event",
           "title": "wallet address for the creator of this event",
           "readOnly": true
+        },
+        "tenant_identity": {
+          "type": "string",
+          "description": "Identity of the tenant the that created this event",
+          "maxLength": 1024
         }
       },
       "description": "This describes Jitsuin Event."
