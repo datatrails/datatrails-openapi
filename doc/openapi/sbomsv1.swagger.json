@@ -595,7 +595,8 @@
             "withdrawn_date": null,
             "publish_date": "2020-07-12 12:59:45",
             "trusted": "true",
-            "lifecycle_status": "ACTIVE"
+            "lifecycle_status": "ACTIVE",
+            "tenantid": "tenant/c549e53c-c414-451d-a9ac-1d6c11629bd2"
           }
         ],
         "page_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6InN0dW50aWR"
@@ -632,7 +633,8 @@
         "withdrawn_date": null,
         "publish_date": "2020-07-12 12:59:45",
         "trusted": "true",
-        "lifecycle_status": "ACTIVE"
+        "lifecycle_status": "ACTIVE",
+        "tenantid": "tenant/c549e53c-c414-451d-a9ac-1d6c11629bd2"
       },
       "properties": {
         "identity": {
@@ -700,6 +702,10 @@
         "rkvst_link": {
           "type": "string",
           "description": "Optional link to an SBOM managed as an asset in RKVST."
+        },
+        "tenantid": {
+          "type": "string",
+          "description": "Tenant Identity of the owner of the sbom."
         }
       },
       "description": "SBOM Metadata"

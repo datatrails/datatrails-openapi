@@ -463,6 +463,39 @@
         ]
       }
     },
+    "/archivist/v1/tenancies/{uuid}:publicinfo": {
+      "get": {
+        "summary": "Public Tenant Information.",
+        "description": "Return the publically avaialble tenant information.",
+        "operationId": "Tenancies_GetPublicTenantInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetPublicTenantInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "uuid",
+            "description": "Specify the tenant UUID where `tenant/{uuid}` is the Tenant Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `tenant/add30235-1424-4fda-840a-d5ef82c4c96f`",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Tenancies"
+        ]
+      }
+    },
     "/archivist/v1/users/tenants": {
       "get": {
         "summary": "List User Tenants",
@@ -644,6 +677,23 @@
           "readOnly": true
         }
       }
+    },
+    "v1GetPublicTenantInfoResponse": {
+      "type": "object",
+      "example": {
+        "identity": "tenant/add30235-1424-4fda-840a-d5ef82c4c96f",
+        "verified_domain": "exampleltd"
+      },
+      "properties": {
+        "identity": {
+          "type": "string"
+        },
+        "verified_domain": {
+          "type": "string"
+        }
+      },
+      "description": "Publically available information for a tenant.",
+      "title": "Get publically available information for a specific tenant"
     },
     "v1GetTenantRootPrincipalsResponse": {
       "type": "object",
