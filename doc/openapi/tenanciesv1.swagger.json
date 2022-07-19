@@ -900,6 +900,10 @@
             "$ref": "#/definitions/v1QuorumNetwork"
           },
           "title": "map of DLT networks indexed by chain ID"
+        },
+        "verified_domain": {
+          "type": "string",
+          "title": "verified domain for the tenant"
         }
       },
       "title": "Tenant information"
