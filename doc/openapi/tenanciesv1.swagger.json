@@ -904,6 +904,10 @@
         "verified_domain": {
           "type": "string",
           "title": "verified domain for the tenant"
+        },
+        "display_name": {
+          "type": "string",
+          "title": "display name for the tenant"
         }
       },
       "title": "Tenant information"
@@ -1048,8 +1052,14 @@
       "type": "object",
       "example": {
         "tenants": [
-          "tenancies/01038663-c357-470d-912a-3abc9528dd21",
-          "tenancies/12147552-d466-381c-805b-4cbd1018ef30"
+          {
+            "identity": "tenant/01038663-c357-470d-912a-3abc9528dd21",
+            "display_name": "Bobs Tenancy"
+          },
+          {
+            "identity": "tenant/12149552-f258-430d-922b-4bcd8413ee30",
+            "display_name": "Alices Tenancy"
+          }
         ],
         "page_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6InN0dW50aWR"
       },
@@ -1057,9 +1067,9 @@
         "tenants": {
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "#/definitions/v1UserTenantResponse"
           },
-          "description": "tenants in the form `tenancies/{UUID}`",
+          "description": "tenants in the form `tenant/{UUID}`",
           "readOnly": true
         },
         "next_page_token": {
@@ -1068,6 +1078,27 @@
         }
       },
       "description": "List of tenancies the user belongs to (or the next page in a continuing  list request)"
+    },
+    "v1UserTenantResponse": {
+      "type": "object",
+      "example": {
+        "identity": "tenant/01038663-c357-470d-912a-3abc9528dd21",
+        "display_name": "Bobs Tenancy"
+      },
+      "properties": {
+        "identity": {
+          "type": "string",
+          "description": "tenant identity in the form `tenancies/{UUID}`",
+          "readOnly": true
+        },
+        "display_name": {
+          "type": "string",
+          "description": "display name of the tenancy.`",
+          "readOnly": true
+        }
+      },
+      "description": "Tenant information for a user.",
+      "title": "UserTenantResponse represent a specific tenant's information for a user"
     }
   }
 }
