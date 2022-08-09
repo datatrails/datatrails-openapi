@@ -3,10 +3,10 @@
   "info": {
     "title": "Attachments API",
     "description": "API for uploading and downloading attachments.",
-    "version": "1.0",
+    "version": "2.0",
     "contact": {
-      "name": "Jitsuin",
-      "url": "https://www.jitsuin.com"
+      "name": "RKVST",
+      "url": "https://www.rkvst.com"
     }
   },
   "tags": [

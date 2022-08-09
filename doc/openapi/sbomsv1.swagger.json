@@ -2,11 +2,11 @@
   "swagger": "2.0",
   "info": {
     "title": "SBOMs API",
-    "description": "Simple SBOM repository API",
+    "description": "Simple SBOM repository API.",
     "version": "1.0",
     "contact": {
-      "name": "Jitsuin",
-      "url": "https://www.jitsuin.com"
+      "name": "RKVST",
+      "url": "https://www.rkvst.com"
     }
   },
   "tags": [

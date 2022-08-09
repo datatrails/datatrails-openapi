@@ -1,11 +1,12 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Attachments API",
+    "title": "BehaviourAttachments API",
+    "description": "API to manage Attachments Behaviour.",
     "version": "2.0",
     "contact": {
-      "name": "Jitsuin",
-      "url": "https://www.jitsuin.com"
+      "name": "RKVST",
+      "url": "https://www.rkvst.com"
     }
   },
   "tags": [
@@ -13,7 +14,9 @@
       "name": "BehaviourAttachments"
     }
   ],
+  "basePath": "/_api",
   "schemes": [
+    "http",
     "https"
   ],
   "consumes": [
@@ -338,7 +341,7 @@
           "maxLength": 1024
         }
       },
-      "description": "This describes Jitsuin Event."
+      "description": "This describes RKVST Event."
     },
     "v2ListAttr": {
       "type": "object",

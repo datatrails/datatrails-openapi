@@ -1,12 +1,12 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "IAM API",
-    "description": "API to manage Identity Access Management.",
+    "title": "IAMAccessPolicies API",
+    "description": "API to manage Identity Access Management AccessPolicies.",
     "version": "1.0",
     "contact": {
-      "name": "Jitsuin",
-      "url": "https://www.jitsuin.com"
+      "name": "RKVST",
+      "url": "https://www.rkvst.com"
     }
   },
   "tags": [
@@ -716,7 +716,7 @@
           "maxLength": 4096
         }
       },
-      "description": "The body of a request to create new Jitsuin Access Policy.",
+      "description": "The body of a request to create new RKVST Access Policy.",
       "required": [
         "display_name"
       ]
@@ -1118,7 +1118,7 @@
           "maxLength": 1024
         }
       },
-      "description": "This describes Jitsuin Asset."
+      "description": "This describes RKVST Asset."
     },
     "v2Attribute": {
       "type": "object",

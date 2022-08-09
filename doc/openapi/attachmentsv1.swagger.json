@@ -2,10 +2,11 @@
   "swagger": "2.0",
   "info": {
     "title": "Attachments API",
+    "description": "API to manage Attachments (DEPRECATED).",
     "version": "1.0",
     "contact": {
-      "name": "Jitsuin",
-      "url": "https://www.jitsuin.com"
+      "name": "RKVST",
+      "url": "https://www.rkvst.com"
     }
   },
   "tags": [
@@ -13,8 +14,7 @@
       "name": "Attachments"
     }
   ],
-  "host": "docs.rkvst.com",
-  "basePath": "/api/archivist/v1",
+  "basePath": "/_api",
   "schemes": [
     "http",
     "https"

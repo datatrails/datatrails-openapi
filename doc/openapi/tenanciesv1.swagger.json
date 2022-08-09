@@ -1,12 +1,12 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "User Management API",
+    "title": "UserManagement API",
     "description": "Simple API for User Management",
     "version": "1.0",
     "contact": {
-      "name": "Jitsuin",
-      "url": "https://www.jitsuin.com"
+      "name": "RKVST",
+      "url": "https://www.rkvst.com"
     }
   },
   "tags": [
@@ -179,6 +179,62 @@
             "schema": {
               "$ref": "#/definitions/v1UpdateTenantRootPrincipalsRequest"
             }
+          }
+        ],
+        "tags": [
+          "Tenancies"
+        ]
+      }
+    },
+    "/archivist/v1/tenancies/self": {
+      "patch": {
+        "summary": "Update tenant record",
+        "description": "Enables a root principal of the tenant to update the tenant record.",
+        "operationId": "Tenancies_UpdateTenant",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1AdminTenantResponse"
+            }
+          },
+          "400": {
+            "description": "Returned when the request is badly formed.",
+            "schema": {}
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system.",
+            "schema": {}
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to perform this action.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the referenced tenant does not exist.",
+            "schema": {}
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "tenant",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1UpdatableTenantPayload"
+            }
+          },
+          {
+            "name": "mask",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -629,6 +685,30 @@
         }
       }
     },
+    "v1AdminTenantResponse": {
+      "type": "object",
+      "example": {
+        "identity": "tenant/08838336-c357-460d-902a-3aba9528dd22",
+        "verified_domain": "foo.com",
+        "display_name": "My First Tenancy"
+      },
+      "properties": {
+        "identity": {
+          "type": "string",
+          "description": "tenant identity `{UUID}`",
+          "readOnly": true
+        },
+        "verified_domain": {
+          "type": "string"
+        },
+        "display_name": {
+          "type": "string",
+          "description": "Customer friendly name for the tenant.",
+          "maxLength": 128
+        }
+      },
+      "description": "View of own tenant record for a root principal."
+    },
     "v1Cap": {
       "type": "object",
       "properties": {
@@ -907,7 +987,8 @@
         },
         "display_name": {
           "type": "string",
-          "title": "display name for the tenant"
+          "description": "Customer friendly name for the tenant.",
+          "maxLength": 128
         }
       },
       "title": "Tenant information"
@@ -926,6 +1007,16 @@
       "properties": {
         "topic": {
           "type": "string"
+        }
+      }
+    },
+    "v1UpdatableTenantPayload": {
+      "type": "object",
+      "properties": {
+        "display_name": {
+          "type": "string",
+          "description": "Customer friendly name for the tenant.",
+          "maxLength": 128
         }
       }
     },

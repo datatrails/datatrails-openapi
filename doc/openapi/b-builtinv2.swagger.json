@@ -1,11 +1,12 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Builtin API",
+    "title": "BehaviourBuiltin API",
+    "description": "API to manage Builtin Behaviour.",
     "version": "2.0",
     "contact": {
-      "name": "Jitsuin",
-      "url": "https://www.jitsuin.com"
+      "name": "RKVST",
+      "url": "https://www.rkvst.com"
     }
   },
   "tags": [
@@ -13,8 +14,7 @@
       "name": "BehaviourBuiltin"
     }
   ],
-  "host": "docs.rkvst.com",
-  "basePath": "/archivist/v2",
+  "basePath": "/_api",
   "schemes": [
     "http",
     "https"
@@ -341,7 +341,7 @@
           "maxLength": 1024
         }
       },
-      "description": "This describes Jitsuin Event."
+      "description": "This describes RKVST Event."
     },
     "v2ListAttr": {
       "type": "object",

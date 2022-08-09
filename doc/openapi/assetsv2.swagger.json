@@ -5,8 +5,8 @@
     "description": "API for asset and event management.",
     "version": "2.0",
     "contact": {
-      "name": "Jitsuin",
-      "url": "https://www.jitsuin.com"
+      "name": "RKVST",
+      "url": "https://www.rkvst.com"
     }
   },
   "tags": [
@@ -920,7 +920,7 @@
           "maxLength": 1024
         }
       },
-      "description": "This describes Jitsuin Asset."
+      "description": "This describes RKVST Asset."
     },
     "v2Attribute": {
       "type": "object",
@@ -1009,7 +1009,7 @@
           "description": "Public asset. A public asset and all its events are visible to the general public.Sharing to specific organisations is not available for public assets."
         }
       },
-      "description": "This describes the body of a request to create new Jitsuin Asset."
+      "description": "This describes the body of a request to create new RKVST Asset."
     },
     "v2DictAttr": {
       "type": "object",
@@ -1175,7 +1175,7 @@
           "maxLength": 1024
         }
       },
-      "description": "This describes Jitsuin Event."
+      "description": "This describes RKVST Event."
     },
     "v2ListAssetsRequestOrderBy": {
       "type": "string",
