@@ -455,18 +455,6 @@
             "default": "DEFAULT"
           },
           {
-            "name": "operation",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "behaviour",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
             "name": "confirmation_status",
             "description": "indicates if the asset has been succesfully committed to the blockchain",
             "in": "query",
@@ -583,6 +571,32 @@
             "required": false,
             "type": "string",
             "format": "date-time"
+          },
+          {
+            "name": "operation",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "behaviour",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "proof_mechanism",
+            "description": "mechanism for evidential proof for Events on this Asset\n\nspecify the mechanism used to provide evidential proof for Events on this Asset",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "PROOF_MECHANISM_UNSPECIFIED",
+              "KHIPU",
+              "SIMPLE_HASH",
+              "TRIE_HASH"
+            ],
+            "default": "PROOF_MECHANISM_UNSPECIFIED"
           }
         ],
         "tags": [
