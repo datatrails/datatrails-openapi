@@ -3,7 +3,7 @@
   "info": {
     "title": "BlockChain API",
     "description": "API to manage Blockchain.",
-    "version": "1.0-alpha1",
+    "version": "1.0-alpha2",
     "contact": {
       "name": "RKVST",
       "url": "https://www.rkvst.com"
@@ -25,7 +25,7 @@
     "application/json"
   ],
   "paths": {
-    "/archivist/v1alpha1/blockchain/assets/{asset_uuid}/events/{uuid}": {
+    "/archivist/v1alpha2/blockchain/assets/{asset_uuid}/events/{uuid}": {
       "get": {
         "summary": "Get the list of blockchain transactions that made up an Archivist Event",
         "operationId": "BlockChain_ListBlockchain",
@@ -33,7 +33,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1alpha1ListBlockchainResponse"
+              "$ref": "#/definitions/v1alpha2ListBlockchainResponse"
             }
           },
           "default": {
@@ -79,7 +79,7 @@
         ]
       }
     },
-    "/archivist/v1alpha1/blockchain:openapi": {
+    "/archivist/v1alpha2/blockchain:openapi": {
       "get": {
         "summary": "Get OpenAPI spec for Blockchain",
         "description": "Get OpenAPI v2.0 spec for Blockchain",
@@ -109,7 +109,7 @@
         ]
       }
     },
-    "/archivist/v1alpha1/blockchain:openapi-ui": {
+    "/archivist/v1alpha2/blockchain:openapi-ui": {
       "get": {
         "summary": "Get OpenAPI UI for Blockchain",
         "description": "Get OpenAPI v2.0 UI for Blockchain",
@@ -168,49 +168,49 @@
         }
       }
     },
-    "v1alpha1ListBlockchainResponse": {
+    "v1alpha2KhipuDetails": {
+      "type": "object"
+    },
+    "v1alpha2ListBlockchainResponse": {
       "type": "object",
       "example": {
         "transactions": [
           {
-            "hash": "0x9fc76417374aa880d4449a1f7f31ec597f00b1f6f3dd2d66f4c9c6c445836d8b",
-            "nonce": 2,
-            "blockHash": "0xef95f2f1ed3ca60b048b4bf67cde2195961e0bba6f70bcbea9a2c4e133e34b46",
-            "blockNumber": 3,
-            "transactionIndex": 0,
-            "r": "0x8912348621879462817634897216348712638941",
-            "s": "0x1234689712638957682375682364892376487238",
-            "from": "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b",
-            "to": "0x6295ee1b4f6dd65047762f924ecd367c17eabf8f",
-            "value": "123450000000000000",
-            "gas": 314159,
-            "gasPrice": "2000000000000",
-            "input": "0x57cb2fc4",
-            "v": "0x26"
-          },
-          {
-            "hash": "0x9fc76417374aa880d4449a1f7f31ec597f00b1f6f3dd2d66f4c9c6c445836d8b",
-            "nonce": 2,
-            "blockHash": "0xef1234567d3ca60b048b4bf67cde2195961e0bba6f70bcbea9a2c4e133e34b46",
-            "blockNumber": 3,
-            "transactionIndex": 0,
-            "r": "0x8912348621879462817634897216348712638941",
-            "s": "0x1234689712638957682375682364892376487238",
-            "from": "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b",
-            "to": "0x6295ee1b4f6dd65047762f924ecd367c17eabf8f",
-            "value": "123450000000000000",
-            "gas": 314159,
-            "gasPrice": "2000000000000",
-            "input": "0x57cb2fc4",
-            "v": "0x26"
+            "transaction": {
+              "hash": "0x9fc76417374aa880d4449a1f7f31ec597f00b1f6f3dd2d66f4c9c6c445836d8b",
+              "nonce": 2,
+              "blockHash": "0xef1234567d3ca60b048b4bf67cde2195961e0bba6f70bcbea9a2c4e133e34b46",
+              "blockNumber": 3,
+              "transactionIndex": 0,
+              "r": "0x8912348621879462817634897216348712638941",
+              "s": "0x1234689712638957682375682364892376487238",
+              "from": "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b",
+              "to": "0x6295ee1b4f6dd65047762f924ecd367c17eabf8f",
+              "value": "123450000000000000",
+              "gas": 314159,
+              "gasPrice": "2000000000000",
+              "input": "0x57cb2fc4",
+              "v": "0x26"
+            },
+            "simple_hash_details": {
+              "api_query": "proof_mechanism=SIMPLE_HASH&timestamp_accepted_since=2022-09-01T09:01:02Z&timestamp_accepted_before=2022-10-05T10:02:03Z",
+              "start_time": "2022-09-01T09:01:02Z",
+              "end_time": "2022-10-05T10:02:03Z",
+              "hash_schema_version": 1,
+              "anchor_hash": "da84e5104ec02982515127adda821ffc533acf7f07bd9b5839f31239e888feea",
+              "event_count": 12000
+            },
+            "khipu_details": {},
+            "kind": "SIMPLE_HASH"
           }
-        ]
+        ],
+        "next_page_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6InN0dW50aWR"
       },
       "properties": {
         "transactions": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/v1alpha1Transaction"
+            "$ref": "#/definitions/v1alpha2Transaction"
           }
         },
         "next_page_token": {
@@ -220,7 +220,7 @@
       },
       "description": "List of events (or the next page in a continuing  list request"
     },
-    "v1alpha1Transaction": {
+    "v1alpha2RawTransaction": {
       "type": "object",
       "example": {
         "hash": "0x9fc76417374aa880d4449a1f7f31ec597f00b1f6f3dd2d66f4c9c6c445836d8b",
@@ -312,6 +312,67 @@
       },
       "description": "TODO: add description here ",
       "title": "as Ethereum RPC eth_getTransactionByHash (https://web3js.readthedocs.io/en/v1.2.0/web3-eth.html#gettransaction)"
+    },
+    "v1alpha2SimpleHashDetails": {
+      "type": "object",
+      "properties": {
+        "api_query": {
+          "type": "string",
+          "title": "query used to get the pre-hashed anchor image from the events api"
+        },
+        "start_time": {
+          "type": "string",
+          "format": "date-time",
+          "title": "start of time window, including all accepted simple hash events within the window"
+        },
+        "end_time": {
+          "type": "string",
+          "format": "date-time",
+          "title": "end of time window, including all accepted simple hash events within the window"
+        },
+        "hash_schema_version": {
+          "type": "integer",
+          "format": "int32",
+          "title": "canonical schema version of the pre-hashed anchor image"
+        },
+        "anchor_hash": {
+          "type": "string",
+          "title": "sha-256 hash of the pre-hashed anchor image"
+        },
+        "event_count": {
+          "type": "integer",
+          "format": "int32",
+          "title": "the number of events anchored"
+        }
+      }
+    },
+    "v1alpha2Transaction": {
+      "type": "object",
+      "properties": {
+        "transaction": {
+          "$ref": "#/definitions/v1alpha2RawTransaction"
+        },
+        "simple_hash_details": {
+          "$ref": "#/definitions/v1alpha2SimpleHashDetails"
+        },
+        "khipu_details": {
+          "$ref": "#/definitions/v1alpha2KhipuDetails"
+        },
+        "kind": {
+          "$ref": "#/definitions/v2ProofMechanism"
+        }
+      },
+      "title": "Transaction contains the raw ethereum transaction as well as additional data, such as decoded input data"
+    },
+    "v2ProofMechanism": {
+      "type": "string",
+      "enum": [
+        "PROOF_MECHANISM_UNSPECIFIED",
+        "KHIPU",
+        "SIMPLE_HASH",
+        "TRIE_HASH"
+      ],
+      "default": "PROOF_MECHANISM_UNSPECIFIED"
     }
   }
 }

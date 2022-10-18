@@ -24,6 +24,6 @@ Archivist API documentation
    assetv2/index
    eventv2/index
    applicationlink/index
-   blockchainv1alpha1/index
+   blockchainv1alpha2/index
    system/index
    miscellaneous/index

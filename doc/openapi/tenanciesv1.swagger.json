@@ -989,6 +989,11 @@
           "type": "string",
           "description": "Customer friendly name for the tenant.",
           "maxLength": 128
+        },
+        "last_anchor_time": {
+          "type": "string",
+          "format": "int64",
+          "title": "timestamp of last anchor"
         }
       },
       "title": "Tenant information"

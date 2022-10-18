@@ -1,7 +1,7 @@
 
-.. _blockchainv1alpha1_retrieval:
+.. _blockchainv1alpha2_retrieval:
 
-Blockchain Retrieval (v1alpha1)
+Blockchain Retrieval (v1alpha2)
 -------------------------------
 
 .. include:: ../auth_url.rst
@@ -15,7 +15,7 @@ as a parameter:
     assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000
 
 
-Fetch Transactions for an event (v1alpha1)
+Fetch Transactions for an event (v1alpha2)
 ==========================================
 
 To fetch all transactions for an asset event GET the ``blockchain`` resource:
@@ -24,7 +24,7 @@ To fetch all transactions for an asset event GET the ``blockchain`` resource:
 
    $ curl -v -X GET \
         -H "@$BEARER_TOKEN_FILE" \
-        $URL/archivist/v1alpha1/blockchain/assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000
+        $URL/archivist/v1alpha2/blockchain/assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000
 
 Each of these calls returns a list of matching blockchain transactions in the form:
 
@@ -70,7 +70,7 @@ Each of these calls returns a list of matching blockchain transactions in the fo
 
 .. note::
 
-    The number of records returned has a maximum limit. If this limit is too small then one must use 
+    The number of records returned has a maximum limit. If this limit is too small then one must use
     :ref:`misc_paging`.
 
-    A full API reference is available in `Swagger GET API <openapi.html#get--archivist-v1alpha1-blockchain>`_
+    A full API reference is available in `Swagger GET API <openapi.html#get--archivist-v1alpha2-blockchain>`_

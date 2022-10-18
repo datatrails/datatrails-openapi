@@ -1,7 +1,7 @@
 
-.. _blockchainv1alpha1subjects:
+.. _blockchainv1alpha2subjects:
 
-Blockchain API (v1alpha1)
+Blockchain API (v1alpha2)
 -------------------------
 
 .. toctree::
