@@ -962,7 +962,7 @@
           "items": {
             "$ref": "#/definitions/v2StorageIntegrity"
           },
-          "description": "We dont need these as we can figure out if things enabled from the limits map\nabove\nstorage_integrity includes the enabled storage_integrity values for the tenant.\nCurrently we only support LEDGER *and* TENANT_STORAGE or just TENANT_STORAGE\nThis is oly here for migration to new ProofMechanism - will be reserved at a\nlater date."
+          "description": "We dont need these as we can figure out if things enabled from the limits map\nabove\nstorage_integrity includes the enabled storage_integrity values for the tenant.\nCurrently we only support LEDGER *and* TENANT_STORAGE or just TENANT_STORAGE\nThis is only here for migration to new ProofMechanism - will be reserved at a\nlater date."
         },
         "proof_mechanism": {
           "type": "array",
@@ -994,6 +994,11 @@
           "type": "string",
           "format": "int64",
           "title": "timestamp of last anchor"
+        },
+        "anchor_interval": {
+          "type": "integer",
+          "format": "int32",
+          "title": "hash schedule in seconds"
         }
       },
       "title": "Tenant information"
