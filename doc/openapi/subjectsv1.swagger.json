@@ -11,7 +11,8 @@
   },
   "tags": [
     {
-      "name": "Subjects"
+      "name": "Subjects",
+      "description": "Handle relationships with other RKVST tenants"
     }
   ],
   "basePath": "/_api",
@@ -38,24 +39,19 @@
             }
           },
           "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
+            "description": "Returned when the request is badly formed."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to read the subject.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to read the subject."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "500": {
-            "description": "Returned when the underlying storage system returns an error.",
-            "schema": {}
+            "description": "Returned when the underlying storage system returns an error."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -123,24 +119,19 @@
             }
           },
           "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
+            "description": "Returned when the request is badly formed."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to create a subject.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to create a subject."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "500": {
-            "description": "Returned when the underlying storage system returns an error.",
-            "schema": {}
+            "description": "Returned when the underlying storage system returns an error."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -177,28 +168,22 @@
             }
           },
           "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
+            "description": "Returned when the request is badly formed."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to read the subject.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to read the subject."
           },
           "404": {
-            "description": "Returned when the identified subject does not exist.",
-            "schema": {}
+            "description": "Returned when the identified subject does not exist."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "500": {
-            "description": "Returned when the underlying storage system returns an error.",
-            "schema": {}
+            "description": "Returned when the underlying storage system returns an error."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -233,28 +218,22 @@
             }
           },
           "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
+            "description": "Returned when the request is badly formed."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to delete the subject.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to delete the subject."
           },
           "404": {
-            "description": "Returned when the identified laccess policy does not exist.",
-            "schema": {}
+            "description": "Returned when the identified laccess policy does not exist."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "500": {
-            "description": "Returned when the underlying storage system returns an error.",
-            "schema": {}
+            "description": "Returned when the underlying storage system returns an error."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -288,28 +267,22 @@
             }
           },
           "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
+            "description": "Returned when the request is badly formed."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to update the subject.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to update the subject."
           },
           "404": {
-            "description": "Returned when the identified subject does not exist.",
-            "schema": {}
+            "description": "Returned when the identified subject does not exist."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "500": {
-            "description": "Returned when the underlying storage system returns an error.",
-            "schema": {}
+            "description": "Returned when the underlying storage system returns an error."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -354,16 +327,13 @@
         "operationId": "Subjects_GetOpenAPI",
         "responses": {
           "200": {
-            "description": "A successful response.",
-            "schema": {}
+            "description": "A successful response."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -384,16 +354,13 @@
         "operationId": "Subjects_GetOpenAPIUI",
         "responses": {
           "200": {
-            "description": "A successful response.",
-            "schema": {}
+            "description": "A successful response."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "default": {
             "description": "An unexpected error response.",

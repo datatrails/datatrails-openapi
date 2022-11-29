@@ -11,12 +11,12 @@
   },
   "tags": [
     {
-      "name": "BehaviourBuiltin"
+      "name": "Asset Object Management",
+      "description": "Built in functions for managing Asset records"
     }
   ],
   "basePath": "/_api",
   "schemes": [
-    "http",
     "https"
   ],
   "consumes": [
@@ -58,69 +58,23 @@
             "schema": {
               "type": "object",
               "example": {
-                "operation": "Record",
-                "behaviour": "RecordEvidence",
-                "event_attributes": {
-                  "arc_attachments": [
-                    {
-                      "arc_attachment_identity": "blobs/1754b920-cf20-4d7e-9d36-9ed7d479744d",
-                      "arc_hash_value": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
-                      "arc_display_name": "Picture from yesterday",
-                      "arc_hash_alg": "sha256"
-                    }
-                  ]
-                },
-                "asset_attributes": {
-                  "arc_firmware_version": "3.2.1",
-                  "arc_home_location_identity": "locations/42054f10-9952-4c10-a082-9fd0d10295ae"
-                },
-                "timestamp_declared": "2019-11-27T14:44:19Z",
-                "principal_declared": {
-                  "issuer": "job.idp.server/1234",
-                  "subject": "bob@job"
-                }
+                "operation": "StopTracking",
+                "behaviour": "Builtin"
               },
               "properties": {
-                "behaviour": {
-                  "type": "string",
-                  "title": "name of this behaviour"
-                },
                 "operation": {
                   "type": "string",
-                  "title": "name of operation on this behviour"
-                },
-                "principal_declared": {
-                  "$ref": "#/definitions/v2Principal",
-                  "title": "principal information associated with event - if not provided will be set to principal_accepted"
-                },
-                "timestamp_declared": {
-                  "type": "string",
-                  "format": "date-time",
-                  "description": "time of event as declared by the user",
-                  "title": "timestamp when operation was actually performed - if not provided will be set to timestamp_accepted",
-                  "readOnly": true
-                },
-                "event_attributes": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "$ref": "#/definitions/v2Attribute"
-                  },
-                  "description": "key value mapping of event attributes"
-                },
-                "asset_attributes": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "$ref": "#/definitions/v2Attribute"
-                  },
-                  "description": "key value mapping of asset attributes"
+                  "title": "operation",
+                  "description": "operation to execute, eg StopTracking or StartTracking",
+                  "default": "StopTracking"
                 }
               },
-              "description": "Request creating RecordEvidence event Specify `operation` to chose which RecordEvidence event to create "
+              "description": "Request creating Builtin event Specify `operation` to chose what to do (eg StopTracking or StartTracking) "
             }
           }
         ],
         "tags": [
-          "BehaviourBuiltin"
+          "Asset Object Management"
         ]
       }
     }
@@ -191,24 +145,12 @@
     "v2EventResponse": {
       "type": "object",
       "example": {
-        "identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000",
+        "operation": "StopTracking",
+        "behaviour": "Builtin", 
+        "identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000b",
         "asset_identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
-        "operation": "Record",
-        "behaviour": "RecordEvidence",
-        "event_attributes": {
-          "arc_attachments": [
-            {
-              "arc_attachment_identity": "blobs/1754b920-cf20-4d7e-9d36-9ed7d479744d",
-              "arc_hash_value": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
-              "arc_display_name": "Picture from yesterday",
-              "arc_hash_alg": "sha256"
-            }
-          ]
-        },
-        "asset_attributes": {
-          "arc_firmware_version": "3.2.1",
-          "arc_home_location_identity": "locations/42054f10-9952-4c10-a082-9fd0d10295ae"
-        },
+        "event_attributes": {},
+        "asset_attributes": {},
         "timestamp_accepted": "2019-11-27T14:44:19Z",
         "timestamp_declared": "2019-11-27T14:44:19Z",
         "timestamp_committed": "2019-11-27T14:44:19Z",

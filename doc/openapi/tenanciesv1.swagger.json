@@ -11,7 +11,12 @@
   },
   "tags": [
     {
-      "name": "Users"
+      "name": "Users",
+      "description": "Manage your RKVST tenancy"
+    },
+    {
+      "name": "Unsupported",
+      "description": "Internal APIs that are unstable and should not be used in a production setting."
     }
   ],
   "basePath": "/_api",
@@ -38,8 +43,7 @@
             }
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -67,16 +71,13 @@
             }
           },
           "400": {
-            "description": "Supplied parameters were invalid",
-            "schema": {}
+            "description": "Supplied parameters were invalid"
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to retrieve the tenant id.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to retrieve the tenant id."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -123,12 +124,10 @@
             }
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to update the root principals.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to update the root principals."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -153,16 +152,13 @@
             }
           },
           "400": {
-            "description": "Returned when the request is badly formed.  Including, but not limited to, attempting to remove yourself as a root uesr principal.",
-            "schema": {}
+            "description": "Returned when the request is badly formed.  Including, but not limited to, attempting to remove yourself as a root uesr principal."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to update the root principals.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to update the root principals."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -199,20 +195,16 @@
             }
           },
           "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
+            "description": "Returned when the request is badly formed."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to perform this action.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to perform this action."
           },
           "404": {
-            "description": "Returned when the referenced tenant does not exist.",
-            "schema": {}
+            "description": "Returned when the referenced tenant does not exist."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -255,16 +247,13 @@
             }
           },
           "400": {
-            "description": "Returned when the user doesn't provide an issuer or subject to filter on.",
-            "schema": {}
+            "description": "Returned when the user doesn't provide an issuer or subject to filter on."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to retrieve the tenant id.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to retrieve the tenant id."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -370,24 +359,19 @@
             }
           },
           "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
+            "description": "Returned when the request is badly formed."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to read the users.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to read the users."
           },
           "404": {
-            "description": "Returned when the identified users don't exist.",
-            "schema": {}
+            "description": "Returned when the identified users don't exist."
           },
           "500": {
-            "description": "Returned when the underlying storage system returns an error.",
-            "schema": {}
+            "description": "Returned when the underlying storage system returns an error."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -450,20 +434,16 @@
             }
           },
           "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
+            "description": "Returned when the request is badly formed."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to read the user.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to read the user."
           },
           "500": {
-            "description": "Returned when the underlying storage system returns an error.",
-            "schema": {}
+            "description": "Returned when the underlying storage system returns an error."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -499,12 +479,10 @@
             }
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -565,24 +543,19 @@
             }
           },
           "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
+            "description": "Returned when the request is badly formed."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to read the user.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to read the user."
           },
           "404": {
-            "description": "Returned when the identified user don't exist.",
-            "schema": {}
+            "description": "Returned when the identified user don't exist."
           },
           "500": {
-            "description": "Returned when the underlying storage system returns an error.",
-            "schema": {}
+            "description": "Returned when the underlying storage system returns an error."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -603,16 +576,13 @@
         "operationId": "Tenancies_GetOpenAPI",
         "responses": {
           "200": {
-            "description": "A successful response.",
-            "schema": {}
+            "description": "A successful response."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -633,16 +603,13 @@
         "operationId": "Tenancies_GetOpenAPIUI",
         "responses": {
           "200": {
-            "description": "A successful response.",
-            "schema": {}
+            "description": "A successful response."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "default": {
             "description": "An unexpected error response.",

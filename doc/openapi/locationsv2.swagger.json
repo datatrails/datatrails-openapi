@@ -11,7 +11,12 @@
   },
   "tags": [
     {
-      "name": "Locations"
+      "name": "Locations",
+      "description": "Read and modify Locations"
+    },
+    {
+      "name": "Unsupported",
+      "description": "Internal APIs that are unstable and should not be used in a production setting."
     }
   ],
   "basePath": "/_api",
@@ -38,16 +43,13 @@
             }
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to read the location.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to read the location."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -114,20 +116,16 @@
             }
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "402": {
-            "description": "Returned when the user's quota of locations policies has been reached.",
-            "schema": {}
+            "description": "Returned when the user's quota of locations policies has been reached."
           },
           "403": {
-            "description": "Returned when the user is not authorized to create a location.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to create a location."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -164,20 +162,16 @@
             }
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to read the location.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to read the location."
           },
           "404": {
-            "description": "Returned when the identified location does not exist.",
-            "schema": {}
+            "description": "Returned when the identified location does not exist."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -212,20 +206,16 @@
             }
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to delete the location.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to delete the location."
           },
           "404": {
-            "description": "Returned when the identified location does not exist.",
-            "schema": {}
+            "description": "Returned when the identified location does not exist."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -259,20 +249,16 @@
             }
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to update the location.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to update the location."
           },
           "404": {
-            "description": "Returned when the identified location does not exist.",
-            "schema": {}
+            "description": "Returned when the identified location does not exist."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -324,20 +310,16 @@
             }
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to list permissions for the location.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to list permissions for the location."
           },
           "404": {
-            "description": "Returned when the identified location does not exist.",
-            "schema": {}
+            "description": "Returned when the identified location does not exist."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -371,20 +353,16 @@
             }
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to access permissions for the location.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to access permissions for the location."
           },
           "404": {
-            "description": "Returned when the identified location does not exist.",
-            "schema": {}
+            "description": "Returned when the identified location does not exist."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -428,12 +406,10 @@
             }
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -455,16 +431,13 @@
         "operationId": "Locations_GetOpenAPI",
         "responses": {
           "200": {
-            "description": "A successful response.",
-            "schema": {}
+            "description": "A successful response."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -485,16 +458,13 @@
         "operationId": "Locations_GetOpenAPIUI",
         "responses": {
           "200": {
-            "description": "A successful response.",
-            "schema": {}
+            "description": "A successful response."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "default": {
             "description": "An unexpected error response.",

@@ -11,7 +11,8 @@
   },
   "tags": [
     {
-      "name": "PublicAssets"
+      "name": "PublicAssets",
+      "description": "Retrieve Public Attestations and public Asset and Event records"
     }
   ],
   "schemes": [
@@ -37,8 +38,7 @@
             }
           },
           "404": {
-            "description": "Returned when the event does not exist.",
-            "schema": {}
+            "description": "Returned when the event does not exist."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -81,8 +81,7 @@
             }
           },
           "404": {
-            "description": "Returned when the asset with the id does not exist.",
-            "schema": {}
+            "description": "Returned when the asset with the id does not exist."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -126,8 +125,7 @@
             }
           },
           "206": {
-            "description": "The number of events exceeds the servers limit. The approximate number of matching results is provided by the x-total-count header, the exact limit is available in the content-range header. The value format is 'items 0-LIMIT/TOTAL'.  Note that x-total-count is always present for 200 and 206 responses. It is the servers best available approximation. Similarly, in any result set, you may get a few more than LIMIT items.",
-            "schema": {}
+            "description": "The number of events exceeds the servers limit. The approximate number of matching results is provided by the x-total-count header, the exact limit is available in the content-range header. The value format is 'items 0-LIMIT/TOTAL'.  Note that x-total-count is always present for 200 and 206 responses. It is the servers best available approximation. Similarly, in any result set, you may get a few more than LIMIT items."
           },
           "default": {
             "description": "An unexpected error response.",

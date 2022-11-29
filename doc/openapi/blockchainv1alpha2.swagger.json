@@ -11,12 +11,13 @@
   },
   "tags": [
     {
-      "name": "BlockChain"
+      "name": "BlockChain",
+      "description": "Retrieve information about the blockchain network"
     }
   ],
   "basePath": "/_api",
   "schemes": [
-    "https"
+    "http"
   ],
   "consumes": [
     "application/json"
@@ -38,20 +39,16 @@
             }
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to view event's blockchain transactions.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to view event's blockchain transactions."
           },
           "404": {
-            "description": "Returned when the asset with the id does not exist. or the event with the id does not exist",
-            "schema": {}
+            "description": "Returned when the asset with the id does not exist. or the event with the id does not exist"
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -103,16 +100,13 @@
         "operationId": "Blockchain_GetOpenAPI",
         "responses": {
           "200": {
-            "description": "A successful response.",
-            "schema": {}
+            "description": "A successful response."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -133,16 +127,13 @@
         "operationId": "Blockchain_GetOpenAPIUI",
         "responses": {
           "200": {
-            "description": "A successful response.",
-            "schema": {}
+            "description": "A successful response."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "default": {
             "description": "An unexpected error response.",

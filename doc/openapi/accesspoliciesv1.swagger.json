@@ -11,7 +11,12 @@
   },
   "tags": [
     {
-      "name": "AccessPolicies"
+      "name": "AccessPolicies",
+      "description": "Read and configure access policies for Assets and Events"
+    },
+    {
+      "name": "Unsupported",
+      "description": "Internal APIs that are unstable and should not be used in a production setting."
     }
   ],
   "basePath": "/_api",
@@ -38,24 +43,19 @@
             }
           },
           "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
+            "description": "Returned when the request is badly formed."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to list the access policy.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to list the access policy."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "500": {
-            "description": "Returned when the underlying storage system returns an error.",
-            "schema": {}
+            "description": "Returned when the underlying storage system returns an error."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -123,28 +123,22 @@
             }
           },
           "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
+            "description": "Returned when the request is badly formed."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "402": {
-            "description": "Returned when the user's quota of access policies has been reached.",
-            "schema": {}
+            "description": "Returned when the user's quota of access policies has been reached."
           },
           "403": {
-            "description": "Returned when the user is not authorized to create an access policy.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to create an access policy."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "500": {
-            "description": "Returned when the underlying storage system returns an error.",
-            "schema": {}
+            "description": "Returned when the underlying storage system returns an error."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -181,28 +175,22 @@
             }
           },
           "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
+            "description": "Returned when the request is badly formed."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to read the access policy.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to read the access policy."
           },
           "404": {
-            "description": "Returned when the identified access policy does not exist.",
-            "schema": {}
+            "description": "Returned when the identified access policy does not exist."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "500": {
-            "description": "Returned when the underlying storage system returns an error.",
-            "schema": {}
+            "description": "Returned when the underlying storage system returns an error."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -237,28 +225,22 @@
             }
           },
           "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
+            "description": "Returned when the request is badly formed."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to delete the access policy.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to delete the access policy."
           },
           "404": {
-            "description": "Returned when the identified access policy does not exist.",
-            "schema": {}
+            "description": "Returned when the identified access policy does not exist."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "500": {
-            "description": "Returned when the underlying storage system returns an error.",
-            "schema": {}
+            "description": "Returned when the underlying storage system returns an error."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -292,28 +274,22 @@
             }
           },
           "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
+            "description": "Returned when the request is badly formed."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to update the access policy.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to update the access policy."
           },
           "404": {
-            "description": "Returned when the identified access policy does not exist.",
-            "schema": {}
+            "description": "Returned when the identified access policy does not exist."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "500": {
-            "description": "Returned when the underlying storage system returns an error.",
-            "schema": {}
+            "description": "Returned when the underlying storage system returns an error."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -364,28 +340,22 @@
             }
           },
           "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
+            "description": "Returned when the request is badly formed."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to list the access policy.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to list the access policy."
           },
           "404": {
-            "description": "Returned when the identified access policy does not exist.",
-            "schema": {}
+            "description": "Returned when the identified access policy does not exist."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "500": {
-            "description": "Returned when the underlying storage system returns an error.",
-            "schema": {}
+            "description": "Returned when the underlying storage system returns an error."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -447,12 +417,10 @@
             }
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -480,28 +448,22 @@
             }
           },
           "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
+            "description": "Returned when the request is badly formed."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to list the access policy.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to list the access policy."
           },
           "404": {
-            "description": "Returned when the identified access policy does not exist.",
-            "schema": {}
+            "description": "Returned when the identified access policy does not exist."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "500": {
-            "description": "Returned when the underlying storage system returns an error.",
-            "schema": {}
+            "description": "Returned when the underlying storage system returns an error."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -539,16 +501,13 @@
         "operationId": "AccessPolicies_GetOpenAPI",
         "responses": {
           "200": {
-            "description": "A successful response.",
-            "schema": {}
+            "description": "A successful response."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -569,16 +528,13 @@
         "operationId": "AccessPolicies_GetOpenAPIUI",
         "responses": {
           "200": {
-            "description": "A successful response.",
-            "schema": {}
+            "description": "A successful response."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "default": {
             "description": "An unexpected error response.",

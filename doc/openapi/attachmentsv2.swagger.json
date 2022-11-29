@@ -11,7 +11,8 @@
   },
   "tags": [
     {
-      "name": "Attachments"
+      "name": "Attachments",
+      "description": "Retrieve rich evidence and blobs metadata from Assets and Events"
     }
   ],
   "basePath": "/_api",
@@ -32,12 +33,10 @@
             }
           },
           "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
+            "description": "Returned when the request is badly formed."
           },
           "404": {
-            "description": "Returned when the underlying system can't find the event.",
-            "schema": {}
+            "description": "Returned when the underlying system can't find the event."
           }
         },
         "parameters": [
@@ -84,12 +83,10 @@
             }
           },
           "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
+            "description": "Returned when the request is badly formed."
           },
           "404": {
-            "description": "Returned when the underlying system can't find the event.",
-            "schema": {}
+            "description": "Returned when the underlying system can't find the event."
           }
         },
         "parameters": [
@@ -133,12 +130,10 @@
             }
           },
           "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
+            "description": "Returned when the request is badly formed."
           },
           "404": {
-            "description": "Returned when the underlying system can't find the asset.",
-            "schema": {}
+            "description": "Returned when the underlying system can't find the asset."
           }
         },
         "parameters": [
@@ -178,12 +173,10 @@
             }
           },
           "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
+            "description": "Returned when the request is badly formed."
           },
           "404": {
-            "description": "Returned when the underlying system can't find the asset.",
-            "schema": {}
+            "description": "Returned when the underlying system can't find the asset."
           }
         },
         "parameters": [
@@ -220,24 +213,19 @@
             }
           },
           "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
+            "description": "Returned when the request is badly formed."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to get the blob.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to get the blob."
           },
           "404": {
-            "description": "Returned when the underlying system can't find the event.",
-            "schema": {}
+            "description": "Returned when the underlying system can't find the event."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           }
         },
         "parameters": [
@@ -284,24 +272,19 @@
             }
           },
           "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
+            "description": "Returned when the request is badly formed."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to get the blob metadata.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to get the blob metadata."
           },
           "404": {
-            "description": "Returned when the underlying system can't find the event.",
-            "schema": {}
+            "description": "Returned when the underlying system can't find the event."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           }
         },
         "parameters": [
@@ -345,24 +328,19 @@
             }
           },
           "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
+            "description": "Returned when the request is badly formed."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to get the blob.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to get the blob."
           },
           "404": {
-            "description": "Returned when the underlying system can't find the asset.",
-            "schema": {}
+            "description": "Returned when the underlying system can't find the asset."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           }
         },
         "parameters": [
@@ -402,24 +380,19 @@
             }
           },
           "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
+            "description": "Returned when the request is badly formed."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to get the blob metadata.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to get the blob metadata."
           },
           "404": {
-            "description": "Returned when the underlying system can't find the asset.",
-            "schema": {}
+            "description": "Returned when the underlying system can't find the asset."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           }
         },
         "parameters": [
@@ -450,16 +423,13 @@
         "operationId": "Attachments_GetOpenAPI",
         "responses": {
           "200": {
-            "description": "A successful response.",
-            "schema": {}
+            "description": "A successful response."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -480,16 +450,13 @@
         "operationId": "Attachments_GetOpenAPIUI",
         "responses": {
           "200": {
-            "description": "A successful response.",
-            "schema": {}
+            "description": "A successful response."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "default": {
             "description": "An unexpected error response.",

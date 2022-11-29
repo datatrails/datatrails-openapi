@@ -11,7 +11,12 @@
   },
   "tags": [
     {
-      "name": "Blobs"
+      "name": "Blobs",
+      "description": "Upload files/blobs as rich evidence for Assets and Events"
+    },
+    {
+      "name": "Unsupported",
+      "description": "Internal APIs that are unstable and should not be used in a production setting."
     }
   ],
   "basePath": "/_api",
@@ -38,28 +43,22 @@
             }
           },
           "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
+            "description": "Returned when the request is badly formed."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "402": {
-            "description": "Returned when the number of blobs would exceed the user's quota or the size of the blob exceeds the user's allocation.",
-            "schema": {}
+            "description": "Returned when the number of blobs would exceed the user's quota or the size of the blob exceeds the user's allocation."
           },
           "403": {
-            "description": "Returned when the user is not authorized to create a blob.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to create a blob."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "500": {
-            "description": "Returned when the underlying system returns an error.",
-            "schema": {}
+            "description": "Returned when the underlying system returns an error."
           }
         },
         "parameters": [
@@ -89,24 +88,19 @@
             }
           },
           "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
+            "description": "Returned when the request is badly formed."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to get the blob.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to get the blob."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "500": {
-            "description": "Returned when the underlying system returns an error.",
-            "schema": {}
+            "description": "Returned when the underlying system returns an error."
           }
         },
         "parameters": [
@@ -139,24 +133,19 @@
             }
           },
           "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
+            "description": "Returned when the request is badly formed."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to get the blob metadata.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to get the blob metadata."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "500": {
-            "description": "Returned when the underlying system returns an error.",
-            "schema": {}
+            "description": "Returned when the underlying system returns an error."
           }
         },
         "parameters": [
@@ -180,16 +169,13 @@
         "operationId": "Blobs_GetCaps",
         "responses": {
           "200": {
-            "description": "A successful response.",
-            "schema": {}
+            "description": "A successful response."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -211,16 +197,13 @@
         "operationId": "Blobs_GetOpenAPI",
         "responses": {
           "200": {
-            "description": "A successful response.",
-            "schema": {}
+            "description": "A successful response."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "default": {
             "description": "An unexpected error response.",
@@ -241,16 +224,13 @@
         "operationId": "Blobs_GetOpenAPIUI",
         "responses": {
           "200": {
-            "description": "A successful response.",
-            "schema": {}
+            "description": "A successful response."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "default": {
             "description": "An unexpected error response.",
