@@ -145,6 +145,7 @@
         "parameters": [
           {
             "name": "body",
+            "description": "The body of a request to create new Invite.",
             "in": "body",
             "required": true,
             "schema": {

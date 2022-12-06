@@ -149,6 +149,7 @@
         "parameters": [
           {
             "name": "body",
+            "description": "The body of a request to upload new TLS CA Certificate.",
             "in": "body",
             "required": true,
             "schema": {

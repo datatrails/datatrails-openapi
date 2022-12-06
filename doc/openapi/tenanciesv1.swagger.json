@@ -12,6 +12,10 @@
   "tags": [
     {
       "name": "Users",
+      "description": "Manage users in your RKVST tenancy"
+    },
+    {
+      "name": "Tenancies",
       "description": "Manage your RKVST tenancy"
     },
     {

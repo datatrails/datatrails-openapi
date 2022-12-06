@@ -12,6 +12,10 @@
   "tags": [
     {
       "name": "Compliance",
+      "description": "List compliance statuses for an asset"
+    },
+    {
+      "name": "CompliancePolicies",
       "description": "Read and modify Compliance Policies"
     },
     {
