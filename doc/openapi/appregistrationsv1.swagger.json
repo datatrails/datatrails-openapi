@@ -50,12 +50,6 @@
           },
           "429": {
             "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
@@ -108,12 +102,6 @@
           },
           "429": {
             "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
@@ -154,12 +142,6 @@
           },
           "429": {
             "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
@@ -198,12 +180,6 @@
           },
           "429": {
             "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
@@ -241,12 +217,6 @@
           },
           "429": {
             "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
@@ -301,12 +271,6 @@
           },
           "429": {
             "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
@@ -340,12 +304,6 @@
           },
           "429": {
             "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "tags": [
@@ -364,12 +322,6 @@
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/v1ApplicationWithTier"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -402,12 +354,6 @@
           },
           "429": {
             "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "tags": [
@@ -429,12 +375,6 @@
           },
           "429": {
             "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "tags": [
@@ -444,33 +384,6 @@
     }
   },
   "definitions": {
-    "protobufAny": {
-      "type": "object",
-      "properties": {
-        "@type": {
-          "type": "string"
-        }
-      },
-      "additionalProperties": {}
-    },
-    "rpcStatus": {
-      "type": "object",
-      "properties": {
-        "code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "message": {
-          "type": "string"
-        },
-        "details": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/protobufAny"
-          }
-        }
-      }
-    },
     "v1Application": {
       "type": "object",
       "example": {
@@ -512,10 +425,10 @@
         "credentials": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/v1Credential"
+            "$ref": "#/definitions/v1Credential",
+            "readOnly": true
           },
-          "description": "Credentials this application can use to authenticate",
-          "readOnly": true
+          "description": "Credentials this application can use to authenticate"
         },
         "custom_claims": {
           "type": "object",
@@ -675,10 +588,10 @@
         "applications": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/v1Application"
+            "$ref": "#/definitions/v1Application",
+            "readOnly": true
           },
-          "description": "Current page of applications owned by the requesting tenant",
-          "readOnly": true
+          "description": "Current page of applications owned by the requesting tenant"
         },
         "next_page_token": {
           "type": "string",

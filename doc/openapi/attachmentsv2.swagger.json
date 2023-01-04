@@ -430,12 +430,6 @@
           },
           "429": {
             "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "tags": [
@@ -457,12 +451,6 @@
           },
           "429": {
             "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "tags": [
@@ -565,36 +553,6 @@
         "SCANNED_BAD"
       ],
       "default": "NOT_SCANNED"
-    },
-    "protobufAny": {
-      "type": "object",
-      "properties": {
-        "type_url": {
-          "type": "string"
-        },
-        "value": {
-          "type": "string",
-          "format": "byte"
-        }
-      }
-    },
-    "rpcStatus": {
-      "type": "object",
-      "properties": {
-        "code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "message": {
-          "type": "string"
-        },
-        "details": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/protobufAny"
-          }
-        }
-      }
     }
   }
 }

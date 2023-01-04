@@ -59,12 +59,6 @@
           },
           "429": {
             "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
@@ -136,12 +130,6 @@
           },
           "429": {
             "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
@@ -173,7 +161,7 @@
           },
           {
             "name": "compliance_type",
-            "description": "policy type",
+            "description": "policy type\n\n - COMPLIANCE_SINCE: time since specific event greated than X\n - COMPLIANCE_CURRENT_OUTSTANDING: unresolved event currently on asset (eg. vulnerablity)\n - COMPLIANCE_PERIOD_OUTSTANDING: no unresolved events for longer than X\n - COMPLIANCE_DYNAMIC_TOLERANCE: Dynamic tolerance with dynamic window etc..\n - COMPLIANCE_RICHNESS: compliance on comparison of asset attribute value to predefined comparator.",
             "in": "query",
             "required": false,
             "type": "string",
@@ -229,17 +217,12 @@
           },
           "429": {
             "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
           {
             "name": "body",
+            "description": "request adding new compliance policy",
             "in": "body",
             "required": true,
             "schema": {
@@ -273,12 +256,6 @@
           },
           "429": {
             "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
@@ -314,12 +291,6 @@
           },
           "429": {
             "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
@@ -353,12 +324,6 @@
           },
           "429": {
             "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "tags": [
@@ -381,12 +346,6 @@
           },
           "429": {
             "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "tags": [
@@ -408,12 +367,6 @@
           },
           "429": {
             "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "tags": [
@@ -423,33 +376,6 @@
     }
   },
   "definitions": {
-    "protobufAny": {
-      "type": "object",
-      "properties": {
-        "@type": {
-          "type": "string"
-        }
-      },
-      "additionalProperties": {}
-    },
-    "rpcStatus": {
-      "type": "object",
-      "properties": {
-        "code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "message": {
-          "type": "string"
-        },
-        "details": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/protobufAny"
-          }
-        }
-      }
-    },
     "v1AddCompliancePolicyRequest": {
       "type": "object",
       "example": {
@@ -487,10 +413,10 @@
         "asset_filter": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/v1Filter"
+            "$ref": "#/definitions/v1Filter",
+            "readOnly": true
           },
-          "description": "filter for asset this compliance policy is for [ { or: [\"a:b\", \"c:d\"]}, { or: [...]}]",
-          "readOnly": true
+          "description": "filter for asset this compliance policy is for [ { or: [\"a:b\", \"c:d\"]}, { or: [...]}]"
         },
         "event_display_type": {
           "type": "string",
@@ -523,11 +449,11 @@
         "richness_assertions": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/v1Filter"
+            "$ref": "#/definitions/v1Filter",
+            "readOnly": true
           },
           "description": "assertions for the richness of this compliance policy [ { or: [\"a<b\", \"c>=d\"]}, { or: [...]}]",
-          "title": "richness assertions follows the same pattern as filters [{\"or\":[\"foo=bar\", \"baz=fiz\"]}]",
-          "readOnly": true
+          "title": "richness assertions follows the same pattern as filters [{\"or\":[\"foo=bar\", \"baz=fiz\"]}]"
         }
       },
       "description": "request adding new compliance policy"
@@ -606,11 +532,13 @@
         },
         "dynamic_window": {
           "type": "string",
-          "format": "int64"
+          "format": "int64",
+          "title": "valid perod for policy - only valid for SINCE and CURRENT"
         },
         "dynamic_variability": {
           "type": "number",
-          "format": "float"
+          "format": "float",
+          "title": "number of standard deviations - only valid for SINCE and CURRENT"
         },
         "richness_assertions": {
           "type": "array",
@@ -660,7 +588,8 @@
         "COMPLIANCE_DYNAMIC_TOLERANCE",
         "COMPLIANCE_RICHNESS"
       ],
-      "default": "COMPLIANCE_TYPE_UNDEFINED"
+      "default": "COMPLIANCE_TYPE_UNDEFINED",
+      "description": " - COMPLIANCE_SINCE: time since specific event greated than X\n - COMPLIANCE_CURRENT_OUTSTANDING: unresolved event currently on asset (eg. vulnerablity)\n - COMPLIANCE_PERIOD_OUTSTANDING: no unresolved events for longer than X\n - COMPLIANCE_DYNAMIC_TOLERANCE: Dynamic tolerance with dynamic window etc..\n - COMPLIANCE_RICHNESS: compliance on comparison of asset attribute value to predefined comparator."
     },
     "v1Filter": {
       "type": "object",

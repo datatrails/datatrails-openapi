@@ -49,12 +49,6 @@
           },
           "429": {
             "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "tags": [
@@ -76,12 +70,6 @@
           },
           "429": {
             "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "tags": [
@@ -103,12 +91,6 @@
           },
           "429": {
             "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "tags": [
@@ -118,33 +100,6 @@
     }
   },
   "definitions": {
-    "protobufAny": {
-      "type": "object",
-      "properties": {
-        "@type": {
-          "type": "string"
-        }
-      },
-      "additionalProperties": {}
-    },
-    "rpcStatus": {
-      "type": "object",
-      "properties": {
-        "code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "message": {
-          "type": "string"
-        },
-        "details": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/protobufAny"
-          }
-        }
-      }
-    },
     "v1ArchivistNodes": {
       "type": "object",
       "example": {
@@ -199,10 +154,10 @@
         "blockchain_nodes": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/v1BlockchainNode"
+            "$ref": "#/definitions/v1BlockchainNode",
+            "readOnly": true
           },
-          "description": "Status information for the blockchain nodes belonging to this  archivist node. Each blockchain node further contains information  about any connected peers. Note that the peer lists for each blockchain  node will often overlap",
-          "readOnly": true
+          "description": "Status information for the blockchain nodes belonging to this  archivist node. Each blockchain node further contains information  about any connected peers. Note that the peer lists for each blockchain  node will often overlap"
         }
       },
       "description": "Describes the status of the archivist node."
@@ -249,10 +204,10 @@
         "peers": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/v1PeerBlockchainNode"
+            "$ref": "#/definitions/v1PeerBlockchainNode",
+            "readOnly": true
           },
-          "description": "List of peer blockchain nodes. ",
-          "readOnly": true
+          "description": "List of peer blockchain nodes. "
         },
         "genesis_hash": {
           "type": "string",

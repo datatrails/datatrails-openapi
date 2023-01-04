@@ -9,11 +9,7 @@
       "url": "https://www.rkvst.com"
     }
   },
-  "tags": [
-    {
-      "name": "Invites"
-    }
-  ],
+  "tags": [],
   "basePath": "/_api",
   "schemes": [
     "https"
@@ -38,30 +34,19 @@
             }
           },
           "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
+            "description": "Returned when the request is badly formed."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to read the invite.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to read the invite."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "500": {
-            "description": "Returned when the underlying storage system returns an error.",
-            "schema": {}
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
+            "description": "Returned when the underlying storage system returns an error."
           }
         },
         "parameters": [
@@ -116,30 +101,19 @@
             }
           },
           "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
+            "description": "Returned when the request is badly formed."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to create a invite.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to create a invite."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "500": {
-            "description": "Returned when the underlying storage system returns an error.",
-            "schema": {}
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
+            "description": "Returned when the underlying storage system returns an error."
           }
         },
         "parameters": [
@@ -171,34 +145,22 @@
             }
           },
           "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
+            "description": "Returned when the request is badly formed."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to read the invite.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to read the invite."
           },
           "404": {
-            "description": "Returned when the identified invite does not exist.",
-            "schema": {}
+            "description": "Returned when the identified invite does not exist."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "500": {
-            "description": "Returned when the underlying storage system returns an error.",
-            "schema": {}
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
+            "description": "Returned when the underlying storage system returns an error."
           }
         },
         "parameters": [
@@ -227,34 +189,22 @@
             }
           },
           "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
+            "description": "Returned when the request is badly formed."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to delete the invite.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to delete the invite."
           },
           "404": {
-            "description": "Returned when the identified laccess policy does not exist.",
-            "schema": {}
+            "description": "Returned when the identified laccess policy does not exist."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           },
           "500": {
-            "description": "Returned when the underlying storage system returns an error.",
-            "schema": {}
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
+            "description": "Returned when the underlying storage system returns an error."
           }
         },
         "parameters": [
@@ -284,18 +234,10 @@
             }
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           }
         },
         "tags": [
@@ -311,22 +253,13 @@
         "operationId": "Invites_GetOpenAPI",
         "responses": {
           "200": {
-            "description": "A successful response.",
-            "schema": {}
+            "description": "A successful response."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           }
         },
         "tags": [
@@ -341,22 +274,13 @@
         "operationId": "Invites_GetOpenAPIUI",
         "responses": {
           "200": {
-            "description": "A successful response.",
-            "schema": {}
+            "description": "A successful response."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           }
         },
         "tags": [
@@ -374,33 +298,6 @@
       ],
       "default": "DEFAULT",
       "title": "Supported sort orders"
-    },
-    "protobufAny": {
-      "type": "object",
-      "properties": {
-        "@type": {
-          "type": "string"
-        }
-      },
-      "additionalProperties": {}
-    },
-    "rpcStatus": {
-      "type": "object",
-      "properties": {
-        "code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "message": {
-          "type": "string"
-        },
-        "details": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/protobufAny"
-          }
-        }
-      }
     },
     "v1Cap": {
       "type": "object",

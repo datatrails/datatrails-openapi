@@ -48,12 +48,6 @@
           },
           "401": {
             "description": "Returned when the user is not authenticated to the system."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "tags": [
@@ -82,12 +76,6 @@
           },
           "403": {
             "description": "Returned when the user is not authorized to retrieve the tenant id."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
@@ -132,12 +120,6 @@
           },
           "403": {
             "description": "Returned when the user is not authorized to update the root principals."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "tags": [
@@ -163,17 +145,12 @@
           },
           "403": {
             "description": "Returned when the user is not authorized to update the root principals."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
           {
             "name": "body",
+            "description": "Update the list of tenant root user principals",
             "in": "body",
             "required": true,
             "schema": {
@@ -187,6 +164,31 @@
       }
     },
     "/archivist/v1/tenancies/self": {
+      "get": {
+        "summary": "Get tenant record",
+        "description": "Returns an administrator's view of tenant for which they're authenticated",
+        "operationId": "Tenancies_GetAdminTenantInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1AdminTenantResponse"
+            }
+          },
+          "400": {
+            "description": "Supplied parameters were invalid"
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system."
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to retrieve the tenant id."
+          }
+        },
+        "tags": [
+          "Tenancies"
+        ]
+      },
       "patch": {
         "summary": "Update tenant record",
         "description": "Enables a root principal of the tenant to update the tenant record.",
@@ -209,12 +211,6 @@
           },
           "404": {
             "description": "Returned when the referenced tenant does not exist."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
@@ -258,12 +254,6 @@
           },
           "403": {
             "description": "Returned when the user is not authorized to retrieve the tenant id."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
@@ -376,12 +366,6 @@
           },
           "500": {
             "description": "Returned when the underlying storage system returns an error."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
@@ -448,12 +432,6 @@
           },
           "500": {
             "description": "Returned when the underlying storage system returns an error."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
@@ -487,12 +465,6 @@
           },
           "429": {
             "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "tags": [
@@ -511,12 +483,6 @@
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/v1GetPublicTenantInfoResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -560,12 +526,6 @@
           },
           "500": {
             "description": "Returned when the underlying storage system returns an error."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "tags": [
@@ -587,12 +547,6 @@
           },
           "429": {
             "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "tags": [
@@ -614,12 +568,6 @@
           },
           "429": {
             "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "tags": [
@@ -629,33 +577,6 @@
     }
   },
   "definitions": {
-    "protobufAny": {
-      "type": "object",
-      "properties": {
-        "@type": {
-          "type": "string"
-        }
-      },
-      "additionalProperties": {}
-    },
-    "rpcStatus": {
-      "type": "object",
-      "properties": {
-        "code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "message": {
-          "type": "string"
-        },
-        "details": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/protobufAny"
-          }
-        }
-      }
-    },
     "v1AdminTenantResponse": {
       "type": "object",
       "example": {
@@ -676,6 +597,12 @@
           "type": "string",
           "description": "Customer friendly name for the tenant.",
           "maxLength": 128
+        },
+        "enterprise_sso_enabled": {
+          "type": "boolean"
+        },
+        "enterprise_sso_config": {
+          "$ref": "#/definitions/v1EnterpriseSSOConfig"
         }
       },
       "description": "View of own tenant record for a root principal."
@@ -715,6 +642,30 @@
         }
       }
     },
+    "v1EnterpriseSSOConfig": {
+      "type": "object",
+      "properties": {
+        "policy_id": {
+          "type": "string",
+          "description": "Per-tenant B2C policy ID. Value controlled by RKVST",
+          "readOnly": true
+        },
+        "config_url": {
+          "type": "string"
+        },
+        "issuer": {
+          "type": "string"
+        },
+        "client_id": {
+          "type": "string"
+        },
+        "client_secret": {
+          "type": "string",
+          "description": "The secret passed here when setting, but must not be stored in plaintext or logged."
+        }
+      },
+      "title": "This is used for PATCHing self - so the tenant is taken from the calling principal"
+    },
     "v1GetLimitsForCurrentTenantResponse": {
       "type": "object",
       "properties": {
@@ -744,7 +695,7 @@
         }
       },
       "description": "Publically available information for a tenant.",
-      "title": "Get publically available information for a specific tenant"
+      "title": "Get publicly available information for a specific tenant"
     },
     "v1GetTenantRootPrincipalsResponse": {
       "type": "object",
@@ -970,6 +921,12 @@
           "type": "integer",
           "format": "int32",
           "title": "hash schedule in seconds"
+        },
+        "enterprise_sso_enabled": {
+          "type": "boolean"
+        },
+        "enterprise_sso_config": {
+          "$ref": "#/definitions/v1EnterpriseSSOConfig"
         }
       },
       "title": "Tenant information"
@@ -998,6 +955,9 @@
           "type": "string",
           "description": "Customer friendly name for the tenant.",
           "maxLength": 128
+        },
+        "enterprise_sso_config": {
+          "$ref": "#/definitions/v1EnterpriseSSOConfig"
         }
       }
     },
@@ -1139,10 +1099,10 @@
         "tenants": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/v1UserTenantResponse"
+            "$ref": "#/definitions/v1UserTenantResponse",
+            "readOnly": true
           },
-          "description": "tenants in the form `tenant/{UUID}`",
-          "readOnly": true
+          "description": "tenants in the form `tenant/{UUID}`"
         },
         "next_page_token": {
           "type": "string",

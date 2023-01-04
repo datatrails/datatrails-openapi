@@ -52,12 +52,6 @@
           },
           "500": {
             "description": "Returned when the underlying storage system returns an error."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
@@ -132,17 +126,12 @@
           },
           "500": {
             "description": "Returned when the underlying storage system returns an error."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
           {
             "name": "body",
+            "description": "The body of a request to create new RKVST Subject.",
             "in": "body",
             "required": true,
             "schema": {
@@ -184,12 +173,6 @@
           },
           "500": {
             "description": "Returned when the underlying storage system returns an error."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
@@ -234,12 +217,6 @@
           },
           "500": {
             "description": "Returned when the underlying storage system returns an error."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
@@ -283,12 +260,6 @@
           },
           "500": {
             "description": "Returned when the underlying storage system returns an error."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
@@ -334,12 +305,6 @@
           },
           "429": {
             "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "tags": [
@@ -361,12 +326,6 @@
           },
           "429": {
             "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "tags": [
@@ -384,33 +343,6 @@
       ],
       "default": "DEFAULT",
       "title": "Supported sort orders"
-    },
-    "protobufAny": {
-      "type": "object",
-      "properties": {
-        "@type": {
-          "type": "string"
-        }
-      },
-      "additionalProperties": {}
-    },
-    "rpcStatus": {
-      "type": "object",
-      "properties": {
-        "code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "message": {
-          "type": "string"
-        },
-        "details": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/protobufAny"
-          }
-        }
-      }
     },
     "v1CreateIAMSubjectRequest": {
       "type": "object",
@@ -432,20 +364,20 @@
         "wallet_pub_key": {
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 256
           },
           "description": "Organisation's public wallet keys (BNF)",
-          "title": "validate against hexstring - the subjects service will validate as a crypto key",
-          "maxLength": 256
+          "title": "validate against hexstring - the subjects service will validate as a crypto key"
         },
         "tessera_pub_key": {
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 256
           },
           "description": "Organisation's tessara wallet keys (BNF)",
-          "title": "validate against base64 - the subjects service will validate as a crypto key",
-          "maxLength": 256
+          "title": "validate against base64 - the subjects service will validate as a crypto key"
         }
       },
       "description": "The body of a request to create new RKVST Subject.",
@@ -484,29 +416,29 @@
         "wallet_pub_key": {
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 256
           },
           "description": "Organisation's public wallet keys (BNF)",
-          "title": "org wallet keys (one to start with) in blockchain native format\nvalidate against hexstring - the subjects service will validate as a crypto key",
-          "maxLength": 256
+          "title": "org wallet keys (one to start with) in blockchain native format\nvalidate against hexstring - the subjects service will validate as a crypto key"
         },
         "wallet_address": {
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 256
           },
           "description": "Organisation's wallet addresses",
-          "title": "org wallet addresses, derived from the org wallet keys.  For each org wallet key there will be a corresponding address",
-          "maxLength": 256
+          "title": "org wallet addresses, derived from the org wallet keys.  For each org wallet key there will be a corresponding address"
         },
         "tessera_pub_key": {
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 256
           },
           "description": "Organisation's tessara wallet keys (BNF)",
-          "title": "org tessera keys (one to start with) in blockchain native format\nvalidate against base64 - the subjects service will validate as a crypto key",
-          "maxLength": 256
+          "title": "org tessera keys (one to start with) in blockchain native format\nvalidate against base64 - the subjects service will validate as a crypto key"
         },
         "tenant": {
           "type": "string",
@@ -593,29 +525,29 @@
         "wallet_pub_key": {
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 256
           },
           "description": "Organisation's public wallet keys (BNF)",
-          "title": "org wallet keys (one to start with) in blockchain native format\nvalidate against hexstring - the subjects service will validate as a crypto key",
-          "maxLength": 256
+          "title": "org wallet keys (one to start with) in blockchain native format\nvalidate against hexstring - the subjects service will validate as a crypto key"
         },
         "wallet_address": {
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 256
           },
           "description": "Organisation's wallet addresses",
-          "title": "org wallet addresses, derived from the org wallet keys.  For each org wallet key there will be a corresponding address",
-          "maxLength": 256
+          "title": "org wallet addresses, derived from the org wallet keys.  For each org wallet key there will be a corresponding address"
         },
         "tessera_pub_key": {
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 256
           },
           "description": "Organisation's tessara wallet keys (BNF)",
-          "title": "org tessera keys (one to start with) in blockchain native format\nvalidate against base64 - the subjects service will validate as a crypto key",
-          "maxLength": 256
+          "title": "org tessera keys (one to start with) in blockchain native format\nvalidate against base64 - the subjects service will validate as a crypto key"
         },
         "tenant": {
           "type": "string",
@@ -627,7 +559,8 @@
       "description": "Describes Organization including wallet addresses and public keys used to create assets and events."
     },
     "v1UpdateConfirmationStatusResponse": {
-      "type": "object"
+      "type": "object",
+      "title": "currently no need to return anything"
     }
   }
 }

@@ -56,12 +56,6 @@
           },
           "500": {
             "description": "Returned when the underlying storage system returns an error."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
@@ -139,17 +133,12 @@
           },
           "500": {
             "description": "Returned when the underlying storage system returns an error."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
           {
             "name": "body",
+            "description": "The body of a request to create new RKVST Access Policy.",
             "in": "body",
             "required": true,
             "schema": {
@@ -191,12 +180,6 @@
           },
           "500": {
             "description": "Returned when the underlying storage system returns an error."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
@@ -241,12 +224,6 @@
           },
           "500": {
             "description": "Returned when the underlying storage system returns an error."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
@@ -290,12 +267,6 @@
           },
           "500": {
             "description": "Returned when the underlying storage system returns an error."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
@@ -356,12 +327,6 @@
           },
           "500": {
             "description": "Returned when the underlying storage system returns an error."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
@@ -421,12 +386,6 @@
           },
           "429": {
             "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "tags": [
@@ -464,12 +423,6 @@
           },
           "500": {
             "description": "Returned when the underlying storage system returns an error."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
@@ -508,12 +461,6 @@
           },
           "429": {
             "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "tags": [
@@ -535,12 +482,6 @@
           },
           "429": {
             "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "tags": [
@@ -550,33 +491,6 @@
     }
   },
   "definitions": {
-    "protobufAny": {
-      "type": "object",
-      "properties": {
-        "@type": {
-          "type": "string"
-        }
-      },
-      "additionalProperties": {}
-    },
-    "rpcStatus": {
-      "type": "object",
-      "properties": {
-        "code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "message": {
-          "type": "string"
-        },
-        "details": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/protobufAny"
-          }
-        }
-      }
-    },
     "v1Cap": {
       "type": "object",
       "properties": {
@@ -1098,7 +1012,8 @@
         "CONFIRMED",
         "FAILED"
       ],
-      "default": "CONFIRMATION_STATUS_UNSPECIFIED"
+      "default": "CONFIRMATION_STATUS_UNSPECIFIED",
+      "title": "- PENDING: not yet committed\n - CONFIRMED: committed\n - FAILED: permanent failure"
     },
     "v2DictAttr": {
       "type": "object",

@@ -17,7 +17,7 @@
   ],
   "basePath": "/_api",
   "schemes": [
-    "http"
+    "https"
   ],
   "consumes": [
     "application/json"
@@ -49,12 +49,6 @@
           },
           "429": {
             "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
@@ -107,12 +101,6 @@
           },
           "429": {
             "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "tags": [
@@ -134,12 +122,6 @@
           },
           "429": {
             "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "tags": [
@@ -149,33 +131,6 @@
     }
   },
   "definitions": {
-    "protobufAny": {
-      "type": "object",
-      "properties": {
-        "@type": {
-          "type": "string"
-        }
-      },
-      "additionalProperties": {}
-    },
-    "rpcStatus": {
-      "type": "object",
-      "properties": {
-        "code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "message": {
-          "type": "string"
-        },
-        "details": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/protobufAny"
-          }
-        }
-      }
-    },
     "v1alpha2KhipuDetails": {
       "type": "object"
     },
@@ -201,7 +156,7 @@
               "v": "0x26"
             },
             "simple_hash_details": {
-              "api_query": "https://app.rkvst.com/archivist/v2/assets/-/events?proof_mechanism=SIMPLE_HASH&timestamp_accepted_since=2022-09-01T09:01:02Z&timestamp_accepted_before=2022-10-05T10:02:03Z",
+              "api_query": "https://app.rkvst.com/archivist/v2/assets/-/events?order_by=SIMPLEHASHV1&proof_mechanism=SIMPLE_HASH&timestamp_accepted_since=2022-09-01T09:01:02Z&timestamp_accepted_before=2022-10-05T10:02:03Z",
               "start_time": "2022-09-01T09:01:02Z",
               "end_time": "2022-10-05T10:02:03Z",
               "hash_schema_version": 1,

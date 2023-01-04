@@ -9,11 +9,7 @@
       "url": "https://www.rkvst.com"
     }
   },
-  "tags": [
-    {
-      "name": "SBOMs"
-    }
-  ],
+  "tags": [],
   "schemes": [
     "https"
   ],
@@ -37,30 +33,19 @@
             }
           },
           "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
+            "description": "Returned when the request is badly formed."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to read the SBOM.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to read the SBOM."
           },
           "404": {
-            "description": "Returned when the identified SBOM does not exist.",
-            "schema": {}
+            "description": "Returned when the identified SBOM does not exist."
           },
           "500": {
-            "description": "Returned when the underlying storage system returns an error.",
-            "schema": {}
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
+            "description": "Returned when the underlying storage system returns an error."
           }
         },
         "parameters": [
@@ -174,30 +159,19 @@
             }
           },
           "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
+            "description": "Returned when the request is badly formed."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to read the TLS CA certificate.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to read the TLS CA certificate."
           },
           "404": {
-            "description": "Returned when the identified TLS CA certificate does not exist.",
-            "schema": {}
+            "description": "Returned when the identified TLS CA certificate does not exist."
           },
           "500": {
-            "description": "Returned when the underlying storage system returns an error.",
-            "schema": {}
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
+            "description": "Returned when the underlying storage system returns an error."
           }
         },
         "parameters": [
@@ -226,26 +200,16 @@
             }
           },
           "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
+            "description": "Returned when the request is badly formed."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to read the SBOM.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to read the SBOM."
           },
           "500": {
-            "description": "Returned when the underlying storage system returns an error.",
-            "schema": {}
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
+            "description": "Returned when the underlying storage system returns an error."
           }
         },
         "parameters": [
@@ -274,26 +238,16 @@
             }
           },
           "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
+            "description": "Returned when the request is badly formed."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to read the SBOM.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to read the SBOM."
           },
           "500": {
-            "description": "Returned when the underlying storage system returns an error.",
-            "schema": {}
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
+            "description": "Returned when the underlying storage system returns an error."
           }
         },
         "parameters": [
@@ -328,24 +282,19 @@
             }
           },
           "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
+            "description": "Returned when the request is badly formed."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to create a blob.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to create a blob."
           },
           "429": {
-            "description": "Returned when the user blob limit has been reached.",
-            "schema": {}
+            "description": "Returned when the user blob limit has been reached."
           },
           "500": {
-            "description": "Returned when the underlying system returns an error.",
-            "schema": {}
+            "description": "Returned when the underlying system returns an error."
           }
         },
         "parameters": [
@@ -429,20 +378,16 @@
             }
           },
           "400": {
-            "description": "Returned when the request is badly formed.",
-            "schema": {}
+            "description": "Returned when the request is badly formed."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to get the blob.",
-            "schema": {}
+            "description": "Returned when the user is not authorized to get the blob."
           },
           "500": {
-            "description": "Returned when the underlying system returns an error.",
-            "schema": {}
+            "description": "Returned when the underlying system returns an error."
           }
         },
         "parameters": [
@@ -466,22 +411,13 @@
         "operationId": "SBOMs_GetOpenAPI",
         "responses": {
           "200": {
-            "description": "A successful response.",
-            "schema": {}
+            "description": "A successful response."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           }
         },
         "tags": [
@@ -496,22 +432,13 @@
         "operationId": "SBOMs_GetOpenAPIUI",
         "responses": {
           "200": {
-            "description": "A successful response.",
-            "schema": {}
+            "description": "A successful response."
           },
           "401": {
-            "description": "Returned when the user is not authenticated to the system.",
-            "schema": {}
+            "description": "Returned when the user is not authenticated to the system."
           },
           "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests.",
-            "schema": {}
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           }
         },
         "tags": [
@@ -538,33 +465,6 @@
         "UNTRUSTED"
       ],
       "default": "TRUSTEDSTATUS_UNSPECIFIED"
-    },
-    "protobufAny": {
-      "type": "object",
-      "properties": {
-        "@type": {
-          "type": "string"
-        }
-      },
-      "additionalProperties": {}
-    },
-    "rpcStatus": {
-      "type": "object",
-      "properties": {
-        "code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "message": {
-          "type": "string"
-        },
-        "details": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/protobufAny"
-          }
-        }
-      }
     },
     "v1ListSBOMsRequestLifecycleStatus": {
       "type": "string",
