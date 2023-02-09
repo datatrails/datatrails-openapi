@@ -1,8 +1,8 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "BlockChain API",
-    "description": "API to manage Blockchain.",
+    "title": "Public BlockChain API",
+    "description": "API to manage Blockchain for public assets.",
     "version": "1.0-alpha2",
     "contact": {
       "name": "RKVST",
@@ -11,8 +11,8 @@
   },
   "tags": [
     {
-      "name": "BlockChain",
-      "description": "Retrieve information about the blockchain network"
+      "name": "PublicBlockchain",
+      "description": "Retrieve information about the blockchain network for public assets"
     }
   ],
   "basePath": "/_api",
@@ -26,20 +26,17 @@
     "application/json"
   ],
   "paths": {
-    "/archivist/v1alpha2/blockchain/assets/{asset_uuid}/events/{uuid}": {
+    "/archivist/v1alpha2/blockchain/publicassets/{asset_uuid}/events/{uuid}": {
       "get": {
-        "summary": "List of Blockchain Transactions associated with an event.",
-        "description": "List of Blockchain Transactions associated with an event. If the event's asset has a proof mechanism of khipu, this will be a list of transactions that compose the event. If the event's asset has a proof mecahnism of simple hash, this will be a list containing one transaction, that describes the simple hash anchor transaction. If the list is empty, the event has not been anchored yet.",
-        "operationId": "BlockChain_ListBlockchain",
+        "summary": "List of Blockchain Transactions associated with a public event.",
+        "description": "List of Blockchain Transactions associated with a public event. If the public event's asset has a proof mechanism of khipu, this will be a list of transactions that compose the public event. If the public event's asset has a proof mecahnism of simple hash, this will be a list containing one transaction, that describes the simple hash anchor transaction. If the list is empty, the public event has not been anchored yet.",
+        "operationId": "PublicBlockChain_ListBlockchainPublic",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/v1alpha2ListBlockchainResponse"
             }
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
             "description": "Returned when the user is not authorized to view event's blockchain transactions."
@@ -83,49 +80,7 @@
           }
         ],
         "tags": [
-          "BlockChain"
-        ]
-      }
-    },
-    "/archivist/v1alpha2/blockchain/assets:openapi": {
-      "get": {
-        "summary": "Get OpenAPI spec for Blockchain",
-        "description": "Get OpenAPI v2.0 spec for Blockchain",
-        "operationId": "Blockchain_GetOpenAPI",
-        "responses": {
-          "200": {
-            "description": "A successful response."
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          }
-        },
-        "tags": [
-          "BlockChain"
-        ]
-      }
-    },
-    "/archivist/v1alpha2/blockchain/assets:openapi-ui": {
-      "get": {
-        "summary": "Get OpenAPI UI for Blockchain",
-        "description": "Get OpenAPI v2.0 UI for Blockchain",
-        "operationId": "Blockchain_GetOpenAPIUI",
-        "responses": {
-          "200": {
-            "description": "A successful response."
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          }
-        },
-        "tags": [
-          "BlockChain"
+          "PublicBlockChain"
         ]
       }
     }

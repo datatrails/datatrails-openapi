@@ -10,7 +10,6 @@ Assets API
 
    creation
    retrieval
-   ../attachmentsv1/index
    ../builtinv1/index
    ../recordevidencev1/index
    openapi
