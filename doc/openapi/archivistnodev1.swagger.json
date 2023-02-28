@@ -56,6 +56,52 @@
         ]
       }
     },
+    "/archivist/v1/archivistnode/block": {
+      "get": {
+        "summary": "Get a block given a block hash or block number.",
+        "description": "Get a block given a block hash or block number",
+        "operationId": "ArchivistNode_GetBlock",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetBlockResponse"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system."
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to view the block."
+          },
+          "404": {
+            "description": "Returned when the asset with the id does not exist. or the event with the id does not exist"
+          },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
+          }
+        },
+        "parameters": [
+          {
+            "name": "hash",
+            "description": "the block hash e.g 0x5c6726d7570046c6c4b20e97de1486877f293ba1e4d3b64c13b671354c2f8266",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "number",
+            "description": "the block number as a hexidecimal number e.g. 0x1a95f, or `latest` for the latest block",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ArchivistNode"
+        ]
+      }
+    },
     "/archivist/v1/archivistnode:openapi": {
       "get": {
         "summary": "Get OpenAPI spec for Archivistnode",
@@ -229,6 +275,99 @@
         "UNREACHABLE"
       ],
       "default": "UNSPECIFIED"
+    },
+    "v1GetBlockResponse": {
+      "type": "object",
+      "example": {
+        "number": "0x1a95f",
+        "hash": "0x5c6726d7570046c6c4b20e97de1486877f293ba1e4d3b64c13b671354c2f8266",
+        "parentHash": "0x5fb3e35418f67379dbb2093d4886409ff8e530116628aee7c960e18f2fa9f40c",
+        "nonce": "307830303030303030303030303030303030",
+        "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+        "logsBloom": "3078303030303030303030303030303030303030303030303030303030303030303...",
+        "transactionRoot": "0x5d912ec4fd96825fc58e75401d9834e94bf2fd8f01e50d6946831a60ec1c2040",
+        "stateRoot": "0xb1bf30baaed044489b769f4bc557594f74e917b297b79ebe88102a856490cfc4",
+        "receiptsRoot": "0x8bde93a8260d39fa79b76b8c5c7fe687669ba17c63928c4d8e55bc8fcfad04ee",
+        "miner": "0x0000000000000000000000000000000000000000",
+        "difficulty": "0x20000",
+        "extraData": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD4RDW4QfD3cYx...",
+        "gasLimit": "0xb2d05e00",
+        "gasUsed": "0xf426"
+      },
+      "properties": {
+        "number": {
+          "type": "string",
+          "description": "the block number in hexidecimal",
+          "readOnly": true
+        },
+        "hash": {
+          "type": "string",
+          "description": "the block hash",
+          "readOnly": true
+        },
+        "parentHash": {
+          "type": "string",
+          "description": "hash of the parent block",
+          "readOnly": true
+        },
+        "nonce": {
+          "type": "string",
+          "description": "hash of the generated proof of work",
+          "readOnly": true
+        },
+        "sha3Uncles": {
+          "type": "string",
+          "description": "sha3 hash of the uncles data in the block",
+          "readOnly": true
+        },
+        "logsBloom": {
+          "type": "string",
+          "description": "the bloom filter for the logs of the block",
+          "readOnly": true
+        },
+        "transactionRoot": {
+          "type": "string",
+          "description": "the root of the transaction trie of the block",
+          "readOnly": true
+        },
+        "stateRoot": {
+          "type": "string",
+          "description": "the root of the final state trie of the block",
+          "readOnly": true
+        },
+        "receiptsRoot": {
+          "type": "string",
+          "description": "the root of the receipts trie of the block",
+          "readOnly": true
+        },
+        "miner": {
+          "type": "string",
+          "description": "the address of the beneficiary to whom the mining rewards were given",
+          "readOnly": true
+        },
+        "difficulty": {
+          "type": "string",
+          "description": "integer of the difficulty for this block encoded as a hexadecimal",
+          "readOnly": true
+        },
+        "extraData": {
+          "type": "string",
+          "format": "byte",
+          "description": "the “extra data” field of this block",
+          "readOnly": true
+        },
+        "gasLimit": {
+          "type": "string",
+          "description": "the maximum gas allowed in this block encoded as a hexadecimal",
+          "readOnly": true
+        },
+        "gasUsed": {
+          "type": "string",
+          "description": "the total used gas by all transactions in this block encoded as a hexadecimal",
+          "readOnly": true
+        }
+      },
+      "description": "Response block of eth_getBlockByHash or eth_getBlockByNumber,Note: the transactions or uncles which are required to recover the block hash, are not provided"
     },
     "v1JSONWebKey": {
       "type": "object",
