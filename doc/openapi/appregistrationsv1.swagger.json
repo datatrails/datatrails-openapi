@@ -360,27 +360,6 @@
           "AppRegistrations"
         ]
       }
-    },
-    "/archivist/iam/v1/applications:openapi-ui": {
-      "get": {
-        "summary": "Get OpenAPI UI for AppRegistrations",
-        "description": "Get OpenAPI v2.0 UI for AppRegistrations",
-        "operationId": "AppRegistrations_GetOpenAPIUI",
-        "responses": {
-          "200": {
-            "description": "A successful response."
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          }
-        },
-        "tags": [
-          "AppRegistrations"
-        ]
-      }
     }
   },
   "definitions": {

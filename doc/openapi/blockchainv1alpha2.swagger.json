@@ -107,27 +107,6 @@
           "BlockChain"
         ]
       }
-    },
-    "/archivist/v1alpha2/blockchain/assets:openapi-ui": {
-      "get": {
-        "summary": "Get OpenAPI UI for Blockchain",
-        "description": "Get OpenAPI v2.0 UI for Blockchain",
-        "operationId": "Blockchain_GetOpenAPIUI",
-        "responses": {
-          "200": {
-            "description": "A successful response."
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          }
-        },
-        "tags": [
-          "BlockChain"
-        ]
-      }
     }
   },
   "definitions": {

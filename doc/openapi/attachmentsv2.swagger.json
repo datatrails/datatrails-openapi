@@ -436,27 +436,6 @@
           "Attachments"
         ]
       }
-    },
-    "/archivist/v2/attachments:openapi-ui": {
-      "get": {
-        "summary": "Get OpenAPI html for attachments",
-        "description": "Get OpenAPI v2.0 html for attachments",
-        "operationId": "Attachments_GetOpenAPIUI",
-        "responses": {
-          "200": {
-            "description": "A successful response."
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          }
-        },
-        "tags": [
-          "Attachments"
-        ]
-      }
     }
   },
   "definitions": {

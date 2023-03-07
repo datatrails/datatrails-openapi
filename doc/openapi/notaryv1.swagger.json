@@ -1,0 +1,171 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Notary API",
+    "description": "API providing SCITT transparency service claims and receipts",
+    "version": "1.0",
+    "contact": {
+      "name": "RKVST",
+      "url": "https://www.rkvst.com"
+    }
+  },
+  "tags": [
+    {
+      "name": "Notary",
+      "description": "Get SCITT claims and receipts for rkvst events"
+    }
+  ],
+  "basePath": "/_api",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/archivist/v1/notary/claims/events": {
+      "post": {
+        "summary": "Get a SCITT claim for an event",
+        "description": "Get a SCITT COSE format claim object for an event",
+        "operationId": "Notary_CreateEventClaim",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateEventClaimResponse"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system."
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to get a receipt for the event"
+          },
+          "404": {
+            "description": "Returned when the asset with the id does not exist. or the event with the id does not exist"
+          },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
+          }
+        },
+        "parameters": [
+          {
+            "name": "identity",
+            "description": "relative resource address of an event. retstricted `assets/{UUID}/events/{UUID}` or public `publicassets/{UUID}/events/{UUID}` are both supported",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "block_hash",
+            "description": "the block hash e.g 0x5c6726d7570046c6c4b20e97de1486877f293ba1e4d3b64c13b671354c2f8266, defaults to latest block if both hash and number are omitted",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "block_number",
+            "description": "the block number as a hexidecimal number e.g. 0x1a95f, or `latest` for the latest block, defaults to latest block if both hash and number are omitted",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Notary"
+        ]
+      }
+    },
+    "/archivist/v1/notary/receipts": {
+      "post": {
+        "summary": "Get a SCITT receipt for a claim produced by this service",
+        "description": "Get a SCITT COSE format receipt object for a claim produced by this service",
+        "operationId": "Notary_CreateReceipt",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateReceiptResponse"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system."
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to get a receipt for the claim or its subjects"
+          },
+          "404": {
+            "description": "Returned when the subject of the claim does not exist"
+          },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
+          }
+        },
+        "parameters": [
+          {
+            "name": "claim",
+            "description": "The SCITT CBOR encoded claim",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "byte"
+          }
+        ],
+        "tags": [
+          "Notary"
+        ]
+      }
+    },
+    "/archivist/v2/notary:openapi": {
+      "get": {
+        "summary": "Get OpenAPI spec for Notary",
+        "description": "Get OpenAPI v2.0 spec for Notary",
+        "operationId": "Notary_GetOpenAPI",
+        "responses": {
+          "200": {
+            "description": "A successful response."
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system."
+          },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
+          }
+        },
+        "tags": [
+          "Notary"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "v1CreateEventClaimResponse": {
+      "type": "object",
+      "example": {},
+      "properties": {
+        "claim": {
+          "type": "string",
+          "format": "byte",
+          "description": "The CBOR encoded claim",
+          "readOnly": true
+        }
+      },
+      "description": "A claim on an event which can be redeemed for a receipt"
+    },
+    "v1CreateReceiptResponse": {
+      "type": "object",
+      "example": {},
+      "properties": {
+        "receipt": {
+          "type": "string",
+          "format": "byte",
+          "description": "The SCITT receipt, CBOR encoded"
+        }
+      },
+      "description": "A SCITT receipt for a previously obtained claim"
+    }
+  }
+}
