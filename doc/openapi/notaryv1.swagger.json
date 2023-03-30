@@ -53,25 +53,13 @@
         },
         "parameters": [
           {
-            "name": "identity",
-            "description": "relative resource address of an event. retstricted `assets/{UUID}/events/{UUID}` or public `publicassets/{UUID}/events/{UUID}` are both supported",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "block_hash",
-            "description": "the block hash e.g 0x5c6726d7570046c6c4b20e97de1486877f293ba1e4d3b64c13b671354c2f8266, defaults to latest block if both hash and number are omitted",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "block_number",
-            "description": "the block number as a hexidecimal number e.g. 0x1a95f, or `latest` for the latest block, defaults to latest block if both hash and number are omitted",
-            "in": "query",
-            "required": false,
-            "type": "string"
+            "name": "body",
+            "description": "This describes the body of a request to create claim for an rkvst event",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateEventClaimRequest"
+            }
           }
         ],
         "tags": [
@@ -106,12 +94,13 @@
         },
         "parameters": [
           {
-            "name": "claim",
-            "description": "The SCITT CBOR encoded claim",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "byte"
+            "name": "body",
+            "description": "This describes the body of a request to create a receipt for a previously obtained claim.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateReceiptRequest"
+            }
           }
         ],
         "tags": [
@@ -142,6 +131,28 @@
     }
   },
   "definitions": {
+    "v1CreateEventClaimRequest": {
+      "type": "object",
+      "example": {
+        "identity": "publicassets/add30235-1424-4fda-840a-d5ef82c4c96f/events/1754b920-cf20-4d7e-9d36-9ed7d479744d",
+        "block_number": "0x3f4"
+      },
+      "properties": {
+        "identity": {
+          "type": "string",
+          "description": "relative resource address of an event. retstricted `assets/{UUID}/events/{UUID}` or public `publicassets/{UUID}/events/{UUID}` are both supported"
+        },
+        "block_hash": {
+          "type": "string",
+          "description": "the block hash e.g 0x5c6726d7570046c6c4b20e97de1486877f293ba1e4d3b64c13b671354c2f8266, defaults to latest block if both hash and number are omitted"
+        },
+        "block_number": {
+          "type": "string",
+          "description": "the block number as a hexidecimal number e.g. 0x1a95f, or `latest` for the latest block, defaults to latest block if both hash and number are omitted"
+        }
+      },
+      "description": "This describes the body of a request to create claim for an rkvst event"
+    },
     "v1CreateEventClaimResponse": {
       "type": "object",
       "example": {},
@@ -154,6 +165,18 @@
         }
       },
       "description": "A claim on an event which can be redeemed for a receipt"
+    },
+    "v1CreateReceiptRequest": {
+      "type": "object",
+      "example": {},
+      "properties": {
+        "claim": {
+          "type": "string",
+          "format": "byte",
+          "description": "The SCITT CBOR encoded claim"
+        }
+      },
+      "description": "This describes the body of a request to create a receipt for a previously obtained claim."
     },
     "v1CreateReceiptResponse": {
       "type": "object",

@@ -418,15 +418,6 @@
       },
       "description": "Describes TLS CA certificate in PEM file format."
     },
-    "v1TenantID": {
-      "type": "object",
-      "properties": {
-        "identity": {
-          "type": "string",
-          "title": "tenancies/UUID"
-        }
-      }
-    },
     "v1UploadTLSCACertificateRequest": {
       "type": "object",
       "example": {
