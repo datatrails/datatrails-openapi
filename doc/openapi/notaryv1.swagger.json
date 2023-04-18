@@ -11,8 +11,8 @@
   },
   "tags": [
     {
-      "name": "Notary",
-      "description": "Get SCITT claims and receipts for rkvst events"
+      "name": "Notary (Beta)",
+      "description": "Get SCITT claims and receipts for RKVST events"
     }
   ],
   "basePath": "/_api",
@@ -28,8 +28,8 @@
   "paths": {
     "/archivist/v1/notary/claims/events": {
       "post": {
-        "summary": "Get a SCITT claim for an event",
-        "description": "Get a SCITT COSE format claim object for an event",
+        "summary": "Get a SCITT claim for an event (Beta)",
+        "description": "Get a SCITT COSE format claim object for an event (Beta)",
         "operationId": "Notary_CreateEventClaim",
         "responses": {
           "200": {
@@ -54,7 +54,7 @@
         "parameters": [
           {
             "name": "body",
-            "description": "This describes the body of a request to create claim for an rkvst event",
+            "description": "This describes the body of a request to create claim for an RKVST event",
             "in": "body",
             "required": true,
             "schema": {
@@ -63,14 +63,14 @@
           }
         ],
         "tags": [
-          "Notary"
+          "Notary (Beta)"
         ]
       }
     },
     "/archivist/v1/notary/receipts": {
       "post": {
-        "summary": "Get a SCITT receipt for a claim produced by this service",
-        "description": "Get a SCITT COSE format receipt object for a claim produced by this service",
+        "summary": "Get a SCITT receipt for a claim produced by this service (Beta)",
+        "description": "Get a SCITT COSE format receipt object for a claim produced by this service (Beta)",
         "operationId": "Notary_CreateReceipt",
         "responses": {
           "200": {
@@ -104,7 +104,7 @@
           }
         ],
         "tags": [
-          "Notary"
+          "Notary (Beta)"
         ]
       }
     },
@@ -151,7 +151,7 @@
           "description": "the block number as a hexidecimal number e.g. 0x1a95f, or `latest` for the latest block, defaults to latest block if both hash and number are omitted"
         }
       },
-      "description": "This describes the body of a request to create claim for an rkvst event"
+      "description": "This describes the body of a request to create claim for an RKVST event"
     },
     "v1CreateEventClaimResponse": {
       "type": "object",
