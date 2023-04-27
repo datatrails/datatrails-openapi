@@ -12,7 +12,7 @@
   "tags": [
     {
       "name": "Notary (Beta)",
-      "description": "Get SCITT claims and receipts for RKVST events"
+      "description": "Get SCITT claims and receipts for RKVST KHIPU events"
     }
   ],
   "basePath": "/_api",
@@ -54,7 +54,7 @@
         "parameters": [
           {
             "name": "body",
-            "description": "This describes the body of a request to create claim for an RKVST event",
+            "description": "This describes the body of a request to create claim for an RKVST event. KHIPU and SIMPLE_HASH events are supported.",
             "in": "body",
             "required": true,
             "schema": {
@@ -108,10 +108,10 @@
         ]
       }
     },
-    "/archivist/v2/notary:openapi": {
+    "/archivist/v1/notary:openapi": {
       "get": {
-        "summary": "Get OpenAPI spec for Notary",
-        "description": "Get OpenAPI v2.0 spec for Notary",
+        "summary": "Get OpenAPI spec for Notary (Beta)",
+        "description": "Get OpenAPI v2.0 spec for Notary (Beta)",
         "operationId": "Notary_GetOpenAPI",
         "responses": {
           "200": {
@@ -125,7 +125,7 @@
           }
         },
         "tags": [
-          "Notary"
+          "Notary (Beta)"
         ]
       }
     }
@@ -135,27 +135,34 @@
       "type": "object",
       "example": {
         "identity": "publicassets/add30235-1424-4fda-840a-d5ef82c4c96f/events/1754b920-cf20-4d7e-9d36-9ed7d479744d",
-        "block_number": "0x3f4"
+        "transaction_id": "0x11bf5b37e0b842e08dcfdc8c4aefc000"
       },
       "properties": {
         "identity": {
           "type": "string",
-          "description": "relative resource address of an event. retstricted `assets/{UUID}/events/{UUID}` or public `publicassets/{UUID}/events/{UUID}` are both supported"
+          "description": "relative resource address of a SIMPLE_HASH or KHIPU event. retstricted `assets/{UUID}/events/{UUID}` or public `publicassets/{UUID}/events/{UUID}` are both supported."
         },
         "block_hash": {
           "type": "string",
-          "description": "the block hash e.g 0x5c6726d7570046c6c4b20e97de1486877f293ba1e4d3b64c13b671354c2f8266, defaults to latest block if both hash and number are omitted"
+          "description": "the block hash e.g 0x5c6726d7570046c6c4b20e97de1486877f293ba1e4d3b64c13b671354c2f8266. if transaction_id is provided, this value is ignored. it defaults to latest block if both hash and number are omitted."
         },
         "block_number": {
           "type": "string",
-          "description": "the block number as a hexidecimal number e.g. 0x1a95f, or `latest` for the latest block, defaults to latest block if both hash and number are omitted"
+          "description": "the block number as a hexidecimal number e.g. 0x1a95f, or `latest` for the latest block. if transaction_id is provided, this value is ignored. it defaults to latest block if both hash and number are omitted"
+        },
+        "transaction_id": {
+          "type": "string",
+          "description": "hash of the transaction that confirmed, or anchored, the event as a hex string `0x11bf5b37e0b842e08dcfdc8c4aefc000`.",
+          "maxLength": 4096
         }
       },
-      "description": "This describes the body of a request to create claim for an RKVST event"
+      "description": "This describes the body of a request to create claim for an RKVST event. KHIPU and SIMPLE_HASH events are supported."
     },
     "v1CreateEventClaimResponse": {
       "type": "object",
-      "example": {},
+      "example": {
+        "claim": "0oRYJqMBJgNwYXBwbGljYXRpb24vanNvbhkBh21hcHAucmt2c3QuY29toFhmeyJpZGVudGl0eSI6ImFzc2V0cy8yNTJlNzUyNi1lMjM2LTRiMjctODIyMS1mNWMzMjA5YjNlNzUvZXZlbnRzL2EyZDgwOWNlLTdhYzItNGQzNi1hMDY3LTM5NjIxMTI1ZTdlZCJ9WEAcPPW8aZu8yM291M46A7YxsG3AWdKJ5tXfzr1jSz/39fKrj8uNncru9AQyij2RnLw0i7MdXb+oB2beefykm"
+      },
       "properties": {
         "claim": {
           "type": "string",
@@ -168,7 +175,9 @@
     },
     "v1CreateReceiptRequest": {
       "type": "object",
-      "example": {},
+      "example": {
+        "claim": "0oRYJqMBJgNwYXBwbGljYXRpb24vanNvbhkBh21hcHAucmt2c3QuY29toFhmeyJpZGVudGl0eSI6ImFzc2V0cy8yNTJlNzUyNi1lMjM2LTRiMjctODIyMS1mNWMzMjA5YjNlNzUvZXZlbnRzL2EyZDgwOWNlLTdhYzItNGQzNi1hMDY3LTM5NjIxMTI1ZTdlZCJ9WEAcPPW8aZu8yM291M46A7YxsG3AWdKJ5tXfzr1jSz/39fKrj8uNncru9AQyij2RnLw0i7MdXb+oB2beefykm"
+      },
       "properties": {
         "claim": {
           "type": "string",
@@ -180,7 +189,9 @@
     },
     "v1CreateReceiptResponse": {
       "type": "object",
-      "example": {},
+      "example": {
+        "receipt": "glhJo2h0cmVlX2FsZ3ZFSVAxMTg2TmFtZWRTbG90UHJvb2ZzaWlzc3VlZF9hdBpkPk0hanNlcnZpY2VfaWRtYXBwLnJrdnN0LmNvbYJYRzBFAiEA+UNl2m04bnZ4HPK79EzsqYZTjIjIlAremOFICn0eBSQCIB5nMY8oJzfVL3TAieQQRg7Ezwdj9Jrxb7q7l8qfzjvTWewqeyJhcHBsaWNhdGlvbl9wYXJhbWV0ZXJzIjp7ImFwcF9pZCI6IiIsImFwcF9jb250ZW50X3JlZiI6IiIsImVsZW1lbnRfbWFuaWZlc3QiOlsid2hvX2RlY"
+      },
       "properties": {
         "receipt": {
           "type": "string",
