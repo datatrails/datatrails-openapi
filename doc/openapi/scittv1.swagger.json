@@ -1,0 +1,284 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "SCITT API",
+    "description": "API providing SCITT transparency service claims and receipts",
+    "version": "1.0",
+    "contact": {
+      "name": "RKVST",
+      "url": "https://www.rkvst.com"
+    }
+  },
+  "tags": [
+    {
+      "name": "SCITT (Beta)",
+      "description": "Get SCITT claims and receipts for RKVST events. NOTE: This service is shadowing a standard that is still under development and subject to change without notice."
+    }
+  ],
+  "basePath": "/_api",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/archivist/v1/scitt/entries": {
+      "post": {
+        "summary": "Register a Signed Statement",
+        "description": "Register a Signed Statement.",
+        "operationId": "SCITT_RegisterSignedStatement",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1RegisterSignedStatementResponse"
+            }
+          },
+          "201": {
+            "description": "Returned when the registration is successful."
+          },
+          "202": {
+            "description": "Returned when the registration is running."
+          },
+          "400": {
+            "description": "Returned when registration was unsuccessful due to invalid input."
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "This describes the body of a request to create a registered signed statement.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1RegisterSignedStatementRequest"
+            }
+          }
+        ],
+        "tags": [
+          "SCITT (Beta)"
+        ]
+      }
+    },
+    "/archivist/v1/scitt/entries/{entryID}": {
+      "get": {
+        "summary": "Get Signed Statement",
+        "description": "Get Signed Statement countersigned by RKVST.",
+        "operationId": "SCITT_RetrieveSignedStatement",
+        "responses": {
+          "200": {
+            "description": "Returned when the signed statement can be retrieved.",
+            "schema": {
+              "$ref": "#/definitions/v1RetrieveSignedStatementResponse"
+            }
+          },
+          "404": {
+            "description": "Returned when the entryID is unknown."
+          }
+        },
+        "parameters": [
+          {
+            "name": "entryID",
+            "description": "The entry ID of the registered Signed Statement",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "SCITT (Beta)"
+        ]
+      }
+    },
+    "/archivist/v1/scitt/entries/{entryID}/receipt": {
+      "get": {
+        "summary": "Get Registration Receipt",
+        "description": "Get Registration Receipt.",
+        "operationId": "SCITT_RetrieveRegistrationReceipt",
+        "responses": {
+          "200": {
+            "description": "Returned when the registration receipt can be retrieved.",
+            "schema": {
+              "$ref": "#/definitions/v1RetrieveRegistrationReceiptResponse"
+            }
+          },
+          "404": {
+            "description": "Returned when the entryID is unknown."
+          }
+        },
+        "parameters": [
+          {
+            "name": "entryID",
+            "description": "The entry ID of the registered Signed Statement",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "SCITT (Beta)"
+        ]
+      }
+    },
+    "/archivist/v1/scitt/operations/{operationID}": {
+      "get": {
+        "summary": "Get Operation Status",
+        "description": "Get Operation Status of registering a Signed Statement.",
+        "operationId": "SCITT_RetrieveOperationStatus",
+        "responses": {
+          "200": {
+            "description": "Returned when the operational status can be retrieved.",
+            "schema": {
+              "$ref": "#/definitions/v1RetrieveOperationStatusResponse"
+            }
+          },
+          "404": {
+            "description": "Returned when the operationID is unknown."
+          }
+        },
+        "parameters": [
+          {
+            "name": "operationID",
+            "description": "The ID of the Signed Statement Registration Operation",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "SCITT (Beta)"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "v1Error": {
+      "type": "object",
+      "example": {
+        "type": "urn:ietf:params:scitt:error:badSignatureAlgorithm",
+        "detail": "The Statement was signed with an algorithm the server does not support"
+      },
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The type of error within the URN namespace of: \"urn:ietf:params:scitt:error:\""
+        },
+        "detail": {
+          "type": "string",
+          "description": "A human-readable string describing the error that prevented the Transparency Service from processing the request"
+        }
+      },
+      "description": "The Error causing a register Signed Statement operation to fail."
+    },
+    "v1RegisterSignedStatementRequest": {
+      "type": "object",
+      "example": {
+        "statement": "0oRYJqMBJgNwYXBwbGljYXRpb24vanNvbhkBh21hcHAucmt2c3QuY29toFhmeyJpZGVudGl0eSI6ImFzc2V0cy8yNTJlNzUyNi1lMjM2LTRiMjctODIyMS1mNWMzMjA5YjNlNzUvZXZlbnRzL2EyZDgwOWNlLTdhYzItNGQzNi1hMDY3LTM5NjIxMTI1ZTdlZCJ9WEAcPPW8aZu8yM291M46A7YxsG3AWdKJ5tXfzr1jSz"
+      },
+      "properties": {
+        "statement": {
+          "type": "string",
+          "format": "byte",
+          "description": "cbor encoded COSE_Sign1 statement"
+        }
+      },
+      "description": "This describes the body of a request to create a registered signed statement."
+    },
+    "v1RegisterSignedStatementResponse": {
+      "type": "object",
+      "example": {
+        "operationID": "event_4f46ed83-0b96-4a63-94f6-455fc4509671",
+        "status": "running"
+      },
+      "properties": {
+        "operationID": {
+          "type": "string",
+          "description": "The ID of the Signed Statement Registration Operation",
+          "readOnly": true
+        },
+        "status": {
+          "$ref": "#/definitions/v1RegistrationStatus",
+          "description": "The status of the Signed Statement Registration Operation",
+          "readOnly": true
+        }
+      },
+      "description": "The Registration Status of the Signed Statement."
+    },
+    "v1RegistrationStatus": {
+      "type": "string",
+      "enum": [
+        "REGISTRATION_STATUS_UNSPECIFIED",
+        "running",
+        "succeeded",
+        "failed"
+      ],
+      "default": "REGISTRATION_STATUS_UNSPECIFIED",
+      "title": "- running: signed statement in the process of being registered\n - succeeded: signed statement has been registered\n - failed: failed to register signed statement"
+    },
+    "v1RetrieveOperationStatusResponse": {
+      "type": "object",
+      "example": {
+        "operationID": "event_4f46ed83-0b96-4a63-94f6-455fc4509671",
+        "status": "succeeded",
+        "entryID": "0xe6f9314637583446fed36016ebd2df8f832d4f4290a7803f6558d21c16ebc69c"
+      },
+      "properties": {
+        "operationID": {
+          "type": "string",
+          "description": "The ID of the Signed Statement Registration Operation",
+          "readOnly": true
+        },
+        "status": {
+          "$ref": "#/definitions/v1RegistrationStatus",
+          "description": "The status of the Signed Statement Registration Operation",
+          "readOnly": true
+        },
+        "entryID": {
+          "type": "string",
+          "description": "The entry ID of the registered Signed Statement",
+          "readOnly": true
+        },
+        "error": {
+          "$ref": "#/definitions/v1Error",
+          "description": "Error explaining why the operation to register a Signed Statement failed",
+          "readOnly": true
+        }
+      },
+      "description": "The Registration Status of the Signed Statement."
+    },
+    "v1RetrieveRegistrationReceiptResponse": {
+      "type": "object",
+      "example": {
+        "receipt": "0oRYJqMBJgNwYXBwbGljYXRpb24vanNvbhkBh21hcHAucmt2c3QuY29toFhmeyJpZGVudGl0eSI6ImFzc2V0cy8yNTJlNzUyNi1lMjM2LTRiMjctODIyMS1mNWMzMjA5YjNlNzUvZXZlbnRzL2EyZDgwOWNlLTdhYzItNGQzNi1hMDY3LTM5NjIxMTI1ZTdlZCJ9WEAcPPW8aZu8yM291M46A7YxsG3AWdKJ5tXfzr1jSz"
+      },
+      "properties": {
+        "receipt": {
+          "type": "string",
+          "format": "byte",
+          "description": "The COSE Signed Merkle Tree Proof receipt in base64",
+          "readOnly": true
+        }
+      },
+      "description": "The Registration Receipt."
+    },
+    "v1RetrieveSignedStatementResponse": {
+      "type": "object",
+      "example": {
+        "signedStatement": "0oRYJqMBJgNwYXBwbGljYXRpb24vanNvbhkBh21hcHAucmt2c3QuY29toFhmeyJpZGVudGl0eSI6ImFzc2V0cy8yNTJlNzUyNi1lMjM2LTRiMjctODIyMS1mNWMzMjA5YjNlNzUvZXZlbnRzL2EyZDgwOWNlLTdhYzItNGQzNi1hMDY3LTM5NjIxMTI1ZTdlZCJ9WEAcPPW8aZu8yM291M46A7YxsG3AWdKJ5tXfzr1jSz"
+      },
+      "properties": {
+        "signedStatement": {
+          "type": "string",
+          "format": "byte",
+          "description": "The cose_SIGN1 signed statement in base64",
+          "readOnly": true
+        }
+      },
+      "description": "The Signed Statement, countersigned by RKVST."
+    }
+  }
+}

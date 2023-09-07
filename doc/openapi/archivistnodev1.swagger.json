@@ -95,6 +95,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "public",
+            "description": "get the privateStateRoot for the public tenant",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
           }
         ],
         "tags": [
@@ -179,6 +186,7 @@
         "blockchain_nodes": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1BlockchainNode",
             "readOnly": true
           },
@@ -229,6 +237,7 @@
         "peers": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1PeerBlockchainNode",
             "readOnly": true
           },
@@ -271,7 +280,8 @@
         "difficulty": "0x20000",
         "extraData": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD4RDW4QfD3cYx...",
         "gasLimit": "0xb2d05e00",
-        "gasUsed": "0xf426"
+        "gasUsed": "0xf426",
+        "timestamp": "0xf426"
       },
       "properties": {
         "number": {
@@ -343,6 +353,16 @@
         "gasUsed": {
           "type": "string",
           "description": "the total used gas by all transactions in this block encoded as a hexadecimal",
+          "readOnly": true
+        },
+        "timestamp": {
+          "type": "string",
+          "description": "the unix timestamp for when the block was collated",
+          "readOnly": true
+        },
+        "privateStateRoot": {
+          "type": "string",
+          "description": "the root of the final, node specific, *private* state trie of the block",
           "readOnly": true
         }
       },

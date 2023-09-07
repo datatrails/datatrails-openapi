@@ -392,6 +392,7 @@
         "asset_filter": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1Filter",
             "readOnly": true
           },
@@ -428,6 +429,7 @@
         "richness_assertions": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1Filter",
             "readOnly": true
           },
@@ -457,6 +459,7 @@
         "caps": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1Cap"
           },
           "description": "List of relevant capped resources"
@@ -496,6 +499,7 @@
         "asset_filter": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1Filter"
           }
         },
@@ -522,6 +526,7 @@
         "richness_assertions": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1Filter"
           }
         }
@@ -618,6 +623,7 @@
         "compliance": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1ComplianceStatement"
           },
           "description": "list of statemants of compliance with applicable compliance policies",
@@ -671,6 +677,7 @@
         "compliance_policies": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1CompliancePolicyResponse"
           }
         },

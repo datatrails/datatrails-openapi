@@ -134,22 +134,9 @@
     "v1CreateEventClaimRequest": {
       "type": "object",
       "example": {
-        "identity": "publicassets/add30235-1424-4fda-840a-d5ef82c4c96f/events/1754b920-cf20-4d7e-9d36-9ed7d479744d",
         "transaction_id": "0x11bf5b37e0b842e08dcfdc8c4aefc000"
       },
       "properties": {
-        "identity": {
-          "type": "string",
-          "description": "relative resource address of a SIMPLE_HASH or KHIPU event. retstricted `assets/{UUID}/events/{UUID}` or public `publicassets/{UUID}/events/{UUID}` are both supported."
-        },
-        "block_hash": {
-          "type": "string",
-          "description": "the block hash e.g 0x5c6726d7570046c6c4b20e97de1486877f293ba1e4d3b64c13b671354c2f8266. if transaction_id is provided, this value is ignored. it defaults to latest block if both hash and number are omitted."
-        },
-        "block_number": {
-          "type": "string",
-          "description": "the block number as a hexidecimal number e.g. 0x1a95f, or `latest` for the latest block. if transaction_id is provided, this value is ignored. it defaults to latest block if both hash and number are omitted"
-        },
         "transaction_id": {
           "type": "string",
           "description": "hash of the transaction that confirmed, or anchored, the event as a hex string `0x11bf5b37e0b842e08dcfdc8c4aefc000`.",

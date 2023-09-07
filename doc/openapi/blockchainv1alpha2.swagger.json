@@ -11,7 +11,7 @@
   },
   "tags": [
     {
-      "name": "BlockChain",
+      "name": "Blockchain",
       "description": "Retrieve information about the blockchain network"
     }
   ],
@@ -152,6 +152,7 @@
         "transactions": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1alpha2Transaction"
           }
         },

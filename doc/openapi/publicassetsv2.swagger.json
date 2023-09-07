@@ -146,13 +146,15 @@
             "required": false,
             "type": "string",
             "enum": [
-              "DEFAULT"
+              "DEFAULT",
+              "SIMPLEHASHV1",
+              "SIMPLEHASHV2"
             ],
             "default": "DEFAULT"
           },
           {
             "name": "confirmation_status",
-            "description": "indicates if the asset has been succesfully committed to the blockchain",
+            "description": "indicates if the asset has been succesfully committed to the blockchain\n\n - PENDING: not yet committed\n - CONFIRMED: committed\n - FAILED: permanent failure",
             "in": "query",
             "required": false,
             "type": "string",
@@ -281,6 +283,27 @@
             "type": "string"
           },
           {
+            "name": "event_attributes[string][string]",
+            "description": "user defined event_attributes key max_length: 1024 value max_length: 4096\n\nThis is a request variable of the map type. The query format is \"map_name[key]=value\", e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\"bob\"]=18",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "asset_attributes[string][string]",
+            "description": "user defined asset_attributes key max_length: 1024 value max_length: 4096\n\nThis is a request variable of the map type. The query format is \"map_name[key]=value\", e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\"bob\"]=18",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "asset.attributes[string][string]",
+            "description": "This is a request variable of the map type. The query format is \"map_name[key]=value\", e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\"bob\"]=18",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "proof_mechanism",
             "description": "mechanism for evidential proof for Events on this Asset\n\nspecify the mechanism used to provide evidential proof for Events on this Asset",
             "in": "query",
@@ -305,7 +328,7 @@
     "ListEventsRequestAssetQuery": {
       "type": "object",
       "properties": {
-        "attributes": {
+        "attributes[string][string]": {
           "type": "object",
           "additionalProperties": {
             "type": "string"
@@ -314,10 +337,29 @@
         }
       }
     },
+    "v1Filter": {
+      "type": "object",
+      "example": {
+        "or": [
+          "group=maintainers",
+          "group=supervisors"
+        ]
+      },
+      "properties": {
+        "or": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "The filter list"
+        }
+      },
+      "description": "Filter"
+    },
     "v2AssetResponse": {
       "type": "object",
       "example": {
-        "identity": "publicassets/add30235-1424-4fda-840a-d5ef82c4c96f",
+        "identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
         "behaviours": [
           "RecordEvidence"
         ],
@@ -448,7 +490,8 @@
         "CONFIRMED",
         "FAILED"
       ],
-      "default": "CONFIRMATION_STATUS_UNSPECIFIED"
+      "default": "CONFIRMATION_STATUS_UNSPECIFIED",
+      "title": "- PENDING: not yet committed\n - CONFIRMED: committed\n - FAILED: permanent failure"
     },
     "v2DictAttr": {
       "type": "object",
@@ -464,8 +507,8 @@
     "v2EventResponse": {
       "type": "object",
       "example": {
-        "identity": "publicassets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000",
-        "asset_identity": "publicassets/add30235-1424-4fda-840a-d5ef82c4c96f",
+        "identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000",
+        "asset_identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
         "operation": "Record",
         "behaviour": "RecordEvidence",
         "event_attributes": {
@@ -622,6 +665,7 @@
         "value": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v2DictAttr"
           }
         }
@@ -630,7 +674,9 @@
     "v2ListEventsRequestOrderBy": {
       "type": "string",
       "enum": [
-        "DEFAULT"
+        "DEFAULT",
+        "SIMPLEHASHV1",
+        "SIMPLEHASHV2"
       ],
       "default": "DEFAULT",
       "title": "Supported sort orders"
@@ -640,8 +686,8 @@
       "example": {
         "events": [
           {
-            "identity": "publicassets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000",
-            "asset_identity": "publicassets/add30235-1424-4fda-840a-d5ef82c4c96f",
+            "identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000",
+            "asset_identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
             "operation": "Record",
             "behaviour": "RecordEvidence",
             "event_attributes": {
@@ -676,8 +722,8 @@
             "tenant_identity": "tenant/8e0b600c-8234-43e4-860c-e95bdcd695a9"
           },
           {
-            "identity": "publicassets/bf330235-1424-4fda-840a-d5ef82c4c96f/events/23c06c48-e0b8-42e0-8dcf-dc8c4fdad123",
-            "asset_identity": "publicassets/bf330235-1424-4fda-840a-d5ef82c4c96f",
+            "identity": "assets/bf330235-1424-4fda-840a-d5ef82c4c96f/events/23c06c48-e0b8-42e0-8dcf-dc8c4fdad123",
+            "asset_identity": "assets/bf330235-1424-4fda-840a-d5ef82c4c96f",
             "operation": "Record",
             "behaviour": "RecordEvidence",
             "event_attributes": {
@@ -718,6 +764,7 @@
         "events": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v2EventResponse"
           }
         },
