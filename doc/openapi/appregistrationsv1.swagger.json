@@ -404,6 +404,7 @@
         "credentials": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1Credential",
             "readOnly": true
           },
@@ -438,6 +439,7 @@
         "credentials": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1Credential"
           }
         },
@@ -473,6 +475,7 @@
         "caps": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1Cap"
           },
           "description": "List of relevant capped resources"
@@ -567,6 +570,7 @@
         "applications": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1Application",
             "readOnly": true
           },

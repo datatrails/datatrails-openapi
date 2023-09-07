@@ -490,6 +490,7 @@
         "caps": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1Cap"
           },
           "description": "List of relevant capped resources"
@@ -548,6 +549,7 @@
         "filters": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1Filter"
           },
           "description": "Filters. Public assets will not match any filter."
@@ -555,6 +557,7 @@
         "access_permissions": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1Permission"
           },
           "description": "The access permissions maps"
@@ -648,6 +651,7 @@
         "filters": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1Filter"
           },
           "description": "filters",
@@ -656,6 +660,7 @@
         "access_permissions": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1Permission"
           },
           "description": "The permissions maps",
@@ -737,6 +742,7 @@
         "access_policies": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1IAMAccessPolicy"
           }
         },
@@ -821,6 +827,7 @@
         "user_attributes": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1Filter"
           },
           "description": "User attribute filters",
@@ -1066,6 +1073,7 @@
         "assets": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v2AssetResponse"
           }
         },
@@ -1082,6 +1090,7 @@
         "value": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v2DictAttr"
           }
         }

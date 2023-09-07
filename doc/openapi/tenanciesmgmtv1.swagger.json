@@ -1,0 +1,191 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Tenancies Management API",
+    "description": "API for Tenancies Management, not creation or deletion, but enabling and disabling of system capabilities.",
+    "version": "2.0",
+    "contact": {
+      "name": "RKVST",
+      "url": "https://www.rkvst.com"
+    }
+  },
+  "tags": [],
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/archivist/internal/v1/tenanciesmgmt/{uuid}": {
+      "get": {
+        "summary": "Gets the tenancies capability configuration",
+        "description": "Gets the tenancies capability configuration",
+        "operationId": "Tenanciesmgmt_GetConfiguration",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Configuration"
+            }
+          },
+          "404": {
+            "description": "Returned when the tenant with the id does not exist."
+          }
+        },
+        "parameters": [
+          {
+            "name": "uuid",
+            "description": "The tenant uuid part from the identity in the form `tenant/{uuid}`",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Tenanciesmgmt"
+        ]
+      },
+      "patch": {
+        "summary": "Updates the tenancies capability configuration",
+        "description": "Updates the tenancies capability configuration",
+        "operationId": "Tenanciesmgmt_UpdateConfiguration",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Configuration"
+            }
+          },
+          "400": {
+            "description": "Returned when not enough information is given to an update for a specific capability."
+          },
+          "404": {
+            "description": "Returned when the tenant with the id does not exist."
+          }
+        },
+        "parameters": [
+          {
+            "name": "uuid",
+            "description": "The tenant uuid part from the identity in the form `tenant/{uuid}`",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "configuration",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1Configuration",
+              "description": "The tenant configuration"
+            }
+          },
+          {
+            "name": "mask",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Tenanciesmgmt"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "internalv1Status": {
+      "type": "object",
+      "example": {
+        "khipu": "PENDING"
+      },
+      "properties": {
+        "khipu": {
+          "$ref": "#/definitions/v1KHIPUStatus",
+          "description": "The khipu status"
+        }
+      },
+      "description": "Status of capabilities",
+      "title": "Status is the status of capabilities"
+    },
+    "v1Configuration": {
+      "type": "object",
+      "example": {
+        "identity": "tenant/8a37f4f2-5270-456e-adef-ca151da30f73",
+        "anchor_interval": 864000,
+        "caps": {
+          "users": 40,
+          "esso": 5,
+          "assets": 250
+        },
+        "throughput": "HIGH",
+        "verified_domain": "example.com",
+        "status": {
+          "khipu": "PENDING"
+        }
+      },
+      "properties": {
+        "identity": {
+          "type": "string",
+          "description": "The tenant identity",
+          "readOnly": true
+        },
+        "anchor_interval": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Interval for anchoring simple hash events, in seconds, ranges from 11.5 hours to 30 days"
+        },
+        "caps": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "description": "Resource limits for the given tenancy, ranges from -1 (unlimited) to 2,147,483,647, where 0 is no resource"
+        },
+        "throughput": {
+          "$ref": "#/definitions/v1Throughput",
+          "description": "Traffic throughput for the given tenancy"
+        },
+        "verified_domain": {
+          "type": "string",
+          "description": "Verified domain for the given tenancy",
+          "maxLength": 128
+        },
+        "status": {
+          "$ref": "#/definitions/internalv1Status",
+          "description": "Capabilities status for the given tenancy",
+          "readOnly": true
+        }
+      },
+      "description": "Configuration for a given tenany"
+    },
+    "v1KHIPUStatus": {
+      "type": "string",
+      "enum": [
+        "KHIPU_STATUS_UNSPECIFIED",
+        "DISABLED",
+        "PENDING",
+        "ENABLED",
+        "FAILED"
+      ],
+      "default": "KHIPU_STATUS_UNSPECIFIED",
+      "description": "- DISABLED: disabled\n - PENDING: not yet enabled\n - ENABLED: enabled\n - FAILED: failed to enable",
+      "title": "KHIPUStatus is the status of the khipu capability for a given tenant"
+    },
+    "v1Throughput": {
+      "type": "string",
+      "enum": [
+        "THROUGHPUT_UNSPECIFIED",
+        "LOW",
+        "HIGH"
+      ],
+      "default": "THROUGHPUT_UNSPECIFIED",
+      "title": "Throughput is the throughput of traffic allowed to an endpoint from the tenancy"
+    }
+  }
+}

@@ -454,6 +454,7 @@
         "subjects": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1IAMSubject"
           }
         },

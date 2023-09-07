@@ -57,20 +57,6 @@
         },
         "parameters": [
           {
-            "name": "attributes.arc_display_name",
-            "description": "List only Assets with this friendly name",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "attributes.arc_display_type",
-            "description": "List only Assets of this type",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
             "name": "page_size",
             "description": "Maximum results per page.",
             "in": "query",
@@ -93,7 +79,8 @@
             "type": "string",
             "enum": [
               "DEFAULT",
-              "SIMPLEHASHV1"
+              "SIMPLEHASHV1",
+              "SIMPLEHASHV2"
             ],
             "default": "DEFAULT"
           },
@@ -124,6 +111,13 @@
               "FAILED"
             ],
             "default": "CONFIRMATION_STATUS_UNSPECIFIED"
+          },
+          {
+            "name": "attributes[string]",
+            "description": "user defined attributes key max_length: 1024 value max_length: 4096\n\nThis is a request variable of the map type. The query format is \"map_name[key]=value\", e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\"bob\"]=18",
+            "in": "query",
+            "required": false,
+            "type": "string"
           },
           {
             "name": "storage_integrity",
@@ -217,6 +211,98 @@
         ]
       }
     },
+    "/archivist/v2/assets/{asset_uuid}/events/{uuid}": {
+      "get": {
+        "summary": "Retrieves Archivist event",
+        "description": "Retrieves a specific Archivist event",
+        "operationId": "Assets_GetEvent",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v2EventResponse"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system."
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to view Event."
+          },
+          "404": {
+            "description": "Returned when the event does not exist."
+          },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
+          }
+        },
+        "parameters": [
+          {
+            "name": "asset_uuid",
+            "description": "Specify the Asset UUID where `assets/{asset_uuid}/events/{uuid}` is the Event Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "uuid",
+            "description": "Specify the Event UUID where `assets/{asset_uuid}/events/{uuid}` is the Event Identity e.g. `11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Assets & Events"
+        ]
+      }
+    },
+    "/archivist/v2/assets/{asset_uuid}/events/{uuid}:publicurl": {
+      "get": {
+        "summary": "Retrieves the public url for a specific Archivist event.",
+        "description": "Retrieves the public url for a specific Archivist event.",
+        "operationId": "Assets_GetEventPublicURL",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v2PublicEventURLResponse"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system."
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to view an Asset."
+          },
+          "404": {
+            "description": "Returned when the asset with the id does not exist."
+          },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
+          }
+        },
+        "parameters": [
+          {
+            "name": "asset_uuid",
+            "description": "Specify the Asset UUID where `assets/{asset_uuid}/events/{uuid}` is the Event Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "uuid",
+            "description": "Specify the Event UUID where `assets/{asset_uuid}/events/{uuid}` is the Event Identity e.g. `11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Assets & Events"
+        ]
+      }
+    },
     "/archivist/v2/assets/{uuid}": {
       "get": {
         "summary": "Retrieves a specific Archivist asset",
@@ -264,45 +350,6 @@
         ]
       }
     },
-    "/archivist/v2/assets/{uuid}:publicurl": {
-      "get": {
-        "summary": "Retrieves the public url for a specific Archivist asset.",
-        "description": "Retrieves the public url for a specific Archivist asset.",
-        "operationId": "Assets_GetAssetPublicURL",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v2PublicAssetURLResponse"
-            }
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to view an Asset."
-          },
-          "404": {
-            "description": "Returned when the asset with the id does not exist."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          }
-        },
-        "parameters": [
-          {
-            "name": "uuid",
-            "description": "Specify the Asset UUID where `assets/{uuid}` is the Asset Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Assets & Events"
-        ]
-      }
-    },
     "/archivist/v2/assets/{uuid}/events": {
       "get": {
         "summary": "List Archivist events",
@@ -337,13 +384,6 @@
             "type": "string"
           },
           {
-            "name": "attributes.arc_display_type",
-            "description": "Only list Events matching this event type",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
             "name": "page_size",
             "description": "Maximum results per page.",
             "in": "query",
@@ -365,13 +405,15 @@
             "required": false,
             "type": "string",
             "enum": [
-              "DEFAULT"
+              "DEFAULT",
+              "SIMPLEHASHV1",
+              "SIMPLEHASHV2"
             ],
             "default": "DEFAULT"
           },
           {
             "name": "confirmation_status",
-            "description": "indicates if the asset has been succesfully committed to the blockchain",
+            "description": "indicates if the asset has been succesfully committed to the blockchain\n\n - PENDING: not yet committed\n - CONFIRMED: committed\n - FAILED: permanent failure",
             "in": "query",
             "required": false,
             "type": "string",
@@ -500,6 +542,27 @@
             "type": "string"
           },
           {
+            "name": "event_attributes[string]",
+            "description": "user defined event_attributes key max_length: 1024 value max_length: 4096\n\nThis is a request variable of the map type. The query format is \"map_name[key]=value\", e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\"bob\"]=18",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "asset_attributes[string]",
+            "description": "user defined asset_attributes key max_length: 1024 value max_length: 4096\n\nThis is a request variable of the map type. The query format is \"map_name[key]=value\", e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\"bob\"]=18",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "asset.attributes[string]",
+            "description": "This is a request variable of the map type. The query format is \"map_name[key]=value\", e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\"bob\"]=18",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "proof_mechanism",
             "description": "mechanism for evidential proof for Events on this Asset\n\nspecify the mechanism used to provide evidential proof for Events on this Asset",
             "in": "query",
@@ -517,64 +580,108 @@
         "tags": [
           "Assets & Events"
         ]
-      }
-    },
-    "/archivist/v2/assets/{asset_uuid}/events/{uuid}": {
-      "get": {
-        "summary": "Retrieves Archivist event",
-        "description": "Retrieves a specific Archivist event",
-        "operationId": "Assets_GetEvent",
+      },
+      "post": {
+        "operationId": "Events_Create",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/v2EventResponse"
             }
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to view Event."
-          },
-          "404": {
-            "description": "Returned when the event does not exist."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           }
         },
         "parameters": [
           {
-            "name": "asset_uuid",
-            "description": "Specify the Asset UUID where `assets/{asset_uuid}/events/{uuid}` is the Event Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
+            "name": "uuid",
+            "description": "Specify the Asset UUID where `assets/{uuid}` is the Asset Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f`",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
-            "name": "uuid",
-            "description": "Specify the Event UUID where `assets/{asset_uuid}/events/{uuid}` is the Event Identity e.g. `11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
-            "in": "path",
+            "name": "body",
+            "in": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "type": "object",
+              "example": {
+                "operation": "Record",
+                "behaviour": "RecordEvidence",
+                "event_attributes": {
+                  "arc_attachments": [
+                    {
+                      "arc_attachment_identity": "blobs/1754b920-cf20-4d7e-9d36-9ed7d479744d",
+                      "arc_hash_value": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+                      "arc_display_name": "Picture from yesterday",
+                      "arc_hash_alg": "sha256"
+                    }
+                  ]
+                },
+                "asset_attributes": {
+                  "arc_firmware_version": "3.2.1",
+                  "arc_home_location_identity": "locations/42054f10-9952-4c10-a082-9fd0d10295ae"
+                },
+                "timestamp_declared": "2019-11-27T14:44:19Z",
+                "principal_declared": {
+                  "issuer": "job.idp.server/1234",
+                  "subject": "bob@job"
+                }
+              },
+              "properties": {
+                "behaviour": {
+                  "type": "string",
+                  "title": "name of this behaviour"
+                },
+                "operation": {
+                  "type": "string",
+                  "title": "name of operation on this behviour"
+                },
+                "principal_declared": {
+                  "$ref": "#/definitions/v2Principal",
+                  "title": "principal information associated with event - if not provided will be set to principal_accepted"
+                },
+                "timestamp_declared": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "time of event as declared by the user",
+                  "title": "timestamp when operation was actually performed - if not provided will be set to timestamp_accepted",
+                  "readOnly": true
+                },
+                "event_attributes": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/definitions/v2Attribute"
+                  },
+                  "description": "key value mapping of event attributes"
+                },
+                "asset_attributes": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/definitions/v2Attribute"
+                  },
+                  "description": "key value mapping of asset attributes"
+                }
+              },
+              "description": "Request creating RecordEvidence event Specify `operation` to chose which RecordEvidence event to create "
+            }
           }
         ],
         "tags": [
-          "Assets & Events"
+          "Events"
         ]
       }
     },
-    "/archivist/v2/assets/{asset_uuid}/events/{uuid}:publicurl": {
+    "/archivist/v2/assets/{uuid}:publicurl": {
       "get": {
-        "summary": "Retrieves the public url for a specific Archivist event.",
-        "description": "Retrieves the public url for a specific Archivist event.",
-        "operationId": "Assets_GetEventPublicURL",
+        "summary": "Retrieves the public url for a specific Archivist asset.",
+        "description": "Retrieves the public url for a specific Archivist asset.",
+        "operationId": "Assets_GetAssetPublicURL",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v2PublicEventURLResponse"
+              "$ref": "#/definitions/v2PublicAssetURLResponse"
             }
           },
           "401": {
@@ -592,15 +699,8 @@
         },
         "parameters": [
           {
-            "name": "asset_uuid",
-            "description": "Specify the Asset UUID where `assets/{asset_uuid}/events/{uuid}` is the Event Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
             "name": "uuid",
-            "description": "Specify the Event UUID where `assets/{asset_uuid}/events/{uuid}` is the Event Identity e.g. `11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
+            "description": "Specify the Asset UUID where `assets/{uuid}` is the Asset Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f`",
             "in": "path",
             "required": true,
             "type": "string"
@@ -653,7 +753,7 @@
           }
         },
         "tags": [
-          "Assets & Events"
+          "Assets"
         ]
       }
     }
@@ -662,7 +762,7 @@
     "ListEventsRequestAssetQuery": {
       "type": "object",
       "properties": {
-        "attributes": {
+        "attributes[string]": {
           "type": "object",
           "additionalProperties": {
             "type": "string"
@@ -691,6 +791,7 @@
         "caps": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1Cap"
           },
           "description": "List of relevant capped resources"
@@ -718,23 +819,30 @@
     },
     "v2AssetResponse": {
       "type": "object",
-        "example": {
-          "identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
-          "behaviours": [
-            "RecordEvidence"
+      "example": {
+        "identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
+        "behaviours": [
+          "RecordEvidence"
+        ],
+        "attributes": {
+          "arc_firmware_version": "3.2.1",
+          "arc_attachments": [
+            {
+              "arc_attachment_identity": "blobs/1754b920-cf20-4d7e-9d36-9ed7d479744d",
+              "arc_hash_value": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+              "arc_display_name": "Picture from yesterday",
+              "arc_hash_alg": "sha256"
+            }
           ],
-          "attributes": {
-            "arc_display_type": "Garden Fence",
-            "arc_display_name": "My Garden Fence",
-            "colour": "Plain wood"
-          },
-          "confirmation_status": "PENDING",
-          "tracked": "TRACKED",
-          "owner": "0x601f5A7D3e6dcB55e87bf2F17bC8A27AaCD3511",
-          "at_time": "2019-11-27T14:44:19Z",
-          "proof_mechanism": "SIMPLE_HASH",
-          "public": false,
-          "tenant_identity": "tenant/8e0b600c-8234-43e4-860c-e95bdcd695a9"
+          "arc_home_location_identity": "locations/42054f10-9952-4c10-a082-9fd0d10295ae"
+        },
+        "confirmation_status": "PENDING",
+        "tracked": "TRACKED",
+        "owner": "0x601f5A7D3e6dcB55e87bf2F17bC8A27AaCD3511",
+        "at_time": "2019-11-27T14:44:19Z",
+        "proof_mechanism": "SIMPLE_HASH",
+        "public": false,
+        "tenant_identity": "tenant/8e0b600c-8234-43e4-860c-e95bdcd695a9"
       },
       "properties": {
         "identity": {
@@ -835,47 +943,72 @@
         "CONFIRMED",
         "FAILED"
       ],
-      "default": "CONFIRMATION_STATUS_UNSPECIFIED"
+      "default": "CONFIRMATION_STATUS_UNSPECIFIED",
+      "title": "- PENDING: not yet committed\n - CONFIRMED: committed\n - FAILED: permanent failure"
     },
     "v2CreateAssetRequest": {
       "type": "object",
-        "example": {
-          "behaviours": [
-            "RecordEvidence",
-            "Attachments"
+      "example": {
+        "behaviours": [
+          "RecordEvidence",
+          "Attachments"
+        ],
+        "attributes": {
+          "arc_firmware_version": "3.2.1",
+          "arc_attachments": [
+            {
+              "arc_attachment_identity": "blobs/1754b920-cf20-4d7e-9d36-9ed7d479744d",
+              "arc_hash_value": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+              "arc_display_name": "Picture from yesterday",
+              "arc_hash_alg": "sha256"
+            }
           ],
-          "attributes": {
-            "arc_display_type": "Garden Fence",
-            "arc_display_name": "My Garden Fence",
-            "colour": "Plain wood"
-          },
-          "proof_mechanism": "SIMPLE_HASH",
-          "public": false
+          "arc_home_location_identity": "locations/42054f10-9952-4c10-a082-9fd0d10295ae"
         },
-        "properties": {
-          "behaviours": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "list of behaviours enabled for this asset",
-            "title": "list of enabled behaviours",
+        "proof_mechanism": "SIMPLE_HASH",
+        "public": false
+      },
+      "properties": {
+        "behaviours": {
+          "type": "array",
+          "items": {
+            "type": "string",
             "maxLength": 1024
           },
-          "attributes": {
-            "type": "object",
-            "additionalProperties": {
-              "$ref": "#/definitions/v2Attribute"
-            },
-            "description": "key value mapping of asset attributes",
-            "title": "asset attributes for the assets creation",
-            "maxLength": 1024
-          },
-          "public": {
-            "type": "boolean",
-            "description": "Public asset. A public asset and all its events are visible to the general public.Sharing to specific organisations is not available for public assets."
-          }
+          "description": "list of behaviours enabled for this asset",
+          "title": "list of enabled behaviours"
         },
+        "attributes": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/v2Attribute"
+          },
+          "description": "key value mapping of event attributes",
+          "title": "event attributes for the assets creation",
+          "maxLength": 1024
+        },
+        "storage_integrity": {
+          "type": "string",
+          "$ref": "#/definitions/v2StorageIntegrity",
+          "description": "DEPRECATED use proof_mechanism",
+          "title": "XXX: #4483 DEPRECATED use proof_mechanism"
+        },
+        "proof_mechanism": {
+          "type": "string",
+          "$ref": "#/definitions/v2ProofMechanism",
+          "description": "specify the mechanism used to provide evidential proof for Events on this Asset",
+          "title": "mechanism for evidential proof for Events on this Asset"
+        },
+        "chain_id": {
+          "type": "string",
+          "description": "chain id of the blockchain associated with this asset",
+          "maxLength": 1024
+        },
+        "public": {
+          "type": "boolean",
+          "description": "Public asset. A public asset and all its events are visible to the general public.Sharing to specific organisations is not available for public assets."
+        }
+      },
       "description": "This describes the body of a request to create new RKVST Asset."
     },
     "v2DictAttr": {
@@ -891,35 +1024,42 @@
     },
     "v2EventResponse": {
       "type": "object",
-        "example": {
-          "identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000",
-          "asset_identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
-          "operation": "Record",
-          "behaviour": "RecordEvidence",
-          "event_attributes": {
-            "arc_display_type": "Paint",
-            "arc_description": "Painted the fence"
-          },
-          "asset_attributes": {
-            "colour": "Midnight Blue"
-          },
-          "timestamp_accepted": "2019-11-27T14:44:19Z",
-          "timestamp_declared": "2019-11-27T14:44:19Z",
-          "timestamp_committed": "2019-11-27T14:44:19Z",
-          "principal_declared": {
-            "issuer": "job.idp.server/1234",
-            "subject": "bob@job"
-          },
-          "principal_accepted": {
-            "issuer": "job.idp.server/1234",
-            "subject": "bob@job"
-          },
-          "confirmation_status": "CONFIRMED",
-          "block_number": 12,
-          "transaction_index": 5,
-          "transaction_id": "0x07569",
-          "tenant_identity": "tenant/8e0b600c-8234-43e4-860c-e95bdcd695a9"
+      "example": {
+        "identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000",
+        "asset_identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
+        "operation": "Record",
+        "behaviour": "RecordEvidence",
+        "event_attributes": {
+          "arc_attachments": [
+            {
+              "arc_attachment_identity": "blobs/1754b920-cf20-4d7e-9d36-9ed7d479744d",
+              "arc_hash_value": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+              "arc_display_name": "Picture from yesterday",
+              "arc_hash_alg": "sha256"
+            }
+          ]
         },
+        "asset_attributes": {
+          "arc_firmware_version": "3.2.1",
+          "arc_home_location_identity": "locations/42054f10-9952-4c10-a082-9fd0d10295ae"
+        },
+        "timestamp_accepted": "2019-11-27T14:44:19Z",
+        "timestamp_declared": "2019-11-27T14:44:19Z",
+        "timestamp_committed": "2019-11-27T14:44:19Z",
+        "principal_declared": {
+          "issuer": "job.idp.server/1234",
+          "subject": "bob@job"
+        },
+        "principal_accepted": {
+          "issuer": "job.idp.server/1234",
+          "subject": "bob@job"
+        },
+        "confirmation_status": "CONFIRMED",
+        "block_number": 12,
+        "transaction_index": 5,
+        "transaction_id": "0x07569",
+        "tenant_identity": "tenant/8e0b600c-8234-43e4-860c-e95bdcd695a9"
+      },
       "properties": {
         "identity": {
           "type": "string",
@@ -1040,7 +1180,9 @@
     "v2ListAssetsRequestOrderBy": {
       "type": "string",
       "enum": [
-        "DEFAULT"
+        "DEFAULT",
+        "SIMPLEHASHV1",
+        "SIMPLEHASHV2"
       ],
       "default": "DEFAULT",
       "title": "Supported sort orders"
@@ -1051,10 +1193,20 @@
         "assets": [
           {
             "identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
+            "behaviours": [
+              "RecordEvidence"
+            ],
             "attributes": {
-              "arc_display_type": "Garden Fence",
-              "arc_display_name": "My Garden Fence",
-              "colour": "Plain wood"
+              "arc_firmware_version": "3.2.1",
+              "arc_attachments": [
+                {
+                  "arc_attachment_identity": "blobs/1754b920-cf20-4d7e-9d36-9ed7d479744d",
+                  "arc_hash_value": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+                  "arc_display_name": "Picture from yesterday",
+                  "arc_hash_alg": "sha256"
+                }
+              ],
+              "arc_home_location_identity": "locations/42054f10-9952-4c10-a082-9fd0d10295ae"
             },
             "confirmation_status": "PENDING",
             "tracked": "TRACKED",
@@ -1070,9 +1222,16 @@
               "RecordEvidence"
             ],
             "attributes": {
-              "arc_display_type": "IoT Device",
-              "arc_display_name": "My IoT Device",
-              "arc_firmware_version": "3.2.1"
+              "arc_firmware_version": "3.2.1",
+              "arc_attachments": [
+                {
+                  "arc_attachment_identity": "blobs/2865ca31-d01f-5e6f-4621-de562470732e",
+                  "arc_hash_value": "12bc4819d90b6fe911b091a7c05134b65edfce045e09b048caaa7916ecdd458c",
+                  "arc_display_name": "Picture",
+                  "arc_hash_alg": "sha256"
+                }
+              ],
+              "arc_home_location_identity": "locations/53165a2c-6054-dd68-f093-a0e1e21304fd"
             },
             "confirmation_status": "PENDING",
             "tracked": "TRACKED",
@@ -1089,6 +1248,7 @@
         "assets": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v2AssetResponse"
           }
         },
@@ -1105,6 +1265,7 @@
         "value": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v2DictAttr"
           }
         }
@@ -1113,7 +1274,9 @@
     "v2ListEventsRequestOrderBy": {
       "type": "string",
       "enum": [
-        "DEFAULT"
+        "DEFAULT",
+        "SIMPLEHASHV1",
+        "SIMPLEHASHV2"
       ],
       "default": "DEFAULT",
       "title": "Supported sort orders"
@@ -1128,11 +1291,18 @@
             "operation": "Record",
             "behaviour": "RecordEvidence",
             "event_attributes": {
-              "arc_display_type": "Paint",
-              "arc_description": "Painted the fence"
+              "arc_attachments": [
+                {
+                  "arc_attachment_identity": "blobs/1754b920-cf20-4d7e-9d36-9ed7d479744d",
+                  "arc_hash_value": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+                  "arc_display_name": "Picture from yesterday",
+                  "arc_hash_alg": "sha256"
+                }
+              ]
             },
             "asset_attributes": {
-              "colour": "Midnight Blue"
+              "arc_firmware_version": "3.2.1",
+              "arc_home_location_identity": "locations/42054f10-9952-4c10-a082-9fd0d10295ae"
             },
             "timestamp_accepted": "2019-11-27T14:44:19Z",
             "timestamp_declared": "2019-11-27T14:44:19Z",
@@ -1152,15 +1322,23 @@
             "tenant_identity": "tenant/8e0b600c-8234-43e4-860c-e95bdcd695a9"
           },
           {
-            "identity": "assets/cef61346-2453-5aeb-921c-e6fa93d5b032/events/589bc700-4b04-4bf2-911e-d4ee4821f55e",
-            "asset_identity": "assets/cef61346-2453-5aeb-921c-e6fa93d5b032",
+            "identity": "assets/bf330235-1424-4fda-840a-d5ef82c4c96f/events/23c06c48-e0b8-42e0-8dcf-dc8c4fdad123",
+            "asset_identity": "assets/bf330235-1424-4fda-840a-d5ef82c4c96f",
             "operation": "Record",
             "behaviour": "RecordEvidence",
             "event_attributes": {
-              "arc_display_type": "Update Firmware"
+              "arc_attachments": [
+                {
+                  "arc_attachment_identity": "blobs/1754b920-cf20-4d7e-9d36-9ed7d479744d",
+                  "arc_hash_value": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+                  "arc_display_name": "Picture",
+                  "arc_hash_alg": "sha256"
+                }
+              ]
             },
             "asset_attributes": {
-              "arc_firmware_version": "3.2.1"
+              "arc_firmware_version": "3.2.1",
+              "arc_home_location_identity": "locations/42054f10-9952-4c10-a082-9fd0d10295ae"
             },
             "timestamp_accepted": "2019-07-27T14:44:19Z",
             "timestamp_declared": "2019-07-27T14:44:19Z",
@@ -1186,6 +1364,7 @@
         "events": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v2EventResponse"
           }
         },

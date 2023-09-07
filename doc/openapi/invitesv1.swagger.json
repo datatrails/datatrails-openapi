@@ -298,6 +298,7 @@
         "caps": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1Cap"
           },
           "description": "List of relevant capped resources"
@@ -387,6 +388,7 @@
         "invites": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/v1Invite"
           }
         },
