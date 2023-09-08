@@ -11,7 +11,7 @@ Define the asset parameters and store in /path/to/jsonfile:
 .. code-block:: JSON
 
     {
-        "behaviours": ["Firmware", "Maintenance", "RecordEvidence", "LocationUpdate", "Attachments"],
+        "behaviours": ["RecordEvidence"],
         "attributes": {
             "arc_firmware_version": "1.0",
             "arc_serial_number": "vtl-x4-07",
@@ -63,11 +63,7 @@ The response is:
     {
         "identity": "assets/3f5be24f-fd1b-40e2-af35-ec7c14c74d53",
         "behaviours": [
-            "Firmware",
-            "Maintenance",
-            "RecordEvidence",
-            "LocationUpdate",
-            "Attachments"
+            "RecordEvidence"
         ],
         "attributes": {
             "arc_serial_number": "vtl-x4-07",
