@@ -1,1 +1,4 @@
-# archivist-docs
+# archivist-openapi
+
+Contains all openapi definitions
+

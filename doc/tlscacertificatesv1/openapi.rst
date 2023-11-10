@@ -1,4 +1,0 @@
-TLS CA Certificates Swagger API
--------------------------------
-
-.. openapi:: ../openapi/tlscacertificatesv1.swagger.json
