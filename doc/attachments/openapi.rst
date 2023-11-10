@@ -1,4 +1,0 @@
-Attachments Swagger API
------------------------
-
-.. openapi:: ../openapi/attachmentsv1.swagger.json

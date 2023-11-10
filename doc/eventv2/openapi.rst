@@ -1,8 +1,0 @@
-Events Swagger API
----------------------
-
-.. openapi:: ../openapi/assetsv2.swagger.json
-    :include:
-        /archivist/v2/assets/{uuid}/events
-        /archivist/v2/assets/{asset_uuid}/events/{uuid}
-    :encoding: utf-8

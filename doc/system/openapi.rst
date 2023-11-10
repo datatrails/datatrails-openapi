@@ -1,5 +1,0 @@
-Archivistnode Swagger API
--------------------------
-
-.. openapi:: ../openapi/archivistnodev1.swagger.json
-                                                      

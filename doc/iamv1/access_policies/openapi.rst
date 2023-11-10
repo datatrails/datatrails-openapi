@@ -1,4 +1,0 @@
-IAM access Policies Swagger API
---------------------------------
-
-.. openapi:: ../../openapi/accesspoliciesv1.swagger.json
