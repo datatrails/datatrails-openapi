@@ -5,8 +5,8 @@
     "description": "API for uploading and downloading blobs.",
     "version": "1.0",
     "contact": {
-      "name": "RKVST",
-      "url": "https://www.rkvst.com"
+      "name": "DataTrails",
+      "url": "https://www.datatrails.ai"
     }
   },
   "tags": [
@@ -19,7 +19,7 @@
       "description": "Internal APIs that are unstable and should not be used in a production setting."
     }
   ],
-  "basePath": "/_api",
+  "basePath": "/archivist/v1/blobs",
   "schemes": [
     "https"
   ],

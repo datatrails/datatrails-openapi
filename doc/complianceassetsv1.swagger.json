@@ -1,0 +1,210 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Compliance API",
+    "description": "API to manage Compliance.",
+    "version": "1.0",
+    "contact": {
+      "name": "DataTrails",
+      "url": "https://www.datatrails.ai"
+    }
+  },
+  "tags": [
+    {
+      "name": "ComplianceAssets",
+      "description": "List compliance statuses for an asset"
+    },
+    {
+      "name": "Unsupported",
+      "description": "Internal APIs that are unstable and should not be used in a production setting."
+    }
+  ],
+  "basePath": "/archivist/v1/compliance/assets",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/archivist/v1/compliance/assets/{uuid}": {
+      "get": {
+        "summary": "List all compliance status relevant to an asset",
+        "operationId": "ComplianceAssets_ListAssetCompliance",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListAssetComplianceResponse"
+            }
+          },
+          "206": {
+            "description": "The number of compliance statements exceeds the servers limit. "
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system."
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to access the requested resource."
+          },
+          "404": {
+            "description": "Returned when the no asset with the provided id can be found."
+          },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
+          }
+        },
+        "parameters": [
+          {
+            "name": "uuid",
+            "description": "Specify the Asset UUID where `assets/{uuid}` is the Asset Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f`",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "page_size",
+            "description": "Maximum results per page.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_token",
+            "description": "The next_page_token returned from a previous list request if any.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "order_by",
+            "description": "Specify the sort order for the results.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "DEFAULT"
+            ],
+            "default": "DEFAULT"
+          },
+          {
+            "name": "compliant_at",
+            "description": "timestamp at which compliance is determined\n\ntime at which compliance is determined",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          }
+        ],
+        "tags": [
+          "Compliance"
+        ]
+      }
+    },
+    "/archivist/v1/compliance/assets:openapi": {
+      "get": {
+        "summary": "Get OpenAPI spec for Compliance Assets",
+        "description": "Get OpenAPI v2.0 spec for Compliance Assets",
+        "operationId": "Compliance_GetOpenAPI",
+        "responses": {
+          "200": {
+            "description": "A successful response."
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system."
+          },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
+          }
+        },
+        "tags": [
+          "ComplianceAssets"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "ListAssetComplianceRequestOrderBy": {
+      "type": "string",
+      "enum": [
+        "DEFAULT"
+      ],
+      "default": "DEFAULT",
+      "title": "Supported sort orders"
+    },
+    "v1ComplianceStatement": {
+      "type": "object",
+      "example": {
+        "compliance_policy_identity": "compliance_policies/0000-0000-000000000-00000000",
+        "compliant": false
+      },
+      "properties": {
+        "compliance_policy_identity": {
+          "type": "string",
+          "description": "identity of the compliance policy",
+          "title": "compliance_policy identity",
+          "readOnly": true,
+          "maxLength": 1024
+        },
+        "compliant": {
+          "type": "boolean",
+          "description": "status of compliance against the compliance policy",
+          "title": "compliance status"
+        },
+        "reason": {
+          "type": "string",
+          "description": "reason for non-compliance",
+          "readOnly": true,
+          "maxLength": 1024
+        }
+      },
+      "description": "simple compliance status against a compliance policy.",
+      "title": "A ComplianceStatement gives the status of compliance against a specific Compliance Policy"
+    },
+    "v1ListAssetComplianceResponse": {
+      "type": "object",
+      "example": {
+        "compliance": [
+          {
+            "compliance_policy_identity": "compliance_policies/0000-0000-000000000-00000000",
+            "compliant": false
+          }
+        ],
+        "compliant": false,
+        "compliant_at": "2019-11-27T14:44:19Z"
+      },
+      "properties": {
+        "compliant": {
+          "type": "boolean",
+          "description": "overall compliance status for the asset",
+          "title": "Overall compliance status.  Will be true only if compliant is true for all applicable compliance_policies, otherwise false"
+        },
+        "compliance": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1ComplianceStatement"
+          },
+          "description": "list of statemants of compliance with applicable compliance policies",
+          "title": "List of compliance statements"
+        },
+        "next_page_token": {
+          "type": "string",
+          "description": "Token to retrieve the next page of results or empty if there are none."
+        },
+        "compliant_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "time at which compliance is determined",
+          "title": "timestamp at which compliance is determined",
+          "readOnly": true
+        }
+      },
+      "description": "simple compliance status for an Asset."
+    }
+  }
+}

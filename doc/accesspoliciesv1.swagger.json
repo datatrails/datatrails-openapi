@@ -5,8 +5,8 @@
     "description": "API to manage Identity Access Management AccessPolicies.",
     "version": "1.0",
     "contact": {
-      "name": "RKVST",
-      "url": "https://www.rkvst.com"
+      "name": "DataTrails",
+      "url": "https://www.datatrails.ai"
     }
   },
   "tags": [
@@ -19,7 +19,7 @@
       "description": "Internal APIs that are unstable and should not be used in a production setting."
     }
   ],
-  "basePath": "/_api",
+  "basePath": "/archivist/iam/v1/access_policies",
   "schemes": [
     "https"
   ],
@@ -138,7 +138,7 @@
         "parameters": [
           {
             "name": "body",
-            "description": "The body of a request to create new RKVST Access Policy.",
+            "description": "The body of a request to create a new Access Policy.",
             "in": "body",
             "required": true,
             "schema": {
@@ -389,61 +389,7 @@
           }
         },
         "tags": [
-          "AccessPolicies",
           "Unsupported"
-        ]
-      }
-    },
-    "/archivist/iam/v1/assets/{uuid}/access_policies": {
-      "get": {
-        "summary": "Get matching access policies",
-        "description": "Get matching access policies for specified asset",
-        "operationId": "AccessPolicies_ListMatchingAccessPolicies",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1ListIAMAccessPoliciesResponse"
-            }
-          },
-          "400": {
-            "description": "Returned when the request is badly formed."
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to list the access policy."
-          },
-          "404": {
-            "description": "Returned when the identified access policy does not exist."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "500": {
-            "description": "Returned when the underlying storage system returns an error."
-          }
-        },
-        "parameters": [
-          {
-            "name": "uuid",
-            "description": "Specify the Asset UUID where `assets/{uuid}` is the Asset Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "at_time",
-            "description": "Specify time in the past to show asset data as it was at time specified",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "date-time"
-          }
-        ],
-        "tags": [
-          "AccessPolicies"
         ]
       }
     },
@@ -568,7 +514,7 @@
           "maxLength": 4096
         }
       },
-      "description": "The body of a request to create new RKVST Access Policy.",
+      "description": "The body of a request to create a new Access Policy.",
       "required": [
         "display_name"
       ]
@@ -948,12 +894,6 @@
           "description": "indicates time the asset data is from",
           "readOnly": true
         },
-        "storage_integrity": {
-          "type": "string",
-          "$ref": "#/definitions/v2StorageIntegrity",
-          "description": "DEPRECATED use proof_mechanism",
-          "title": "XXX: #4483 DEPRECATED use proof_mechanism"
-        },
         "proof_mechanism": {
           "type": "string",
           "$ref": "#/definitions/v2ProofMechanism",
@@ -974,7 +914,7 @@
           "maxLength": 1024
         }
       },
-      "description": "This describes RKVST Asset."
+      "description": "This describes an Asset."
     },
     "v2Attribute": {
       "type": "object",
@@ -1100,21 +1040,11 @@
       "type": "string",
       "enum": [
         "PROOF_MECHANISM_UNSPECIFIED",
-        "KHIPU",
+        "RESERVED1",
         "SIMPLE_HASH",
-        "TRIE_HASH"
+        "MERKLE_LOG"
       ],
       "default": "PROOF_MECHANISM_UNSPECIFIED"
-    },
-    "v2StorageIntegrity": {
-      "type": "string",
-      "enum": [
-        "STORAGE_INTEGRITY_UNSPECIFIED",
-        "LEDGER",
-        "TENANT_STORAGE"
-      ],
-      "default": "STORAGE_INTEGRITY_UNSPECIFIED",
-      "description": "Specifies how the asset data will be stored. This is set once on creation\nand does not change."
     },
     "v2TrackedStatus": {
       "type": "string",

@@ -5,21 +5,21 @@
     "description": "API to manage Application Registrations.",
     "version": "1.0",
     "contact": {
-      "name": "RKVST",
-      "url": "https://www.rkvst.com"
+      "name": "DataTrails",
+      "url": "https://www.datatrails.ai"
     }
   },
   "tags": [
     {
       "name": "AppRegistrations",
-      "description": "Handle credentials to give client applications access to RKVST APIs"
+      "description": "Handle credentials to give client applications access to DataTrails APIs"
     },
     {
       "name": "Unsupported",
       "description": "Internal APIs that are unstable and should not be used in a production setting."
     }
   ],
-  "basePath": "/_api",
+  "basePath": "/archivist/iam/v1/applications",
   "schemes": [
     "https"
   ],
@@ -307,35 +307,6 @@
           }
         },
         "tags": [
-          "AppRegistrations",
-          "Unsupported"
-        ]
-      }
-    },
-    "/archivist/internal/iam/v1/applications/{uuid}": {
-      "get": {
-        "summary": "Unsupported and for internal use only.",
-        "description": "Unsupported and for internal use only.",
-        "operationId": "AppRegistrations_InternalGetAppRegistration",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1ApplicationWithTier"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "uuid",
-            "description": "UUID identifying the application",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "AppRegistrations",
           "Unsupported"
         ]
       }
@@ -420,40 +391,6 @@
       },
       "description": "Describes a single application used for machine authentication",
       "title": "Response types"
-    },
-    "v1ApplicationWithTier": {
-      "type": "object",
-      "properties": {
-        "identity": {
-          "type": "string"
-        },
-        "display_name": {
-          "type": "string"
-        },
-        "client_id": {
-          "type": "string"
-        },
-        "tenant_id": {
-          "type": "string"
-        },
-        "credentials": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1Credential"
-          }
-        },
-        "custom_claims": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          }
-        },
-        "tier": {
-          "$ref": "#/definitions/v1Tier"
-        }
-      },
-      "title": "Internal response types"
     },
     "v1Cap": {
       "type": "object",
@@ -582,16 +519,7 @@
           "readOnly": true
         }
       },
-      "description": "Describes a set of RKVST locations"
-    },
-    "v1Tier": {
-      "type": "string",
-      "enum": [
-        "TIER_UNSPECIFIED",
-        "FREE",
-        "PREMIUM"
-      ],
-      "default": "TIER_UNSPECIFIED"
+      "description": "Describes a set of locations"
     }
   }
 }

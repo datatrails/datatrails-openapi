@@ -5,17 +5,17 @@
     "description": "API to manage Identity Access Management Subjects.",
     "version": "1.0",
     "contact": {
-      "name": "RKVST",
-      "url": "https://www.rkvst.com"
+      "name": "DataTrails",
+      "url": "https://www.datatrails.ai"
     }
   },
   "tags": [
     {
       "name": "Subjects",
-      "description": "Handle relationships with other RKVST tenants"
+      "description": "Handle relationships with other tenants"
     }
   ],
-  "basePath": "/_api",
+  "basePath": "/archivist/iam/v1/subjects",
   "schemes": [
     "https"
   ],
@@ -131,7 +131,7 @@
         "parameters": [
           {
             "name": "body",
-            "description": "The body of a request to create new RKVST Subject.",
+            "description": "The body of a request to create a new Subject.",
             "in": "body",
             "required": true,
             "schema": {
@@ -359,7 +359,7 @@
           "title": "validate against base64 - the subjects service will validate as a crypto key"
         }
       },
-      "description": "The body of a request to create new RKVST Subject.",
+      "description": "The body of a request to create a new Subject.",
       "required": [
         "display_name"
       ]

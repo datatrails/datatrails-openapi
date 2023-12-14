@@ -5,8 +5,8 @@
     "description": "API to manage locations.",
     "version": "1.0",
     "contact": {
-      "name": "RKVST",
-      "url": "https://www.rkvst.com"
+      "name": "DataTrails",
+      "url": "https://www.datatrails.ai"
     }
   },
   "tags": [
@@ -19,7 +19,7 @@
       "description": "Internal APIs that are unstable and should not be used in a production setting."
     }
   ],
-  "basePath": "/_api",
+  "basePath": "/archivist/v2/locations",
   "schemes": [
     "https"
   ],
@@ -132,7 +132,7 @@
         "parameters": [
           {
             "name": "body",
-            "description": "The body of a request to create new RKVST Asset location.",
+            "description": "The body of a request to create new location.",
             "in": "body",
             "required": true,
             "schema": {
@@ -379,7 +379,6 @@
           }
         },
         "tags": [
-          "Locations",
           "Unsupported"
         ]
       }
@@ -574,7 +573,7 @@
           "description": "key value mapping of location properties"
         }
       },
-      "description": "The body of a request to create new RKVST Asset location.",
+      "description": "The body of a request to create new location.",
       "required": [
         "display_name",
         "latitude",

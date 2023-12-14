@@ -5,12 +5,12 @@
     "description": "API to manage Email Invites.",
     "version": "1.0",
     "contact": {
-      "name": "RKVST",
-      "url": "https://www.rkvst.com"
+      "name": "DataTrails",
+      "url": "https://www.datatrails.ai"
     }
   },
   "tags": [],
-  "basePath": "/_api",
+  "basePath": "/archivist/v1/invites",
   "schemes": [
     "https"
   ],
@@ -21,6 +21,31 @@
     "application/json"
   ],
   "paths": {
+    "/archivist/v1/invites:caps": {
+      "get": {
+        "summary": "Get remaining capped resources for Invites",
+        "description": "Not stable or officially supported. Get remaining capped resources for Invites",
+        "operationId": "Invites_GetCaps",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Caps"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system."
+          },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
+          }
+        },
+        "tags": [
+          "Invites",
+          "Unsupported"
+        ]
+      }
+    },
     "/archivist/v1/invites": {
       "get": {
         "summary": "List invites",
@@ -218,31 +243,6 @@
         ],
         "tags": [
           "Invites"
-        ]
-      }
-    },
-    "/archivist/v1/invites:caps": {
-      "get": {
-        "summary": "Get remaining capped resources for Invites",
-        "description": "Not stable or officially supported. Get remaining capped resources for Invites",
-        "operationId": "Invites_GetCaps",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1Caps"
-            }
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          }
-        },
-        "tags": [
-          "Invites",
-          "Unsupported"
         ]
       }
     },

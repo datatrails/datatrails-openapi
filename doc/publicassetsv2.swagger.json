@@ -5,8 +5,8 @@
     "description": "API for public asset and event management.",
     "version": "2.0",
     "contact": {
-      "name": "RKVST",
-      "url": "https://www.rkvst.com"
+      "name": "DataTrails",
+      "url": "https://www.datatrails.ai"
     }
   },
   "tags": [
@@ -15,6 +15,7 @@
       "description": "Retrieve Public Attestations and public Asset and Event records"
     }
   ],
+  "basePath": "/archivist/v2/publicassets",
   "schemes": [
     "https"
   ],
@@ -44,14 +45,14 @@
         "parameters": [
           {
             "name": "asset_uuid",
-            "description": "Specify the Asset UUID where `assets/{asset_uuid}/events/{uuid}` is the Event Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
+            "description": "Specify the Asset UUID where `publicassets/{asset_uuid}/events/{uuid}` is the Event Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `publicassets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
             "name": "uuid",
-            "description": "Specify the Event UUID where `assets/{asset_uuid}/events/{uuid}` is the Event Identity e.g. `11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
+            "description": "Specify the Event UUID where `publicassets/{asset_uuid}/events/{uuid}` is the Event Identity e.g. `11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000` from Identity `publicassets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
             "in": "path",
             "required": true,
             "type": "string"
@@ -75,13 +76,13 @@
             }
           },
           "404": {
-            "description": "Returned when the asset with the id does not exist."
+            "description": "Returned when the no asset with the provided id can be found."
           }
         },
         "parameters": [
           {
             "name": "uuid",
-            "description": "Specify the Asset UUID where `assets/{uuid}` is the Asset Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f`",
+            "description": "Specify the Asset UUID where `publicassets/{uuid}` is the Asset Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `publicassets/add30235-1424-4fda-840a-d5ef82c4c96f`",
             "in": "path",
             "required": true,
             "type": "string"
@@ -119,7 +120,7 @@
         "parameters": [
           {
             "name": "uuid",
-            "description": "Specify the Asset UUID where `assets/{uuid}` is the Asset Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f`.  Use `-` to list Events for all Assets",
+            "description": "Specify the Asset UUID where `publicassets/{uuid}` is the Asset Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `publicassets/add30235-1424-4fda-840a-d5ef82c4c96f`.  Use `-` to list Events for all Assets",
             "in": "path",
             "required": true,
             "type": "string"
@@ -283,21 +284,21 @@
             "type": "string"
           },
           {
-            "name": "event_attributes[string][string]",
+            "name": "event_attributes[string]",
             "description": "user defined event_attributes key max_length: 1024 value max_length: 4096\n\nThis is a request variable of the map type. The query format is \"map_name[key]=value\", e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\"bob\"]=18",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
-            "name": "asset_attributes[string][string]",
+            "name": "asset_attributes[string]",
             "description": "user defined asset_attributes key max_length: 1024 value max_length: 4096\n\nThis is a request variable of the map type. The query format is \"map_name[key]=value\", e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\"bob\"]=18",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
-            "name": "asset.attributes[string][string]",
+            "name": "asset.attributes[string]",
             "description": "This is a request variable of the map type. The query format is \"map_name[key]=value\", e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\"bob\"]=18",
             "in": "query",
             "required": false,
@@ -311,9 +312,9 @@
             "type": "string",
             "enum": [
               "PROOF_MECHANISM_UNSPECIFIED",
-              "KHIPU",
+              "RESERVED1",
               "SIMPLE_HASH",
-              "TRIE_HASH"
+              "MERKLE_LOG"
             ],
             "default": "PROOF_MECHANISM_UNSPECIFIED"
           }
@@ -328,7 +329,7 @@
     "ListEventsRequestAssetQuery": {
       "type": "object",
       "properties": {
-        "attributes[string][string]": {
+        "attributes[string]": {
           "type": "object",
           "additionalProperties": {
             "type": "string"
@@ -359,7 +360,7 @@
     "v2AssetResponse": {
       "type": "object",
       "example": {
-        "identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
+        "identity": "publicassets/add30235-1424-4fda-840a-d5ef82c4c96f",
         "behaviours": [
           "RecordEvidence"
         ],
@@ -386,7 +387,7 @@
       "properties": {
         "identity": {
           "type": "string",
-          "description": "relative resource address `assets/{UUID}`",
+          "description": "relative resource address `publicassets/{UUID}`",
           "title": "asset identity",
           "readOnly": true
         },
@@ -404,7 +405,7 @@
             "$ref": "#/definitions/v2Attribute"
           },
           "description": "key value mapping of asset properties",
-          "title": "all the assets attributes"
+          "title": "all the publicassets attributes"
         },
         "confirmation_status": {
           "type": "string",
@@ -440,12 +441,6 @@
           "description": "indicates time the asset data is from",
           "readOnly": true
         },
-        "storage_integrity": {
-          "type": "string",
-          "$ref": "#/definitions/v2StorageIntegrity",
-          "description": "DEPRECATED use proof_mechanism",
-          "title": "XXX: #4483 DEPRECATED use proof_mechanism"
-        },
         "proof_mechanism": {
           "type": "string",
           "$ref": "#/definitions/v2ProofMechanism",
@@ -466,7 +461,7 @@
           "maxLength": 1024
         }
       },
-      "description": "This describes RKVST Asset."
+      "description": "This describes an Asset."
     },
     "v2Attribute": {
       "type": "object",
@@ -507,8 +502,8 @@
     "v2EventResponse": {
       "type": "object",
       "example": {
-        "identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000",
-        "asset_identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
+        "identity": "publicassets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000",
+        "asset_identity": "publicassets/add30235-1424-4fda-840a-d5ef82c4c96f",
         "operation": "Record",
         "behaviour": "RecordEvidence",
         "event_attributes": {
@@ -551,7 +546,7 @@
         },
         "asset_identity": {
           "type": "string",
-          "description": "identity of a related asset resource `assets/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
+          "description": "identity of a related asset resource `publicassets/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
           "title": "relative resource name for associated asset ( asset the operation is performed on  - has to have specific behaviour enabled)",
           "readOnly": true
         },
@@ -657,7 +652,7 @@
           "maxLength": 1024
         }
       },
-      "description": "This describes RKVST Event."
+      "description": "This describes an Event."
     },
     "v2ListAttr": {
       "type": "object",
@@ -686,8 +681,8 @@
       "example": {
         "events": [
           {
-            "identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000",
-            "asset_identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
+            "identity": "publicassets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000",
+            "asset_identity": "publicassets/add30235-1424-4fda-840a-d5ef82c4c96f",
             "operation": "Record",
             "behaviour": "RecordEvidence",
             "event_attributes": {
@@ -722,8 +717,8 @@
             "tenant_identity": "tenant/8e0b600c-8234-43e4-860c-e95bdcd695a9"
           },
           {
-            "identity": "assets/bf330235-1424-4fda-840a-d5ef82c4c96f/events/23c06c48-e0b8-42e0-8dcf-dc8c4fdad123",
-            "asset_identity": "assets/bf330235-1424-4fda-840a-d5ef82c4c96f",
+            "identity": "publicassets/bf330235-1424-4fda-840a-d5ef82c4c96f/events/23c06c48-e0b8-42e0-8dcf-dc8c4fdad123",
+            "asset_identity": "publicassets/bf330235-1424-4fda-840a-d5ef82c4c96f",
             "operation": "Record",
             "behaviour": "RecordEvidence",
             "event_attributes": {
@@ -809,21 +804,11 @@
       "type": "string",
       "enum": [
         "PROOF_MECHANISM_UNSPECIFIED",
-        "KHIPU",
+        "RESERVED1",
         "SIMPLE_HASH",
-        "TRIE_HASH"
+        "MERKLE_LOG"
       ],
       "default": "PROOF_MECHANISM_UNSPECIFIED"
-    },
-    "v2StorageIntegrity": {
-      "type": "string",
-      "enum": [
-        "STORAGE_INTEGRITY_UNSPECIFIED",
-        "LEDGER",
-        "TENANT_STORAGE"
-      ],
-      "default": "STORAGE_INTEGRITY_UNSPECIFIED",
-      "description": "Specifies how the asset data will be stored. This is set once on creation\nand does not change."
     },
     "v2TrackedStatus": {
       "type": "string",

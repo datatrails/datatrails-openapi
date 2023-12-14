@@ -5,8 +5,8 @@
     "description": "API to manage an archivist node.",
     "version": "1.0",
     "contact": {
-      "name": "RKVST",
-      "url": "https://www.rkvst.com"
+      "name": "DataTrails",
+      "url": "https://www.datatrails.ai"
     }
   },
   "tags": [
@@ -15,7 +15,7 @@
       "description": "Query the ArchivistNode you're connected to"
     }
   ],
-  "basePath": "/_api",
+  "basePath": "/archivist/v1/archivistnode",
   "schemes": [
     "https"
   ],

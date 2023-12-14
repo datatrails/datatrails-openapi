@@ -5,8 +5,8 @@
     "description": "API to manage Blockchain for public assets.",
     "version": "1.0-alpha2",
     "contact": {
-      "name": "RKVST",
-      "url": "https://www.rkvst.com"
+      "name": "DataTrails",
+      "url": "https://www.datatrails.ai"
     }
   },
   "tags": [
@@ -15,7 +15,7 @@
       "description": "Retrieve information about the blockchain network for public assets"
     }
   ],
-  "basePath": "/_api",
+  "basePath": "/archivist/v1alpha2/blockchain/publicassets",
   "schemes": [
     "https"
   ],
@@ -86,9 +86,6 @@
     }
   },
   "definitions": {
-    "v1alpha2KhipuDetails": {
-      "type": "object"
-    },
     "v1alpha2ListBlockchainResponse": {
       "type": "object",
       "example": {
@@ -274,9 +271,6 @@
         "simple_hash_details": {
           "$ref": "#/definitions/v1alpha2SimpleHashDetails"
         },
-        "khipu_details": {
-          "$ref": "#/definitions/v1alpha2KhipuDetails"
-        },
         "kind": {
           "$ref": "#/definitions/v2ProofMechanism"
         }
@@ -287,9 +281,9 @@
       "type": "string",
       "enum": [
         "PROOF_MECHANISM_UNSPECIFIED",
-        "KHIPU",
+        "RESERVED1",
         "SIMPLE_HASH",
-        "TRIE_HASH"
+        "MERKLE_LOG"
       ],
       "default": "PROOF_MECHANISM_UNSPECIFIED"
     }

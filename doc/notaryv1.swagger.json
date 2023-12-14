@@ -5,17 +5,17 @@
     "description": "API providing SCITT transparency service claims and receipts",
     "version": "1.0",
     "contact": {
-      "name": "RKVST",
-      "url": "https://www.rkvst.com"
+      "name": "DataTrails",
+      "url": "https://www.datatrails.ai"
     }
   },
   "tags": [
     {
       "name": "Notary (Beta)",
-      "description": "Get SCITT claims and receipts for RKVST KHIPU events"
+      "description": "Get SCITT claims and receipts for Events"
     }
   ],
-  "basePath": "/_api",
+  "basePath": "/archivist/v1/notary",
   "schemes": [
     "https"
   ],
@@ -54,7 +54,7 @@
         "parameters": [
           {
             "name": "body",
-            "description": "This describes the body of a request to create claim for an RKVST event. KHIPU and SIMPLE_HASH events are supported.",
+            "description": "This describes the body of a request to create claim for an Event. SIMPLE_HASH events are supported.",
             "in": "body",
             "required": true,
             "schema": {
@@ -143,7 +143,7 @@
           "maxLength": 4096
         }
       },
-      "description": "This describes the body of a request to create claim for an RKVST event. KHIPU and SIMPLE_HASH events are supported."
+      "description": "This describes the body of a request to create claim for an Event. SIMPLE_HASH events are supported."
     },
     "v1CreateEventClaimResponse": {
       "type": "object",

@@ -5,8 +5,8 @@
     "description": "API for asset and event management.",
     "version": "2.0",
     "contact": {
-      "name": "RKVST",
-      "url": "https://www.rkvst.com"
+      "name": "DataTrails",
+      "url": "https://www.datatrails.ai"
     }
   },
   "tags": [
@@ -19,7 +19,7 @@
       "description": "Internal APIs that are unstable and should not be used in a production setting."
     }
   ],
-  "basePath": "/_api",
+  "basePath": "/archivist/v2/assets",
   "schemes": [
     "https"
   ],
@@ -120,19 +120,6 @@
             "type": "string"
           },
           {
-            "name": "storage_integrity",
-            "description": "XXX: #4483 DEPRECATED use proof_mechanism\n\nDEPRECATED use proof_mechanism",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "enum": [
-              "STORAGE_INTEGRITY_UNSPECIFIED",
-              "LEDGER",
-              "TENANT_STORAGE"
-            ],
-            "default": "STORAGE_INTEGRITY_UNSPECIFIED"
-          },
-          {
             "name": "proof_mechanism",
             "description": "proof mechanism of the asset (and all its events)\n\nthe mechanism used to provide evidential proof",
             "in": "query",
@@ -140,9 +127,9 @@
             "type": "string",
             "enum": [
               "PROOF_MECHANISM_UNSPECIFIED",
-              "KHIPU",
+              "RESERVED1",
               "SIMPLE_HASH",
-              "TRIE_HASH"
+              "MERKLE_LOG"
             ],
             "default": "PROOF_MECHANISM_UNSPECIFIED"
           },
@@ -198,104 +185,12 @@
         "parameters": [
           {
             "name": "body",
-            "description": "This describes the body of a request to create new RKVST Asset.",
+            "description": "This describes the body of a request to create a new Asset.",
             "in": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/v2CreateAssetRequest"
             }
-          }
-        ],
-        "tags": [
-          "Assets & Events"
-        ]
-      }
-    },
-    "/archivist/v2/assets/{asset_uuid}/events/{uuid}": {
-      "get": {
-        "summary": "Retrieves Archivist event",
-        "description": "Retrieves a specific Archivist event",
-        "operationId": "Assets_GetEvent",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v2EventResponse"
-            }
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to view Event."
-          },
-          "404": {
-            "description": "Returned when the event does not exist."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          }
-        },
-        "parameters": [
-          {
-            "name": "asset_uuid",
-            "description": "Specify the Asset UUID where `assets/{asset_uuid}/events/{uuid}` is the Event Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "uuid",
-            "description": "Specify the Event UUID where `assets/{asset_uuid}/events/{uuid}` is the Event Identity e.g. `11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Assets & Events"
-        ]
-      }
-    },
-    "/archivist/v2/assets/{asset_uuid}/events/{uuid}:publicurl": {
-      "get": {
-        "summary": "Retrieves the public url for a specific Archivist event.",
-        "description": "Retrieves the public url for a specific Archivist event.",
-        "operationId": "Assets_GetEventPublicURL",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v2PublicEventURLResponse"
-            }
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to view an Asset."
-          },
-          "404": {
-            "description": "Returned when the asset with the id does not exist."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          }
-        },
-        "parameters": [
-          {
-            "name": "asset_uuid",
-            "description": "Specify the Asset UUID where `assets/{asset_uuid}/events/{uuid}` is the Event Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "uuid",
-            "description": "Specify the Event UUID where `assets/{asset_uuid}/events/{uuid}` is the Event Identity e.g. `11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
-            "in": "path",
-            "required": true,
-            "type": "string"
           }
         ],
         "tags": [
@@ -350,6 +245,45 @@
         ]
       }
     },
+    "/archivist/v2/assets/{uuid}:publicurl": {
+      "get": {
+        "summary": "Retrieves the public url for a specific Archivist asset.",
+        "description": "Retrieves the public url for a specific Archivist asset.",
+        "operationId": "Assets_GetAssetPublicURL",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v2PublicAssetURLResponse"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system."
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to view an Asset."
+          },
+          "404": {
+            "description": "Returned when the asset with the id does not exist."
+          },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
+          }
+        },
+        "parameters": [
+          {
+            "name": "uuid",
+            "description": "Specify the Asset UUID where `assets/{uuid}` is the Asset Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f`",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Assets & Events"
+        ]
+      }
+    },
     "/archivist/v2/assets/{uuid}/events": {
       "get": {
         "summary": "List Archivist events",
@@ -363,7 +297,7 @@
             }
           },
           "206": {
-            "description": "The number of events exceeds the servers limit. The approximate number of matching results is provided by the x-total-count header, the exact limit is available in the content-range header. The value format is 'items 0-LIMIT/TOTAL'.  Note that x-total-count is always present for 200 and 206 responses. It is the servers best available approximation. Similarly, in any result set, you may get a few more than LIMIT items."
+            "description": "The number of events exceeds the server's limit. The approximate number of matching results is provided by the x-total-count header, the exact limit is available in the content-range header. The value format is 'items 0-LIMIT/TOTAL'.  Note that x-total-count is always present for 200 and 206 responses. It is the servers best available approximation. Similarly, in any result set, you may get a few more than LIMIT items."
           },
           "401": {
             "description": "Returned when the user is not authenticated to the system."
@@ -570,9 +504,9 @@
             "type": "string",
             "enum": [
               "PROOF_MECHANISM_UNSPECIFIED",
-              "KHIPU",
+              "RESERVED1",
               "SIMPLE_HASH",
-              "TRIE_HASH"
+              "MERKLE_LOG"
             ],
             "default": "PROOF_MECHANISM_UNSPECIFIED"
           }
@@ -672,16 +606,62 @@
         ]
       }
     },
-    "/archivist/v2/assets/{uuid}:publicurl": {
+    "/archivist/v2/assets/{asset_uuid}/events/{uuid}": {
       "get": {
-        "summary": "Retrieves the public url for a specific Archivist asset.",
-        "description": "Retrieves the public url for a specific Archivist asset.",
-        "operationId": "Assets_GetAssetPublicURL",
+        "summary": "Retrieves Archivist event",
+        "description": "Retrieves a specific Archivist event",
+        "operationId": "Assets_GetEvent",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v2PublicAssetURLResponse"
+              "$ref": "#/definitions/v2EventResponse"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system."
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to view Event."
+          },
+          "404": {
+            "description": "Returned when the event does not exist."
+          },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
+          }
+        },
+        "parameters": [
+          {
+            "name": "asset_uuid",
+            "description": "Specify the Asset UUID where `assets/{asset_uuid}/events/{uuid}` is the Event Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "uuid",
+            "description": "Specify the Event UUID where `assets/{asset_uuid}/events/{uuid}` is the Event Identity e.g. `11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Assets & Events"
+        ]
+      }
+    },
+    "/archivist/v2/assets/{asset_uuid}/events/{uuid}:publicurl": {
+      "get": {
+        "summary": "Retrieves the public url for a specific Archivist event.",
+        "description": "Retrieves the public url for a specific Archivist event.",
+        "operationId": "Assets_GetEventPublicURL",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v2PublicEventURLResponse"
             }
           },
           "401": {
@@ -699,8 +679,15 @@
         },
         "parameters": [
           {
+            "name": "asset_uuid",
+            "description": "Specify the Asset UUID where `assets/{asset_uuid}/events/{uuid}` is the Event Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
             "name": "uuid",
-            "description": "Specify the Asset UUID where `assets/{uuid}` is the Asset Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f`",
+            "description": "Specify the Event UUID where `assets/{asset_uuid}/events/{uuid}` is the Event Identity e.g. `11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
             "in": "path",
             "required": true,
             "type": "string"
@@ -893,12 +880,6 @@
           "description": "indicates time the asset data is from",
           "readOnly": true
         },
-        "storage_integrity": {
-          "type": "string",
-          "$ref": "#/definitions/v2StorageIntegrity",
-          "description": "DEPRECATED use proof_mechanism",
-          "title": "XXX: #4483 DEPRECATED use proof_mechanism"
-        },
         "proof_mechanism": {
           "type": "string",
           "$ref": "#/definitions/v2ProofMechanism",
@@ -919,7 +900,7 @@
           "maxLength": 1024
         }
       },
-      "description": "This describes RKVST Asset."
+      "description": "This describes an Asset."
     },
     "v2Attribute": {
       "type": "object",
@@ -986,12 +967,6 @@
           "title": "event attributes for the assets creation",
           "maxLength": 1024
         },
-        "storage_integrity": {
-          "type": "string",
-          "$ref": "#/definitions/v2StorageIntegrity",
-          "description": "DEPRECATED use proof_mechanism",
-          "title": "XXX: #4483 DEPRECATED use proof_mechanism"
-        },
         "proof_mechanism": {
           "type": "string",
           "$ref": "#/definitions/v2ProofMechanism",
@@ -1008,7 +983,7 @@
           "description": "Public asset. A public asset and all its events are visible to the general public.Sharing to specific organisations is not available for public assets."
         }
       },
-      "description": "This describes the body of a request to create new RKVST Asset."
+      "description": "This describes the body of a request to create a new Asset."
     },
     "v2DictAttr": {
       "type": "object",
@@ -1174,7 +1149,7 @@
           "maxLength": 1024
         }
       },
-      "description": "This describes RKVST Event."
+      "description": "This describes an Event."
     },
     "v2ListAssetsRequestOrderBy": {
       "type": "string",
@@ -1417,16 +1392,16 @@
       "type": "string",
       "enum": [
         "PROOF_MECHANISM_UNSPECIFIED",
-        "KHIPU",
+        "RESERVED1",
         "SIMPLE_HASH",
-        "TRIE_HASH"
+        "MERKLE_LOG"
       ],
       "default": "PROOF_MECHANISM_UNSPECIFIED"
     },
     "v2PublicAssetURLResponse": {
       "type": "object",
       "example": {
-        "publicurl": "https://app.rkvst.io/archivist/publicassets/add30235-1424-4fda-840a-d5ef82c4c96f"
+        "publicurl": "https://app.datatrails.ai/archivist/publicassets/add30235-1424-4fda-840a-d5ef82c4c96f"
       },
       "properties": {
         "publicurl": {
@@ -1439,7 +1414,7 @@
     "v2PublicEventURLResponse": {
       "type": "object",
       "example": {
-        "publicurl": "https://app.rkvst.io/archivist/publicassets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000"
+        "publicurl": "https://app.datatrails.ai/archivist/publicassets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000"
       },
       "properties": {
         "publicurl": {
@@ -1448,16 +1423,6 @@
       },
       "description": "A url that can be used to access the public event.",
       "title": "PublicEventURLResponse is the public url response when calling the :publicurl verb"
-    },
-    "v2StorageIntegrity": {
-      "type": "string",
-      "enum": [
-        "STORAGE_INTEGRITY_UNSPECIFIED",
-        "LEDGER",
-        "TENANT_STORAGE"
-      ],
-      "default": "STORAGE_INTEGRITY_UNSPECIFIED",
-      "description": "Specifies how the asset data will be stored. This is set once on creation\nand does not change."
     },
     "v2TrackedStatus": {
       "type": "string",

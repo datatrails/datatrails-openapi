@@ -5,8 +5,8 @@
     "description": "API for Tenancies Management, not creation or deletion, but enabling and disabling of system capabilities.",
     "version": "2.0",
     "contact": {
-      "name": "RKVST",
-      "url": "https://www.rkvst.com"
+      "name": "DataTrails",
+      "url": "https://www.datatrails.ai"
     }
   },
   "tags": [],
@@ -98,20 +98,6 @@
     }
   },
   "definitions": {
-    "internalv1Status": {
-      "type": "object",
-      "example": {
-        "khipu": "PENDING"
-      },
-      "properties": {
-        "khipu": {
-          "$ref": "#/definitions/v1KHIPUStatus",
-          "description": "The khipu status"
-        }
-      },
-      "description": "Status of capabilities",
-      "title": "Status is the status of capabilities"
-    },
     "v1Configuration": {
       "type": "object",
       "example": {
@@ -123,10 +109,7 @@
           "assets": 250
         },
         "throughput": "HIGH",
-        "verified_domain": "example.com",
-        "status": {
-          "khipu": "PENDING"
-        }
+        "verified_domain": "example.com"
       },
       "properties": {
         "identity": {
@@ -155,27 +138,9 @@
           "type": "string",
           "description": "Verified domain for the given tenancy",
           "maxLength": 128
-        },
-        "status": {
-          "$ref": "#/definitions/internalv1Status",
-          "description": "Capabilities status for the given tenancy",
-          "readOnly": true
         }
       },
       "description": "Configuration for a given tenany"
-    },
-    "v1KHIPUStatus": {
-      "type": "string",
-      "enum": [
-        "KHIPU_STATUS_UNSPECIFIED",
-        "DISABLED",
-        "PENDING",
-        "ENABLED",
-        "FAILED"
-      ],
-      "default": "KHIPU_STATUS_UNSPECIFIED",
-      "description": "- DISABLED: disabled\n - PENDING: not yet enabled\n - ENABLED: enabled\n - FAILED: failed to enable",
-      "title": "KHIPUStatus is the status of the khipu capability for a given tenant"
     },
     "v1Throughput": {
       "type": "string",

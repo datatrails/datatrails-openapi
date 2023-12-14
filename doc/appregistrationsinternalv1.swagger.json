@@ -1,0 +1,150 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "AppRegistrations Internal API",
+    "description": "API to manage Application Internal Registrations.",
+    "version": "1.0",
+    "contact": {
+      "name": "DataTrails",
+      "url": "https://www.datatrails.ai"
+    }
+  },
+  "tags": [
+    {
+      "name": "Unsupported",
+      "description": "Internal APIs that are unstable and should not be used in a production setting."
+    }
+  ],
+  "basePath": "/archivist/internal/iam/v1/applications",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/archivist/internal/iam/v1/applications/{uuid}": {
+      "get": {
+        "summary": "Unsupported and for internal use only.",
+        "description": "Unsupported and for internal use only.",
+        "operationId": "AppRegistrationsInternal_InternalGetAppRegistration",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ApplicationWithTier"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "uuid",
+            "description": "UUID identifying the application",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Unsupported"
+        ]
+      }
+    },
+    "/archivist/internal/iam/v1/applications:openapi": {
+      "get": {
+        "summary": "Get OpenAPI spec for AppRegistrations",
+        "description": "Get OpenAPI v2.0 spec for AppRegistrations",
+        "operationId": "AppRegistrations_GetOpenAPI",
+        "responses": {
+          "200": {
+            "description": "A successful response."
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system."
+          },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
+          }
+        },
+        "tags": [
+          "AppRegistrations"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "v1ApplicationWithTier": {
+      "type": "object",
+      "properties": {
+        "identity": {
+          "type": "string"
+        },
+        "display_name": {
+          "type": "string"
+        },
+        "client_id": {
+          "type": "string"
+        },
+        "tenant_id": {
+          "type": "string"
+        },
+        "credentials": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1Credential"
+          }
+        },
+        "custom_claims": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "tier": {
+          "$ref": "#/definitions/v1Tier"
+        }
+      }
+    },
+    "v1Credential": {
+      "type": "object",
+      "example": {
+        "secret": "2acc636e8439fa2ea1a613fe547a1d435b0b0ab3793f11751559d7431a3414eb",
+        "valid_from": "2021-09-17T16:54:08Z",
+        "valid_until": "2022-09-17T16:54:08Z"
+      },
+      "properties": {
+        "secret": {
+          "type": "string",
+          "description": "Client secret used in authentication",
+          "readOnly": true
+        },
+        "valid_from": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp indicating when the secret can be used from",
+          "readOnly": true
+        },
+        "valid_until": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp indicating when the secret can be used until",
+          "readOnly": true
+        }
+      },
+      "description": "Describes a single time-limited secret"
+    },
+    "v1Tier": {
+      "type": "string",
+      "enum": [
+        "TIER_UNSPECIFIED",
+        "FREE",
+        "PREMIUM"
+      ],
+      "default": "TIER_UNSPECIFIED"
+    }
+  }
+}

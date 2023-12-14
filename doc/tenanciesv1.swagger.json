@@ -1,29 +1,29 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "UserManagement API",
-    "description": "Simple API for User Management",
+    "title": "Tenancies API",
+    "description": "API to manage tenancies",
     "version": "1.0",
     "contact": {
-      "name": "RKVST",
-      "url": "https://www.rkvst.com"
+      "name": "DataTrails",
+      "url": "https://www.datatrails.ai"
     }
   },
   "tags": [
     {
       "name": "Users",
-      "description": "Manage users in your RKVST tenancy"
+      "description": "Manage users in your tenancy"
     },
     {
       "name": "Tenancies",
-      "description": "Manage your RKVST tenancy"
+      "description": "Manage your tenancy"
     },
     {
       "name": "Unsupported",
       "description": "Internal APIs that are unstable and should not be used in a production setting."
     }
   ],
-  "basePath": "/_api",
+  "basePath": "/archivist/v1/tenancies",
   "schemes": [
     "https"
   ],
@@ -500,39 +500,6 @@
         ]
       }
     },
-    "/archivist/v1/users/tenants": {
-      "get": {
-        "summary": "List User Tenants",
-        "description": "Returns a list of tenancies the user has access to.",
-        "operationId": "Users_ListUserTenants",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1ListUserTenantsResponse"
-            }
-          },
-          "400": {
-            "description": "Returned when the request is badly formed."
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to read the user."
-          },
-          "404": {
-            "description": "Returned when the identified user don't exist."
-          },
-          "500": {
-            "description": "Returned when the underlying storage system returns an error."
-          }
-        },
-        "tags": [
-          "Users"
-        ]
-      }
-    },
     "/archivist/v1/tenancies:openapi": {
       "get": {
         "summary": "Get OpenAPI spec for Tenancies",
@@ -627,7 +594,7 @@
       "properties": {
         "policy_id": {
           "type": "string",
-          "description": "Per-tenant B2C policy ID. Value controlled by RKVST",
+          "description": "Per-tenant B2C policy ID",
           "readOnly": true
         },
         "config_url": {
@@ -863,19 +830,12 @@
             "format": "int32"
           }
         },
-        "storage_integrity": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v2StorageIntegrity"
-          },
-          "description": "We dont need these as we can figure out if things enabled from the limits map\nabove\nstorage_integrity includes the enabled storage_integrity values for the tenant.\nCurrently we only support LEDGER *and* TENANT_STORAGE or just TENANT_STORAGE\nThis is only here for migration to new ProofMechanism - will be reserved at a\nlater date."
-        },
         "proof_mechanism": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/v2ProofMechanism"
           },
-          "title": "proof_mechanism includes the enabled proof_mechanism values for the tenant.\nCurrently we only support KHIPU *and* SIMPLE_HASH or just SIMPLE_HASH"
+          "title": "proof_mechanism includes the enabled proof_mechanism values for the tenant.\nCurrently we only support SIMPLE_HASH or MERKLE_LOG"
         },
         "tier": {
           "$ref": "#/definitions/v1Tier"
@@ -1049,74 +1009,11 @@
       "type": "string",
       "enum": [
         "PROOF_MECHANISM_UNSPECIFIED",
-        "KHIPU",
+        "RESERVED1",
         "SIMPLE_HASH",
-        "TRIE_HASH"
+        "MERKLE_LOG"
       ],
       "default": "PROOF_MECHANISM_UNSPECIFIED"
-    },
-    "v2StorageIntegrity": {
-      "type": "string",
-      "enum": [
-        "STORAGE_INTEGRITY_UNSPECIFIED",
-        "LEDGER",
-        "TENANT_STORAGE"
-      ],
-      "default": "STORAGE_INTEGRITY_UNSPECIFIED",
-      "description": "Specifies how the asset data will be stored. This is set once on creation\nand does not change."
-    },
-    "v1ListUserTenantsResponse": {
-      "type": "object",
-      "example": {
-        "tenants": [
-          {
-            "identity": "tenant/01038663-c357-470d-912a-3abc9528dd21",
-            "display_name": "Bobs Tenancy"
-          },
-          {
-            "identity": "tenant/12149552-f258-430d-922b-4bcd8413ee30",
-            "display_name": "Alices Tenancy"
-          }
-        ],
-        "page_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6InN0dW50aWR"
-      },
-      "properties": {
-        "tenants": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1UserTenantResponse",
-            "readOnly": true
-          },
-          "description": "tenants in the form `tenant/{UUID}`"
-        },
-        "next_page_token": {
-          "type": "string",
-          "description": "Token to retrieve the next page of results or empty if there are none."
-        }
-      },
-      "description": "List of tenancies the user belongs to (or the next page in a continuing  list request)"
-    },
-    "v1UserTenantResponse": {
-      "type": "object",
-      "example": {
-        "identity": "tenant/01038663-c357-470d-912a-3abc9528dd21",
-        "display_name": "Bobs Tenancy"
-      },
-      "properties": {
-        "identity": {
-          "type": "string",
-          "description": "tenant identity in the form `tenancies/{UUID}`",
-          "readOnly": true
-        },
-        "display_name": {
-          "type": "string",
-          "description": "display name of the tenancy.`",
-          "readOnly": true
-        }
-      },
-      "description": "Tenant information for a user.",
-      "title": "UserTenantResponse represent a specific tenant's information for a user"
     }
   }
 }

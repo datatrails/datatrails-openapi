@@ -1,0 +1,137 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Archivist externally facing API",
+    "version": "version not set"
+  },
+  "tags": [],
+  "basePath": "/archivist/v1/didweb",
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/archivist/v1/didweb/did.json": {
+      "get": {
+        "summary": "Get DID web document",
+        "description": "Get DID web document.",
+        "operationId": "DIDWeb_GetDID",
+        "responses": {
+          "200": {
+            "description": "Returned when the did document is found is successful.",
+            "schema": {
+              "$ref": "#/definitions/v1GetDIDResponse"
+            }
+          },
+          "404": {
+            "description": "Returned when did document was not found."
+          }
+        },
+        "tags": [
+          "DID"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "v1GetDIDResponse": {
+      "type": "object",
+      "example": {
+        "id": "did:web:app.rkvst.io:archivist:v1:didweb",
+        "@context": [
+          "https://www.w3.org/ns/did/v1"
+        ],
+        "verificationMethod": [
+          {
+            "id": "#key-41",
+            "type": "JsonWebkey",
+            "controller": "did:web:app.rkvst.io:archivist:v1:didweb",
+            "publicKeyJwk": {
+              "kty": "EC",
+              "crv": "P-384",
+              "alg": "ES384",
+              "x": "LCeAt2sW36j94wuFP0gNEIHDzqR6Nh_Udu2ObLer3cKFBCaAHY1svmbPV69bP3RH",
+              "y": "zz2SkcOGYM6PbYlw19tcbpzo6bEMYHIwGBnN5rd8QWykAprstPdxx4U0uScvDcYd"
+            }
+          }
+        ]
+      },
+      "properties": {
+        "context": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "The DID document contexts"
+        },
+        "id": {
+          "type": "string",
+          "description": "The DID document Identity"
+        },
+        "verificationMethod": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1VerificationMethod"
+          },
+          "description": "The DID document verification methods"
+        }
+      },
+      "description": "The DID document returned."
+    },
+    "v1PublicKeyJWK": {
+      "type": "object",
+      "properties": {
+        "alg": {
+          "type": "string",
+          "description": "The jwk algorithm"
+        },
+        "crv": {
+          "type": "string",
+          "description": "The jwk EC curve"
+        },
+        "kid": {
+          "type": "string",
+          "description": "The jwk kid"
+        },
+        "kty": {
+          "type": "string",
+          "description": "The jwk key type"
+        },
+        "x": {
+          "type": "string",
+          "description": "The x EC key part"
+        },
+        "y": {
+          "type": "string",
+          "description": "The y EC key part"
+        }
+      },
+      "title": "A Public Key JWK: https://www.rfc-editor.org/rfc/rfc7517\nNOTE: for now assume EC key"
+    },
+    "v1VerificationMethod": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The identity of the verification method"
+        },
+        "controller": {
+          "type": "string",
+          "description": "The controller conforming to: https://www.w3.org/TR/did-core/#did-syntax"
+        },
+        "type": {
+          "type": "string",
+          "description": "The type of verification method: as defined in https://www.w3.org/TR/did-spec-registries/"
+        },
+        "publicKeyJwk": {
+          "$ref": "#/definitions/v1PublicKeyJWK",
+          "description": "The public key jwk"
+        }
+      },
+      "title": "A verification method for the DID document, based off: https://www.w3.org/TR/did-core/#verification-method-properties"
+    }
+  }
+}

@@ -5,12 +5,12 @@
     "description": "API to manage tls ca certificates.",
     "version": "1.0",
     "contact": {
-      "name": "RKVST",
-      "url": "https://www.rkvst.com"
+      "name": "DataTrails",
+      "url": "https://www.datatrails.ai"
     }
   },
   "tags": [],
-  "basePath": "/_api",
+  "basePath": "/archivist/v1/tlscacertificates",
   "schemes": [
     "https"
   ],
@@ -21,6 +21,31 @@
     "application/json"
   ],
   "paths": {
+    "/archivist/v1/tlscacertificates:caps": {
+      "get": {
+        "summary": "Get remaining capped resources for TLSCACertificates",
+        "description": "Not stable or officially supported. Get remaining capped resources for TLSCACertificates",
+        "operationId": "TLSCACertificates_GetCaps",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Caps"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system."
+          },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
+          }
+        },
+        "tags": [
+          "TLSCACertificates",
+          "Unsupported"
+        ]
+      }
+    },
     "/archivist/v1/tlscacertificates": {
       "get": {
         "summary": "List TLS CA certificates",
@@ -279,31 +304,6 @@
         ],
         "tags": [
           "TLSCACertificates"
-        ]
-      }
-    },
-    "/archivist/v1/tlscacertificates:caps": {
-      "get": {
-        "summary": "Get remaining capped resources for TLSCACertificates",
-        "description": "Not stable or officially supported. Get remaining capped resources for TLSCACertificates",
-        "operationId": "TLSCACertificates_GetCaps",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1Caps"
-            }
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          }
-        },
-        "tags": [
-          "TLSCACertificates",
-          "Unsupported"
         ]
       }
     },

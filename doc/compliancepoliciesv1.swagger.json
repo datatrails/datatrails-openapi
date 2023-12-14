@@ -1,19 +1,15 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Compliance API",
-    "description": "API to manage Compliance.",
+    "title": "Compliance Policies API",
+    "description": "API to manage Compliance Policies.",
     "version": "1.0",
     "contact": {
-      "name": "RKVST",
-      "url": "https://www.rkvst.com"
+      "name": "DataTrails",
+      "url": "https://www.datatrails.ai"
     }
   },
   "tags": [
-    {
-      "name": "Compliance",
-      "description": "List compliance statuses for an asset"
-    },
     {
       "name": "CompliancePolicies",
       "description": "Read and modify Compliance Policies"
@@ -23,7 +19,7 @@
       "description": "Internal APIs that are unstable and should not be used in a production setting."
     }
   ],
-  "basePath": "/_api",
+  "basePath": "/archivist/v1/compliance_policies",
   "schemes": [
     "https"
   ],
@@ -34,84 +30,9 @@
     "application/json"
   ],
   "paths": {
-    "/archivist/v1/compliance/assets/{uuid}": {
-      "get": {
-        "summary": "List all compliance status relevant to an asset",
-        "operationId": "Compliance_ListAssetCompliance",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1ListAssetComplianceResponse"
-            }
-          },
-          "206": {
-            "description": "The number of compliance statements exceeds the servers limit. "
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to access the requested resource."
-          },
-          "404": {
-            "description": "Returned when the asset with the id does not exist."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          }
-        },
-        "parameters": [
-          {
-            "name": "uuid",
-            "description": "Specify the Asset UUID where `assets/{uuid}` is the Asset Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "page_size",
-            "description": "Maximum results per page.",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "page_token",
-            "description": "The next_page_token returned from a previous list request if any.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "order_by",
-            "description": "Specify the sort order for the results.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "enum": [
-              "DEFAULT"
-            ],
-            "default": "DEFAULT"
-          },
-          {
-            "name": "compliant_at",
-            "description": "timestamp at which compliance is determined\n\ntime at which compliance is determined",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "date-time"
-          }
-        ],
-        "tags": [
-          "Compliance"
-        ]
-      }
-    },
     "/archivist/v1/compliance_policies": {
       "get": {
-        "operationId": "Compliance_ListCompliancePolicy",
+        "operationId": "CompliancePolicies_ListCompliancePolicy",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -195,7 +116,7 @@
         ]
       },
       "post": {
-        "operationId": "Compliance_AddCompliancePolicy",
+        "operationId": "CompliancePolicies_AddCompliancePolicy",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -237,7 +158,7 @@
     },
     "/archivist/v1/compliance_policies/{uuid}": {
       "get": {
-        "operationId": "Compliance_GetCompliancePolicy",
+        "operationId": "CompliancePolicies_GetCompliancePolicy",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -272,7 +193,7 @@
         ]
       },
       "delete": {
-        "operationId": "Compliance_DeleteCompliancePolicy",
+        "operationId": "CompliancePolicies_DeleteCompliancePolicy",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -311,7 +232,7 @@
       "get": {
         "summary": "Get remaining capped resources for CompliancePolicies",
         "description": "Not stable or officially supported. Get remaining capped resources for CompliancePolicies",
-        "operationId": "Compliance_GetCaps",
+        "operationId": "CompliancePolicies_GetCaps",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -327,7 +248,6 @@
           }
         },
         "tags": [
-          "CompliancePolicies",
           "Unsupported"
         ]
       }
@@ -355,6 +275,14 @@
     }
   },
   "definitions": {
+    "ListCompliancePolicyRequestOrderBy": {
+      "type": "string",
+      "enum": [
+        "DEFAULT"
+      ],
+      "default": "DEFAULT",
+      "title": "Supported sort orders"
+    },
     "v1AddCompliancePolicyRequest": {
       "type": "object",
       "example": {
@@ -533,35 +461,6 @@
       },
       "description": "compliance policy"
     },
-    "v1ComplianceStatement": {
-      "type": "object",
-      "example": {
-        "compliance_policy_identity": "compliance_policies/0000-0000-000000000-00000000",
-        "compliant": false
-      },
-      "properties": {
-        "compliance_policy_identity": {
-          "type": "string",
-          "description": "identity of the compliance policy",
-          "title": "compliance_policy identity",
-          "readOnly": true,
-          "maxLength": 1024
-        },
-        "compliant": {
-          "type": "boolean",
-          "description": "status of compliance against the compliance policy",
-          "title": "compliance status"
-        },
-        "reason": {
-          "type": "string",
-          "description": "reason for non-compliance",
-          "readOnly": true,
-          "maxLength": 1024
-        }
-      },
-      "description": "simple compliance status against a compliance policy.",
-      "title": "A ComplianceStatement gives the status of compliance against a specific Compliance Policy"
-    },
     "v1ComplianceType": {
       "type": "string",
       "enum": [
@@ -593,63 +492,6 @@
         }
       },
       "description": "Filter"
-    },
-    "v1ListAssetComplianceRequestOrderBy": {
-      "type": "string",
-      "enum": [
-        "DEFAULT"
-      ],
-      "default": "DEFAULT",
-      "title": "Supported sort orders"
-    },
-    "v1ListAssetComplianceResponse": {
-      "type": "object",
-      "example": {
-        "compliance": [
-          {
-            "compliance_policy_identity": "compliance_policies/0000-0000-000000000-00000000",
-            "compliant": false
-          }
-        ],
-        "compliant": false,
-        "compliant_at": "2019-11-27T14:44:19Z"
-      },
-      "properties": {
-        "compliant": {
-          "type": "boolean",
-          "description": "overall compliance status for the asset",
-          "title": "Overall compliance status.  Will be true only if compliant is true for all applicable compliance_policies, otherwise false"
-        },
-        "compliance": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1ComplianceStatement"
-          },
-          "description": "list of statemants of compliance with applicable compliance policies",
-          "title": "List of compliance statements"
-        },
-        "next_page_token": {
-          "type": "string",
-          "description": "Token to retrieve the next page of results or empty if there are none."
-        },
-        "compliant_at": {
-          "type": "string",
-          "format": "date-time",
-          "description": "time at which compliance is determined",
-          "title": "timestamp at which compliance is determined",
-          "readOnly": true
-        }
-      },
-      "description": "simple compliance status for an Asset."
-    },
-    "v1ListCompliancePolicyRequestOrderBy": {
-      "type": "string",
-      "enum": [
-        "DEFAULT"
-      ],
-      "default": "DEFAULT",
-      "title": "Supported sort orders"
     },
     "v1ListCompliancePolicyResponse": {
       "type": "object",

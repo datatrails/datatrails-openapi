@@ -5,8 +5,8 @@
     "description": "API for uploading and downloading attachments.",
     "version": "2.0",
     "contact": {
-      "name": "RKVST",
-      "url": "https://www.rkvst.com"
+      "name": "DataTrails",
+      "url": "https://www.datatrails.ai"
     }
   },
   "tags": [
@@ -15,7 +15,7 @@
       "description": "Retrieve rich evidence and blobs metadata from Assets and Events"
     }
   ],
-  "basePath": "/_api",
+  "basePath": "/archivist/v2/attachments",
   "schemes": [
     "https"
   ],
