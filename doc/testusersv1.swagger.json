@@ -1,0 +1,143 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Testusers API",
+    "description": "API to manage Testusers",
+    "version": "1.0",
+    "contact": {
+      "name": "DataTrails",
+      "url": "https://www.datatrails.ai"
+    }
+  },
+  "tags": [
+    {
+      "name": "Testusers",
+      "description": "Manage your Testusers"
+    }
+  ],
+  "basePath": "/archivist/v1/tenstusers",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/archivist/v1/testusers": {
+      "post": {
+        "operationId": "TestUsers_EnsureUserAuthentication",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UserAuthenticationResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Request for authn token, including any required user & tenancy creation",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1EnsureUserAuthenticationRequest"
+            }
+          }
+        ],
+        "tags": [
+          "TestUsers"
+        ]
+      }
+    },
+    "/archivist/v1/testusers:openapi": {
+      "get": {
+        "summary": "Get OpenAPI spec for Testusers",
+        "description": "Get OpenAPI v2.0 spec for Testusers",
+        "operationId": "Testusers_GetOpenAPI",
+        "responses": {
+          "200": {
+            "description": "A successful response."
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system."
+          },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
+          }
+        },
+        "tags": [
+          "Teestusers"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "v1EnsureUserAuthenticationRequest": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "description": "user email",
+          "maxLength": 1024
+        },
+        "issuer": {
+          "type": "string",
+          "description": "issuer",
+          "maxLength": 1024
+        },
+        "subject": {
+          "type": "string",
+          "description": "subject identifier relative to issuer",
+          "maxLength": 1024
+        },
+        "displayName": {
+          "type": "string",
+          "description": "display name for the user",
+          "maxLength": 1024
+        },
+        "tenancy": {
+          "type": "string",
+          "description": "optional tenancy identifier to authenticate with (in tenant/{uuid} format)",
+          "maxLength": 1024
+        },
+        "expiry": {
+          "type": "string",
+          "format": "int64",
+          "description": "optional expiry time for the token"
+        },
+        "tier": {
+          "type": "string",
+          "description": "optional subscription tier",
+          "maxLength": 1024
+        },
+        "isSocial": {
+          "type": "boolean",
+          "description": "Social login"
+        }
+      },
+      "description": "Request for authn token, including any required user & tenancy creation"
+    },
+    "v1UserAuthenticationResponse": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string",
+          "description": "JWT"
+        },
+        "tenantID": {
+          "type": "string",
+          "description": "Tenant Identity"
+        },
+        "userID": {
+          "type": "string",
+          "description": "User Identity"
+        }
+      },
+      "description": "auth token for the described user"
+    }
+  }
+}
