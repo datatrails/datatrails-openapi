@@ -66,27 +66,6 @@
           "Users"
         ]
       }
-    },
-    "/archivist/v1/users:openapi": {
-      "get": {
-        "summary": "Get OpenAPI spec for Users",
-        "description": "Get OpenAPI v2.0 spec for Users",
-        "operationId": "Tenancies_GetOpenAPI",
-        "responses": {
-          "200": {
-            "description": "A successful response."
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          }
-        },
-        "tags": [
-          "Users"
-        ]
-      }
     }
   },
   "definitions": {

@@ -107,27 +107,6 @@
           "Notary (Beta)"
         ]
       }
-    },
-    "/archivist/v1/notary:openapi": {
-      "get": {
-        "summary": "Get OpenAPI spec for Notary (Beta)",
-        "description": "Get OpenAPI v2.0 spec for Notary (Beta)",
-        "operationId": "Notary_GetOpenAPI",
-        "responses": {
-          "200": {
-            "description": "A successful response."
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          }
-        },
-        "tags": [
-          "Notary (Beta)"
-        ]
-      }
     }
   },
   "definitions": {

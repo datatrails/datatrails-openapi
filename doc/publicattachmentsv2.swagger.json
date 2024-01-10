@@ -15,16 +15,16 @@
       "description": "Retrieve rich evidence and blobs metadata from Assets and Events"
     }
   ],
-  "basePath": "/archivist/v2/attachments/assets",
+  "basePath": "/archivist/v2/attachments/publicassets",
   "schemes": [
     "https"
   ],
   "paths": {
-    "/archivist/v2/attachments/assets/{asset_uuid}/events/{event_uuid}/{uuid}": {
+    "/archivist/v2/attachments/publicassets/{asset_uuid}/events/{event_uuid}/{uuid}": {
       "get": {
-        "summary": "Downloads an event attachment.",
+        "summary": "Downloads an event attachment from public asset.",
         "description": "Downloads an event attachment, if the given attachment is present in the 'arc_attachments' event atttribute.",
-        "operationId": "Attachments_Event_Download",
+        "operationId": "Attachments_PublicEvent_Download",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -35,17 +35,8 @@
           "400": {
             "description": "Returned when the request is badly formed."
           },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to get the blob."
-          },
           "404": {
             "description": "Returned when the underlying system can't find the event."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           }
         },
         "parameters": [
@@ -76,11 +67,11 @@
         ]
       }
     },
-    "/archivist/v2/attachments/assets/{asset_uuid}/events/{event_uuid}/{uuid}/info": {
+    "/archivist/v2/attachments/publicassets/{asset_uuid}/events/{event_uuid}/{uuid}/info": {
       "get": {
-        "summary": "Retrieve metadata on an attachment.",
+        "summary": "Retrieve metadata on an attachment from a public asset.",
         "description": "Retrieve metadata on an attachment, if the given attachment is present in the 'arc_attachments' event atttribute.",
-        "operationId": "Attachments_Event_Info",
+        "operationId": "Attachments_PublicEvent_Info",
         "produces": [
           "application/json"
         ],
@@ -94,17 +85,8 @@
           "400": {
             "description": "Returned when the request is badly formed."
           },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to get the blob metadata."
-          },
           "404": {
             "description": "Returned when the underlying system can't find the event."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           }
         },
         "parameters": [
@@ -135,11 +117,11 @@
         ]
       }
     },
-    "/archivist/v2/attachments/assets/{asset_uuid}/{uuid}": {
+    "/archivist/v2/attachments/publicassets/{asset_uuid}/{uuid}": {
       "get": {
-        "summary": "Downloads an asset attachment.",
+        "summary": "Downloads an public asset attachment.",
         "description": "Downloads an asset attachment, if the given attachment is present in the 'arc_attachments' asset atttribute.",
-        "operationId": "Attachments_Asset_Download",
+        "operationId": "Attachments_PublicAsset_Download",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -150,17 +132,8 @@
           "400": {
             "description": "Returned when the request is badly formed."
           },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to get the blob."
-          },
           "404": {
             "description": "Returned when the underlying system can't find the asset."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           }
         },
         "parameters": [
@@ -184,11 +157,11 @@
         ]
       }
     },
-    "/archivist/v2/attachments/assets/{asset_uuid}/{uuid}/info": {
+    "/archivist/v2/attachments/publicassets/{asset_uuid}/{uuid}/info": {
       "get": {
-        "summary": "Retrieve metadata on an attachment.",
+        "summary": "Retrieve metadata on an attachment from a public asset.",
         "description": "Retrieve metadata on an attachment, if the given attachment is present in the 'arc_attachments' asset atttribute.",
-        "operationId": "Attachments_Asset_Info",
+        "operationId": "Attachments_PublicAsset_Info",
         "produces": [
           "application/json"
         ],
@@ -202,17 +175,8 @@
           "400": {
             "description": "Returned when the request is badly formed."
           },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to get the blob metadata."
-          },
           "404": {
             "description": "Returned when the underlying system can't find the asset."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
           }
         },
         "parameters": [

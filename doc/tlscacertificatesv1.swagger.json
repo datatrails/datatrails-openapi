@@ -306,27 +306,6 @@
           "TLSCACertificates"
         ]
       }
-    },
-    "/archivist/v1/tlscacertificates:openapi": {
-      "get": {
-        "summary": "Get OpenAPI spec for TLSCACertificates",
-        "description": "Get OpenAPI v2.0 spec for TLSCACertificates",
-        "operationId": "TLSCACertificates_GetOpenAPI",
-        "responses": {
-          "200": {
-            "description": "A successful response."
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          }
-        },
-        "tags": [
-          "TLSCACertificates"
-        ]
-      }
     }
   },
   "definitions": {
