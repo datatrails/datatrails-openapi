@@ -26,7 +26,7 @@
     "application/json"
   ],
   "paths": {
-    "/archivist/v1/archivistnode": {
+    "/": {
       "get": {
         "summary": "Get information about an archivist node",
         "description": "Returns the identified archivist node",
@@ -56,7 +56,7 @@
         ]
       }
     },
-    "/archivist/v1/archivistnode/block": {
+    "/block": {
       "get": {
         "summary": "Get a block given a block hash or block number.",
         "description": "Get a block given a block hash or block number",

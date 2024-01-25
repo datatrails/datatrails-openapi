@@ -30,7 +30,7 @@
     "application/json"
   ],
   "paths": {
-    "/archivist/iam/v1/applications": {
+    "/": {
       "get": {
         "summary": "List applications for the user's tenant",
         "description": "Lists all applications for the user's tenant",
@@ -119,7 +119,7 @@
         ]
       }
     },
-    "/archivist/iam/v1/applications/{uuid}": {
+    "/{uuid}": {
       "get": {
         "summary": "Fetch an application record",
         "description": "Fetches the application record for the supplied UUID",
@@ -248,7 +248,7 @@
         ]
       }
     },
-    "/archivist/iam/v1/applications/{uuid}:regenerate-secret": {
+    "/{uuid}:regenerate-secret": {
       "post": {
         "summary": "Regenerate the client secret for an application",
         "description": "Regenerates the client secret for the application matching the supplied UUID. The response will include the client secret, but it will not be possible to retrieve it afterwards.",
@@ -284,30 +284,6 @@
         ],
         "tags": [
           "AppRegistrations"
-        ]
-      }
-    },
-    "/archivist/iam/v1/applications:caps": {
-      "get": {
-        "summary": "Get remaining capped resources for AppRegistrations",
-        "description": "Not stable or officially supported. Get remaining capped resources for AppRegistrations",
-        "operationId": "AppRegistrations_GetCaps",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1Caps"
-            }
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          }
-        },
-        "tags": [
-          "Unsupported"
         ]
       }
     }

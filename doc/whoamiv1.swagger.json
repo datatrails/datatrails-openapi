@@ -1,0 +1,125 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Whoami API",
+    "description": "API for for whoami.",
+    "version": "1.0",
+    "contact": {
+      "name": "DataTrails",
+      "url": "https://www.datatrails.ai"
+    }
+  },
+  "tags": [
+    {
+      "name": "Whoami",
+      "description": "Get user definition."
+    }
+  ],
+  "basePath": "/archivist/v1/whoami",
+  "schemes": [
+    "https"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Gets user definition.",
+        "description": "Gets a user definition.",
+        "operationId": "Whoami_Get",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1WhoamiResponse"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system."
+          },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
+          },
+          "500": {
+            "description": "Returned when the underlying system returns an error."
+          }
+        },
+        "tags": [
+          "Whoami"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "v1WhoamiResponse": {
+      "type": "object",
+      "properties": {
+        "avatar_url": {
+          "type": "string",
+          "description": "URL of avatar."
+        },
+        "principal": {
+          "type": "object",
+          "$ref": "#/definitions/v2Principal",
+          "description": "principal provided by the user",
+          "title": "principal information",
+          "readOnly": true
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "principal issuer."
+        },
+        "tenantid": {
+          "type": "string",
+          "description": "Tenant identity."
+        },
+        "userid": {
+          "type": "string",
+          "description": "User identity."
+        },
+        "is_social": {
+          "type": "boolean",
+          "description": "Social account."
+        }
+      }
+    },
+    "v2Principal": {
+      "type": "object",
+      "example": {
+        "issuer": "job.idp.server/1234",
+        "subject": "bob@job"
+      },
+      "required": [
+        "issuer",
+        "subject",
+        "display_name"
+      ],
+      "properties": {
+        "issuer": {
+          "type": "string",
+          "description": "optional issuer of the principal identity. Where the issuer is not provided the subject is treated as a free string",
+          "maxLength": 1024
+        },
+        "subject": {
+          "type": "string",
+          "description": "unique identifier of the principal (within issuer context)",
+          "maxLength": 1024
+        },
+        "display_name": {
+          "type": "string",
+          "description": "The displayable name of the end-user.  The name claim is prefered, followed by email claims, then a composite of  given_name, middle_name, family_name",
+          "maxLength": 1024
+        },
+        "email": {
+          "type": "string",
+          "description": "The email for the end-user if available. If email_verified is  available it is preferd. Empty if neither email_verified or email  are provided by the IdP",
+          "maxLength": 1024
+        }
+      }
+    }
+  }
+}

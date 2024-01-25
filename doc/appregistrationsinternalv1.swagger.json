@@ -26,7 +26,7 @@
     "application/json"
   ],
   "paths": {
-    "/archivist/internal/iam/v1/applications/{uuid}": {
+    "/{uuid}": {
       "get": {
         "summary": "Unsupported and for internal use only.",
         "description": "Unsupported and for internal use only.",

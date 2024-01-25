@@ -34,7 +34,7 @@
     "application/json"
   ],
   "paths": {
-    "/archivist/v1/tenancies/caps": {
+    "/caps": {
       "get": {
         "summary": "Fetch map of resource: caps for authenticated principal's tenant",
         "description": "Not stable or officially supported. Fetch the map of resource: caps for authenticated principal's tenant",
@@ -56,7 +56,7 @@
         ]
       }
     },
-    "/archivist/v1/tenancies/invitetokenhint": {
+    "/invitetokenhint": {
       "get": {
         "summary": "Create an invite token",
         "description": "Internal api to allow creation of invite token.",
@@ -103,7 +103,7 @@
         ]
       }
     },
-    "/archivist/v1/tenancies/root_principals": {
+    "/root_principals": {
       "get": {
         "summary": "Fetch the current list of tenant root user principals",
         "description": "Fetch the current list of tenant root user principals.",
@@ -163,7 +163,7 @@
         ]
       }
     },
-    "/archivist/v1/tenancies/self": {
+    "/self": {
       "get": {
         "summary": "Get tenant record",
         "description": "Returns an administrator's view of tenant for which they're authenticated",
@@ -234,7 +234,7 @@
         ]
       }
     },
-    "/archivist/v1/tenancies/tenantid": {
+    "/tenantid": {
       "get": {
         "summary": "Get ID of tenant associated with issuer and/or subject, and create if not exists.",
         "description": "Get ID of tenant associated with issuer and/or subject, and create if not exists.",
@@ -340,7 +340,7 @@
         ]
       }
     },
-    "/archivist/v1/tenancies/users": {
+    "/users": {
       "get": {
         "summary": "List Users",
         "description": "Returns a list of Users active in or invited to the tenant.",
@@ -409,7 +409,7 @@
         ]
       }
     },
-    "/archivist/v1/tenancies/users/{user_uuid}": {
+    "/users/{user_uuid}": {
       "delete": {
         "summary": "Deletes User",
         "description": "Deletes a User from the tenancy.",
@@ -448,32 +448,7 @@
         ]
       }
     },
-    "/archivist/v1/tenancies/users:caps": {
-      "get": {
-        "summary": "Get the remaining number of users that can be added to the tenant.",
-        "description": "Not stable or officially supported. Get the remaining number of users that can be added to the tenant.",
-        "operationId": "Tenancies_GetUserCaps",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1Caps"
-            }
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          }
-        },
-        "tags": [
-          "Tenancies",
-          "Unsupported"
-        ]
-      }
-    },
-    "/archivist/v1/tenancies/{uuid}:publicinfo": {
+    "/{uuid}:publicinfo": {
       "get": {
         "summary": "Public Tenant Information.",
         "description": "Return the publically avaialble tenant information.",

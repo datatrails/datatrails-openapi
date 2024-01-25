@@ -30,7 +30,7 @@
     "application/json"
   ],
   "paths": {
-    "/archivist/v1/compliance_policies": {
+    "/": {
       "get": {
         "operationId": "CompliancePolicies_ListCompliancePolicy",
         "responses": {
@@ -156,7 +156,7 @@
         ]
       }
     },
-    "/archivist/v1/compliance_policies/{uuid}": {
+    "/{uuid}": {
       "get": {
         "operationId": "CompliancePolicies_GetCompliancePolicy",
         "responses": {
@@ -225,30 +225,6 @@
         ],
         "tags": [
           "CompliancePolicies"
-        ]
-      }
-    },
-    "/archivist/v1/compliance_policies:caps": {
-      "get": {
-        "summary": "Get remaining capped resources for CompliancePolicies",
-        "description": "Not stable or officially supported. Get remaining capped resources for CompliancePolicies",
-        "operationId": "CompliancePolicies_GetCaps",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1Caps"
-            }
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          }
-        },
-        "tags": [
-          "Unsupported"
         ]
       }
     }

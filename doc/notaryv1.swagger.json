@@ -26,7 +26,7 @@
     "application/json"
   ],
   "paths": {
-    "/archivist/v1/notary/claims/events": {
+    "/claims/events": {
       "post": {
         "summary": "Get a SCITT claim for an event (Beta)",
         "description": "Get a SCITT COSE format claim object for an event (Beta)",
@@ -67,7 +67,7 @@
         ]
       }
     },
-    "/archivist/v1/notary/receipts": {
+    "/receipts": {
       "post": {
         "summary": "Get a SCITT receipt for a claim produced by this service (Beta)",
         "description": "Get a SCITT COSE format receipt object for a claim produced by this service (Beta)",

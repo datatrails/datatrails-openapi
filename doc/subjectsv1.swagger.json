@@ -26,7 +26,7 @@
     "application/json"
   ],
   "paths": {
-    "/archivist/iam/v1/subjects": {
+    "/": {
       "get": {
         "summary": "List subjects",
         "description": "Returns a paginated list of subjects",
@@ -144,7 +144,7 @@
         ]
       }
     },
-    "/archivist/iam/v1/subjects/{uuid}": {
+    "/{uuid}": {
       "get": {
         "summary": "Get an subject",
         "description": "Returns the identified subject",

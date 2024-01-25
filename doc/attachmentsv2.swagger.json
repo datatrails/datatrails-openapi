@@ -20,7 +20,7 @@
     "https"
   ],
   "paths": {
-    "/archivist/v2/attachments/assets/{asset_uuid}/events/{event_uuid}/{uuid}": {
+    "/{asset_uuid}/events/{event_uuid}/{uuid}": {
       "get": {
         "summary": "Downloads an event attachment.",
         "description": "Downloads an event attachment, if the given attachment is present in the 'arc_attachments' event atttribute.",
@@ -76,7 +76,7 @@
         ]
       }
     },
-    "/archivist/v2/attachments/assets/{asset_uuid}/events/{event_uuid}/{uuid}/info": {
+    "/{asset_uuid}/events/{event_uuid}/{uuid}/info": {
       "get": {
         "summary": "Retrieve metadata on an attachment.",
         "description": "Retrieve metadata on an attachment, if the given attachment is present in the 'arc_attachments' event atttribute.",
@@ -135,7 +135,7 @@
         ]
       }
     },
-    "/archivist/v2/attachments/assets/{asset_uuid}/{uuid}": {
+    "/{asset_uuid}/{uuid}": {
       "get": {
         "summary": "Downloads an asset attachment.",
         "description": "Downloads an asset attachment, if the given attachment is present in the 'arc_attachments' asset atttribute.",
@@ -184,7 +184,7 @@
         ]
       }
     },
-    "/archivist/v2/attachments/assets/{asset_uuid}/{uuid}/info": {
+    "/{asset_uuid}/{uuid}/info": {
       "get": {
         "summary": "Retrieve metadata on an attachment.",
         "description": "Retrieve metadata on an attachment, if the given attachment is present in the 'arc_attachments' asset atttribute.",

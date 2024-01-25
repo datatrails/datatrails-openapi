@@ -24,7 +24,7 @@
     "https"
   ],
   "paths": {
-    "/archivist/v1/blobs": {
+    "/": {
       "post": {
         "summary": "Upload.",
         "description": "Uploads a blob.",
@@ -75,7 +75,7 @@
         ]
       }
     },
-    "/archivist/v1/blobs/{uuid}": {
+    "/{uuid}": {
       "get": {
         "summary": "Download.",
         "description": "Downloads a blob.",
@@ -117,7 +117,7 @@
         ]
       }
     },
-    "/archivist/v1/blobs/{uuid}/info": {
+    "/{uuid}/info": {
       "get": {
         "summary": "Retrieve blob metadata.",
         "description": "Returns metadata information on a blob.",
@@ -159,28 +159,6 @@
         ],
         "tags": [
           "Blobs"
-        ]
-      }
-    },
-    "/archivist/v1/blobs:caps": {
-      "get": {
-        "summary": "Get remaining capped resources for Blobs",
-        "description": "Not stable or officially supported. Get remaining capped resources for Blobs",
-        "operationId": "Blobs_GetCaps",
-        "responses": {
-          "200": {
-            "description": "A successful response."
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          }
-        },
-        "tags": [
-          "Blobs",
-          "Unsupported"
         ]
       }
     }

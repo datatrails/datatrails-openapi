@@ -30,7 +30,7 @@
     "application/json"
   ],
   "paths": {
-    "/archivist/v2/locations": {
+    "/": {
       "get": {
         "summary": "List locations",
         "description": "Returns a paginated list of locations",
@@ -145,7 +145,7 @@
         ]
       }
     },
-    "/archivist/v2/locations/{uuid}": {
+    "/{uuid}": {
       "get": {
         "summary": "Get a location",
         "description": "Returns the identified location",
@@ -275,7 +275,7 @@
         ]
       }
     },
-    "/archivist/v2/locations/{uuid}/permissions": {
+    "/{uuid}/permissions": {
       "get": {
         "summary": "Get location permissions",
         "description": "Get location permissions for identified location",
@@ -356,30 +356,6 @@
         ],
         "tags": [
           "Locations"
-        ]
-      }
-    },
-    "/archivist/v2/locations:caps": {
-      "get": {
-        "summary": "Get remaining capped resources for Locations",
-        "description": "Not stable or officially supported. Get remaining capped resources for Locations",
-        "operationId": "Locations_GetCaps",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1Caps"
-            }
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          }
-        },
-        "tags": [
-          "Unsupported"
         ]
       }
     }

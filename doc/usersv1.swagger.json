@@ -34,7 +34,7 @@
     "application/json"
   ],
   "paths": {
-    "/archivist/v1/users/tenants": {
+    "/tenants": {
       "get": {
         "summary": "List User Tenants",
         "description": "Returns a list of tenancies the user has access to.",

@@ -1,8 +1,8 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Public SCITT API",
-    "description": "API providing Public SCITT transparency service claims and receipts",
+    "title": "SCITT API",
+    "description": "API providing SCITT transparency service claims and receipts",
     "version": "1.0",
     "contact": {
       "name": "DataTrails",
@@ -11,11 +11,11 @@
   },
   "tags": [
     {
-      "name": "Public SCITT (Beta)",
+      "name": "SCITT (Beta)",
       "description": "Get SCITT claims and receipts for Events. NOTE: This service is shadowing a standard that is still under development and subject to change without notice."
     }
   ],
-  "basePath": "/archivist/v1/publicscitt",
+  "basePath": "/archivist/v1/scitt",
   "schemes": [
     "https"
   ],
@@ -30,7 +30,7 @@
       "post": {
         "summary": "Register a Signed Statement",
         "description": "Register a Signed Statement.",
-        "operationId": "PublicSCITT_RegisterSignedStatement",
+        "operationId": "SCITT_RegisterSignedStatement",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -78,7 +78,7 @@
       "get": {
         "summary": "Get Operation Status",
         "description": "Get Operation Status of registering a Signed Statement.",
-        "operationId": "PublicSCITT_RetrieveOperationStatus",
+        "operationId": "SCITT_RetrieveOperationStatus",
         "responses": {
           "200": {
             "description": "Returned when the operational status can be retrieved.",
@@ -120,7 +120,7 @@
       "get": {
         "summary": "Get Signed Statement",
         "description": "Get Signed Statement countersigned by DataTrails.",
-        "operationId": "PublicSCITT_RetrieveSignedStatement",
+        "operationId": "SCITT_RetrieveSignedStatement",
         "responses": {
           "200": {
             "description": "Returned when the signed statement can be retrieved.",
@@ -162,7 +162,7 @@
       "get": {
         "summary": "Get Registration Receipt",
         "description": "Get Registration Receipt.",
-        "operationId": "PublicSCITT_RetrieveRegistrationReceipt",
+        "operationId": "SCITT_RetrieveRegistrationReceipt",
         "responses": {
           "200": {
             "description": "Returned when the registration receipt can be retrieved.",

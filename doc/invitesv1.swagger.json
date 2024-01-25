@@ -21,32 +21,7 @@
     "application/json"
   ],
   "paths": {
-    "/archivist/v1/invites:caps": {
-      "get": {
-        "summary": "Get remaining capped resources for Invites",
-        "description": "Not stable or officially supported. Get remaining capped resources for Invites",
-        "operationId": "Invites_GetCaps",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1Caps"
-            }
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          }
-        },
-        "tags": [
-          "Invites",
-          "Unsupported"
-        ]
-      }
-    },
-    "/archivist/v1/invites": {
+    "/": {
       "get": {
         "summary": "List invites",
         "description": "Returns a paginated list of invites",
@@ -157,7 +132,7 @@
         ]
       }
     },
-    "/archivist/v1/invites/{uuid}": {
+    "/{uuid}": {
       "get": {
         "summary": "Get an invite",
         "description": "Returns the identified invite",

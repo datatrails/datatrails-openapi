@@ -30,7 +30,7 @@
     "application/json"
   ],
   "paths": {
-    "/archivist/v1/compliance/assets/{uuid}": {
+    "/{uuid}": {
       "get": {
         "summary": "List all compliance status relevant to an asset",
         "operationId": "ComplianceAssets_ListAssetCompliance",

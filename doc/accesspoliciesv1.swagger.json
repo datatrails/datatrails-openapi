@@ -30,7 +30,7 @@
     "application/json"
   ],
   "paths": {
-    "/archivist/iam/v1/access_policies": {
+    "/": {
       "get": {
         "summary": "List access policies",
         "description": "Returns a paginated list of access_policies",
@@ -151,7 +151,7 @@
         ]
       }
     },
-    "/archivist/iam/v1/access_policies/{uuid}": {
+    "/{uuid}": {
       "get": {
         "summary": "Get an access policy",
         "description": "Returns the identified access policy",
@@ -298,7 +298,7 @@
         ]
       }
     },
-    "/archivist/iam/v1/access_policies/{uuid}/assets": {
+    "/{uuid}/assets": {
       "get": {
         "summary": "Returns assets matching access policy",
         "description": "Returns assets matching access policy",
@@ -366,30 +366,6 @@
         ],
         "tags": [
           "AccessPolicies"
-        ]
-      }
-    },
-    "/archivist/iam/v1/access_policies:caps": {
-      "get": {
-        "summary": "Get remaining capped resources for AccessPolicies",
-        "description": "Not stable or officially supported. Get remaining capped resources for AccessPolicies",
-        "operationId": "AccessPolicies_GetCaps",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1Caps"
-            }
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          }
-        },
-        "tags": [
-          "Unsupported"
         ]
       }
     }
@@ -915,10 +891,14 @@
         "CONFIRMATION_STATUS_UNSPECIFIED",
         "PENDING",
         "CONFIRMED",
-        "FAILED"
+        "FAILED",
+        "STORED",
+        "COMMITTED",
+        "UNEQUIVOCAL"
       ],
       "default": "CONFIRMATION_STATUS_UNSPECIFIED",
-      "title": "- PENDING: not yet committed\n - CONFIRMED: committed\n - FAILED: permanent failure"
+      "description": "forestrie, \"its in the db\"\n - COMMITTED: forestrie, \"you can know if its changed\"\n - UNEQUIVOCAL: We re-use the constant for CONFIRMED (above)\n\nforestrie, \"You easily prove it was publicly available to all\"",
+      "title": "- PENDING: not yet committed\n - CONFIRMED: committed. forestrie: \"You can easily prove it changed\"\n - FAILED: permanent failure\n - STORED: Regarding the new statuses for forestrie,  See\nhttps://github.com/datatrails/epic-8120-scalable-proof-mechanisms/blob/main/event-trust-levels.md"
     },
     "v2DictAttr": {
       "type": "object",

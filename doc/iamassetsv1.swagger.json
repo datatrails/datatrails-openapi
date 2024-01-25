@@ -30,7 +30,7 @@
     "application/json"
   ],
   "paths": {
-    "/archivist/iam/v1/assets/{uuid}/access_policies": {
+    "/{uuid}/access_policies": {
       "get": {
         "summary": "Get matching access policies",
         "description": "Get matching access policies for specified asset",
