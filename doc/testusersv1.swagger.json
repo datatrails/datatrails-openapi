@@ -15,7 +15,7 @@
       "description": "Manage your Testusers"
     }
   ],
-  "basePath": "/archivist/v1/tenstusers",
+  "basePath": "/archivist/v1/testusers",
   "schemes": [
     "https"
   ],
@@ -26,7 +26,7 @@
     "application/json"
   ],
   "paths": {
-    "/archivist/v1/testusers": {
+    "/": {
       "post": {
         "operationId": "TestUsers_EnsureUserAuthentication",
         "responses": {
