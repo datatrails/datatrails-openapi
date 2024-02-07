@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Swagger API",
+    "title": "OpenAPI API",
     "description": "API providing swagger files for DataTrails APIs",
     "version": "1.0",
     "contact": {

@@ -10,6 +10,7 @@
     }
   },
   "tags": [],
+  "basePath": "/archivist/internal/v1/tenanciesmgmt",
   "schemes": [
     "https"
   ],
@@ -20,7 +21,7 @@
     "application/json"
   ],
   "paths": {
-    "/archivist/internal/v1/tenanciesmgmt/{uuid}": {
+    "/{uuid}": {
       "get": {
         "summary": "Gets the tenancies capability configuration",
         "description": "Gets the tenancies capability configuration",

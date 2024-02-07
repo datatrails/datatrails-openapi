@@ -9,7 +9,16 @@
       "url": "https://www.datatrails.ai"
     }
   },
-  "tags": [],
+  "tags": [
+    {
+      "name": "Invites",
+      "description": "Read and modify Invites"
+    },
+    {
+      "name": "Unsupported",
+      "description": "Internal APIs that are unstable and should not be used in a production setting."
+    }
+  ],
   "basePath": "/archivist/v1/invites",
   "schemes": [
     "https"

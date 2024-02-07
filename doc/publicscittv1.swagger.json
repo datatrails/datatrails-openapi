@@ -64,7 +64,7 @@
           }
         ],
         "tags": [
-          "SCITT (Beta)"
+          "Public SCITT (Beta)"
         ],
         "consumes": [
           "multipart/form-data"
@@ -106,7 +106,7 @@
           }
         ],
         "tags": [
-          "SCITT (Beta)"
+          "Public SCITT (Beta)"
         ],
         "consumes": [
           "application/json"
@@ -148,7 +148,7 @@
           }
         ],
         "tags": [
-          "SCITT (Beta)"
+          "Public SCITT (Beta)"
         ],
         "consumes": [
           "application/json"
@@ -190,7 +190,7 @@
           }
         ],
         "tags": [
-          "SCITT (Beta)"
+          "Public SCITT (Beta)"
         ],
         "consumes": [
           "application/json"

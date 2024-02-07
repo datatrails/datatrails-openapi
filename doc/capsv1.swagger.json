@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Swagger API",
+    "title": "Caps API",
     "description": "API providing caps data for DataTrails APIs",
     "version": "1.0",
     "contact": {
@@ -61,7 +61,7 @@
           }
         ],
         "tags": [
-          "openapi"
+          "caps"
         ]
       }
     }

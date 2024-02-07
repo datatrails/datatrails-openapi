@@ -51,7 +51,6 @@
           }
         },
         "tags": [
-          "Tenancies",
           "Unsupported"
         ]
       }
@@ -405,7 +404,7 @@
           }
         ],
         "tags": [
-          "Tenancies"
+          "Users"
         ]
       }
     },
@@ -444,7 +443,7 @@
           }
         ],
         "tags": [
-          "Tenancies"
+          "Users"
         ]
       }
     },

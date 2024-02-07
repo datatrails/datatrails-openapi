@@ -11,8 +11,8 @@
   },
   "tags": [
     {
-      "name": "Testusers",
-      "description": "Manage your Testusers"
+      "name": "TestUsers",
+      "description": "Manage your test users"
     }
   ],
   "basePath": "/archivist/v1/testusers",
@@ -103,6 +103,10 @@
             "type": "string"
           },
           "description": "Optional map containing any custom claims"
+        },
+        "skipGetTenantId": {
+          "type": "boolean",
+          "description": "Skip the Get Tenant ID call, This is for tests that require users in non complete forms"
         }
       },
       "description": "Request for authn token, including any required user & tenancy creation"

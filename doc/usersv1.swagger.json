@@ -13,14 +13,6 @@
     {
       "name": "Users",
       "description": "Manage users in your tenancy"
-    },
-    {
-      "name": "Tenancies",
-      "description": "Manage your tenancy"
-    },
-    {
-      "name": "Unsupported",
-      "description": "Internal APIs that are unstable and should not be used in a production setting."
     }
   ],
   "basePath": "/archivist/v1/users",
