@@ -2,14 +2,15 @@
   "swagger": "2.0",
   "info": {
     "title": "Echo API",
-    "version": "v1.0",
+    "description": "Echo API",
+    "version": "1.0",
     "contact": {
       "name": "DataTrails",
       "url": "https://www.datatrails.ai"
     }
   },
   "tags": [],
-  "basePath": "/session",
+  "basePath": "/archivist/v1/echo",
   "schemes": [
     "https"
   ],
@@ -20,8 +21,10 @@
     "application/json"
   ],
   "paths": {
-    "/archivist/v1/echo": {
+    "/": {
       "post": {
+        "summary": "Echo a message",
+        "description": "Echo a message.",
         "operationId": "Echo_Echo",
         "responses": {
           "200": {
@@ -29,6 +32,9 @@
             "schema": {
               "$ref": "#/definitions/archivistv1Response"
             }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system."
           }
         },
         "parameters": [
