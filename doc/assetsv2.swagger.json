@@ -1319,7 +1319,7 @@
       },
       "description": "A list of event records returned data identical to `EventRecord`"
     },
-    "v2MerkleLogCommitMongoDB": {
+    "v2MerkleLogCommit": {
       "type": "object",
       "properties": {
         "index": {
@@ -1327,36 +1327,61 @@
           "format": "uint64",
           "title": "The mmr index"
         },
-        "leaf_index": {
+        "idtimestamp": {
+          "type": "string",
+          "description": "time ordered and strictly unique per tenant. system wide unique with very\nreasonable operational assumptions. prefixed with time epoch if len > 8\nbytes (after conversion back from hex)."
+        }
+      },
+      "description": "MerkeLogCommit provides the log entry details for a single mmr leaf."
+    },
+    "v2MerkleLogConfirm": {
+      "type": "object",
+      "properties": {
+        "mmr_size": {
           "type": "string",
           "format": "uint64",
-          "description": "TBD: this may be redundant.",
-          "title": "The mmr *leaf* index"
+          "title": "The following correspond to mmrblobs.MMRState"
+        },
+        "root": {
+          "type": "string",
+          "format": "byte"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "int64",
+          "title": "The regular unix time the root was signed"
         },
         "idtimestamp": {
           "type": "string",
-          "description": "time ordered and strictly unique per tenant. system wide\nunique with very reasonable operational assumptions.\n\nEXPRESSED AS A 16 character padded hex string because mongo db does not\nsupport unsigned integers and we need all 64 bits to get a sensible epoch\nduration."
+          "title": "The idtimestamp of the last leaf under mmr_size. prefixed with time epoch if len > 8 bytes (after conversion back from hex)"
+        },
+        "signed_tree_head": {
+          "type": "string",
+          "format": "byte",
+          "description": "The signed merkle tree head state at mmr_size. Contains COSE Sign1 formatted message."
         }
       }
     },
     "v2MerkleLogEntry": {
       "type": "object",
       "properties": {
-        "log_version": {
-          "type": "integer",
-          "format": "int64",
-          "description": "The tenant log version and epoch when the log entry was created."
-        },
-        "log_epoch": {
-          "type": "integer",
-          "format": "int64"
-        },
         "commit": {
-          "$ref": "#/definitions/v2MerkleLogCommitMongoDB",
-          "title": "Event trust level commited fields. Note that we have to use a special\nmessage because mongo db does not support unsigned integers. If/when we\nmove away from that, we can move this ordinal safely into a oneof"
+          "$ref": "#/definitions/v2MerkleLogCommit",
+          "title": "Event trust level COMMITTED details"
+        },
+        "confirm": {
+          "$ref": "#/definitions/v2MerkleLogConfirm",
+          "title": "Event trust level CONFIRMED details"
+        },
+        "unequivocal": {
+          "$ref": "#/definitions/v2MerkleLogUnequivocal",
+          "title": "Event trust level UNEQUIVOCAL details"
         }
       },
       "title": "The details stored in the SaaS db for a proof mech MERKLE_LOG commitment"
+    },
+    "v2MerkleLogUnequivocal": {
+      "type": "object"
     },
     "v2Principal": {
       "type": "object",
