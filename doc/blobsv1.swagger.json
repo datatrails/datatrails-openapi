@@ -13,10 +13,6 @@
     {
       "name": "Blobs",
       "description": "Upload files/blobs as rich evidence for Assets and Events"
-    },
-    {
-      "name": "Unsupported",
-      "description": "Internal APIs that are unstable and should not be used in a production setting."
     }
   ],
   "basePath": "/archivist/v1/blobs",
@@ -24,7 +20,7 @@
     "https"
   ],
   "paths": {
-    "/": {
+    "/archivist/v1/blobs": {
       "post": {
         "summary": "Upload.",
         "description": "Uploads a blob.",
@@ -75,7 +71,7 @@
         ]
       }
     },
-    "/{uuid}": {
+    "/archivist/v1/blobs/{uuid}": {
       "get": {
         "summary": "Download.",
         "description": "Downloads a blob.",
@@ -117,7 +113,7 @@
         ]
       }
     },
-    "/{uuid}/info": {
+    "/archivist/v1/blobs/{uuid}/info": {
       "get": {
         "summary": "Retrieve blob metadata.",
         "description": "Returns metadata information on a blob.",

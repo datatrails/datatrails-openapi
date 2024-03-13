@@ -10,7 +10,7 @@
     }
   },
   "tags": [],
-  "basePath": "/archivist/v2/caps",
+  "basePath": "/archivist/v1/caps",
   "schemes": [
     "https"
   ],
@@ -21,7 +21,7 @@
     "application/json"
   ],
   "paths": {
-    "/": {
+    "/archivist/v1/caps": {
       "get": {
         "summary": "Returns caps for the given resource",
         "description": "Returns caps for the given resource",

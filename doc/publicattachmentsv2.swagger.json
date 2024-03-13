@@ -1,8 +1,8 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Attachments API",
-    "description": "API for uploading and downloading attachments.",
+    "title": "Public Attachments API",
+    "description": "API for uploading and downloading attachments from public Assets.",
     "version": "2.0",
     "contact": {
       "name": "DataTrails",
@@ -11,8 +11,8 @@
   },
   "tags": [
     {
-      "name": "Attachments",
-      "description": "Retrieve rich evidence and blobs metadata from Assets and Events"
+      "name": "PublicAttachments",
+      "description": "Retrieve rich evidence and blobs metadata from public Assets and Events"
     }
   ],
   "basePath": "/archivist/v2/attachments/publicassets",
@@ -20,7 +20,7 @@
     "https"
   ],
   "paths": {
-    "/{asset_uuid}/events/{event_uuid}/{uuid}": {
+    "/archivist/v2/attachments/publicassets/{asset_uuid}/events/{event_uuid}/{uuid}": {
       "get": {
         "summary": "Downloads an event attachment from public asset.",
         "description": "Downloads an event attachment, if the given attachment is present in the 'arc_attachments' event atttribute.",
@@ -63,11 +63,11 @@
           }
         ],
         "tags": [
-          "Attachments"
+          "PublicAttachments"
         ]
       }
     },
-    "/{asset_uuid}/events/{event_uuid}/{uuid}/info": {
+    "/archivist/v2/attachments/publicassets/{asset_uuid}/events/{event_uuid}/{uuid}/info": {
       "get": {
         "summary": "Retrieve metadata on an attachment from a public asset.",
         "description": "Retrieve metadata on an attachment, if the given attachment is present in the 'arc_attachments' event atttribute.",
@@ -113,11 +113,11 @@
           }
         ],
         "tags": [
-          "Attachments"
+          "PublicAttachments"
         ]
       }
     },
-    "/{asset_uuid}/{uuid}": {
+    "/archivist/v2/attachments/publicassets/{asset_uuid}/{uuid}": {
       "get": {
         "summary": "Downloads an public asset attachment.",
         "description": "Downloads an asset attachment, if the given attachment is present in the 'arc_attachments' asset atttribute.",
@@ -153,11 +153,11 @@
           }
         ],
         "tags": [
-          "Attachments"
+          "PublicAttachments"
         ]
       }
     },
-    "/{asset_uuid}/{uuid}/info": {
+    "/archivist/v2/attachments/publicassets/{asset_uuid}/{uuid}/info": {
       "get": {
         "summary": "Retrieve metadata on an attachment from a public asset.",
         "description": "Retrieve metadata on an attachment, if the given attachment is present in the 'arc_attachments' asset atttribute.",
@@ -196,7 +196,7 @@
           }
         ],
         "tags": [
-          "Attachments"
+          "PublicAttachments"
         ]
       }
     }

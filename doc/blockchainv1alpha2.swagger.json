@@ -26,7 +26,7 @@
     "application/json"
   ],
   "paths": {
-    "/{asset_uuid}/events/{uuid}": {
+    "/archivist/v1alpha2/blockchain/assets/{asset_uuid}/events/{uuid}": {
       "get": {
         "summary": "List of Blockchain Transactions associated with an event.",
         "description": "List of Blockchain Transactions associated with an event. If the event's asset has a proof mechanism of khipu, this will be a list of transactions that compose the event. If the event's asset has a proof mecahnism of simple hash, this will be a list containing one transaction, that describes the simple hash anchor transaction. If the list is empty, the event has not been anchored yet.",

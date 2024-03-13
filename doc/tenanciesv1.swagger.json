@@ -11,16 +11,12 @@
   },
   "tags": [
     {
-      "name": "Users",
-      "description": "Manage users in your tenancy"
-    },
-    {
       "name": "Tenancies",
       "description": "Manage your tenancy"
     },
     {
-      "name": "Unsupported",
-      "description": "Internal APIs that are unstable and should not be used in a production setting."
+      "name": "TenanciesUsers",
+      "description": "Manage users in your tenancy"
     }
   ],
   "basePath": "/archivist/v1/tenancies",
@@ -34,75 +30,7 @@
     "application/json"
   ],
   "paths": {
-    "/caps": {
-      "get": {
-        "summary": "Fetch map of resource: caps for authenticated principal's tenant",
-        "description": "Not stable or officially supported. Fetch the map of resource: caps for authenticated principal's tenant",
-        "operationId": "Tenancies_GetLimitsForCurrentTenant",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1GetLimitsForCurrentTenantResponse"
-            }
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          }
-        },
-        "tags": [
-          "Unsupported"
-        ]
-      }
-    },
-    "/invitetokenhint": {
-      "get": {
-        "summary": "Create an invite token",
-        "description": "Internal api to allow creation of invite token.",
-        "operationId": "Tenancies_GetInviteTokenHint",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1InviteTokenHintResponse"
-            }
-          },
-          "400": {
-            "description": "Supplied parameters were invalid"
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to retrieve the tenant id."
-          }
-        },
-        "parameters": [
-          {
-            "name": "identity",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "tenant_id",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "email",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Tenancies"
-        ]
-      }
-    },
-    "/root_principals": {
+    "/archivist/v1/tenancies/root_principals": {
       "get": {
         "summary": "Fetch the current list of tenant root user principals",
         "description": "Fetch the current list of tenant root user principals.",
@@ -162,7 +90,7 @@
         ]
       }
     },
-    "/self": {
+    "/archivist/v1/tenancies/self": {
       "get": {
         "summary": "Get tenant record",
         "description": "Returns an administrator's view of tenant for which they're authenticated",
@@ -233,113 +161,7 @@
         ]
       }
     },
-    "/tenantid": {
-      "get": {
-        "summary": "Get ID of tenant associated with issuer and/or subject, and create if not exists.",
-        "description": "Get ID of tenant associated with issuer and/or subject, and create if not exists.",
-        "operationId": "Tenancies_GetTenantID",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1TenantIDResponse"
-            }
-          },
-          "400": {
-            "description": "Returned when the user doesn't provide an issuer or subject to filter on."
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to retrieve the tenant id."
-          }
-        },
-        "parameters": [
-          {
-            "name": "issuer",
-            "description": "Issuer of the principal identity.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "subject",
-            "description": "Unique identifier of the principal (within issuer context.) Used if social.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "is_social",
-            "description": "Is the issuer social?",
-            "in": "query",
-            "required": false,
-            "type": "boolean"
-          },
-          {
-            "name": "email",
-            "description": "Email address of the principal.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "oid",
-            "description": "B2C User ID if available",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "is_new_user",
-            "description": "True if the user was just created (only valid when invoked from b2c)",
-            "in": "query",
-            "required": false,
-            "type": "boolean"
-          },
-          {
-            "name": "jit_loginhint_tenant_id",
-            "description": "Login hint for the tenant the existing user is requesting to login to.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "jit_invitehint_tenant_id",
-            "description": "Invite hint carrying the id of the tenant the new users was invited to",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "jit_invitehint_recipient_email",
-            "description": "Invite hint carrying the email the invitation was sent to",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "jit_invitehint_invite_id",
-            "description": "Invite idenity.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "jit_loginhint_new_tenant",
-            "description": "Hint that this is new tenant request.",
-            "in": "query",
-            "required": false,
-            "type": "boolean"
-          }
-        ],
-        "tags": [
-          "Tenancies"
-        ]
-      }
-    },
-    "/users": {
+    "/archivist/v1/tenancies/users": {
       "get": {
         "summary": "List Users",
         "description": "Returns a list of Users active in or invited to the tenant.",
@@ -404,11 +226,11 @@
           }
         ],
         "tags": [
-          "Users"
+          "TenanciesUsers"
         ]
       }
     },
-    "/users/{user_uuid}": {
+    "/archivist/v1/tenancies/users/{user_uuid}": {
       "delete": {
         "summary": "Deletes User",
         "description": "Deletes a User from the tenancy.",
@@ -443,11 +265,11 @@
           }
         ],
         "tags": [
-          "Users"
+          "TenanciesUsers"
         ]
       }
     },
-    "/{uuid}:publicinfo": {
+    "/archivist/v1/tenancies/{uuid}:publicinfo": {
       "get": {
         "summary": "Public Tenant Information.",
         "description": "Return the publically avaialble tenant information.",
@@ -724,7 +546,7 @@
         },
         "tier": {
           "$ref": "#/definitions/v1Tier",
-          "description": "tenant tier FREE or PREMIUM",
+          "description": "tenant tier FREE, READONLY or PREMIUM",
           "readOnly": true
         },
         "new_tenant": {
@@ -824,6 +646,9 @@
         },
         "enterprise_sso_config": {
           "$ref": "#/definitions/v1EnterpriseSSOConfig"
+        },
+        "expired": {
+          "type": "boolean"
         }
       },
       "title": "Tenant information"
@@ -833,7 +658,8 @@
       "enum": [
         "TIER_UNSPECIFIED",
         "FREE",
-        "PREMIUM"
+        "PREMIUM",
+        "READONLY"
       ],
       "default": "TIER_UNSPECIFIED"
     },

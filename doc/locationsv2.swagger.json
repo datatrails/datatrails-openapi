@@ -13,10 +13,6 @@
     {
       "name": "Locations",
       "description": "Read and modify Locations"
-    },
-    {
-      "name": "Unsupported",
-      "description": "Internal APIs that are unstable and should not be used in a production setting."
     }
   ],
   "basePath": "/archivist/v2/locations",
@@ -30,7 +26,7 @@
     "application/json"
   ],
   "paths": {
-    "/": {
+    "/archivist/v2/locations": {
       "get": {
         "summary": "List locations",
         "description": "Returns a paginated list of locations",
@@ -145,7 +141,7 @@
         ]
       }
     },
-    "/{uuid}": {
+    "/archivist/v2/locations/{uuid}": {
       "get": {
         "summary": "Get a location",
         "description": "Returns the identified location",
@@ -275,7 +271,7 @@
         ]
       }
     },
-    "/{uuid}/permissions": {
+    "/archivist/v2/locations/{uuid}/permissions": {
       "get": {
         "summary": "Get location permissions",
         "description": "Get location permissions for identified location",

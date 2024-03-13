@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Public BlockChain API",
-    "description": "API to manage Blockchain for public assets.",
+    "description": "API to manage Blockchain for Public Assets.",
     "version": "1.0-alpha2",
     "contact": {
       "name": "DataTrails",
@@ -11,8 +11,8 @@
   },
   "tags": [
     {
-      "name": "PublicBlockchain",
-      "description": "Retrieve information about the blockchain network for public assets"
+      "name": "PublicBlockChain",
+      "description": "Retrieve information about the blockchain network for public Assets and Events"
     }
   ],
   "basePath": "/archivist/v1alpha2/blockchain/publicassets",
@@ -26,10 +26,10 @@
     "application/json"
   ],
   "paths": {
-    "/{asset_uuid}/events/{uuid}": {
+    "/archivist/v1alpha2/blockchain/publicassets/{asset_uuid}/events/{uuid}": {
       "get": {
-        "summary": "List of Blockchain Transactions associated with a public event.",
-        "description": "List of Blockchain Transactions associated with a public event. If the public event's asset has a proof mechanism of khipu, this will be a list of transactions that compose the public event. If the public event's asset has a proof mecahnism of simple hash, this will be a list containing one transaction, that describes the simple hash anchor transaction. If the list is empty, the public event has not been anchored yet.",
+        "summary": "List of Blockchain Transactions associated with a public Event.",
+        "description": "List of Blockchain Transactions associated with a public Event. If the public event's asset has a proof mecahnism of simple hash, this will be a list containing one transaction, that describes the simple hash anchor transaction. If the list is empty, the public event has not been anchored yet.",
         "operationId": "PublicBlockChain_ListBlockchainPublic",
         "responses": {
           "200": {

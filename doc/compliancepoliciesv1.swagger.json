@@ -13,10 +13,6 @@
     {
       "name": "CompliancePolicies",
       "description": "Read and modify Compliance Policies"
-    },
-    {
-      "name": "Unsupported",
-      "description": "Internal APIs that are unstable and should not be used in a production setting."
     }
   ],
   "basePath": "/archivist/v1/compliance_policies",
@@ -30,8 +26,10 @@
     "application/json"
   ],
   "paths": {
-    "/": {
+    "/archivist/v1/compliance_policies": {
       "get": {
+        "summary": "List Compliance Policies",
+        "description": "Retrieves a list of Compliance Policies",
         "operationId": "CompliancePolicies_ListCompliancePolicy",
         "responses": {
           "200": {
@@ -116,6 +114,8 @@
         ]
       },
       "post": {
+        "summary": "Create a Compliance Policy",
+        "description": "Creates a Compliance Policy",
         "operationId": "CompliancePolicies_AddCompliancePolicy",
         "responses": {
           "200": {
@@ -156,8 +156,10 @@
         ]
       }
     },
-    "/{uuid}": {
+    "/archivist/v1/compliance_policies/{uuid}": {
       "get": {
+        "summary": "Retrieves a Compliance Policy",
+        "description": "Retrieves a specific Compliance Policy",
         "operationId": "CompliancePolicies_GetCompliancePolicy",
         "responses": {
           "200": {
@@ -193,6 +195,8 @@
         ]
       },
       "delete": {
+        "summary": "Delete a Compliance Policy",
+        "description": "Deletes a Compliance Policy",
         "operationId": "CompliancePolicies_DeleteCompliancePolicy",
         "responses": {
           "200": {

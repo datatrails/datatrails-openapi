@@ -13,7 +13,7 @@
     "application/json"
   ],
   "paths": {
-    "/did.json": {
+    "/archivist/v1/didweb/did.json": {
       "get": {
         "summary": "Get DID web document",
         "description": "Get DID web document.",

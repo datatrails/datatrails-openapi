@@ -26,7 +26,7 @@
     "application/json"
   ],
   "paths": {
-    "/entries": {
+    "/archivist/v1/scitt/entries": {
       "post": {
         "summary": "Register a Signed Statement",
         "description": "Register a Signed Statement.",
@@ -74,7 +74,7 @@
         ]
       }
     },
-    "/operations/{operationID}": {
+    "/archivist/v1/scitt/operations/{operationID}": {
       "get": {
         "summary": "Get Operation Status",
         "description": "Get Operation Status of registering a Signed Statement.",
@@ -116,7 +116,7 @@
         ]
       }
     },
-    "/entries/{entryID}": {
+    "/archivist/v1/scitt/entries/{entryID}": {
       "get": {
         "summary": "Get Signed Statement",
         "description": "Get Signed Statement countersigned by DataTrails.",
@@ -158,7 +158,7 @@
         ]
       }
     },
-    "/entries/{entryID}/receipt": {
+    "/archivist/v1/scitt/entries/{entryID}/receipt": {
       "get": {
         "summary": "Get Registration Receipt",
         "description": "Get Registration Receipt.",

@@ -26,7 +26,7 @@
     "application/json"
   ],
   "paths": {
-    "/claims/events": {
+    "/archivist/v1/notary/claims/events": {
       "post": {
         "summary": "Get a SCITT claim for an event (Beta)",
         "description": "Get a SCITT COSE format claim object for an event (Beta)",
@@ -42,10 +42,10 @@
             "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to get a receipt for the event"
+            "description": "Returned when the user is not authorized to get a claim for the transaction."
           },
           "404": {
-            "description": "Returned when the asset with the id does not exist. or the event with the id does not exist"
+            "description": "Returned when a claim with the transaction id does not exist."
           },
           "429": {
             "description": "Returned when a user exceeds their subscription's rate limit for requests."
@@ -67,7 +67,7 @@
         ]
       }
     },
-    "/receipts": {
+    "/archivist/v1/notary/receipts": {
       "post": {
         "summary": "Get a SCITT receipt for a claim produced by this service (Beta)",
         "description": "Get a SCITT COSE format receipt object for a claim produced by this service (Beta)",
@@ -83,10 +83,10 @@
             "description": "Returned when the user is not authenticated to the system."
           },
           "403": {
-            "description": "Returned when the user is not authorized to get a receipt for the claim or its subjects"
+            "description": "Returned when the user is not authorized to get a receipt for the claim or its subjects."
           },
           "404": {
-            "description": "Returned when the subject of the claim does not exist"
+            "description": "Returned when the subject of the claim does not exist."
           },
           "429": {
             "description": "Returned when a user exceeds their subscription's rate limit for requests."

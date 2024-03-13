@@ -13,10 +13,6 @@
     {
       "name": "AppRegistrations",
       "description": "Handle credentials to give client applications access to DataTrails APIs"
-    },
-    {
-      "name": "Unsupported",
-      "description": "Internal APIs that are unstable and should not be used in a production setting."
     }
   ],
   "basePath": "/archivist/iam/v1/applications",
@@ -30,7 +26,7 @@
     "application/json"
   ],
   "paths": {
-    "/": {
+    "/archivist/iam/v1/applications": {
       "get": {
         "summary": "List applications for the user's tenant",
         "description": "Lists all applications for the user's tenant",
@@ -119,7 +115,7 @@
         ]
       }
     },
-    "/{uuid}": {
+    "/archivist/iam/v1/applications/{uuid}": {
       "get": {
         "summary": "Fetch an application record",
         "description": "Fetches the application record for the supplied UUID",
@@ -248,7 +244,7 @@
         ]
       }
     },
-    "/{uuid}:regenerate-secret": {
+    "/archivist/iam/v1/applications/{uuid}:regenerate-secret": {
       "post": {
         "summary": "Regenerate the client secret for an application",
         "description": "Regenerates the client secret for the application matching the supplied UUID. The response will include the client secret, but it will not be possible to retrieve it afterwards.",

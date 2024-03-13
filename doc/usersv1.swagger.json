@@ -12,7 +12,7 @@
   "tags": [
     {
       "name": "Users",
-      "description": "Manage users in your tenancy"
+      "description": "Manage tenants for your user"
     }
   ],
   "basePath": "/archivist/v1/users",
@@ -26,7 +26,7 @@
     "application/json"
   ],
   "paths": {
-    "/tenants": {
+    "/archivist/v1/users/tenants": {
       "get": {
         "summary": "List User Tenants",
         "description": "Returns a list of tenancies the user has access to.",

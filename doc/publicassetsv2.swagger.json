@@ -26,7 +26,7 @@
     "application/json"
   ],
   "paths": {
-    "/{asset_uuid}/events/{uuid}": {
+    "/archivist/v2/publicassets/{asset_uuid}/events/{uuid}": {
       "get": {
         "summary": "Retrieves Archivist event for public asset",
         "description": "Retrieves a specific Archivist event for a public asset",
@@ -63,7 +63,7 @@
         ]
       }
     },
-    "/{uuid}": {
+    "/archivist/v2/publicassets/{uuid}": {
       "get": {
         "summary": "Retrieves a specific public Archivist asset",
         "description": "Retrieves a specific public Archivist asset",
@@ -101,7 +101,7 @@
         ]
       }
     },
-    "/{uuid}/events": {
+    "/archivist/v2/publicassets/{uuid}/events": {
       "get": {
         "summary": "List Archivist events for a public asset",
         "description": "Lists Archivist events for a public asset",

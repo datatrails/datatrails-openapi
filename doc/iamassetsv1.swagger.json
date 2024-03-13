@@ -11,12 +11,8 @@
   },
   "tags": [
     {
-      "name": "Assets",
-      "description": "Read and configure access policies for Assets and Events"
-    },
-    {
-      "name": "Unsupported",
-      "description": "Internal APIs that are unstable and should not be used in a production setting."
+      "name": "AccessPolicyAssets",
+      "description": " List Access Polices that apply to an Asset"
     }
   ],
   "basePath": "/archivist/iam/v1/assets",
@@ -30,7 +26,7 @@
     "application/json"
   ],
   "paths": {
-    "/{uuid}/access_policies": {
+    "/archivist/iam/v1/assets/{uuid}/access_policies": {
       "get": {
         "summary": "Get matching access policies",
         "description": "Get matching access policies for specified asset",
@@ -79,7 +75,7 @@
           }
         ],
         "tags": [
-          "Assets"
+          "AccessPolicyAssets"
         ]
       }
     }

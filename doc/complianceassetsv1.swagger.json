@@ -13,10 +13,6 @@
     {
       "name": "ComplianceAssets",
       "description": "List compliance statuses for an asset"
-    },
-    {
-      "name": "Unsupported",
-      "description": "Internal APIs that are unstable and should not be used in a production setting."
     }
   ],
   "basePath": "/archivist/v1/compliance/assets",
@@ -30,7 +26,7 @@
     "application/json"
   ],
   "paths": {
-    "/{uuid}": {
+    "/archivist/v1/compliance/assets/{uuid}": {
       "get": {
         "summary": "List all compliance status relevant to an asset",
         "operationId": "ComplianceAssets_ListAssetCompliance",

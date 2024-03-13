@@ -9,7 +9,12 @@
       "url": "https://www.datatrails.ai"
     }
   },
-  "tags": [],
+  "tags": [
+    {
+      "name": "OpenAPI",
+      "description": "Access OpenAPI specs for DataTrails interfaces"
+    }
+  ],
   "basePath": "/archivist/v2/openapi",
   "schemes": [
     "https"
@@ -21,10 +26,10 @@
     "application/json"
   ],
   "paths": {
-    "/": {
+    "/archivist/v2/openapi": {
       "get": {
-        "summary": "Returns an OpenAPI spec for a DataTrails API",
-        "description": "Get an OpenAPI v2.0 spec for a given DataTrails API",
+        "summary": "Returns an OpenAPI spec for a DataTrails interface",
+        "description": "Get an OpenAPI v2.0 spec for a given DataTrails interface",
         "operationId": "Swagger_GetFile",
         "responses": {
           "200": {
@@ -73,7 +78,7 @@
           }
         ],
         "tags": [
-          "openapi"
+          "OpenAPI"
         ]
       }
     }
