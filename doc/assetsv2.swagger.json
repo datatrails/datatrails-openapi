@@ -727,6 +727,11 @@
           "type": "string",
           "format": "int64",
           "description": "Number of capped resources remaining"
+        },
+        "resource_cap": {
+          "type": "string",
+          "format": "int64",
+          "description": "Resource cap"
         }
       }
     },
