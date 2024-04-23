@@ -1,70 +1,70 @@
 {
-  "swagger": "2.0",
-  "info": {
-    "title": "Caps API",
-    "description": "API providing caps data for DataTrails APIs",
-    "version": "1.0",
-    "contact": {
-      "name": "DataTrails",
-      "url": "https://www.datatrails.ai"
-    }
-  },
-  "tags": [],
-  "basePath": "/archivist/v1/caps",
-  "schemes": [
-    "https"
-  ],
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
-  "paths": {
-    "/archivist/v1/caps": {
-      "get": {
-        "summary": "Returns caps for the given resource",
-        "description": "Returns caps for the given resource",
-        "operationId": "Caps_GetCaps",
-        "responses": {
-          "200": {
-            "description": "A successful response."
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to access the resource."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          }
-        },
-        "parameters": [
-          {
-            "name": "service",
-            "description": "Query string parameter taking the name of the service to return caps for, eg assets",
-            "in": "query",
-            "required": true,
-            "type": "string",
-            "enum": [
-              "access_policies",
-              "applications",
-              "assets",
-              "blobs",
-              "compliance_policies",
-              "invites",
-              "locations",
-              "tenancies/users",
-              "tlscacertificates"
-            ]
-          }
-        ],
-        "tags": [
-          "caps"
-        ]
-      }
-    }
-  },
-  "definitions": {}
+    "swagger": "2.0",
+    "info": {
+        "title": "Caps API",
+        "description": "API providing caps data for DataTrails APIs",
+        "version": "1.0",
+        "contact": {
+            "name": "DataTrails",
+            "url": "https://www.datatrails.ai"
+        }
+    },
+    "tags": [],
+    "basePath": "/archivist/v1/caps",
+    "schemes": [
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/archivist/v1/caps": {
+            "get": {
+                "summary": "Returns caps for the given resource",
+                "description": "Returns caps for the given resource",
+                "operationId": "Caps_GetCaps",
+                "responses": {
+                    "200": {
+                        "description": "A successful response."
+                    },
+                    "401": {
+                        "description": "Returned when the user is not authenticated to the system."
+                    },
+                    "403": {
+                        "description": "Returned when the user is not authorized to access the resource."
+                    },
+                    "429": {
+                        "description": "Returned when a user exceeds their subscription's rate limit for requests."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "service",
+                        "description": "Query string parameter taking the name of the service to return caps for, eg assets",
+                        "in": "query",
+                        "required": true,
+                        "type": "string",
+                        "enum": [
+                            "access_policies",
+                            "applications",
+                            "assets",
+                            "blobs",
+                            "compliance_policies",
+                            "invites",
+                            "locations",
+                            "tenancies/users",
+                            "tlscacertificates"
+                        ]
+                    }
+                ],
+                "tags": [
+                    "caps"
+                ]
+            }
+        }
+    },
+    "definitions": {}
 }

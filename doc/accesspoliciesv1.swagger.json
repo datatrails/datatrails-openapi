@@ -1,999 +1,999 @@
 {
-  "swagger": "2.0",
-  "info": {
-    "title": "IAMAccessPolicies API",
-    "description": "API to manage Identity Access Management AccessPolicies.",
-    "version": "1.0",
-    "contact": {
-      "name": "DataTrails",
-      "url": "https://www.datatrails.ai"
-    }
-  },
-  "tags": [
-    {
-      "name": "AccessPolicies",
-      "description": "Read and configure access policies for Assets and Events"
-    }
-  ],
-  "basePath": "/archivist/iam/v1/access_policies",
-  "schemes": [
-    "https"
-  ],
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
-  "paths": {
-    "/archivist/iam/v1/access_policies": {
-      "get": {
-        "summary": "List access policies",
-        "description": "Returns a paginated list of access_policies",
-        "operationId": "AccessPolicies_ListIAMAccessPolicies",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1ListIAMAccessPoliciesResponse"
+    "swagger": "2.0",
+    "info": {
+        "title": "IAMAccessPolicies API",
+        "description": "API to manage Identity Access Management AccessPolicies.",
+        "version": "1.0",
+        "contact": {
+            "name": "DataTrails",
+            "url": "https://www.datatrails.ai"
+        }
+    },
+    "tags": [
+        {
+            "name": "AccessPolicies",
+            "description": "Read and configure access policies for Assets and Events"
+        }
+    ],
+    "basePath": "/archivist/iam/v1/access_policies",
+    "schemes": [
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/archivist/iam/v1/access_policies": {
+            "get": {
+                "summary": "List access policies",
+                "description": "Returns a paginated list of access_policies",
+                "operationId": "AccessPolicies_ListIAMAccessPolicies",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "$ref": "#/definitions/v1ListIAMAccessPoliciesResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Returned when the request is badly formed."
+                    },
+                    "401": {
+                        "description": "Returned when the user is not authenticated to the system."
+                    },
+                    "403": {
+                        "description": "Returned when the user is not authorized to list the access policy."
+                    },
+                    "429": {
+                        "description": "Returned when a user exceeds their subscription's rate limit for requests."
+                    },
+                    "500": {
+                        "description": "Returned when the underlying storage system returns an error."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "order_by",
+                        "description": "Specify the sort order for the results.",
+                        "in": "query",
+                        "required": false,
+                        "type": "string",
+                        "enum": [
+                            "DEFAULT",
+                            "DISPLAY_NAME"
+                        ],
+                        "default": "DEFAULT"
+                    },
+                    {
+                        "name": "page_size",
+                        "description": "Maximum entries per page",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "page_token",
+                        "description": "The next_page_token returned from a previous list request if any.",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "display_name",
+                        "description": "Further fields are bound to query parameters and act to filter the result\n\nCustomer friendly name for the access policy.",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "description",
+                        "description": "Customer description of the access policy.",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "AccessPolicies"
+                ]
+            },
+            "post": {
+                "summary": "Create an access policy",
+                "description": "This request creates a new access policy. The display_name is the friendly name.",
+                "operationId": "AccessPolicies_CreateIAMAccessPolicy",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "$ref": "#/definitions/v1IAMAccessPolicy"
+                        }
+                    },
+                    "400": {
+                        "description": "Returned when the request is badly formed."
+                    },
+                    "401": {
+                        "description": "Returned when the user is not authenticated to the system."
+                    },
+                    "402": {
+                        "description": "Returned when the user's quota of access policies has been reached."
+                    },
+                    "403": {
+                        "description": "Returned when the user is not authorized to create an access policy."
+                    },
+                    "429": {
+                        "description": "Returned when a user exceeds their subscription's rate limit for requests."
+                    },
+                    "500": {
+                        "description": "Returned when the underlying storage system returns an error."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "description": "The body of a request to create a new Access Policy.",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/v1CreateIAMAccessPolicyRequest"
+                        }
+                    }
+                ],
+                "tags": [
+                    "AccessPolicies"
+                ]
             }
-          },
-          "400": {
-            "description": "Returned when the request is badly formed."
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to list the access policy."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "500": {
-            "description": "Returned when the underlying storage system returns an error."
-          }
         },
-        "parameters": [
-          {
-            "name": "order_by",
-            "description": "Specify the sort order for the results.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "enum": [
-              "DEFAULT",
-              "DISPLAY_NAME"
-            ],
-            "default": "DEFAULT"
-          },
-          {
-            "name": "page_size",
-            "description": "Maximum entries per page",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "page_token",
-            "description": "The next_page_token returned from a previous list request if any.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "display_name",
-            "description": "Further fields are bound to query parameters and act to filter the result\n\nCustomer friendly name for the access policy.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "description",
-            "description": "Customer description of the access policy.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "AccessPolicies"
-        ]
-      },
-      "post": {
-        "summary": "Create an access policy",
-        "description": "This request creates a new access policy. The display_name is the friendly name.",
-        "operationId": "AccessPolicies_CreateIAMAccessPolicy",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1IAMAccessPolicy"
+        "/archivist/iam/v1/access_policies/{uuid}": {
+            "get": {
+                "summary": "Get an access policy",
+                "description": "Returns the identified access policy",
+                "operationId": "AccessPolicies_GetIAMAccessPolicy",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "$ref": "#/definitions/v1IAMAccessPolicy"
+                        }
+                    },
+                    "400": {
+                        "description": "Returned when the request is badly formed."
+                    },
+                    "401": {
+                        "description": "Returned when the user is not authenticated to the system."
+                    },
+                    "403": {
+                        "description": "Returned when the user is not authorized to read the access policy."
+                    },
+                    "404": {
+                        "description": "Returned when the identified access policy does not exist."
+                    },
+                    "429": {
+                        "description": "Returned when a user exceeds their subscription's rate limit for requests."
+                    },
+                    "500": {
+                        "description": "Returned when the underlying storage system returns an error."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "description": "Specify the Access Policy UUID where `access_policies/{uuid}` is the Access Policy Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `access_policies/add30235-1424-4fda-840a-d5ef82c4c96f`",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "AccessPolicies"
+                ]
+            },
+            "delete": {
+                "summary": "Delete an access policy",
+                "description": "Delete the identified access policy",
+                "operationId": "AccessPolicies_DeleteIAMAccessPolicy",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {}
+                        }
+                    },
+                    "400": {
+                        "description": "Returned when the request is badly formed."
+                    },
+                    "401": {
+                        "description": "Returned when the user is not authenticated to the system."
+                    },
+                    "403": {
+                        "description": "Returned when the user is not authorized to delete the access policy."
+                    },
+                    "404": {
+                        "description": "Returned when the identified access policy does not exist."
+                    },
+                    "429": {
+                        "description": "Returned when a user exceeds their subscription's rate limit for requests."
+                    },
+                    "500": {
+                        "description": "Returned when the underlying storage system returns an error."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "description": "Specify the Access Policy UUID where `access_policies/{uuid}` is the Access Policy Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `access_policies/add30235-1424-4fda-840a-d5ef82c4c96f`",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "AccessPolicies"
+                ]
+            },
+            "patch": {
+                "summary": "Update a access policy details",
+                "description": "Perform a full or partial update of the identified access policy",
+                "operationId": "AccessPolicies_UpdateIAMAccessPolicy",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "$ref": "#/definitions/v1IAMAccessPolicy"
+                        }
+                    },
+                    "400": {
+                        "description": "Returned when the request is badly formed."
+                    },
+                    "401": {
+                        "description": "Returned when the user is not authenticated to the system."
+                    },
+                    "403": {
+                        "description": "Returned when the user is not authorized to update the access policy."
+                    },
+                    "404": {
+                        "description": "Returned when the identified access policy does not exist."
+                    },
+                    "429": {
+                        "description": "Returned when a user exceeds their subscription's rate limit for requests."
+                    },
+                    "500": {
+                        "description": "Returned when the underlying storage system returns an error."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "description": "Specify the Access Policy UUID where `access_policies/{uuid}` is the Access Policy Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `access_policies/add30235-1424-4fda-840a-d5ef82c4c96f`",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "access_policy",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/v1IAMAccessPolicy"
+                        }
+                    },
+                    {
+                        "name": "mask",
+                        "description": "The mask says exactly which fields are to be updated. This\nremoves the ambiguity caused by 'zero' valued fields.\nhttps://grpc-ecosystem.github.io/grpc-gateway/docs/patch.html",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "AccessPolicies"
+                ]
             }
-          },
-          "400": {
-            "description": "Returned when the request is badly formed."
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "402": {
-            "description": "Returned when the user's quota of access policies has been reached."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to create an access policy."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "500": {
-            "description": "Returned when the underlying storage system returns an error."
-          }
         },
-        "parameters": [
-          {
-            "name": "body",
+        "/archivist/iam/v1/access_policies/{uuid}/assets": {
+            "get": {
+                "summary": "Returns assets matching access policy",
+                "description": "Returns assets matching access policy",
+                "operationId": "AccessPolicies_ListMatchingAssets",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "$ref": "#/definitions/v2ListAssetsResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Returned when the request is badly formed."
+                    },
+                    "401": {
+                        "description": "Returned when the user is not authenticated to the system."
+                    },
+                    "403": {
+                        "description": "Returned when the user is not authorized to list the access policy."
+                    },
+                    "404": {
+                        "description": "Returned when the identified access policy does not exist."
+                    },
+                    "429": {
+                        "description": "Returned when a user exceeds their subscription's rate limit for requests."
+                    },
+                    "500": {
+                        "description": "Returned when the underlying storage system returns an error."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "description": "Specify the Access Policy UUID where `access_policies/{uuid}` is the Access Policy Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `access_policies/add30235-1424-4fda-840a-d5ef82c4c96f`",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "order_by",
+                        "description": "Specify the sort order for the results.",
+                        "in": "query",
+                        "required": false,
+                        "type": "string",
+                        "enum": [
+                            "DEFAULT"
+                        ],
+                        "default": "DEFAULT"
+                    },
+                    {
+                        "name": "page_size",
+                        "description": "Maximum entries per page",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "page_token",
+                        "description": "The next_page_token returned from a previous list request if any.",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "AccessPolicies"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        "v1Cap": {
+            "type": "object",
+            "properties": {
+                "resource_type": {
+                    "type": "string",
+                    "description": "String identifying the capped resource type"
+                },
+                "resource_remaining": {
+                    "type": "string",
+                    "format": "int64",
+                    "description": "Number of capped resources remaining"
+                },
+                "resource_cap": {
+                    "type": "string",
+                    "format": "int64",
+                    "description": "Resource cap"
+                }
+            }
+        },
+        "v1Caps": {
+            "type": "object",
+            "properties": {
+                "caps": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "$ref": "#/definitions/v1Cap"
+                    },
+                    "description": "List of relevant capped resources"
+                }
+            }
+        },
+        "v1CreateIAMAccessPolicyRequest": {
+            "type": "object",
+            "example": {
+                "display_name": "Customers name for the policy",
+                "description": "Customers description for the policy",
+                "filters": [
+                    {
+                        "or": [
+                            "location=basingstoke",
+                            "location=cambridge"
+                        ]
+                    },
+                    {
+                        "or": [
+                            "asset_type=door_access_reader"
+                        ]
+                    }
+                ],
+                "access_permissions": [
+                    {
+                        "subjects": [
+                            "subjects/9846b867-3e42-4b5d-af56-bcd62c2126d2",
+                            "subjects/3907c132-900b-4481-82da-21ffe699ddb9"
+                        ],
+                        "behaviours": [
+                            "behaviour1",
+                            "behaviour2"
+                        ],
+                        "asset_attributes_read": [
+                            "attribute1",
+                            "attribute2"
+                        ],
+                        "user_attributes": [
+                            {
+                                "or": [
+                                    "group:maintainers",
+                                    "group:supervisors"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "properties": {
+                "display_name": {
+                    "type": "string",
+                    "description": "Customer friendly name for the access policy.",
+                    "maxLength": 128
+                },
+                "filters": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "$ref": "#/definitions/v1Filter"
+                    },
+                    "description": "Filters. Public assets will not match any filter."
+                },
+                "access_permissions": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "$ref": "#/definitions/v1Permission"
+                    },
+                    "description": "The access permissions maps"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Customer description for the access policy.",
+                    "maxLength": 4096
+                }
+            },
             "description": "The body of a request to create a new Access Policy.",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1CreateIAMAccessPolicyRequest"
-            }
-          }
-        ],
-        "tags": [
-          "AccessPolicies"
-        ]
-      }
-    },
-    "/archivist/iam/v1/access_policies/{uuid}": {
-      "get": {
-        "summary": "Get an access policy",
-        "description": "Returns the identified access policy",
-        "operationId": "AccessPolicies_GetIAMAccessPolicy",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1IAMAccessPolicy"
-            }
-          },
-          "400": {
-            "description": "Returned when the request is badly formed."
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to read the access policy."
-          },
-          "404": {
-            "description": "Returned when the identified access policy does not exist."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "500": {
-            "description": "Returned when the underlying storage system returns an error."
-          }
+            "required": [
+                "display_name"
+            ]
         },
-        "parameters": [
-          {
-            "name": "uuid",
-            "description": "Specify the Access Policy UUID where `access_policies/{uuid}` is the Access Policy Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `access_policies/add30235-1424-4fda-840a-d5ef82c4c96f`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "AccessPolicies"
-        ]
-      },
-      "delete": {
-        "summary": "Delete an access policy",
-        "description": "Delete the identified access policy",
-        "operationId": "AccessPolicies_DeleteIAMAccessPolicy",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object",
-              "properties": {}
-            }
-          },
-          "400": {
-            "description": "Returned when the request is badly formed."
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to delete the access policy."
-          },
-          "404": {
-            "description": "Returned when the identified access policy does not exist."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "500": {
-            "description": "Returned when the underlying storage system returns an error."
-          }
+        "v1Filter": {
+            "type": "object",
+            "example": {
+                "or": [
+                    "group=maintainers",
+                    "group=supervisors"
+                ]
+            },
+            "properties": {
+                "or": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The filter list"
+                }
+            },
+            "description": "Filter"
         },
-        "parameters": [
-          {
-            "name": "uuid",
-            "description": "Specify the Access Policy UUID where `access_policies/{uuid}` is the Access Policy Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `access_policies/add30235-1424-4fda-840a-d5ef82c4c96f`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "AccessPolicies"
-        ]
-      },
-      "patch": {
-        "summary": "Update a access policy details",
-        "description": "Perform a full or partial update of the identified access policy",
-        "operationId": "AccessPolicies_UpdateIAMAccessPolicy",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1IAMAccessPolicy"
-            }
-          },
-          "400": {
-            "description": "Returned when the request is badly formed."
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to update the access policy."
-          },
-          "404": {
-            "description": "Returned when the identified access policy does not exist."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "500": {
-            "description": "Returned when the underlying storage system returns an error."
-          }
+        "v1IAMAccessPolicy": {
+            "type": "object",
+            "example": {
+                "identity": "access_policies/08838336-c357-460d-902a-3aba9528dd22",
+                "display_name": "User name for this policy",
+                "description": "User description for this policy",
+                "filters": [
+                    {
+                        "or": [
+                            "location=basingstoke",
+                            "location=cambridge"
+                        ]
+                    },
+                    {
+                        "or": [
+                            "asset_type=door_access_reader"
+                        ]
+                    }
+                ],
+                "access_permissions": [
+                    {
+                        "subjects": [
+                            "subjects/9846b867-3e42-4b5d-af56-bcd62c2126d2",
+                            "subjects/3907c132-900b-4481-82da-21ffe699ddb9"
+                        ],
+                        "behaviours": [
+                            "behaviour1",
+                            "behaviour2"
+                        ],
+                        "asset_attributes_read": [
+                            "attribute1",
+                            "attribute2"
+                        ],
+                        "user_attributes": [
+                            {
+                                "or": [
+                                    "group:maintainers",
+                                    "group:supervisors"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "properties": {
+                "identity": {
+                    "type": "string",
+                    "description": "Unique identification for the access policy, Relative Resource Name",
+                    "title": "generated identity for the entry"
+                },
+                "display_name": {
+                    "type": "string",
+                    "description": "Customer friendly name for the access policy.",
+                    "title": "user friendly name for this policy",
+                    "maxLength": 1024
+                },
+                "filters": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "$ref": "#/definitions/v1Filter"
+                    },
+                    "description": "filters",
+                    "title": "Outer list AND, inner list INCLUSIVE OR, e.g. [[A, B], [A, B]] \"(A OR B) in first position AND (A OR B) in second position (and anything after)\" (see https://github.com/ethereum/wiki/wiki/JSON-RPC#a-note-on-specifying-topic-filters)\nWe are using inner OR outer AND as most of natural queries seem to translate better into that format - say all pumps and locks from cambridge translates very nicely into [[type=pump,type=lock][location=cambridge]] - on the other hand if we wanted all pumps in cambridge or anything in newmarket that would be more awkward but perhaps that is not the most natural filter in the first place.\nOn the Access Policy editor page in the UX wire frames, we see locations and a asset_types as two of the items to filter on. A policy that expresses \u201ca policy for all door access readers in Basingstoke or Cambridge\u201d\n[\n    { \"or\": [\"location=basingstoke\", \"location=cambridge\"] },\n    { \"or\": [\"asset_type=door_access_reader\"] }\n]"
+                },
+                "access_permissions": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "$ref": "#/definitions/v1Permission"
+                    },
+                    "description": "The permissions maps",
+                    "title": "POST and PATCH do full replacement\n[\n  {\n    \"behaviours\": [\"BEHAVIOUR0\",\"BEHAVIOUR1\"],\n    \"asset_attributes_read\": [\"ATTRIBUTE0\",\"ATTRIBUTE1\"]\n  }\n]"
+                },
+                "tenant": {
+                    "type": "string",
+                    "description": "Tenant id",
+                    "title": "customer tenant ID",
+                    "maxLength": 128
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Customer description for the access policy.",
+                    "title": "user description of the policy",
+                    "maxLength": 4096
+                }
+            },
+            "description": "Describes an Access Policy for OBAC"
         },
-        "parameters": [
-          {
-            "name": "uuid",
-            "description": "Specify the Access Policy UUID where `access_policies/{uuid}` is the Access Policy Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `access_policies/add30235-1424-4fda-840a-d5ef82c4c96f`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "access_policy",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1IAMAccessPolicy"
-            }
-          },
-          {
-            "name": "mask",
-            "description": "The mask says exactly which fields are to be updated. This\nremoves the ambiguity caused by 'zero' valued fields.\nhttps://grpc-ecosystem.github.io/grpc-gateway/docs/patch.html",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "AccessPolicies"
-        ]
-      }
-    },
-    "/archivist/iam/v1/access_policies/{uuid}/assets": {
-      "get": {
-        "summary": "Returns assets matching access policy",
-        "description": "Returns assets matching access policy",
-        "operationId": "AccessPolicies_ListMatchingAssets",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v2ListAssetsResponse"
-            }
-          },
-          "400": {
-            "description": "Returned when the request is badly formed."
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to list the access policy."
-          },
-          "404": {
-            "description": "Returned when the identified access policy does not exist."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "500": {
-            "description": "Returned when the underlying storage system returns an error."
-          }
-        },
-        "parameters": [
-          {
-            "name": "uuid",
-            "description": "Specify the Access Policy UUID where `access_policies/{uuid}` is the Access Policy Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `access_policies/add30235-1424-4fda-840a-d5ef82c4c96f`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "order_by",
-            "description": "Specify the sort order for the results.",
-            "in": "query",
-            "required": false,
+        "v1ListIAMAccessPoliciesRequestOrderBy": {
             "type": "string",
             "enum": [
-              "DEFAULT"
+                "DEFAULT",
+                "DISPLAY_NAME"
             ],
-            "default": "DEFAULT"
-          },
-          {
-            "name": "page_size",
-            "description": "Maximum entries per page",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "page_token",
-            "description": "The next_page_token returned from a previous list request if any.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "AccessPolicies"
-        ]
-      }
-    }
-  },
-  "definitions": {
-    "v1Cap": {
-      "type": "object",
-      "properties": {
-        "resource_type": {
-          "type": "string",
-          "description": "String identifying the capped resource type"
+            "default": "DEFAULT",
+            "title": "Supported sort orders"
         },
-        "resource_remaining": {
-          "type": "string",
-          "format": "int64",
-          "description": "Number of capped resources remaining"
-        },
-        "resource_cap": {
-          "type": "string",
-          "format": "int64",
-          "description": "Resource cap"
-        }
-      }
-    },
-    "v1Caps": {
-      "type": "object",
-      "properties": {
-        "caps": {
-          "type": "array",
-          "items": {
+        "v1ListIAMAccessPoliciesResponse": {
             "type": "object",
-            "$ref": "#/definitions/v1Cap"
-          },
-          "description": "List of relevant capped resources"
-        }
-      }
-    },
-    "v1CreateIAMAccessPolicyRequest": {
-      "type": "object",
-      "example": {
-        "display_name": "Customers name for the policy",
-        "description": "Customers description for the policy",
-        "filters": [
-          {
-            "or": [
-              "location=basingstoke",
-              "location=cambridge"
-            ]
-          },
-          {
-            "or": [
-              "asset_type=door_access_reader"
-            ]
-          }
-        ],
-        "access_permissions": [
-          {
-            "subjects": [
-              "subjects/9846b867-3e42-4b5d-af56-bcd62c2126d2",
-              "subjects/3907c132-900b-4481-82da-21ffe699ddb9"
-            ],
-            "behaviours": [
-              "behaviour1",
-              "behaviour2"
-            ],
-            "asset_attributes_read": [
-              "attribute1",
-              "attribute2"
-            ],
-            "user_attributes": [
-              {
-                "or": [
-                  "group:maintainers",
-                  "group:supervisors"
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      "properties": {
-        "display_name": {
-          "type": "string",
-          "description": "Customer friendly name for the access policy.",
-          "maxLength": 128
+            "example": {
+                "access_policies": [
+                    {
+                        "identity": "access_policies/08838336-c357-460d-902a-3aba9528dd22",
+                        "display_name": "Some description",
+                        "filters": [
+                            {
+                                "or": [
+                                    "location=basingstoke",
+                                    "location=cambridge"
+                                ]
+                            },
+                            {
+                                "or": [
+                                    "asset_type=door_access_reader"
+                                ]
+                            }
+                        ],
+                        "access_permissions": [
+                            {
+                                "subjects": [
+                                    "subjects/9846b867-3e42-4b5d-af56-bcd62c2126d2",
+                                    "subjects/3907c132-900b-4481-82da-21ffe699ddb9"
+                                ],
+                                "behaviours": [
+                                    "behaviour1",
+                                    "behaviour2"
+                                ],
+                                "asset_attributes_read": [
+                                    "attribute1",
+                                    "attribute2"
+                                ],
+                                "user_attributes": [
+                                    {
+                                        "or": [
+                                            "group:maintainers",
+                                            "group:supervisors"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "page_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6InN0dW50aWR"
+            },
+            "properties": {
+                "access_policies": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "$ref": "#/definitions/v1IAMAccessPolicy"
+                    }
+                },
+                "next_page_token": {
+                    "type": "string",
+                    "description": "Token to retrieve the next page of results or empty if there are none."
+                }
+            },
+            "description": "List of access policies (or the next page in a continuing  list request"
         },
-        "filters": {
-          "type": "array",
-          "items": {
+        "v1ListIAMAccessPolicyMatchingAssetsRequestOrderBy": {
+            "type": "string",
+            "enum": [
+                "DEFAULT"
+            ],
+            "default": "DEFAULT",
+            "title": "Supported sort orders"
+        },
+        "v1Permission": {
             "type": "object",
-            "$ref": "#/definitions/v1Filter"
-          },
-          "description": "Filters. Public assets will not match any filter."
-        },
-        "access_permissions": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1Permission"
-          },
-          "description": "The access permissions maps"
-        },
-        "description": {
-          "type": "string",
-          "description": "Customer description for the access policy.",
-          "maxLength": 4096
-        }
-      },
-      "description": "The body of a request to create a new Access Policy.",
-      "required": [
-        "display_name"
-      ]
-    },
-    "v1Filter": {
-      "type": "object",
-      "example": {
-        "or": [
-          "group=maintainers",
-          "group=supervisors"
-        ]
-      },
-      "properties": {
-        "or": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "The filter list"
-        }
-      },
-      "description": "Filter"
-    },
-    "v1IAMAccessPolicy": {
-      "type": "object",
-      "example": {
-        "identity": "access_policies/08838336-c357-460d-902a-3aba9528dd22",
-        "display_name": "User name for this policy",
-        "description": "User description for this policy",
-        "filters": [
-          {
-            "or": [
-              "location=basingstoke",
-              "location=cambridge"
-            ]
-          },
-          {
-            "or": [
-              "asset_type=door_access_reader"
-            ]
-          }
-        ],
-        "access_permissions": [
-          {
-            "subjects": [
-              "subjects/9846b867-3e42-4b5d-af56-bcd62c2126d2",
-              "subjects/3907c132-900b-4481-82da-21ffe699ddb9"
-            ],
-            "behaviours": [
-              "behaviour1",
-              "behaviour2"
-            ],
-            "asset_attributes_read": [
-              "attribute1",
-              "attribute2"
-            ],
-            "user_attributes": [
-              {
-                "or": [
-                  "group:maintainers",
-                  "group:supervisors"
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      "properties": {
-        "identity": {
-          "type": "string",
-          "description": "Unique identification for the access policy, Relative Resource Name",
-          "title": "generated identity for the entry"
-        },
-        "display_name": {
-          "type": "string",
-          "description": "Customer friendly name for the access policy.",
-          "title": "user friendly name for this policy",
-          "maxLength": 1024
-        },
-        "filters": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1Filter"
-          },
-          "description": "filters",
-          "title": "Outer list AND, inner list INCLUSIVE OR, e.g. [[A, B], [A, B]] \"(A OR B) in first position AND (A OR B) in second position (and anything after)\" (see https://github.com/ethereum/wiki/wiki/JSON-RPC#a-note-on-specifying-topic-filters)\nWe are using inner OR outer AND as most of natural queries seem to translate better into that format - say all pumps and locks from cambridge translates very nicely into [[type=pump,type=lock][location=cambridge]] - on the other hand if we wanted all pumps in cambridge or anything in newmarket that would be more awkward but perhaps that is not the most natural filter in the first place.\nOn the Access Policy editor page in the UX wire frames, we see locations and a asset_types as two of the items to filter on. A policy that expresses “a policy for all door access readers in Basingstoke or Cambridge”\n[\n    { \"or\": [\"location=basingstoke\", \"location=cambridge\"] },\n    { \"or\": [\"asset_type=door_access_reader\"] }\n]"
-        },
-        "access_permissions": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1Permission"
-          },
-          "description": "The permissions maps",
-          "title": "POST and PATCH do full replacement\n[\n  {\n    \"behaviours\": [\"BEHAVIOUR0\",\"BEHAVIOUR1\"],\n    \"asset_attributes_read\": [\"ATTRIBUTE0\",\"ATTRIBUTE1\"]\n  }\n]"
-        },
-        "tenant": {
-          "type": "string",
-          "description": "Tenant id",
-          "title": "customer tenant ID",
-          "maxLength": 128
-        },
-        "description": {
-          "type": "string",
-          "description": "Customer description for the access policy.",
-          "title": "user description of the policy",
-          "maxLength": 4096
-        }
-      },
-      "description": "Describes an Access Policy for OBAC"
-    },
-    "v1ListIAMAccessPoliciesRequestOrderBy": {
-      "type": "string",
-      "enum": [
-        "DEFAULT",
-        "DISPLAY_NAME"
-      ],
-      "default": "DEFAULT",
-      "title": "Supported sort orders"
-    },
-    "v1ListIAMAccessPoliciesResponse": {
-      "type": "object",
-      "example": {
-        "access_policies": [
-          {
-            "identity": "access_policies/08838336-c357-460d-902a-3aba9528dd22",
-            "display_name": "Some description",
-            "filters": [
-              {
-                "or": [
-                  "location=basingstoke",
-                  "location=cambridge"
-                ]
-              },
-              {
-                "or": [
-                  "asset_type=door_access_reader"
-                ]
-              }
-            ],
-            "access_permissions": [
-              {
+            "example": {
                 "subjects": [
-                  "subjects/9846b867-3e42-4b5d-af56-bcd62c2126d2",
-                  "subjects/3907c132-900b-4481-82da-21ffe699ddb9"
+                    "subjects/9846b867-3e42-4b5d-af56-bcd62c2126d2",
+                    "subjects/3907c132-900b-4481-82da-21ffe699ddb9"
                 ],
                 "behaviours": [
-                  "behaviour1",
-                  "behaviour2"
+                    "behaviour1",
+                    "behaviour2"
+                ],
+                "include_attributes": [
+                    "attribute1",
+                    "attribute2"
                 ],
                 "asset_attributes_read": [
-                  "attribute1",
-                  "attribute2"
+                    "attribute1",
+                    "attribute2"
+                ],
+                "asset_attributes_write": [
+                    "toner_colour"
+                ],
+                "event_arc_display_type_read": [
+                    "TonerReplacement",
+                    "TonerReplacementRequired"
+                ],
+                "event_arc_display_type_write": [
+                    "TonerReplacement"
                 ],
                 "user_attributes": [
-                  {
-                    "or": [
-                      "group:maintainers",
-                      "group:supervisors"
-                    ]
-                  }
+                    {
+                        "or": [
+                            "group:maintainers",
+                            "group:supervisors"
+                        ]
+                    }
                 ]
-              }
-            ]
-          }
-        ],
-        "page_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6InN0dW50aWR"
-      },
-      "properties": {
-        "access_policies": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1IAMAccessPolicy"
-          }
-        },
-        "next_page_token": {
-          "type": "string",
-          "description": "Token to retrieve the next page of results or empty if there are none."
-        }
-      },
-      "description": "List of access policies (or the next page in a continuing  list request"
-    },
-    "v1ListIAMAccessPolicyMatchingAssetsRequestOrderBy": {
-      "type": "string",
-      "enum": [
-        "DEFAULT"
-      ],
-      "default": "DEFAULT",
-      "title": "Supported sort orders"
-    },
-    "v1Permission": {
-      "type": "object",
-      "example": {
-        "subjects": [
-          "subjects/9846b867-3e42-4b5d-af56-bcd62c2126d2",
-          "subjects/3907c132-900b-4481-82da-21ffe699ddb9"
-        ],
-        "behaviours": [
-          "behaviour1",
-          "behaviour2"
-        ],
-        "include_attributes": [
-          "attribute1",
-          "attribute2"
-        ],
-        "asset_attributes_read": [
-          "attribute1",
-          "attribute2"
-        ],
-        "asset_attributes_write": [
-          "toner_colour"
-        ],
-        "event_arc_display_type_read": [
-          "TonerReplacement",
-          "TonerReplacementRequired"
-        ],
-        "event_arc_display_type_write": [
-          "TonerReplacement"
-        ],
-        "user_attributes": [
-          {
-            "or": [
-              "group:maintainers",
-              "group:supervisors"
-            ]
-          }
-        ]
-      },
-      "properties": {
-        "subjects": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "The subjects list",
-          "title": "list of strings with subject identities"
-        },
-        "behaviours": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "The allowed behaviours",
-          "title": "list of allowed behaviours"
-        },
-        "include_attributes": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "The shareable attributes list",
-          "title": "Names of allowed visible attributes"
-        },
-        "user_attributes": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1Filter"
-          },
-          "description": "User attribute filters",
-          "title": "list of filters for user attribute matching\ninner OR and outer AND in form of\n[\n    { \"or\": [\"group=issuer1:maintainers\", \"group=issuer2:supervisors\"] }\n]\ndescribing anybody who is a maintainer or supervisor"
-        },
-        "asset_attributes_read": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "List of readable asset attributes"
-        },
-        "asset_attributes_write": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "List of writable asset attributes"
-        },
-        "event_arc_display_type_read": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "Visible events selector"
-        },
-        "event_arc_display_type_write": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "Visible events selector"
-        }
-      },
-      "description": "Permissions"
-    },
-    "v2AssetResponse": {
-      "type": "object",
-      "example": {
-        "identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
-        "behaviours": [
-          "RecordEvidence"
-        ],
-        "attributes": {
-          "arc_display_type": "Garden Fence",
-          "arc_display_name": "My Garden Fence",
-          "colour": "Plain wood"
-        },
-        "confirmation_status": "PENDING",
-        "tracked": "TRACKED",
-        "owner": "0x601f5A7D3e6dcB55e87bf2F17bC8A27AaCD3511",
-        "at_time": "2019-11-27T14:44:19Z",
-        "proof_mechanism": "SIMPLE_HASH",
-        "public": false,
-        "tenant_identity": "tenant/8e0b600c-8234-43e4-860c-e95bdcd695a9"
-      },
-      "properties": {
-        "identity": {
-          "type": "string",
-          "description": "relative resource address `assets/{UUID}`",
-          "title": "asset identity",
-          "readOnly": true
-        },
-        "behaviours": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "list of behaviours enabled for this asset",
-          "title": "list of enabled behaviours"
-        },
-        "attributes": {
-          "type": "object",
-          "additionalProperties": {
-            "$ref": "#/definitions/v2Attribute"
-          },
-          "description": "key value mapping of asset properties",
-          "title": "all the assets attributes"
-        },
-        "confirmation_status": {
-          "type": "string",
-          "$ref": "#/definitions/v2ConfirmationStatus",
-          "description": "indicates if the asset has been succesfully committed to the blockchain",
-          "title": "indicated if asset has been committed to the blockchain, possible values are CONFIRMED for committed, PENDING for not yet committed or FAILED for permanent failure",
-          "readOnly": true
-        },
-        "tracked": {
-          "type": "string",
-          "$ref": "#/definitions/v2TrackedStatus",
-          "description": "indicates whether asset is still being tracked in the system",
-          "title": "indicates if asset is being tracked in the system TRACKED or NOT_TRACKED",
-          "readOnly": true
-        },
-        "access_policy": {
-          "type": "object",
-          "additionalProperties": {
-            "$ref": "#/definitions/v2Attribute"
-          },
-          "description": "key value mapping of behaviour to private for keys",
-          "title": "describes the access policy for this asset"
-        },
-        "owner": {
-          "type": "string",
-          "description": "wallet address of the asset owner",
-          "title": "wallet address for the owner of this asset",
-          "readOnly": true
-        },
-        "at_time": {
-          "type": "string",
-          "format": "date-time",
-          "description": "indicates time the asset data is from",
-          "readOnly": true
-        },
-        "proof_mechanism": {
-          "type": "string",
-          "$ref": "#/definitions/v2ProofMechanism",
-          "description": "the mechanism used to provide evidential proof"
-        },
-        "chain_id": {
-          "type": "string",
-          "description": "chain id of the blockchain associated with this asset",
-          "readOnly": true
-        },
-        "public": {
-          "type": "boolean",
-          "description": "Public asset"
-        },
-        "tenant_identity": {
-          "type": "string",
-          "description": "Identity of the tenant the that created this asset",
-          "maxLength": 1024
-        }
-      },
-      "description": "This describes an Asset."
-    },
-    "v2Attribute": {
-      "type": "object",
-      "properties": {
-        "str_val": {
-          "type": "string"
-        },
-        "dict_val": {
-          "$ref": "#/definitions/v2DictAttr"
-        },
-        "list_val": {
-          "$ref": "#/definitions/v2ListAttr"
-        }
-      }
-    },
-    "v2ConfirmationStatus": {
-      "type": "string",
-      "enum": [
-        "CONFIRMATION_STATUS_UNSPECIFIED",
-        "PENDING",
-        "CONFIRMED",
-        "FAILED",
-        "STORED",
-        "COMMITTED",
-        "UNEQUIVOCAL"
-      ],
-      "default": "CONFIRMATION_STATUS_UNSPECIFIED",
-      "description": "forestrie, \"its in the db\"\n - COMMITTED: forestrie, \"you can know if its changed\"\n - UNEQUIVOCAL: We re-use the constant for CONFIRMED (above)\n\nforestrie, \"You easily prove it was publicly available to all\"",
-      "title": "- PENDING: not yet committed\n - CONFIRMED: committed. forestrie: \"You can easily prove it changed\"\n - FAILED: permanent failure\n - STORED: Regarding the new statuses for forestrie,  See\nhttps://github.com/datatrails/epic-8120-scalable-proof-mechanisms/blob/main/event-trust-levels.md"
-    },
-    "v2DictAttr": {
-      "type": "object",
-      "properties": {
-        "value": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "v2ListAssetsResponse": {
-      "type": "object",
-      "example": {
-        "assets": [
-          {
-            "identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
-            "behaviours": [
-              "RecordEvidence"
-            ],
-            "attributes": {
-              "arc_display_type": "Garden Fence",
-              "arc_display_name": "My Garden Fence",
-              "colour": "Plain wood"
             },
-            "confirmation_status": "PENDING",
-            "tracked": "TRACKED",
-            "owner": "0x601f5A7D3e6dcB55e87bf2F17bC8A27AaCD3511",
-            "at_time": "2019-11-27T14:44:19Z",
-            "proof_mechanism": "SIMPLE_HASH",
-            "public": false,
-            "tenant_identity": "tenant/8e0b600c-8234-43e4-860c-e95bdcd695a9"
-          },
-          {
-            "identity": "assets/cef61346-2453-5aeb-921c-e6fa93d5b032",
-            "behaviours": [
-              "RecordEvidence"
-            ],
-            "attributes": {
-              "arc_display_type": "IoT Device",
-              "arc_display_name": "My IoT Device",
-              "arc_firmware_version": "3.2.1"
+            "properties": {
+                "subjects": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The subjects list",
+                    "title": "list of strings with subject identities"
+                },
+                "behaviours": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The allowed behaviours",
+                    "title": "list of allowed behaviours"
+                },
+                "include_attributes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The shareable attributes list",
+                    "title": "Names of allowed visible attributes"
+                },
+                "user_attributes": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "$ref": "#/definitions/v1Filter"
+                    },
+                    "description": "User attribute filters",
+                    "title": "list of filters for user attribute matching\ninner OR and outer AND in form of\n[\n    { \"or\": [\"group=issuer1:maintainers\", \"group=issuer2:supervisors\"] }\n]\ndescribing anybody who is a maintainer or supervisor"
+                },
+                "asset_attributes_read": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of readable asset attributes"
+                },
+                "asset_attributes_write": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of writable asset attributes"
+                },
+                "event_arc_display_type_read": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Visible events selector"
+                },
+                "event_arc_display_type_write": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Visible events selector"
+                }
             },
-            "confirmation_status": "PENDING",
-            "tracked": "TRACKED",
-            "owner": "0x601f5A7D3e6dcB55e87bf2F17bC8A27AaCD3511",
-            "at_time": "2019-11-27T14:44:19Z",
-            "proof_mechanism": "SIMPLE_HASH",
-            "public": false,
-            "tenant_identity": "tenant/8e0b600c-8234-43e4-860c-e95bdcd695a9"
-          }
-        ],
-        "next_page_token": "abcd"
-      },
-      "properties": {
-        "assets": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v2AssetResponse"
-          }
+            "description": "Permissions"
         },
-        "next_page_token": {
-          "type": "string",
-          "description": "Token to retrieve the next page of results or empty if there are none."
-        }
-      },
-      "description": "A list of assets returned data identical to `Asset`"
-    },
-    "v2ListAttr": {
-      "type": "object",
-      "properties": {
-        "value": {
-          "type": "array",
-          "items": {
+        "v2AssetResponse": {
             "type": "object",
-            "$ref": "#/definitions/v2DictAttr"
-          }
+            "example": {
+                "identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
+                "behaviours": [
+                    "RecordEvidence"
+                ],
+                "attributes": {
+                    "arc_display_type": "Garden Fence",
+                    "arc_display_name": "My Garden Fence",
+                    "colour": "Plain wood"
+                },
+                "confirmation_status": "PENDING",
+                "tracked": "TRACKED",
+                "owner": "0x601f5A7D3e6dcB55e87bf2F17bC8A27AaCD3511",
+                "at_time": "2019-11-27T14:44:19Z",
+                "proof_mechanism": "SIMPLE_HASH",
+                "public": false,
+                "tenant_identity": "tenant/8e0b600c-8234-43e4-860c-e95bdcd695a9"
+            },
+            "properties": {
+                "identity": {
+                    "type": "string",
+                    "description": "relative resource address `assets/{UUID}`",
+                    "title": "asset identity",
+                    "readOnly": true
+                },
+                "behaviours": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "list of behaviours enabled for this asset",
+                    "title": "list of enabled behaviours"
+                },
+                "attributes": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/v2Attribute"
+                    },
+                    "description": "key value mapping of asset properties",
+                    "title": "all the assets attributes"
+                },
+                "confirmation_status": {
+                    "type": "string",
+                    "$ref": "#/definitions/v2ConfirmationStatus",
+                    "description": "indicates if the asset has been succesfully committed to the blockchain",
+                    "title": "indicated if asset has been committed to the blockchain, possible values are CONFIRMED for committed, PENDING for not yet committed or FAILED for permanent failure",
+                    "readOnly": true
+                },
+                "tracked": {
+                    "type": "string",
+                    "$ref": "#/definitions/v2TrackedStatus",
+                    "description": "indicates whether asset is still being tracked in the system",
+                    "title": "indicates if asset is being tracked in the system TRACKED or NOT_TRACKED",
+                    "readOnly": true
+                },
+                "access_policy": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/v2Attribute"
+                    },
+                    "description": "key value mapping of behaviour to private for keys",
+                    "title": "describes the access policy for this asset"
+                },
+                "owner": {
+                    "type": "string",
+                    "description": "wallet address of the asset owner",
+                    "title": "wallet address for the owner of this asset",
+                    "readOnly": true
+                },
+                "at_time": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "indicates time the asset data is from",
+                    "readOnly": true
+                },
+                "proof_mechanism": {
+                    "type": "string",
+                    "$ref": "#/definitions/v2ProofMechanism",
+                    "description": "the mechanism used to provide evidential proof"
+                },
+                "chain_id": {
+                    "type": "string",
+                    "description": "chain id of the blockchain associated with this asset",
+                    "readOnly": true
+                },
+                "public": {
+                    "type": "boolean",
+                    "description": "Public asset"
+                },
+                "tenant_identity": {
+                    "type": "string",
+                    "description": "Identity of the tenant the that created this asset",
+                    "maxLength": 1024
+                }
+            },
+            "description": "This describes an Asset."
+        },
+        "v2Attribute": {
+            "type": "object",
+            "properties": {
+                "str_val": {
+                    "type": "string"
+                },
+                "dict_val": {
+                    "$ref": "#/definitions/v2DictAttr"
+                },
+                "list_val": {
+                    "$ref": "#/definitions/v2ListAttr"
+                }
+            }
+        },
+        "v2ConfirmationStatus": {
+            "type": "string",
+            "enum": [
+                "CONFIRMATION_STATUS_UNSPECIFIED",
+                "PENDING",
+                "CONFIRMED",
+                "FAILED",
+                "STORED",
+                "COMMITTED",
+                "UNEQUIVOCAL"
+            ],
+            "default": "CONFIRMATION_STATUS_UNSPECIFIED",
+            "description": "forestrie, \"its in the db\"\n - COMMITTED: forestrie, \"you can know if its changed\"\n - UNEQUIVOCAL: We re-use the constant for CONFIRMED (above)\n\nforestrie, \"You easily prove it was publicly available to all\"",
+            "title": "- PENDING: not yet committed\n - CONFIRMED: committed. forestrie: \"You can easily prove it changed\"\n - FAILED: permanent failure\n - STORED: Regarding the new statuses for forestrie,  See\nhttps://github.com/datatrails/epic-8120-scalable-proof-mechanisms/blob/main/event-trust-levels.md"
+        },
+        "v2DictAttr": {
+            "type": "object",
+            "properties": {
+                "value": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "v2ListAssetsResponse": {
+            "type": "object",
+            "example": {
+                "assets": [
+                    {
+                        "identity": "assets/add30235-1424-4fda-840a-d5ef82c4c96f",
+                        "behaviours": [
+                            "RecordEvidence"
+                        ],
+                        "attributes": {
+                            "arc_display_type": "Garden Fence",
+                            "arc_display_name": "My Garden Fence",
+                            "colour": "Plain wood"
+                        },
+                        "confirmation_status": "PENDING",
+                        "tracked": "TRACKED",
+                        "owner": "0x601f5A7D3e6dcB55e87bf2F17bC8A27AaCD3511",
+                        "at_time": "2019-11-27T14:44:19Z",
+                        "proof_mechanism": "SIMPLE_HASH",
+                        "public": false,
+                        "tenant_identity": "tenant/8e0b600c-8234-43e4-860c-e95bdcd695a9"
+                    },
+                    {
+                        "identity": "assets/cef61346-2453-5aeb-921c-e6fa93d5b032",
+                        "behaviours": [
+                            "RecordEvidence"
+                        ],
+                        "attributes": {
+                            "arc_display_type": "IoT Device",
+                            "arc_display_name": "My IoT Device",
+                            "arc_firmware_version": "3.2.1"
+                        },
+                        "confirmation_status": "PENDING",
+                        "tracked": "TRACKED",
+                        "owner": "0x601f5A7D3e6dcB55e87bf2F17bC8A27AaCD3511",
+                        "at_time": "2019-11-27T14:44:19Z",
+                        "proof_mechanism": "SIMPLE_HASH",
+                        "public": false,
+                        "tenant_identity": "tenant/8e0b600c-8234-43e4-860c-e95bdcd695a9"
+                    }
+                ],
+                "next_page_token": "abcd"
+            },
+            "properties": {
+                "assets": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "$ref": "#/definitions/v2AssetResponse"
+                    }
+                },
+                "next_page_token": {
+                    "type": "string",
+                    "description": "Token to retrieve the next page of results or empty if there are none."
+                }
+            },
+            "description": "A list of assets returned data identical to `Asset`"
+        },
+        "v2ListAttr": {
+            "type": "object",
+            "properties": {
+                "value": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "$ref": "#/definitions/v2DictAttr"
+                    }
+                }
+            }
+        },
+        "v2ProofMechanism": {
+            "type": "string",
+            "enum": [
+                "PROOF_MECHANISM_UNSPECIFIED",
+                "RESERVED1",
+                "SIMPLE_HASH",
+                "MERKLE_LOG"
+            ],
+            "default": "PROOF_MECHANISM_UNSPECIFIED"
+        },
+        "v2TrackedStatus": {
+            "type": "string",
+            "enum": [
+                "TRACKED_STATUS_UNSPECIFIED",
+                "TRACKED",
+                "NOT_TRACKED",
+                "ANY"
+            ],
+            "default": "TRACKED_STATUS_UNSPECIFIED"
         }
-      }
-    },
-    "v2ProofMechanism": {
-      "type": "string",
-      "enum": [
-        "PROOF_MECHANISM_UNSPECIFIED",
-        "RESERVED1",
-        "SIMPLE_HASH",
-        "MERKLE_LOG"
-      ],
-      "default": "PROOF_MECHANISM_UNSPECIFIED"
-    },
-    "v2TrackedStatus": {
-      "type": "string",
-      "enum": [
-        "TRACKED_STATUS_UNSPECIFIED",
-        "TRACKED",
-        "NOT_TRACKED",
-        "ANY"
-      ],
-      "default": "TRACKED_STATUS_UNSPECIFIED"
     }
-  }
 }

@@ -1,300 +1,300 @@
 {
-  "swagger": "2.0",
-  "info": {
-    "title": "Public Attachments API",
-    "description": "API for uploading and downloading attachments from public Assets.",
-    "version": "2.0",
-    "contact": {
-      "name": "DataTrails",
-      "url": "https://www.datatrails.ai"
-    }
-  },
-  "tags": [
-    {
-      "name": "PublicAttachments",
-      "description": "Retrieve rich evidence and blobs metadata from public Assets and Events"
-    }
-  ],
-  "basePath": "/archivist/v2/attachments/publicassets",
-  "schemes": [
-    "https"
-  ],
-  "paths": {
-    "/archivist/v2/attachments/publicassets/{asset_uuid}/events/{event_uuid}/{uuid}": {
-      "get": {
-        "summary": "Downloads an event attachment from public asset.",
-        "description": "Downloads an event attachment, if the given attachment is present in the 'arc_attachments' event atttribute.",
-        "operationId": "Attachments_PublicEvent_Download",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "file"
-            }
-          },
-          "400": {
-            "description": "Returned when the request is badly formed."
-          },
-          "404": {
-            "description": "Returned when the underlying system can't find the event."
-          }
-        },
-        "parameters": [
-          {
-            "name": "asset_uuid",
-            "description": "Specify the Asset UUID where `assets/{uuid}` is the Asset Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "event_uuid",
-            "description": "Specify the Event UUID where `assets/{asset_uuid}/events/{uuid}` is the Event Identity e.g. `11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "uuid",
-            "description": "Specify the Attachent UUID where `attachments/{uuid}` is the Attachment Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `attachments/add30235-1424-4fda-840a-d5ef82c4c96f`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "PublicAttachments"
-        ]
-      }
-    },
-    "/archivist/v2/attachments/publicassets/{asset_uuid}/events/{event_uuid}/{uuid}/info": {
-      "get": {
-        "summary": "Retrieve metadata on an attachment from a public asset.",
-        "description": "Retrieve metadata on an attachment, if the given attachment is present in the 'arc_attachments' event atttribute.",
-        "operationId": "Attachments_PublicEvent_Info",
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1AttachmentsResponse"
-            }
-          },
-          "400": {
-            "description": "Returned when the request is badly formed."
-          },
-          "404": {
-            "description": "Returned when the underlying system can't find the event."
-          }
-        },
-        "parameters": [
-          {
-            "name": "asset_uuid",
-            "description": "Specify the Asset UUID where `assets/{uuid}` is the Asset Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "event_uuid",
-            "description": "Specify the Event UUID where `assets/{asset_uuid}/events/{uuid}` is the Event Identity e.g. `11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "uuid",
-            "description": "Specify the Attachent UUID where `attachments/{uuid}` is the Attachment Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `attachments/add30235-1424-4fda-840a-d5ef82c4c96f`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "PublicAttachments"
-        ]
-      }
-    },
-    "/archivist/v2/attachments/publicassets/{asset_uuid}/{uuid}": {
-      "get": {
-        "summary": "Downloads an public asset attachment.",
-        "description": "Downloads an asset attachment, if the given attachment is present in the 'arc_attachments' asset atttribute.",
-        "operationId": "Attachments_PublicAsset_Download",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "file"
-            }
-          },
-          "400": {
-            "description": "Returned when the request is badly formed."
-          },
-          "404": {
-            "description": "Returned when the underlying system can't find the asset."
-          }
-        },
-        "parameters": [
-          {
-            "name": "asset_uuid",
-            "description": "Specify the Asset UUID where `assets/{uuid}` is the Asset Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "uuid",
-            "description": "Specify the Attachent UUID where `attachments/{uuid}` is the Attachment Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `attachments/add30235-1424-4fda-840a-d5ef82c4c96f`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "PublicAttachments"
-        ]
-      }
-    },
-    "/archivist/v2/attachments/publicassets/{asset_uuid}/{uuid}/info": {
-      "get": {
-        "summary": "Retrieve metadata on an attachment from a public asset.",
-        "description": "Retrieve metadata on an attachment, if the given attachment is present in the 'arc_attachments' asset atttribute.",
-        "operationId": "Attachments_PublicAsset_Info",
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1AttachmentsResponse"
-            }
-          },
-          "400": {
-            "description": "Returned when the request is badly formed."
-          },
-          "404": {
-            "description": "Returned when the underlying system can't find the asset."
-          }
-        },
-        "parameters": [
-          {
-            "name": "asset_uuid",
-            "description": "Specify the Asset UUID where `assets/{uuid}` is the Asset Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "uuid",
-            "description": "Specify the Attachent UUID where `attachments/{uuid}` is the Attachment Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `attachments/add30235-1424-4fda-840a-d5ef82c4c96f`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "PublicAttachments"
-        ]
-      }
-    }
-  },
-  "definitions": {
-    "v1AttachmentsHash": {
-      "type": "object",
-      "example": {
-        "alg": "SHA256",
-        "value": "xxxxxxxxxxxxxxxxxxxxxxx"
-      },
-      "properties": {
-        "alg": {
-          "type": "string",
-          "description": "hash algorithm."
-        },
-        "value": {
-          "type": "string",
-          "description": "hash value."
+    "swagger": "2.0",
+    "info": {
+        "title": "Public Attachments API",
+        "description": "API for uploading and downloading attachments from public Assets.",
+        "version": "2.0",
+        "contact": {
+            "name": "DataTrails",
+            "url": "https://www.datatrails.ai"
         }
-      }
     },
-    "v1AttachmentsResponse": {
-      "type": "object",
-      "example": {
-        "identity": "blobs/08838336-c357-460d-902a-3aba9528dd22",
-        "issuer": "xxxx@example.com",
-        "hash": {
-          "alg": "SHA256",
-          "value": "xxxxxxxxxxxxxxxxxxxxxxx"
-        },
-        "mime_type": "image/jpeg",
-        "timestamp_accepted": "2019-11-07T15:31:49Z",
-        "size": 31424,
-        "scanned_status": "SCANNED_OK",
-        "scanned_timestamp": "2019-11-07T15:31:49Z",
-        "scanned_bad_reason": "",
-        "subject": "user-xxxx@example.com",
-        "tenantid": "tenant/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-      },
-      "properties": {
-        "identity": {
-          "type": "string",
-          "description": "blob identity."
-        },
-        "issuer": {
-          "type": "string",
-          "description": "principal issuer."
-        },
-        "hash": {
-          "$ref": "#/definitions/v1AttachmentsHash",
-          "description": "blob hash."
-        },
-        "mime_type": {
-          "type": "string",
-          "description": "http mime type."
-        },
-        "timestamp_accepted": {
-          "type": "string",
-          "format": "date-time",
-          "description": "date and time when the request has been received."
-        },
-        "size": {
-          "type": "integer",
-          "description": "size of the blob."
-        },
-        "scanned_status": {
-          "type": "string",
-          "$ref": "#/definitions/v1ScannedStatus",
-          "description": "status of scan."
-        },
-        "scanned_timestamp": {
-          "type": "string",
-          "format": "date-time",
-          "description": "date and time when the attachments has been scanned."
-        },
-        "scanned_bad_reason": {
-          "type": "string",
-          "description": "if scanned as SCANNED_BAD contains a hint of scan result."
-        },
-        "subject": {
-          "type": "string",
-          "description": "principal subject."
-        },
-        "tenantid": {
-          "type": "string",
-          "description": "identity of the tenant the blob belongs to."
+    "tags": [
+        {
+            "name": "PublicAttachments",
+            "description": "Retrieve rich evidence and blobs metadata from public Assets and Events"
         }
-      }
+    ],
+    "basePath": "/archivist/v2/attachments/publicassets",
+    "schemes": [
+        "https"
+    ],
+    "paths": {
+        "/archivist/v2/attachments/publicassets/{asset_uuid}/events/{event_uuid}/{uuid}": {
+            "get": {
+                "summary": "Downloads an event attachment from public asset.",
+                "description": "Downloads an event attachment, if the given attachment is present in the 'arc_attachments' event atttribute.",
+                "operationId": "Attachments_PublicEvent_Download",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "file"
+                        }
+                    },
+                    "400": {
+                        "description": "Returned when the request is badly formed."
+                    },
+                    "404": {
+                        "description": "Returned when the underlying system can't find the event."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "asset_uuid",
+                        "description": "Specify the Asset UUID where `assets/{uuid}` is the Asset Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f`",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "event_uuid",
+                        "description": "Specify the Event UUID where `assets/{asset_uuid}/events/{uuid}` is the Event Identity e.g. `11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "uuid",
+                        "description": "Specify the Attachent UUID where `attachments/{uuid}` is the Attachment Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `attachments/add30235-1424-4fda-840a-d5ef82c4c96f`",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "PublicAttachments"
+                ]
+            }
+        },
+        "/archivist/v2/attachments/publicassets/{asset_uuid}/events/{event_uuid}/{uuid}/info": {
+            "get": {
+                "summary": "Retrieve metadata on an attachment from a public asset.",
+                "description": "Retrieve metadata on an attachment, if the given attachment is present in the 'arc_attachments' event atttribute.",
+                "operationId": "Attachments_PublicEvent_Info",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "$ref": "#/definitions/v1AttachmentsResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Returned when the request is badly formed."
+                    },
+                    "404": {
+                        "description": "Returned when the underlying system can't find the event."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "asset_uuid",
+                        "description": "Specify the Asset UUID where `assets/{uuid}` is the Asset Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f`",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "event_uuid",
+                        "description": "Specify the Event UUID where `assets/{asset_uuid}/events/{uuid}` is the Event Identity e.g. `11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "uuid",
+                        "description": "Specify the Attachent UUID where `attachments/{uuid}` is the Attachment Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `attachments/add30235-1424-4fda-840a-d5ef82c4c96f`",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "PublicAttachments"
+                ]
+            }
+        },
+        "/archivist/v2/attachments/publicassets/{asset_uuid}/{uuid}": {
+            "get": {
+                "summary": "Downloads an public asset attachment.",
+                "description": "Downloads an asset attachment, if the given attachment is present in the 'arc_attachments' asset atttribute.",
+                "operationId": "Attachments_PublicAsset_Download",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "file"
+                        }
+                    },
+                    "400": {
+                        "description": "Returned when the request is badly formed."
+                    },
+                    "404": {
+                        "description": "Returned when the underlying system can't find the asset."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "asset_uuid",
+                        "description": "Specify the Asset UUID where `assets/{uuid}` is the Asset Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f`",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "uuid",
+                        "description": "Specify the Attachent UUID where `attachments/{uuid}` is the Attachment Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `attachments/add30235-1424-4fda-840a-d5ef82c4c96f`",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "PublicAttachments"
+                ]
+            }
+        },
+        "/archivist/v2/attachments/publicassets/{asset_uuid}/{uuid}/info": {
+            "get": {
+                "summary": "Retrieve metadata on an attachment from a public asset.",
+                "description": "Retrieve metadata on an attachment, if the given attachment is present in the 'arc_attachments' asset atttribute.",
+                "operationId": "Attachments_PublicAsset_Info",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "$ref": "#/definitions/v1AttachmentsResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Returned when the request is badly formed."
+                    },
+                    "404": {
+                        "description": "Returned when the underlying system can't find the asset."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "asset_uuid",
+                        "description": "Specify the Asset UUID where `assets/{uuid}` is the Asset Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f`",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "uuid",
+                        "description": "Specify the Attachent UUID where `attachments/{uuid}` is the Attachment Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `attachments/add30235-1424-4fda-840a-d5ef82c4c96f`",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "PublicAttachments"
+                ]
+            }
+        }
     },
-    "v1ScannedStatus": {
-      "type": "string",
-      "enum": [
-        "NOT_SCANNED",
-        "SCANNED_OK",
-        "SCANNED_BAD"
-      ],
-      "default": "NOT_SCANNED"
+    "definitions": {
+        "v1AttachmentsHash": {
+            "type": "object",
+            "example": {
+                "alg": "SHA256",
+                "value": "xxxxxxxxxxxxxxxxxxxxxxx"
+            },
+            "properties": {
+                "alg": {
+                    "type": "string",
+                    "description": "hash algorithm."
+                },
+                "value": {
+                    "type": "string",
+                    "description": "hash value."
+                }
+            }
+        },
+        "v1AttachmentsResponse": {
+            "type": "object",
+            "example": {
+                "identity": "blobs/08838336-c357-460d-902a-3aba9528dd22",
+                "issuer": "xxxx@example.com",
+                "hash": {
+                    "alg": "SHA256",
+                    "value": "xxxxxxxxxxxxxxxxxxxxxxx"
+                },
+                "mime_type": "image/jpeg",
+                "timestamp_accepted": "2019-11-07T15:31:49Z",
+                "size": 31424,
+                "scanned_status": "SCANNED_OK",
+                "scanned_timestamp": "2019-11-07T15:31:49Z",
+                "scanned_bad_reason": "",
+                "subject": "user-xxxx@example.com",
+                "tenantid": "tenant/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+            },
+            "properties": {
+                "identity": {
+                    "type": "string",
+                    "description": "blob identity."
+                },
+                "issuer": {
+                    "type": "string",
+                    "description": "principal issuer."
+                },
+                "hash": {
+                    "$ref": "#/definitions/v1AttachmentsHash",
+                    "description": "blob hash."
+                },
+                "mime_type": {
+                    "type": "string",
+                    "description": "http mime type."
+                },
+                "timestamp_accepted": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "date and time when the request has been received."
+                },
+                "size": {
+                    "type": "integer",
+                    "description": "size of the blob."
+                },
+                "scanned_status": {
+                    "type": "string",
+                    "$ref": "#/definitions/v1ScannedStatus",
+                    "description": "status of scan."
+                },
+                "scanned_timestamp": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "date and time when the attachments has been scanned."
+                },
+                "scanned_bad_reason": {
+                    "type": "string",
+                    "description": "if scanned as SCANNED_BAD contains a hint of scan result."
+                },
+                "subject": {
+                    "type": "string",
+                    "description": "principal subject."
+                },
+                "tenantid": {
+                    "type": "string",
+                    "description": "identity of the tenant the blob belongs to."
+                }
+            }
+        },
+        "v1ScannedStatus": {
+            "type": "string",
+            "enum": [
+                "NOT_SCANNED",
+                "SCANNED_OK",
+                "SCANNED_BAD"
+            ],
+            "default": "NOT_SCANNED"
+        }
     }
-  }
 }

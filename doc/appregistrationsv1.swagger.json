@@ -1,481 +1,481 @@
 {
-  "swagger": "2.0",
-  "info": {
-    "title": "AppRegistrations API",
-    "description": "API to manage Application Registrations.",
-    "version": "1.0",
-    "contact": {
-      "name": "DataTrails",
-      "url": "https://www.datatrails.ai"
-    }
-  },
-  "tags": [
-    {
-      "name": "AppRegistrations",
-      "description": "Handle credentials to give client applications access to DataTrails APIs"
-    }
-  ],
-  "basePath": "/archivist/iam/v1/applications",
-  "schemes": [
-    "https"
-  ],
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
-  "paths": {
-    "/archivist/iam/v1/applications": {
-      "get": {
-        "summary": "List applications for the user's tenant",
-        "description": "Lists all applications for the user's tenant",
-        "operationId": "AppRegistrations_ListAppRegistrations",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1ListAppRegistrationsResponse"
-            }
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          }
-        },
-        "parameters": [
-          {
-            "name": "page_size",
-            "description": "Maximum no. of entries requested.",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "page_token",
-            "description": "Pagination token. Empty on first request. On subsequent requests copied from response.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "display_name",
-            "description": "Further fields are bound to query parameters and act to filter the result\n\nCustomer friendly name for the app registration.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "AppRegistrations"
-        ]
-      },
-      "post": {
-        "summary": "Registers a new application",
-        "description": "Registers a new application, generating a client ID and secret for use in machine authentication. Regenerates the client secret for the application matching the supplied UUID. The response will include the client secret, but it will not be possible to retrieve it afterwards.",
-        "operationId": "AppRegistrations_CreateAppRegistration",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1Application"
-            }
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "402": {
-            "description": "Returned when the user's quota of app registrations policies has been reached."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1CreateAppRegistrationRequest"
-            }
-          }
-        ],
-        "tags": [
-          "AppRegistrations"
-        ]
-      }
-    },
-    "/archivist/iam/v1/applications/{uuid}": {
-      "get": {
-        "summary": "Fetch an application record",
-        "description": "Fetches the application record for the supplied UUID",
-        "operationId": "AppRegistrations_GetAppRegistration",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1Application"
-            }
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized."
-          },
-          "404": {
-            "description": "Returned when the Application does not exist."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          }
-        },
-        "parameters": [
-          {
-            "name": "uuid",
-            "description": "UUID identifying the application",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "AppRegistrations"
-        ]
-      },
-      "delete": {
-        "summary": "Delete an application",
-        "description": "Deletes the application matching the supplied UUID",
-        "operationId": "AppRegistrations_DeleteAppRegistration",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object",
-              "properties": {}
-            }
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized."
-          },
-          "404": {
-            "description": "Returned when the Application does not exist."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          }
-        },
-        "parameters": [
-          {
-            "name": "uuid",
-            "description": "UUID identifying the application",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "AppRegistrations"
-        ]
-      },
-      "patch": {
-        "summary": "Update an existing application",
-        "description": "Allows updating of the display name and custom claims for an application",
-        "operationId": "AppRegistrations_UpdateAppRegistration",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1Application"
-            }
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized."
-          },
-          "404": {
-            "description": "Returned when the Application does not exist."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          }
-        },
-        "parameters": [
-          {
-            "name": "uuid",
-            "description": "UUID identifying the application",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "application",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1Application",
-              "description": "Application containing updates to `display_name` and/or `custom_claims`"
-            }
-          },
-          {
-            "name": "mask",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "AppRegistrations"
-        ]
-      }
-    },
-    "/archivist/iam/v1/applications/{uuid}:regenerate-secret": {
-      "post": {
-        "summary": "Regenerate the client secret for an application",
-        "description": "Regenerates the client secret for the application matching the supplied UUID. The response will include the client secret, but it will not be possible to retrieve it afterwards.",
-        "operationId": "AppRegistrations_RegenerateAppRegistrationSecret",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1Application"
-            }
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized."
-          },
-          "404": {
-            "description": "Returned when the Application does not exist."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          }
-        },
-        "parameters": [
-          {
-            "name": "uuid",
-            "description": "UUID identifying the application",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "AppRegistrations"
-        ]
-      }
-    }
-  },
-  "definitions": {
-    "v1Application": {
-      "type": "object",
-      "example": {
-        "identity": "applications/ffaa0f30-a503-4de7-b085-d857ed34a7cd",
-        "display_name": "test",
-        "client_id": "ffaa0f30-a503-4de7-b085-d857ed34a7cd",
-        "tenant_id": "tenant/fafb2d41-5237-45c7-9740-66d1635f549b",
-        "credentials": [
-          {
-            "secret": "2acc636e8439fa2ea1a613fe547a1d435b0b0ab3793f11751559d7431a3414eb",
-            "valid_from": "2021-09-17T16:54:08Z",
-            "valid_until": "2022-09-17T16:54:08Z"
-          }
-        ],
-        "custom_claims": {
-          "asf": "asbdf"
+    "swagger": "2.0",
+    "info": {
+        "title": "AppRegistrations API",
+        "description": "API to manage Application Registrations.",
+        "version": "1.0",
+        "contact": {
+            "name": "DataTrails",
+            "url": "https://www.datatrails.ai"
         }
-      },
-      "properties": {
-        "identity": {
-          "type": "string",
-          "description": "Resource name for the application",
-          "readOnly": true
+    },
+    "tags": [
+        {
+            "name": "AppRegistrations",
+            "description": "Handle credentials to give client applications access to DataTrails APIs"
+        }
+    ],
+    "basePath": "/archivist/iam/v1/applications",
+    "schemes": [
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/archivist/iam/v1/applications": {
+            "get": {
+                "summary": "List applications for the user's tenant",
+                "description": "Lists all applications for the user's tenant",
+                "operationId": "AppRegistrations_ListAppRegistrations",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "$ref": "#/definitions/v1ListAppRegistrationsResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Returned when the user is not authenticated to the system."
+                    },
+                    "403": {
+                        "description": "Returned when the user is not authorized."
+                    },
+                    "429": {
+                        "description": "Returned when a user exceeds their subscription's rate limit for requests."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "page_size",
+                        "description": "Maximum no. of entries requested.",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "page_token",
+                        "description": "Pagination token. Empty on first request. On subsequent requests copied from response.",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "display_name",
+                        "description": "Further fields are bound to query parameters and act to filter the result\n\nCustomer friendly name for the app registration.",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "AppRegistrations"
+                ]
+            },
+            "post": {
+                "summary": "Registers a new application",
+                "description": "Registers a new application, generating a client ID and secret for use in machine authentication. Regenerates the client secret for the application matching the supplied UUID. The response will include the client secret, but it will not be possible to retrieve it afterwards.",
+                "operationId": "AppRegistrations_CreateAppRegistration",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "$ref": "#/definitions/v1Application"
+                        }
+                    },
+                    "401": {
+                        "description": "Returned when the user is not authenticated to the system."
+                    },
+                    "402": {
+                        "description": "Returned when the user's quota of app registrations policies has been reached."
+                    },
+                    "403": {
+                        "description": "Returned when the user is not authorized."
+                    },
+                    "429": {
+                        "description": "Returned when a user exceeds their subscription's rate limit for requests."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/v1CreateAppRegistrationRequest"
+                        }
+                    }
+                ],
+                "tags": [
+                    "AppRegistrations"
+                ]
+            }
         },
-        "display_name": {
-          "type": "string",
-          "description": "Human-readable display name for this Application."
+        "/archivist/iam/v1/applications/{uuid}": {
+            "get": {
+                "summary": "Fetch an application record",
+                "description": "Fetches the application record for the supplied UUID",
+                "operationId": "AppRegistrations_GetAppRegistration",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "$ref": "#/definitions/v1Application"
+                        }
+                    },
+                    "401": {
+                        "description": "Returned when the user is not authenticated to the system."
+                    },
+                    "403": {
+                        "description": "Returned when the user is not authorized."
+                    },
+                    "404": {
+                        "description": "Returned when the Application does not exist."
+                    },
+                    "429": {
+                        "description": "Returned when a user exceeds their subscription's rate limit for requests."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "description": "UUID identifying the application",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "AppRegistrations"
+                ]
+            },
+            "delete": {
+                "summary": "Delete an application",
+                "description": "Deletes the application matching the supplied UUID",
+                "operationId": "AppRegistrations_DeleteAppRegistration",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Returned when the user is not authenticated to the system."
+                    },
+                    "403": {
+                        "description": "Returned when the user is not authorized."
+                    },
+                    "404": {
+                        "description": "Returned when the Application does not exist."
+                    },
+                    "429": {
+                        "description": "Returned when a user exceeds their subscription's rate limit for requests."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "description": "UUID identifying the application",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "AppRegistrations"
+                ]
+            },
+            "patch": {
+                "summary": "Update an existing application",
+                "description": "Allows updating of the display name and custom claims for an application",
+                "operationId": "AppRegistrations_UpdateAppRegistration",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "$ref": "#/definitions/v1Application"
+                        }
+                    },
+                    "401": {
+                        "description": "Returned when the user is not authenticated to the system."
+                    },
+                    "403": {
+                        "description": "Returned when the user is not authorized."
+                    },
+                    "404": {
+                        "description": "Returned when the Application does not exist."
+                    },
+                    "429": {
+                        "description": "Returned when a user exceeds their subscription's rate limit for requests."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "description": "UUID identifying the application",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "application",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/v1Application",
+                            "description": "Application containing updates to `display_name` and/or `custom_claims`"
+                        }
+                    },
+                    {
+                        "name": "mask",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "AppRegistrations"
+                ]
+            }
         },
-        "client_id": {
-          "type": "string",
-          "description": "Client ID for use in OIDC client credentials flow",
-          "readOnly": true
-        },
-        "tenant_id": {
-          "type": "string",
-          "description": "Identity of the tenant owning this application",
-          "readOnly": true
-        },
-        "credentials": {
-          "type": "array",
-          "items": {
+        "/archivist/iam/v1/applications/{uuid}:regenerate-secret": {
+            "post": {
+                "summary": "Regenerate the client secret for an application",
+                "description": "Regenerates the client secret for the application matching the supplied UUID. The response will include the client secret, but it will not be possible to retrieve it afterwards.",
+                "operationId": "AppRegistrations_RegenerateAppRegistrationSecret",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "$ref": "#/definitions/v1Application"
+                        }
+                    },
+                    "401": {
+                        "description": "Returned when the user is not authenticated to the system."
+                    },
+                    "403": {
+                        "description": "Returned when the user is not authorized."
+                    },
+                    "404": {
+                        "description": "Returned when the Application does not exist."
+                    },
+                    "429": {
+                        "description": "Returned when a user exceeds their subscription's rate limit for requests."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "description": "UUID identifying the application",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "AppRegistrations"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        "v1Application": {
             "type": "object",
-            "$ref": "#/definitions/v1Credential",
-            "readOnly": true
-          },
-          "description": "Credentials this application can use to authenticate"
+            "example": {
+                "identity": "applications/ffaa0f30-a503-4de7-b085-d857ed34a7cd",
+                "display_name": "test",
+                "client_id": "ffaa0f30-a503-4de7-b085-d857ed34a7cd",
+                "tenant_id": "tenant/fafb2d41-5237-45c7-9740-66d1635f549b",
+                "credentials": [
+                    {
+                        "secret": "2acc636e8439fa2ea1a613fe547a1d435b0b0ab3793f11751559d7431a3414eb",
+                        "valid_from": "2021-09-17T16:54:08Z",
+                        "valid_until": "2022-09-17T16:54:08Z"
+                    }
+                ],
+                "custom_claims": {
+                    "asf": "asbdf"
+                }
+            },
+            "properties": {
+                "identity": {
+                    "type": "string",
+                    "description": "Resource name for the application",
+                    "readOnly": true
+                },
+                "display_name": {
+                    "type": "string",
+                    "description": "Human-readable display name for this Application."
+                },
+                "client_id": {
+                    "type": "string",
+                    "description": "Client ID for use in OIDC client credentials flow",
+                    "readOnly": true
+                },
+                "tenant_id": {
+                    "type": "string",
+                    "description": "Identity of the tenant owning this application",
+                    "readOnly": true
+                },
+                "credentials": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "$ref": "#/definitions/v1Credential",
+                        "readOnly": true
+                    },
+                    "description": "Credentials this application can use to authenticate"
+                },
+                "custom_claims": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Custom claims to add to Application for use in access policies."
+                }
+            },
+            "description": "Describes a single application used for machine authentication",
+            "title": "Response types"
         },
-        "custom_claims": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
-          "description": "Custom claims to add to Application for use in access policies."
-        }
-      },
-      "description": "Describes a single application used for machine authentication",
-      "title": "Response types"
-    },
-    "v1Cap": {
-      "type": "object",
-      "properties": {
-        "resource_type": {
-          "type": "string",
-          "description": "String identifying the capped resource type"
-        },
-        "resource_remaining": {
-          "type": "string",
-          "format": "int64",
-          "description": "Number of capped resources remaining"
-        },
-        "resource_cap": {
-          "type": "string",
-          "format": "int64",
-          "description": "Resource cap"
-        }
-      }
-    },
-    "v1Caps": {
-      "type": "object",
-      "properties": {
-        "caps": {
-          "type": "array",
-          "items": {
+        "v1Cap": {
             "type": "object",
-            "$ref": "#/definitions/v1Cap"
-          },
-          "description": "List of relevant capped resources"
-        }
-      }
-    },
-    "v1CreateAppRegistrationRequest": {
-      "type": "object",
-      "properties": {
-        "display_name": {
-          "type": "string",
-          "description": "Human-readable display name for this Application."
-        },
-        "custom_claims": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
-          "description": "Custom claims to add to Application for use in access policies."
-        }
-      },
-      "title": "Request types"
-    },
-    "v1Credential": {
-      "type": "object",
-      "example": {
-        "secret": "2acc636e8439fa2ea1a613fe547a1d435b0b0ab3793f11751559d7431a3414eb",
-        "valid_from": "2021-09-17T16:54:08Z",
-        "valid_until": "2022-09-17T16:54:08Z"
-      },
-      "properties": {
-        "secret": {
-          "type": "string",
-          "description": "Client secret used in authentication",
-          "readOnly": true
-        },
-        "valid_from": {
-          "type": "string",
-          "format": "date-time",
-          "description": "Timestamp indicating when the secret can be used from",
-          "readOnly": true
-        },
-        "valid_until": {
-          "type": "string",
-          "format": "date-time",
-          "description": "Timestamp indicating when the secret can be used until",
-          "readOnly": true
-        }
-      },
-      "description": "Describes a single time-limited secret"
-    },
-    "v1ListAppRegistrationsResponse": {
-      "type": "object",
-      "example": {
-        "applications": [
-          {
-            "identity": "applications/b222a12e-03d8-40b0-8d28-b851c2caadd0",
-            "display_name": "a",
-            "client_id": "b222a12e-03d8-40b0-8d28-b851c2caadd0",
-            "tenant_id": "tenant/fafb2d41-5237-45c7-9740-66d1635f549b",
-            "credentials": [
-              {
-                "secret": "",
-                "valid_from": "2021-09-17T16:48:32Z",
-                "valid_until": "2022-09-17T16:48:32Z"
-              }
-            ],
-            "custom_claims": {
-              "a": "b"
+            "properties": {
+                "resource_type": {
+                    "type": "string",
+                    "description": "String identifying the capped resource type"
+                },
+                "resource_remaining": {
+                    "type": "string",
+                    "format": "int64",
+                    "description": "Number of capped resources remaining"
+                },
+                "resource_cap": {
+                    "type": "string",
+                    "format": "int64",
+                    "description": "Resource cap"
+                }
             }
-          },
-          {
-            "identity": "applications/288e8cef-62fa-4eb0-9d36-ab01db27c182",
-            "display_name": "test",
-            "client_id": "288e8cef-62fa-4eb0-9d36-ab01db27c182",
-            "tenant_id": "tenant/fafb2d41-5237-45c7-9740-66d1635f549b",
-            "credentials": [
-              {
-                "secret": "",
-                "valid_from": "2021-09-17T16:54:05Z",
-                "valid_until": "2022-09-17T16:54:05Z"
-              }
-            ],
-            "custom_claims": {
-              "asf": "asbdf"
-            }
-          }
-        ],
-        "next_page_token": "eyJvcmlnX3JlcSI6eyJwYWdlX3NpemUiOjJ9LCJza2lwIjoyfQ=="
-      },
-      "properties": {
-        "applications": {
-          "type": "array",
-          "items": {
+        },
+        "v1Caps": {
             "type": "object",
-            "$ref": "#/definitions/v1Application",
-            "readOnly": true
-          },
-          "description": "Current page of applications owned by the requesting tenant"
+            "properties": {
+                "caps": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "$ref": "#/definitions/v1Cap"
+                    },
+                    "description": "List of relevant capped resources"
+                }
+            }
         },
-        "next_page_token": {
-          "type": "string",
-          "description": "Pagination token. Empty on first request. On subsequent requests copied from response.",
-          "readOnly": true
+        "v1CreateAppRegistrationRequest": {
+            "type": "object",
+            "properties": {
+                "display_name": {
+                    "type": "string",
+                    "description": "Human-readable display name for this Application."
+                },
+                "custom_claims": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Custom claims to add to Application for use in access policies."
+                }
+            },
+            "title": "Request types"
+        },
+        "v1Credential": {
+            "type": "object",
+            "example": {
+                "secret": "2acc636e8439fa2ea1a613fe547a1d435b0b0ab3793f11751559d7431a3414eb",
+                "valid_from": "2021-09-17T16:54:08Z",
+                "valid_until": "2022-09-17T16:54:08Z"
+            },
+            "properties": {
+                "secret": {
+                    "type": "string",
+                    "description": "Client secret used in authentication",
+                    "readOnly": true
+                },
+                "valid_from": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "Timestamp indicating when the secret can be used from",
+                    "readOnly": true
+                },
+                "valid_until": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "Timestamp indicating when the secret can be used until",
+                    "readOnly": true
+                }
+            },
+            "description": "Describes a single time-limited secret"
+        },
+        "v1ListAppRegistrationsResponse": {
+            "type": "object",
+            "example": {
+                "applications": [
+                    {
+                        "identity": "applications/b222a12e-03d8-40b0-8d28-b851c2caadd0",
+                        "display_name": "a",
+                        "client_id": "b222a12e-03d8-40b0-8d28-b851c2caadd0",
+                        "tenant_id": "tenant/fafb2d41-5237-45c7-9740-66d1635f549b",
+                        "credentials": [
+                            {
+                                "secret": "",
+                                "valid_from": "2021-09-17T16:48:32Z",
+                                "valid_until": "2022-09-17T16:48:32Z"
+                            }
+                        ],
+                        "custom_claims": {
+                            "a": "b"
+                        }
+                    },
+                    {
+                        "identity": "applications/288e8cef-62fa-4eb0-9d36-ab01db27c182",
+                        "display_name": "test",
+                        "client_id": "288e8cef-62fa-4eb0-9d36-ab01db27c182",
+                        "tenant_id": "tenant/fafb2d41-5237-45c7-9740-66d1635f549b",
+                        "credentials": [
+                            {
+                                "secret": "",
+                                "valid_from": "2021-09-17T16:54:05Z",
+                                "valid_until": "2022-09-17T16:54:05Z"
+                            }
+                        ],
+                        "custom_claims": {
+                            "asf": "asbdf"
+                        }
+                    }
+                ],
+                "next_page_token": "eyJvcmlnX3JlcSI6eyJwYWdlX3NpemUiOjJ9LCJza2lwIjoyfQ=="
+            },
+            "properties": {
+                "applications": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "$ref": "#/definitions/v1Application",
+                        "readOnly": true
+                    },
+                    "description": "Current page of applications owned by the requesting tenant"
+                },
+                "next_page_token": {
+                    "type": "string",
+                    "description": "Pagination token. Empty on first request. On subsequent requests copied from response.",
+                    "readOnly": true
+                }
+            },
+            "description": "Describes a set of locations"
         }
-      },
-      "description": "Describes a set of locations"
     }
-  }
 }

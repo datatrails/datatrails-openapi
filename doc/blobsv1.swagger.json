@@ -1,284 +1,284 @@
 {
-  "swagger": "2.0",
-  "info": {
-    "title": "Blobs API",
-    "description": "API for uploading and downloading blobs.",
-    "version": "1.0",
-    "contact": {
-      "name": "DataTrails",
-      "url": "https://www.datatrails.ai"
-    }
-  },
-  "tags": [
-    {
-      "name": "Blobs",
-      "description": "Upload files/blobs as rich evidence for Assets and Events"
-    }
-  ],
-  "basePath": "/archivist/v1/blobs",
-  "schemes": [
-    "https"
-  ],
-  "paths": {
-    "/archivist/v1/blobs": {
-      "post": {
-        "summary": "Upload.",
-        "description": "Uploads a blob.",
-        "consumes": [
-          "multipart/form-data"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "operationId": "Blobs_Upload",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1BlobsResponse"
+    "swagger": "2.0",
+    "info": {
+        "title": "Blobs API",
+        "description": "API for uploading and downloading blobs.",
+        "version": "1.0",
+        "contact": {
+            "name": "DataTrails",
+            "url": "https://www.datatrails.ai"
+        }
+    },
+    "tags": [
+        {
+            "name": "Blobs",
+            "description": "Upload files/blobs as rich evidence for Assets and Events"
+        }
+    ],
+    "basePath": "/archivist/v1/blobs",
+    "schemes": [
+        "https"
+    ],
+    "paths": {
+        "/archivist/v1/blobs": {
+            "post": {
+                "summary": "Upload.",
+                "description": "Uploads a blob.",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "operationId": "Blobs_Upload",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "$ref": "#/definitions/v1BlobsResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Returned when the request is badly formed."
+                    },
+                    "401": {
+                        "description": "Returned when the user is not authenticated to the system."
+                    },
+                    "402": {
+                        "description": "Returned when the number of blobs would exceed the user's quota or the size of the blob exceeds the user's allocation."
+                    },
+                    "403": {
+                        "description": "Returned when the user is not authorized to create a blob."
+                    },
+                    "429": {
+                        "description": "Returned when a user exceeds their subscription's rate limit for requests."
+                    },
+                    "500": {
+                        "description": "Returned when the underlying system returns an error."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "file",
+                        "description": "file to upload",
+                        "in": "formData",
+                        "type": "file",
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "Blobs"
+                ]
             }
-          },
-          "400": {
-            "description": "Returned when the request is badly formed."
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "402": {
-            "description": "Returned when the number of blobs would exceed the user's quota or the size of the blob exceeds the user's allocation."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to create a blob."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "500": {
-            "description": "Returned when the underlying system returns an error."
-          }
         },
-        "parameters": [
-          {
-            "name": "file",
-            "description": "file to upload",
-            "in": "formData",
-            "type": "file",
-            "required": true
-          }
-        ],
-        "tags": [
-          "Blobs"
-        ]
-      }
-    },
-    "/archivist/v1/blobs/{uuid}": {
-      "get": {
-        "summary": "Download.",
-        "description": "Downloads a blob.",
-        "operationId": "Blobs_Download",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "file"
+        "/archivist/v1/blobs/{uuid}": {
+            "get": {
+                "summary": "Download.",
+                "description": "Downloads a blob.",
+                "operationId": "Blobs_Download",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "file"
+                        }
+                    },
+                    "400": {
+                        "description": "Returned when the request is badly formed."
+                    },
+                    "401": {
+                        "description": "Returned when the user is not authenticated to the system."
+                    },
+                    "403": {
+                        "description": "Returned when the user is not authorized to get the blob."
+                    },
+                    "429": {
+                        "description": "Returned when a user exceeds their subscription's rate limit for requests."
+                    },
+                    "500": {
+                        "description": "Returned when the underlying system returns an error."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "description": "Specify the Blob UUID where `blobs/{uuid}` is the Blob Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `blobs/add30235-1424-4fda-840a-d5ef82c4c96f`",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "Blobs"
+                ]
             }
-          },
-          "400": {
-            "description": "Returned when the request is badly formed."
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to get the blob."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "500": {
-            "description": "Returned when the underlying system returns an error."
-          }
         },
-        "parameters": [
-          {
-            "name": "uuid",
-            "description": "Specify the Blob UUID where `blobs/{uuid}` is the Blob Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `blobs/add30235-1424-4fda-840a-d5ef82c4c96f`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Blobs"
-        ]
-      }
-    },
-    "/archivist/v1/blobs/{uuid}/info": {
-      "get": {
-        "summary": "Retrieve blob metadata.",
-        "description": "Returns metadata information on a blob.",
-        "operationId": "Blobs_Info",
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1BlobsResponse"
+        "/archivist/v1/blobs/{uuid}/info": {
+            "get": {
+                "summary": "Retrieve blob metadata.",
+                "description": "Returns metadata information on a blob.",
+                "operationId": "Blobs_Info",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "$ref": "#/definitions/v1BlobsResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Returned when the request is badly formed."
+                    },
+                    "401": {
+                        "description": "Returned when the user is not authenticated to the system."
+                    },
+                    "403": {
+                        "description": "Returned when the user is not authorized to get the blob metadata."
+                    },
+                    "429": {
+                        "description": "Returned when a user exceeds their subscription's rate limit for requests."
+                    },
+                    "500": {
+                        "description": "Returned when the underlying system returns an error."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "description": "Specify the Blob UUID where `blobs/{uuid}` is the Blob Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `blobs/add30235-1424-4fda-840a-d5ef82c4c96f`",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "Blobs"
+                ]
             }
-          },
-          "400": {
-            "description": "Returned when the request is badly formed."
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to get the blob metadata."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "500": {
-            "description": "Returned when the underlying system returns an error."
-          }
+        }
+    },
+    "definitions": {
+        "v1BlobsHash": {
+            "type": "object",
+            "example": {
+                "alg": "SHA256",
+                "value": "xxxxxxxxxxxxxxxxxxxxxxx"
+            },
+            "properties": {
+                "alg": {
+                    "type": "string",
+                    "description": "hash algorithm."
+                },
+                "value": {
+                    "type": "string",
+                    "description": "hash value."
+                }
+            }
         },
-        "parameters": [
-          {
-            "name": "uuid",
-            "description": "Specify the Blob UUID where `blobs/{uuid}` is the Blob Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `blobs/add30235-1424-4fda-840a-d5ef82c4c96f`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Blobs"
-        ]
-      }
+        "v1BlobsResponse": {
+            "type": "object",
+            "example": {
+                "identity": "blobs/08838336-c357-460d-902a-3aba9528dd22",
+                "issuer": "xxxx@example.com",
+                "hash": {
+                    "alg": "SHA256",
+                    "value": "xxxxxxxxxxxxxxxxxxxxxxx"
+                },
+                "mime_type": "image/jpeg",
+                "timestamp_accepted": "2019-11-07T15:31:49Z",
+                "size": 31424,
+                "scanned_status": "SCANNED_OK",
+                "scanned_timestamp": "2019-11-07T15:31:49Z",
+                "scanned_bad_reason": "",
+                "subject": "user-xxxx@example.com",
+                "tenantid": "tenant/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+            },
+            "properties": {
+                "identity": {
+                    "type": "string",
+                    "description": "blob identity."
+                },
+                "issuer": {
+                    "type": "string",
+                    "description": "principal issuer."
+                },
+                "hash": {
+                    "$ref": "#/definitions/v1BlobsHash",
+                    "description": "blob hash."
+                },
+                "mime_type": {
+                    "type": "string",
+                    "description": "http mime type."
+                },
+                "timestamp_accepted": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "date and time when the request has been received."
+                },
+                "size": {
+                    "type": "integer",
+                    "description": "size of the blob."
+                },
+                "scanned_status": {
+                    "type": "string",
+                    "$ref": "#/definitions/v1ScannedStatus",
+                    "description": "status of scan."
+                },
+                "scanned_timestamp": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "date and time when the attachments has been scanned."
+                },
+                "scanned_bad_reason": {
+                    "type": "string",
+                    "description": "if scanned as SCANNED_BAD contains a hint of scan result."
+                },
+                "subject": {
+                    "type": "string",
+                    "description": "principal subject."
+                },
+                "tenantid": {
+                    "type": "string",
+                    "description": "identity of the tenant the blob belongs to."
+                }
+            }
+        },
+        "v1ScannedStatus": {
+            "type": "string",
+            "enum": [
+                "NOT_SCANNED",
+                "SCANNED_OK",
+                "SCANNED_BAD"
+            ],
+            "default": "NOT_SCANNED"
+        },
+        "v1Cap": {
+            "type": "object",
+            "properties": {
+                "resource_type": {
+                    "type": "string",
+                    "description": "String identifying the capped resource type"
+                },
+                "resource_remaining": {
+                    "type": "string",
+                    "format": "int64",
+                    "description": "Number of capped resources remaining"
+                }
+            }
+        },
+        "v1Caps": {
+            "type": "object",
+            "properties": {
+                "caps": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/v1Cap"
+                    },
+                    "description": "List of relevant capped resources"
+                }
+            }
+        }
     }
-  },
-  "definitions": {
-    "v1BlobsHash": {
-      "type": "object",
-      "example": {
-        "alg": "SHA256",
-        "value": "xxxxxxxxxxxxxxxxxxxxxxx"
-      },
-      "properties": {
-        "alg": {
-          "type": "string",
-          "description": "hash algorithm."
-        },
-        "value": {
-          "type": "string",
-          "description": "hash value."
-        }
-      }
-    },
-    "v1BlobsResponse": {
-      "type": "object",
-      "example": {
-        "identity": "blobs/08838336-c357-460d-902a-3aba9528dd22",
-        "issuer": "xxxx@example.com",
-        "hash": {
-          "alg": "SHA256",
-          "value": "xxxxxxxxxxxxxxxxxxxxxxx"
-        },
-        "mime_type": "image/jpeg",
-        "timestamp_accepted": "2019-11-07T15:31:49Z",
-        "size": 31424,
-        "scanned_status": "SCANNED_OK",
-        "scanned_timestamp": "2019-11-07T15:31:49Z",
-        "scanned_bad_reason": "",
-        "subject": "user-xxxx@example.com",
-        "tenantid": "tenant/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-      },
-      "properties": {
-        "identity": {
-          "type": "string",
-          "description": "blob identity."
-        },
-        "issuer": {
-          "type": "string",
-          "description": "principal issuer."
-        },
-        "hash": {
-          "$ref": "#/definitions/v1BlobsHash",
-          "description": "blob hash."
-        },
-        "mime_type": {
-          "type": "string",
-          "description": "http mime type."
-        },
-        "timestamp_accepted": {
-          "type": "string",
-          "format": "date-time",
-          "description": "date and time when the request has been received."
-        },
-        "size": {
-          "type": "integer",
-          "description": "size of the blob."
-        },
-        "scanned_status": {
-          "type": "string",
-          "$ref": "#/definitions/v1ScannedStatus",
-          "description": "status of scan."
-        },
-        "scanned_timestamp": {
-          "type": "string",
-          "format": "date-time",
-          "description": "date and time when the attachments has been scanned."
-        },
-        "scanned_bad_reason": {
-          "type": "string",
-          "description": "if scanned as SCANNED_BAD contains a hint of scan result."
-        },
-        "subject": {
-          "type": "string",
-          "description": "principal subject."
-        },
-        "tenantid": {
-          "type": "string",
-          "description": "identity of the tenant the blob belongs to."
-        }
-      }
-    },
-    "v1ScannedStatus": {
-      "type": "string",
-      "enum": [
-        "NOT_SCANNED",
-        "SCANNED_OK",
-        "SCANNED_BAD"
-      ],
-      "default": "NOT_SCANNED"
-    },
-    "v1Cap": {
-      "type": "object",
-      "properties": {
-        "resource_type": {
-          "type": "string",
-          "description": "String identifying the capped resource type"
-        },
-        "resource_remaining": {
-          "type": "string",
-          "format": "int64",
-          "description": "Number of capped resources remaining"
-        }
-      }
-    },
-    "v1Caps": {
-      "type": "object",
-      "properties": {
-        "caps": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1Cap"
-          },
-          "description": "List of relevant capped resources"
-        }
-      }
-    }
-  }
 }

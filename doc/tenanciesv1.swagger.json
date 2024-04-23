@@ -1,803 +1,803 @@
 {
-  "swagger": "2.0",
-  "info": {
-    "title": "Tenancies API",
-    "description": "API to manage tenancies",
-    "version": "1.0",
-    "contact": {
-      "name": "DataTrails",
-      "url": "https://www.datatrails.ai"
-    }
-  },
-  "tags": [
-    {
-      "name": "Tenancies",
-      "description": "Manage your tenancy"
+    "swagger": "2.0",
+    "info": {
+        "title": "Tenancies API",
+        "description": "API to manage tenancies",
+        "version": "1.0",
+        "contact": {
+            "name": "DataTrails",
+            "url": "https://www.datatrails.ai"
+        }
     },
-    {
-      "name": "TenanciesUsers",
-      "description": "Manage users in your tenancy"
-    }
-  ],
-  "basePath": "/archivist/v1/tenancies",
-  "schemes": [
-    "https"
-  ],
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
-  "paths": {
-    "/archivist/v1/tenancies/root_principals": {
-      "get": {
-        "summary": "Fetch the current list of tenant root user principals",
-        "description": "Fetch the current list of tenant root user principals.",
-        "operationId": "Tenancies_GetTenantRootPrincipals",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1GetTenantRootPrincipalsResponse"
-            }
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to update the root principals."
-          }
+    "tags": [
+        {
+            "name": "Tenancies",
+            "description": "Manage your tenancy"
         },
-        "tags": [
-          "Tenancies"
-        ]
-      },
-      "patch": {
-        "summary": "Update the list of tenant root user principals",
-        "description": "Replace the list of tenant root user principals.  Note that you are not able to remove yourself from the list.",
-        "operationId": "Tenancies_UpdateTenantRootPrincipals",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1GetTenantRootPrincipalsResponse"
+        {
+            "name": "TenanciesUsers",
+            "description": "Manage users in your tenancy"
+        }
+    ],
+    "basePath": "/archivist/v1/tenancies",
+    "schemes": [
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/archivist/v1/tenancies/root_principals": {
+            "get": {
+                "summary": "Fetch the current list of tenant root user principals",
+                "description": "Fetch the current list of tenant root user principals.",
+                "operationId": "Tenancies_GetTenantRootPrincipals",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "$ref": "#/definitions/v1GetTenantRootPrincipalsResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Returned when the user is not authenticated to the system."
+                    },
+                    "403": {
+                        "description": "Returned when the user is not authorized to update the root principals."
+                    }
+                },
+                "tags": [
+                    "Tenancies"
+                ]
+            },
+            "patch": {
+                "summary": "Update the list of tenant root user principals",
+                "description": "Replace the list of tenant root user principals.  Note that you are not able to remove yourself from the list.",
+                "operationId": "Tenancies_UpdateTenantRootPrincipals",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "$ref": "#/definitions/v1GetTenantRootPrincipalsResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Returned when the request is badly formed.  Including, but not limited to, attempting to remove yourself as a root uesr principal."
+                    },
+                    "401": {
+                        "description": "Returned when the user is not authenticated to the system."
+                    },
+                    "403": {
+                        "description": "Returned when the user is not authorized to update the root principals."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "description": "Update the list of tenant root user principals",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/v1UpdateTenantRootPrincipalsRequest"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Tenancies"
+                ]
             }
-          },
-          "400": {
-            "description": "Returned when the request is badly formed.  Including, but not limited to, attempting to remove yourself as a root uesr principal."
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to update the root principals."
-          }
         },
-        "parameters": [
-          {
-            "name": "body",
+        "/archivist/v1/tenancies/self": {
+            "get": {
+                "summary": "Get tenant record",
+                "description": "Returns an administrator's view of tenant for which they're authenticated",
+                "operationId": "Tenancies_GetAdminTenantInfo",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "$ref": "#/definitions/v1AdminTenantResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Supplied parameters were invalid"
+                    },
+                    "401": {
+                        "description": "Returned when the user is not authenticated to the system."
+                    },
+                    "403": {
+                        "description": "Returned when the user is not authorized to retrieve the tenant id."
+                    }
+                },
+                "tags": [
+                    "Tenancies"
+                ]
+            },
+            "patch": {
+                "summary": "Update tenant record",
+                "description": "Enables a root principal of the tenant to update the tenant record.",
+                "operationId": "Tenancies_UpdateTenant",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "$ref": "#/definitions/v1AdminTenantResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Returned when the request is badly formed."
+                    },
+                    "401": {
+                        "description": "Returned when the user is not authenticated to the system."
+                    },
+                    "403": {
+                        "description": "Returned when the user is not authorized to perform this action."
+                    },
+                    "404": {
+                        "description": "Returned when the referenced tenant does not exist."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/v1UpdatableTenantPayload"
+                        }
+                    },
+                    {
+                        "name": "mask",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "Tenancies"
+                ]
+            }
+        },
+        "/archivist/v1/tenancies/users": {
+            "get": {
+                "summary": "List Users",
+                "description": "Returns a list of Users active in or invited to the tenant.",
+                "operationId": "Tenancies_ListUsers",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "$ref": "#/definitions/v1ListUsersResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Returned when the request is badly formed."
+                    },
+                    "401": {
+                        "description": "Returned when the user is not authenticated to the system."
+                    },
+                    "403": {
+                        "description": "Returned when the user is not authorized to read the users."
+                    },
+                    "404": {
+                        "description": "Returned when the identified users don't exist."
+                    },
+                    "500": {
+                        "description": "Returned when the underlying storage system returns an error."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "user_uuid",
+                        "description": "user UUID, found in the identifier `users/{UUID}`",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "email",
+                        "description": "user email.",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "displayName",
+                        "description": "display name for the user",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "page_size",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "page_token",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "TenanciesUsers"
+                ]
+            }
+        },
+        "/archivist/v1/tenancies/users/{user_uuid}": {
+            "delete": {
+                "summary": "Deletes User",
+                "description": "Deletes a User from the tenancy.",
+                "operationId": "Tenancies_DeleteUser",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "$ref": "#/definitions/v1User"
+                        }
+                    },
+                    "400": {
+                        "description": "Returned when the request is badly formed."
+                    },
+                    "401": {
+                        "description": "Returned when the user is not authenticated to the system."
+                    },
+                    "403": {
+                        "description": "Returned when the user is not authorized to read the user."
+                    },
+                    "500": {
+                        "description": "Returned when the underlying storage system returns an error."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "user_uuid",
+                        "description": "user UUID, found in the identifier `users/{UUID}`",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "TenanciesUsers"
+                ]
+            }
+        },
+        "/archivist/v1/tenancies/{uuid}:publicinfo": {
+            "get": {
+                "summary": "Public Tenant Information.",
+                "description": "Return the publically avaialble tenant information.",
+                "operationId": "Tenancies_GetPublicTenantInfo",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "$ref": "#/definitions/v1GetPublicTenantInfoResponse"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "description": "Specify the tenant UUID where `tenant/{uuid}` is the Tenant Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `tenant/add30235-1424-4fda-840a-d5ef82c4c96f`",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "Tenancies"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        "v1AdminTenantResponse": {
+            "type": "object",
+            "example": {
+                "identity": "tenant/08838336-c357-460d-902a-3aba9528dd22",
+                "verified_domain": "foo.com",
+                "display_name": "My First Tenancy"
+            },
+            "properties": {
+                "identity": {
+                    "type": "string",
+                    "description": "tenant identity `{UUID}`",
+                    "readOnly": true
+                },
+                "verified_domain": {
+                    "type": "string"
+                },
+                "display_name": {
+                    "type": "string",
+                    "description": "Customer friendly name for the tenant.",
+                    "maxLength": 128
+                },
+                "enterprise_sso_enabled": {
+                    "type": "boolean"
+                },
+                "enterprise_sso_config": {
+                    "$ref": "#/definitions/v1EnterpriseSSOConfig"
+                }
+            },
+            "description": "View of own tenant record for a root principal."
+        },
+        "v1Cap": {
+            "type": "object",
+            "properties": {
+                "resource_type": {
+                    "type": "string",
+                    "description": "String identifying the capped resource type"
+                },
+                "resource_remaining": {
+                    "type": "string",
+                    "format": "int64",
+                    "description": "Number of capped resources remaining"
+                },
+                "resource_cap": {
+                    "type": "string",
+                    "format": "int64",
+                    "description": "Resource cap"
+                }
+            }
+        },
+        "v1Caps": {
+            "type": "object",
+            "properties": {
+                "caps": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "$ref": "#/definitions/v1Cap"
+                    },
+                    "description": "List of relevant capped resources"
+                }
+            }
+        },
+        "v1CountUsersResponse": {
+            "type": "object",
+            "properties": {
+                "total": {
+                    "type": "string",
+                    "format": "int64"
+                }
+            }
+        },
+        "v1EnterpriseSSOConfig": {
+            "type": "object",
+            "properties": {
+                "policy_id": {
+                    "type": "string",
+                    "description": "Per-tenant B2C policy ID",
+                    "readOnly": true
+                },
+                "config_url": {
+                    "type": "string"
+                },
+                "issuer": {
+                    "type": "string"
+                },
+                "client_id": {
+                    "type": "string"
+                },
+                "client_secret": {
+                    "type": "string",
+                    "description": "The secret passed here when setting, but must not be stored in plaintext or logged."
+                }
+            },
+            "title": "This is used for PATCHing self - so the tenant is taken from the calling principal"
+        },
+        "v1GetLimitsForCurrentTenantResponse": {
+            "type": "object",
+            "properties": {
+                "limits": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "description": "map of caps for authenticated principal's tenancy",
+                    "readOnly": true
+                }
+            }
+        },
+        "v1GetPublicTenantInfoResponse": {
+            "type": "object",
+            "example": {
+                "identity": "tenant/add30235-1424-4fda-840a-d5ef82c4c96f",
+                "verified_domain": "exampleltd"
+            },
+            "properties": {
+                "identity": {
+                    "type": "string"
+                },
+                "verified_domain": {
+                    "type": "string"
+                }
+            },
+            "description": "Publically available information for a tenant.",
+            "title": "Get publicly available information for a specific tenant"
+        },
+        "v1GetTenantRootPrincipalsResponse": {
+            "type": "object",
+            "example": {
+                "root_principals": [
+                    {
+                        "display_name": "Bob Smith",
+                        "issuer": "job.idp.server/1234",
+                        "subject": "08838336-c357-460d-902a-3aba9528dd22",
+                        "email": "bob@job"
+                    }
+                ]
+            },
+            "properties": {
+                "root_principals": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "$ref": "#/definitions/v2Principal"
+                    }
+                }
+            },
+            "description": "List of tenant root user principals",
+            "title": "A list of current tenant root user principals"
+        },
+        "v1InviteTokenHintResponse": {
+            "type": "object",
+            "properties": {
+                "token": {
+                    "type": "string"
+                },
+                "expiry_time": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "invite expiry time",
+                    "readOnly": true
+                }
+            }
+        },
+        "v1ListTenantsResponse": {
+            "type": "object",
+            "properties": {
+                "tenants": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "$ref": "#/definitions/v1TenantResponse"
+                    }
+                },
+                "next_page_token": {
+                    "type": "string"
+                }
+            }
+        },
+        "v1ListUsersResponse": {
+            "type": "object",
+            "example": {
+                "users": [
+                    {
+                        "identity": "users/87d349ed-44d7-43e1-9a83-5f2406dee5bd",
+                        "email": "frank123@example.com",
+                        "issuer": "frank@example.com",
+                        "subject": "franky123",
+                        "user_status": "ACTIVE"
+                    }
+                ],
+                "page_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6InN0dW50aWR"
+            },
+            "properties": {
+                "users": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "$ref": "#/definitions/v1User"
+                    }
+                },
+                "next_page_token": {
+                    "type": "string",
+                    "description": "Token to retrieve the next page of results or empty if there are none."
+                }
+            },
+            "description": "List of Users (or the next page in a continuing  list request)"
+        },
+        "v1QuorumNetwork": {
+            "type": "object",
+            "properties": {
+                "node_address": {
+                    "type": "string",
+                    "description": "scheme://host:port for the tenants resident quorum node",
+                    "maxLength": 1024,
+                    "minLength": 1
+                },
+                "tessera_address": {
+                    "type": "string",
+                    "description": "scheme://host:port of tenants resident tessera node if privacy preserving transactions are enabled for the tenant",
+                    "maxLength": 1024,
+                    "minLength": 1
+                },
+                "tessera_key": {
+                    "type": "string",
+                    "description": "Tessera key.",
+                    "title": "DLT tessera public key. Not currently used anywhere?",
+                    "maxLength": 1024,
+                    "minLength": 1
+                },
+                "topic": {
+                    "type": "string",
+                    "description": "Event Sender Topic.",
+                    "maxLength": 1024,
+                    "minLength": 1
+                },
+                "is_private": {
+                    "type": "boolean",
+                    "description": "Is the tessaera private?"
+                }
+            },
+            "title": "Models the interface between creators and the blockchain. Used in an internal LRU for each\ncreator service"
+        },
+        "v1TenantIDResponse": {
+            "type": "object",
+            "properties": {
+                "identity": {
+                    "type": "string",
+                    "description": "tenant identity `{UUID}`",
+                    "readOnly": true
+                },
+                "tier": {
+                    "$ref": "#/definitions/v1Tier",
+                    "description": "tenant tier FREE, READONLY or PREMIUM",
+                    "readOnly": true
+                },
+                "new_tenant": {
+                    "type": "boolean",
+                    "description": "true if this request created a new tenant",
+                    "readOnly": true
+                }
+            }
+        },
+        "v1TenantLimitsResponse": {
+            "type": "object",
+            "properties": {
+                "identity": {
+                    "type": "string",
+                    "description": "tenant identity `{UUID}`",
+                    "readOnly": true
+                },
+                "limits": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                }
+            }
+        },
+        "v1TenantResponse": {
+            "type": "object",
+            "properties": {
+                "identity": {
+                    "type": "string",
+                    "description": "tenant identity `{UUID}`",
+                    "readOnly": true
+                },
+                "root_principal": {
+                    "$ref": "#/definitions/v2Principal",
+                    "title": "root_principal is DEPRECATED and will be removed in a future release\nit remains for old installations and for the one true tenant IDP issuer"
+                },
+                "wallet_key_name": {
+                    "type": "string"
+                },
+                "wallet_address": {
+                    "type": "string"
+                },
+                "root_principals": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "$ref": "#/definitions/v2Principal"
+                    }
+                },
+                "limits": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                },
+                "proof_mechanism": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/v2ProofMechanism"
+                    },
+                    "title": "proof_mechanism includes the enabled proof_mechanism values for the tenant.\nCurrently we only support SIMPLE_HASH or MERKLE_LOG"
+                },
+                "tier": {
+                    "$ref": "#/definitions/v1Tier"
+                },
+                "quorum_networks": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/v1QuorumNetwork"
+                    },
+                    "title": "map of DLT networks indexed by chain ID"
+                },
+                "verified_domain": {
+                    "type": "string",
+                    "title": "verified domain for the tenant"
+                },
+                "display_name": {
+                    "type": "string",
+                    "description": "Customer friendly name for the tenant.",
+                    "maxLength": 128
+                },
+                "last_anchor_time": {
+                    "type": "string",
+                    "format": "int64",
+                    "title": "timestamp of last anchor"
+                },
+                "anchor_interval": {
+                    "type": "integer",
+                    "format": "int32",
+                    "title": "hash schedule in seconds"
+                },
+                "enterprise_sso_enabled": {
+                    "type": "boolean"
+                },
+                "enterprise_sso_config": {
+                    "$ref": "#/definitions/v1EnterpriseSSOConfig"
+                },
+                "expired": {
+                    "type": "boolean"
+                }
+            },
+            "title": "Tenant information"
+        },
+        "v1Tier": {
+            "type": "string",
+            "enum": [
+                "TIER_UNSPECIFIED",
+                "FREE",
+                "PREMIUM",
+                "READONLY"
+            ],
+            "default": "TIER_UNSPECIFIED"
+        },
+        "v1TopicFromPubKeyResponse": {
+            "type": "object",
+            "properties": {
+                "topic": {
+                    "type": "string"
+                }
+            }
+        },
+        "v1UpdatableTenantPayload": {
+            "type": "object",
+            "properties": {
+                "display_name": {
+                    "type": "string",
+                    "description": "Customer friendly name for the tenant.",
+                    "maxLength": 128
+                },
+                "enterprise_sso_config": {
+                    "$ref": "#/definitions/v1EnterpriseSSOConfig"
+                }
+            }
+        },
+        "v1UpdateTenantRootPrincipalsRequest": {
+            "type": "object",
+            "example": {
+                "root_principals": [
+                    {
+                        "display_name": "Bob Smith",
+                        "issuer": "job.idp.server/1234",
+                        "subject": "08838336-c357-460d-902a-3aba9528dd22",
+                        "email": "bob@job"
+                    }
+                ]
+            },
+            "properties": {
+                "root_principals": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "$ref": "#/definitions/v2Principal"
+                    },
+                    "description": "New list of tenant root user principals"
+                }
+            },
             "description": "Update the list of tenant root user principals",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1UpdateTenantRootPrincipalsRequest"
-            }
-          }
-        ],
-        "tags": [
-          "Tenancies"
-        ]
-      }
-    },
-    "/archivist/v1/tenancies/self": {
-      "get": {
-        "summary": "Get tenant record",
-        "description": "Returns an administrator's view of tenant for which they're authenticated",
-        "operationId": "Tenancies_GetAdminTenantInfo",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1AdminTenantResponse"
-            }
-          },
-          "400": {
-            "description": "Supplied parameters were invalid"
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to retrieve the tenant id."
-          }
+            "title": "Update the list of tenant root user principals"
         },
-        "tags": [
-          "Tenancies"
-        ]
-      },
-      "patch": {
-        "summary": "Update tenant record",
-        "description": "Enables a root principal of the tenant to update the tenant record.",
-        "operationId": "Tenancies_UpdateTenant",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1AdminTenantResponse"
-            }
-          },
-          "400": {
-            "description": "Returned when the request is badly formed."
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to perform this action."
-          },
-          "404": {
-            "description": "Returned when the referenced tenant does not exist."
-          }
+        "v1User": {
+            "type": "object",
+            "example": {
+                "identity": "users/87d349ed-44d7-43e1-9a83-5f2406dee5bd",
+                "email": "frank123@example.com",
+                "issuer": "frank@example.com",
+                "subject": "franky123",
+                "user_status": "ACTIVE"
+            },
+            "properties": {
+                "identity": {
+                    "type": "string",
+                    "description": "user identity `{UUID}`",
+                    "maxLength": 1024
+                },
+                "email": {
+                    "type": "string",
+                    "description": "User email."
+                },
+                "issuer": {
+                    "type": "string",
+                    "description": "optional issuer of the principal identity. Where the issuer is not provided the subject is treated as a free string",
+                    "maxLength": 1024
+                },
+                "subject": {
+                    "type": "string",
+                    "description": "unique identifier of the principal (within issuer context)",
+                    "maxLength": 1024
+                },
+                "displayName": {
+                    "type": "string",
+                    "description": "display name for the user",
+                    "maxLength": 1024
+                }
+            },
+            "description": "User Data"
         },
-        "parameters": [
-          {
-            "name": "tenant",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1UpdatableTenantPayload"
+        "v1UserTenantIDTokenHintResponse": {
+            "type": "object",
+            "properties": {
+                "token": {
+                    "type": "string"
+                }
             }
-          },
-          {
-            "name": "mask",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Tenancies"
-        ]
-      }
-    },
-    "/archivist/v1/tenancies/users": {
-      "get": {
-        "summary": "List Users",
-        "description": "Returns a list of Users active in or invited to the tenant.",
-        "operationId": "Tenancies_ListUsers",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1ListUsersResponse"
-            }
-          },
-          "400": {
-            "description": "Returned when the request is badly formed."
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to read the users."
-          },
-          "404": {
-            "description": "Returned when the identified users don't exist."
-          },
-          "500": {
-            "description": "Returned when the underlying storage system returns an error."
-          }
         },
-        "parameters": [
-          {
-            "name": "user_uuid",
-            "description": "user UUID, found in the identifier `users/{UUID}`",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "email",
-            "description": "user email.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "displayName",
-            "description": "display name for the user",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "page_size",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "page_token",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "TenanciesUsers"
-        ]
-      }
-    },
-    "/archivist/v1/tenancies/users/{user_uuid}": {
-      "delete": {
-        "summary": "Deletes User",
-        "description": "Deletes a User from the tenancy.",
-        "operationId": "Tenancies_DeleteUser",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1User"
-            }
-          },
-          "400": {
-            "description": "Returned when the request is badly formed."
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to read the user."
-          },
-          "500": {
-            "description": "Returned when the underlying storage system returns an error."
-          }
+        "v2Principal": {
+            "type": "object",
+            "example": {
+                "issuer": "job.idp.server/1234",
+                "subject": "bob@job"
+            },
+            "properties": {
+                "issuer": {
+                    "type": "string",
+                    "description": "optional issuer of the principal identity. Where the issuer is not provided the subject is treated as a free string",
+                    "maxLength": 1024
+                },
+                "subject": {
+                    "type": "string",
+                    "description": "unique identifier of the principal (within issuer context)",
+                    "maxLength": 1024
+                },
+                "display_name": {
+                    "type": "string",
+                    "description": "The displayable name of the end-user.  The name claim is prefered, followed by email claims, then a composite of  given_name, middle_name, family_name",
+                    "maxLength": 1024
+                },
+                "email": {
+                    "type": "string",
+                    "description": "The email for the end-user if available. If email_verified is  available it is preferd. Empty if neither email_verified or email  are provided by the IdP",
+                    "maxLength": 1024
+                }
+            },
+            "description": "The principal description assured by the configured Identity  Provider. All values are according to OIDC id token claims and  standard claims.  See https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims"
         },
-        "parameters": [
-          {
-            "name": "user_uuid",
-            "description": "user UUID, found in the identifier `users/{UUID}`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "TenanciesUsers"
-        ]
-      }
-    },
-    "/archivist/v1/tenancies/{uuid}:publicinfo": {
-      "get": {
-        "summary": "Public Tenant Information.",
-        "description": "Return the publically avaialble tenant information.",
-        "operationId": "Tenancies_GetPublicTenantInfo",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1GetPublicTenantInfoResponse"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "uuid",
-            "description": "Specify the tenant UUID where `tenant/{uuid}` is the Tenant Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `tenant/add30235-1424-4fda-840a-d5ef82c4c96f`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Tenancies"
-        ]
-      }
+        "v2ProofMechanism": {
+            "type": "string",
+            "enum": [
+                "PROOF_MECHANISM_UNSPECIFIED",
+                "RESERVED1",
+                "SIMPLE_HASH",
+                "MERKLE_LOG"
+            ],
+            "default": "PROOF_MECHANISM_UNSPECIFIED"
+        }
     }
-  },
-  "definitions": {
-    "v1AdminTenantResponse": {
-      "type": "object",
-      "example": {
-        "identity": "tenant/08838336-c357-460d-902a-3aba9528dd22",
-        "verified_domain": "foo.com",
-        "display_name": "My First Tenancy"
-      },
-      "properties": {
-        "identity": {
-          "type": "string",
-          "description": "tenant identity `{UUID}`",
-          "readOnly": true
-        },
-        "verified_domain": {
-          "type": "string"
-        },
-        "display_name": {
-          "type": "string",
-          "description": "Customer friendly name for the tenant.",
-          "maxLength": 128
-        },
-        "enterprise_sso_enabled": {
-          "type": "boolean"
-        },
-        "enterprise_sso_config": {
-          "$ref": "#/definitions/v1EnterpriseSSOConfig"
-        }
-      },
-      "description": "View of own tenant record for a root principal."
-    },
-    "v1Cap": {
-      "type": "object",
-      "properties": {
-        "resource_type": {
-          "type": "string",
-          "description": "String identifying the capped resource type"
-        },
-        "resource_remaining": {
-          "type": "string",
-          "format": "int64",
-          "description": "Number of capped resources remaining"
-        },
-        "resource_cap": {
-          "type": "string",
-          "format": "int64",
-          "description": "Resource cap"
-        }
-      }
-    },
-    "v1Caps": {
-      "type": "object",
-      "properties": {
-        "caps": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1Cap"
-          },
-          "description": "List of relevant capped resources"
-        }
-      }
-    },
-    "v1CountUsersResponse": {
-      "type": "object",
-      "properties": {
-        "total": {
-          "type": "string",
-          "format": "int64"
-        }
-      }
-    },
-    "v1EnterpriseSSOConfig": {
-      "type": "object",
-      "properties": {
-        "policy_id": {
-          "type": "string",
-          "description": "Per-tenant B2C policy ID",
-          "readOnly": true
-        },
-        "config_url": {
-          "type": "string"
-        },
-        "issuer": {
-          "type": "string"
-        },
-        "client_id": {
-          "type": "string"
-        },
-        "client_secret": {
-          "type": "string",
-          "description": "The secret passed here when setting, but must not be stored in plaintext or logged."
-        }
-      },
-      "title": "This is used for PATCHing self - so the tenant is taken from the calling principal"
-    },
-    "v1GetLimitsForCurrentTenantResponse": {
-      "type": "object",
-      "properties": {
-        "limits": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "description": "map of caps for authenticated principal's tenancy",
-          "readOnly": true
-        }
-      }
-    },
-    "v1GetPublicTenantInfoResponse": {
-      "type": "object",
-      "example": {
-        "identity": "tenant/add30235-1424-4fda-840a-d5ef82c4c96f",
-        "verified_domain": "exampleltd"
-      },
-      "properties": {
-        "identity": {
-          "type": "string"
-        },
-        "verified_domain": {
-          "type": "string"
-        }
-      },
-      "description": "Publically available information for a tenant.",
-      "title": "Get publicly available information for a specific tenant"
-    },
-    "v1GetTenantRootPrincipalsResponse": {
-      "type": "object",
-      "example": {
-        "root_principals": [
-          {
-            "display_name": "Bob Smith",
-            "issuer": "job.idp.server/1234",
-            "subject": "08838336-c357-460d-902a-3aba9528dd22",
-            "email": "bob@job"
-          }
-        ]
-      },
-      "properties": {
-        "root_principals": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v2Principal"
-          }
-        }
-      },
-      "description": "List of tenant root user principals",
-      "title": "A list of current tenant root user principals"
-    },
-    "v1InviteTokenHintResponse": {
-      "type": "object",
-      "properties": {
-        "token": {
-          "type": "string"
-        },
-        "expiry_time": {
-          "type": "string",
-          "format": "date-time",
-          "description": "invite expiry time",
-          "readOnly": true
-        }
-      }
-    },
-    "v1ListTenantsResponse": {
-      "type": "object",
-      "properties": {
-        "tenants": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1TenantResponse"
-          }
-        },
-        "next_page_token": {
-          "type": "string"
-        }
-      }
-    },
-    "v1ListUsersResponse": {
-      "type": "object",
-      "example": {
-        "users": [
-          {
-            "identity": "users/87d349ed-44d7-43e1-9a83-5f2406dee5bd",
-            "email": "frank123@example.com",
-            "issuer": "frank@example.com",
-            "subject": "franky123",
-            "user_status": "ACTIVE"
-          }
-        ],
-        "page_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6InN0dW50aWR"
-      },
-      "properties": {
-        "users": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1User"
-          }
-        },
-        "next_page_token": {
-          "type": "string",
-          "description": "Token to retrieve the next page of results or empty if there are none."
-        }
-      },
-      "description": "List of Users (or the next page in a continuing  list request)"
-    },
-    "v1QuorumNetwork": {
-      "type": "object",
-      "properties": {
-        "node_address": {
-          "type": "string",
-          "description": "scheme://host:port for the tenants resident quorum node",
-          "maxLength": 1024,
-          "minLength": 1
-        },
-        "tessera_address": {
-          "type": "string",
-          "description": "scheme://host:port of tenants resident tessera node if privacy preserving transactions are enabled for the tenant",
-          "maxLength": 1024,
-          "minLength": 1
-        },
-        "tessera_key": {
-          "type": "string",
-          "description": "Tessera key.",
-          "title": "DLT tessera public key. Not currently used anywhere?",
-          "maxLength": 1024,
-          "minLength": 1
-        },
-        "topic": {
-          "type": "string",
-          "description": "Event Sender Topic.",
-          "maxLength": 1024,
-          "minLength": 1
-        },
-        "is_private": {
-          "type": "boolean",
-          "description": "Is the tessaera private?"
-        }
-      },
-      "title": "Models the interface between creators and the blockchain. Used in an internal LRU for each\ncreator service"
-    },
-    "v1TenantIDResponse": {
-      "type": "object",
-      "properties": {
-        "identity": {
-          "type": "string",
-          "description": "tenant identity `{UUID}`",
-          "readOnly": true
-        },
-        "tier": {
-          "$ref": "#/definitions/v1Tier",
-          "description": "tenant tier FREE, READONLY or PREMIUM",
-          "readOnly": true
-        },
-        "new_tenant": {
-          "type": "boolean",
-          "description": "true if this request created a new tenant",
-          "readOnly": true
-        }
-      }
-    },
-    "v1TenantLimitsResponse": {
-      "type": "object",
-      "properties": {
-        "identity": {
-          "type": "string",
-          "description": "tenant identity `{UUID}`",
-          "readOnly": true
-        },
-        "limits": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      }
-    },
-    "v1TenantResponse": {
-      "type": "object",
-      "properties": {
-        "identity": {
-          "type": "string",
-          "description": "tenant identity `{UUID}`",
-          "readOnly": true
-        },
-        "root_principal": {
-          "$ref": "#/definitions/v2Principal",
-          "title": "root_principal is DEPRECATED and will be removed in a future release\nit remains for old installations and for the one true tenant IDP issuer"
-        },
-        "wallet_key_name": {
-          "type": "string"
-        },
-        "wallet_address": {
-          "type": "string"
-        },
-        "root_principals": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v2Principal"
-          }
-        },
-        "limits": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "proof_mechanism": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v2ProofMechanism"
-          },
-          "title": "proof_mechanism includes the enabled proof_mechanism values for the tenant.\nCurrently we only support SIMPLE_HASH or MERKLE_LOG"
-        },
-        "tier": {
-          "$ref": "#/definitions/v1Tier"
-        },
-        "quorum_networks": {
-          "type": "object",
-          "additionalProperties": {
-            "$ref": "#/definitions/v1QuorumNetwork"
-          },
-          "title": "map of DLT networks indexed by chain ID"
-        },
-        "verified_domain": {
-          "type": "string",
-          "title": "verified domain for the tenant"
-        },
-        "display_name": {
-          "type": "string",
-          "description": "Customer friendly name for the tenant.",
-          "maxLength": 128
-        },
-        "last_anchor_time": {
-          "type": "string",
-          "format": "int64",
-          "title": "timestamp of last anchor"
-        },
-        "anchor_interval": {
-          "type": "integer",
-          "format": "int32",
-          "title": "hash schedule in seconds"
-        },
-        "enterprise_sso_enabled": {
-          "type": "boolean"
-        },
-        "enterprise_sso_config": {
-          "$ref": "#/definitions/v1EnterpriseSSOConfig"
-        },
-        "expired": {
-          "type": "boolean"
-        }
-      },
-      "title": "Tenant information"
-    },
-    "v1Tier": {
-      "type": "string",
-      "enum": [
-        "TIER_UNSPECIFIED",
-        "FREE",
-        "PREMIUM",
-        "READONLY"
-      ],
-      "default": "TIER_UNSPECIFIED"
-    },
-    "v1TopicFromPubKeyResponse": {
-      "type": "object",
-      "properties": {
-        "topic": {
-          "type": "string"
-        }
-      }
-    },
-    "v1UpdatableTenantPayload": {
-      "type": "object",
-      "properties": {
-        "display_name": {
-          "type": "string",
-          "description": "Customer friendly name for the tenant.",
-          "maxLength": 128
-        },
-        "enterprise_sso_config": {
-          "$ref": "#/definitions/v1EnterpriseSSOConfig"
-        }
-      }
-    },
-    "v1UpdateTenantRootPrincipalsRequest": {
-      "type": "object",
-      "example": {
-        "root_principals": [
-          {
-            "display_name": "Bob Smith",
-            "issuer": "job.idp.server/1234",
-            "subject": "08838336-c357-460d-902a-3aba9528dd22",
-            "email": "bob@job"
-          }
-        ]
-      },
-      "properties": {
-        "root_principals": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v2Principal"
-          },
-          "description": "New list of tenant root user principals"
-        }
-      },
-      "description": "Update the list of tenant root user principals",
-      "title": "Update the list of tenant root user principals"
-    },
-    "v1User": {
-      "type": "object",
-      "example": {
-        "identity": "users/87d349ed-44d7-43e1-9a83-5f2406dee5bd",
-        "email": "frank123@example.com",
-        "issuer": "frank@example.com",
-        "subject": "franky123",
-        "user_status": "ACTIVE"
-      },
-      "properties": {
-        "identity": {
-          "type": "string",
-          "description": "user identity `{UUID}`",
-          "maxLength": 1024
-        },
-        "email": {
-          "type": "string",
-          "description": "User email."
-        },
-        "issuer": {
-          "type": "string",
-          "description": "optional issuer of the principal identity. Where the issuer is not provided the subject is treated as a free string",
-          "maxLength": 1024
-        },
-        "subject": {
-          "type": "string",
-          "description": "unique identifier of the principal (within issuer context)",
-          "maxLength": 1024
-        },
-        "displayName": {
-          "type": "string",
-          "description": "display name for the user",
-          "maxLength": 1024
-        }
-      },
-      "description": "User Data"
-    },
-    "v1UserTenantIDTokenHintResponse": {
-      "type": "object",
-      "properties": {
-        "token": {
-          "type": "string"
-        }
-      }
-    },
-    "v2Principal": {
-      "type": "object",
-      "example": {
-        "issuer": "job.idp.server/1234",
-        "subject": "bob@job"
-      },
-      "properties": {
-        "issuer": {
-          "type": "string",
-          "description": "optional issuer of the principal identity. Where the issuer is not provided the subject is treated as a free string",
-          "maxLength": 1024
-        },
-        "subject": {
-          "type": "string",
-          "description": "unique identifier of the principal (within issuer context)",
-          "maxLength": 1024
-        },
-        "display_name": {
-          "type": "string",
-          "description": "The displayable name of the end-user.  The name claim is prefered, followed by email claims, then a composite of  given_name, middle_name, family_name",
-          "maxLength": 1024
-        },
-        "email": {
-          "type": "string",
-          "description": "The email for the end-user if available. If email_verified is  available it is preferd. Empty if neither email_verified or email  are provided by the IdP",
-          "maxLength": 1024
-        }
-      },
-      "description": "The principal description assured by the configured Identity  Provider. All values are according to OIDC id token claims and  standard claims.  See https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims"
-    },
-    "v2ProofMechanism": {
-      "type": "string",
-      "enum": [
-        "PROOF_MECHANISM_UNSPECIFIED",
-        "RESERVED1",
-        "SIMPLE_HASH",
-        "MERKLE_LOG"
-      ],
-      "default": "PROOF_MECHANISM_UNSPECIFIED"
-    }
-  }
 }

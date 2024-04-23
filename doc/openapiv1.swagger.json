@@ -1,87 +1,87 @@
 {
-  "swagger": "2.0",
-  "info": {
-    "title": "OpenAPI API",
-    "description": "API providing swagger files for DataTrails APIs",
-    "version": "1.0",
-    "contact": {
-      "name": "DataTrails",
-      "url": "https://www.datatrails.ai"
-    }
-  },
-  "tags": [
-    {
-      "name": "OpenAPI",
-      "description": "Access OpenAPI specs for DataTrails interfaces"
-    }
-  ],
-  "basePath": "/archivist/v2/openapi",
-  "schemes": [
-    "https"
-  ],
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
-  "paths": {
-    "/archivist/v2/openapi": {
-      "get": {
-        "summary": "Returns an OpenAPI spec for a DataTrails interface",
-        "description": "Get an OpenAPI v2.0 spec for a given DataTrails interface",
-        "operationId": "Swagger_GetFile",
-        "responses": {
-          "200": {
-            "description": "A successful response."
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to access the resource."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          }
-        },
-        "parameters": [
-          {
-            "name": "interface",
-            "description": "Query string parameter taking the name of the api spec to get, eg v2/assets",
-            "in": "query",
-            "required": true,
-            "type": "string",
-            "enum": [
-              "iam/v1/access_policies",
-              "iam/v1/applications",
-              "iam/v1/assets",
-              "iam/v1/subjects",
-              "v1/archivistnode",
-              "v1/blobs",
-              "v1/compliance/assets",
-              "v1/compliance_policies",
-              "v1/invites",
-              "v1/notary",
-              "v1/publicscitt",
-              "v1/tenancies",
-              "v1/tlscacertificates",
-              "v1/users",
-              "v1alpha2/blockchain/assets",
-              "v2/assets",
-              "v2/attachments/assets",
-              "v2/attachments/publicassets",
-              "v2/locations",
-              "v2/assets/-/events/builtin",
-              "v2/assets/-/events/recordevidence"
-            ]
-          }
-        ],
-        "tags": [
-          "OpenAPI"
-        ]
-      }
-    }
-  },
-  "definitions": {}
+    "swagger": "2.0",
+    "info": {
+        "title": "OpenAPI API",
+        "description": "API providing swagger files for DataTrails APIs",
+        "version": "1.0",
+        "contact": {
+            "name": "DataTrails",
+            "url": "https://www.datatrails.ai"
+        }
+    },
+    "tags": [
+        {
+            "name": "OpenAPI",
+            "description": "Access OpenAPI specs for DataTrails interfaces"
+        }
+    ],
+    "basePath": "/archivist/v2/openapi",
+    "schemes": [
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/archivist/v2/openapi": {
+            "get": {
+                "summary": "Returns an OpenAPI spec for a DataTrails interface",
+                "description": "Get an OpenAPI v2.0 spec for a given DataTrails interface",
+                "operationId": "Swagger_GetFile",
+                "responses": {
+                    "200": {
+                        "description": "A successful response."
+                    },
+                    "401": {
+                        "description": "Returned when the user is not authenticated to the system."
+                    },
+                    "403": {
+                        "description": "Returned when the user is not authorized to access the resource."
+                    },
+                    "429": {
+                        "description": "Returned when a user exceeds their subscription's rate limit for requests."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "interface",
+                        "description": "Query string parameter taking the name of the api spec to get, eg v2/assets",
+                        "in": "query",
+                        "required": true,
+                        "type": "string",
+                        "enum": [
+                            "iam/v1/access_policies",
+                            "iam/v1/applications",
+                            "iam/v1/assets",
+                            "iam/v1/subjects",
+                            "v1/archivistnode",
+                            "v1/blobs",
+                            "v1/compliance/assets",
+                            "v1/compliance_policies",
+                            "v1/invites",
+                            "v1/notary",
+                            "v1/publicscitt",
+                            "v1/tenancies",
+                            "v1/tlscacertificates",
+                            "v1/users",
+                            "v1alpha2/blockchain/assets",
+                            "v2/assets",
+                            "v2/attachments/assets",
+                            "v2/attachments/publicassets",
+                            "v2/locations",
+                            "v2/assets/-/events/builtin",
+                            "v2/assets/-/events/recordevidence"
+                        ]
+                    }
+                ],
+                "tags": [
+                    "OpenAPI"
+                ]
+            }
+        }
+    },
+    "definitions": {}
 }

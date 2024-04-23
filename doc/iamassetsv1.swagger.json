@@ -1,359 +1,359 @@
 {
-  "swagger": "2.0",
-  "info": {
-    "title": "IAMAssets API",
-    "description": "API to manage Identity Assets AccessPolicies.",
-    "version": "1.0",
-    "contact": {
-      "name": "DataTrails",
-      "url": "https://www.datatrails.ai"
-    }
-  },
-  "tags": [
-    {
-      "name": "AccessPolicyAssets",
-      "description": " List Access Polices that apply to an Asset"
-    }
-  ],
-  "basePath": "/archivist/iam/v1/assets",
-  "schemes": [
-    "https"
-  ],
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
-  "paths": {
-    "/archivist/iam/v1/assets/{uuid}/access_policies": {
-      "get": {
-        "summary": "Get matching access policies",
-        "description": "Get matching access policies for specified asset",
-        "operationId": "Assets_ListMatchingAccessPolicies",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1ListIAMAccessPoliciesResponse"
+    "swagger": "2.0",
+    "info": {
+        "title": "IAMAssets API",
+        "description": "API to manage Identity Assets AccessPolicies.",
+        "version": "1.0",
+        "contact": {
+            "name": "DataTrails",
+            "url": "https://www.datatrails.ai"
+        }
+    },
+    "tags": [
+        {
+            "name": "AccessPolicyAssets",
+            "description": " List Access Polices that apply to an Asset"
+        }
+    ],
+    "basePath": "/archivist/iam/v1/assets",
+    "schemes": [
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/archivist/iam/v1/assets/{uuid}/access_policies": {
+            "get": {
+                "summary": "Get matching access policies",
+                "description": "Get matching access policies for specified asset",
+                "operationId": "Assets_ListMatchingAccessPolicies",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "$ref": "#/definitions/v1ListIAMAccessPoliciesResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Returned when the request is badly formed."
+                    },
+                    "401": {
+                        "description": "Returned when the user is not authenticated to the system."
+                    },
+                    "403": {
+                        "description": "Returned when the user is not authorized to list the access policy."
+                    },
+                    "404": {
+                        "description": "Returned when the identified access policy does not exist."
+                    },
+                    "429": {
+                        "description": "Returned when a user exceeds their subscription's rate limit for requests."
+                    },
+                    "500": {
+                        "description": "Returned when the underlying storage system returns an error."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "description": "Specify the Asset UUID where `assets/{uuid}` is the Asset Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f`",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "at_time",
+                        "description": "Specify time in the past to show asset data as it was at time specified",
+                        "in": "query",
+                        "required": false,
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                ],
+                "tags": [
+                    "AccessPolicyAssets"
+                ]
             }
-          },
-          "400": {
-            "description": "Returned when the request is badly formed."
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to list the access policy."
-          },
-          "404": {
-            "description": "Returned when the identified access policy does not exist."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          },
-          "500": {
-            "description": "Returned when the underlying storage system returns an error."
-          }
-        },
-        "parameters": [
-          {
-            "name": "uuid",
-            "description": "Specify the Asset UUID where `assets/{uuid}` is the Asset Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "at_time",
-            "description": "Specify time in the past to show asset data as it was at time specified",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "date-time"
-          }
-        ],
-        "tags": [
-          "AccessPolicyAssets"
-        ]
-      }
-    }
-  },
-  "definitions": {
-    "v1Filter": {
-      "type": "object",
-      "example": {
-        "or": [
-          "group=maintainers",
-          "group=supervisors"
-        ]
-      },
-      "properties": {
-        "or": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "The filter list"
         }
-      },
-      "description": "Filter"
     },
-    "v1IAMAccessPolicy": {
-      "type": "object",
-      "example": {
-        "identity": "access_policies/08838336-c357-460d-902a-3aba9528dd22",
-        "display_name": "User name for this policy",
-        "description": "User description for this policy",
-        "filters": [
-          {
-            "or": [
-              "location=basingstoke",
-              "location=cambridge"
-            ]
-          },
-          {
-            "or": [
-              "asset_type=door_access_reader"
-            ]
-          }
-        ],
-        "access_permissions": [
-          {
-            "subjects": [
-              "subjects/9846b867-3e42-4b5d-af56-bcd62c2126d2",
-              "subjects/3907c132-900b-4481-82da-21ffe699ddb9"
-            ],
-            "behaviours": [
-              "behaviour1",
-              "behaviour2"
-            ],
-            "asset_attributes_read": [
-              "attribute1",
-              "attribute2"
-            ],
-            "user_attributes": [
-              {
-                "or": [
-                  "group:maintainers",
-                  "group:supervisors"
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      "properties": {
-        "identity": {
-          "type": "string",
-          "description": "Unique identification for the access policy, Relative Resource Name",
-          "title": "generated identity for the entry"
-        },
-        "display_name": {
-          "type": "string",
-          "description": "Customer friendly name for the access policy.",
-          "title": "user friendly name for this policy",
-          "maxLength": 1024
-        },
-        "filters": {
-          "type": "array",
-          "items": {
+    "definitions": {
+        "v1Filter": {
             "type": "object",
-            "$ref": "#/definitions/v1Filter"
-          },
-          "description": "filters",
-          "title": "Outer list AND, inner list INCLUSIVE OR, e.g. [[A, B], [A, B]] \"(A OR B) in first position AND (A OR B) in second position (and anything after)\" (see https://github.com/ethereum/wiki/wiki/JSON-RPC#a-note-on-specifying-topic-filters)\nWe are using inner OR outer AND as most of natural queries seem to translate better into that format - say all pumps and locks from cambridge translates very nicely into [[type=pump,type=lock][location=cambridge]] - on the other hand if we wanted all pumps in cambridge or anything in newmarket that would be more awkward but perhaps that is not the most natural filter in the first place.\nOn the Access Policy editor page in the UX wire frames, we see locations and a asset_types as two of the items to filter on. A policy that expresses “a policy for all door access readers in Basingstoke or Cambridge”\n[\n    { \"or\": [\"location=basingstoke\", \"location=cambridge\"] },\n    { \"or\": [\"asset_type=door_access_reader\"] }\n]"
+            "example": {
+                "or": [
+                    "group=maintainers",
+                    "group=supervisors"
+                ]
+            },
+            "properties": {
+                "or": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The filter list"
+                }
+            },
+            "description": "Filter"
         },
-        "access_permissions": {
-          "type": "array",
-          "items": {
+        "v1IAMAccessPolicy": {
             "type": "object",
-            "$ref": "#/definitions/v1Permission"
-          },
-          "description": "The permissions maps",
-          "title": "POST and PATCH do full replacement\n[\n  {\n    \"behaviours\": [\"BEHAVIOUR0\",\"BEHAVIOUR1\"],\n    \"asset_attributes_read\": [\"ATTRIBUTE0\",\"ATTRIBUTE1\"]\n  }\n]"
-        },
-        "tenant": {
-          "type": "string",
-          "description": "Tenant id",
-          "title": "customer tenant ID",
-          "maxLength": 128
-        },
-        "description": {
-          "type": "string",
-          "description": "Customer description for the access policy.",
-          "title": "user description of the policy",
-          "maxLength": 4096
-        }
-      },
-      "description": "Describes an Access Policy for OBAC"
-    },
-    "v1ListIAMAccessPoliciesResponse": {
-      "type": "object",
-      "example": {
-        "access_policies": [
-          {
-            "identity": "access_policies/08838336-c357-460d-902a-3aba9528dd22",
-            "display_name": "Some description",
-            "filters": [
-              {
-                "or": [
-                  "location=basingstoke",
-                  "location=cambridge"
+            "example": {
+                "identity": "access_policies/08838336-c357-460d-902a-3aba9528dd22",
+                "display_name": "User name for this policy",
+                "description": "User description for this policy",
+                "filters": [
+                    {
+                        "or": [
+                            "location=basingstoke",
+                            "location=cambridge"
+                        ]
+                    },
+                    {
+                        "or": [
+                            "asset_type=door_access_reader"
+                        ]
+                    }
+                ],
+                "access_permissions": [
+                    {
+                        "subjects": [
+                            "subjects/9846b867-3e42-4b5d-af56-bcd62c2126d2",
+                            "subjects/3907c132-900b-4481-82da-21ffe699ddb9"
+                        ],
+                        "behaviours": [
+                            "behaviour1",
+                            "behaviour2"
+                        ],
+                        "asset_attributes_read": [
+                            "attribute1",
+                            "attribute2"
+                        ],
+                        "user_attributes": [
+                            {
+                                "or": [
+                                    "group:maintainers",
+                                    "group:supervisors"
+                                ]
+                            }
+                        ]
+                    }
                 ]
-              },
-              {
-                "or": [
-                  "asset_type=door_access_reader"
-                ]
-              }
-            ],
-            "access_permissions": [
-              {
+            },
+            "properties": {
+                "identity": {
+                    "type": "string",
+                    "description": "Unique identification for the access policy, Relative Resource Name",
+                    "title": "generated identity for the entry"
+                },
+                "display_name": {
+                    "type": "string",
+                    "description": "Customer friendly name for the access policy.",
+                    "title": "user friendly name for this policy",
+                    "maxLength": 1024
+                },
+                "filters": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "$ref": "#/definitions/v1Filter"
+                    },
+                    "description": "filters",
+                    "title": "Outer list AND, inner list INCLUSIVE OR, e.g. [[A, B], [A, B]] \"(A OR B) in first position AND (A OR B) in second position (and anything after)\" (see https://github.com/ethereum/wiki/wiki/JSON-RPC#a-note-on-specifying-topic-filters)\nWe are using inner OR outer AND as most of natural queries seem to translate better into that format - say all pumps and locks from cambridge translates very nicely into [[type=pump,type=lock][location=cambridge]] - on the other hand if we wanted all pumps in cambridge or anything in newmarket that would be more awkward but perhaps that is not the most natural filter in the first place.\nOn the Access Policy editor page in the UX wire frames, we see locations and a asset_types as two of the items to filter on. A policy that expresses \u201ca policy for all door access readers in Basingstoke or Cambridge\u201d\n[\n    { \"or\": [\"location=basingstoke\", \"location=cambridge\"] },\n    { \"or\": [\"asset_type=door_access_reader\"] }\n]"
+                },
+                "access_permissions": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "$ref": "#/definitions/v1Permission"
+                    },
+                    "description": "The permissions maps",
+                    "title": "POST and PATCH do full replacement\n[\n  {\n    \"behaviours\": [\"BEHAVIOUR0\",\"BEHAVIOUR1\"],\n    \"asset_attributes_read\": [\"ATTRIBUTE0\",\"ATTRIBUTE1\"]\n  }\n]"
+                },
+                "tenant": {
+                    "type": "string",
+                    "description": "Tenant id",
+                    "title": "customer tenant ID",
+                    "maxLength": 128
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Customer description for the access policy.",
+                    "title": "user description of the policy",
+                    "maxLength": 4096
+                }
+            },
+            "description": "Describes an Access Policy for OBAC"
+        },
+        "v1ListIAMAccessPoliciesResponse": {
+            "type": "object",
+            "example": {
+                "access_policies": [
+                    {
+                        "identity": "access_policies/08838336-c357-460d-902a-3aba9528dd22",
+                        "display_name": "Some description",
+                        "filters": [
+                            {
+                                "or": [
+                                    "location=basingstoke",
+                                    "location=cambridge"
+                                ]
+                            },
+                            {
+                                "or": [
+                                    "asset_type=door_access_reader"
+                                ]
+                            }
+                        ],
+                        "access_permissions": [
+                            {
+                                "subjects": [
+                                    "subjects/9846b867-3e42-4b5d-af56-bcd62c2126d2",
+                                    "subjects/3907c132-900b-4481-82da-21ffe699ddb9"
+                                ],
+                                "behaviours": [
+                                    "behaviour1",
+                                    "behaviour2"
+                                ],
+                                "asset_attributes_read": [
+                                    "attribute1",
+                                    "attribute2"
+                                ],
+                                "user_attributes": [
+                                    {
+                                        "or": [
+                                            "group:maintainers",
+                                            "group:supervisors"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "page_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6InN0dW50aWR"
+            },
+            "properties": {
+                "access_policies": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "$ref": "#/definitions/v1IAMAccessPolicy"
+                    }
+                },
+                "next_page_token": {
+                    "type": "string",
+                    "description": "Token to retrieve the next page of results or empty if there are none."
+                }
+            },
+            "description": "List of access policies (or the next page in a continuing  list request"
+        },
+        "v1Permission": {
+            "type": "object",
+            "example": {
                 "subjects": [
-                  "subjects/9846b867-3e42-4b5d-af56-bcd62c2126d2",
-                  "subjects/3907c132-900b-4481-82da-21ffe699ddb9"
+                    "subjects/9846b867-3e42-4b5d-af56-bcd62c2126d2",
+                    "subjects/3907c132-900b-4481-82da-21ffe699ddb9"
                 ],
                 "behaviours": [
-                  "behaviour1",
-                  "behaviour2"
+                    "behaviour1",
+                    "behaviour2"
+                ],
+                "include_attributes": [
+                    "attribute1",
+                    "attribute2"
                 ],
                 "asset_attributes_read": [
-                  "attribute1",
-                  "attribute2"
+                    "attribute1",
+                    "attribute2"
+                ],
+                "asset_attributes_write": [
+                    "toner_colour"
+                ],
+                "event_arc_display_type_read": [
+                    "TonerReplacement",
+                    "TonerReplacementRequired"
+                ],
+                "event_arc_display_type_write": [
+                    "TonerReplacement"
                 ],
                 "user_attributes": [
-                  {
-                    "or": [
-                      "group:maintainers",
-                      "group:supervisors"
-                    ]
-                  }
+                    {
+                        "or": [
+                            "group:maintainers",
+                            "group:supervisors"
+                        ]
+                    }
                 ]
-              }
-            ]
-          }
-        ],
-        "page_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6InN0dW50aWR"
-      },
-      "properties": {
-        "access_policies": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1IAMAccessPolicy"
-          }
-        },
-        "next_page_token": {
-          "type": "string",
-          "description": "Token to retrieve the next page of results or empty if there are none."
+            },
+            "properties": {
+                "subjects": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The subjects list",
+                    "title": "list of strings with subject identities"
+                },
+                "behaviours": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The allowed behaviours",
+                    "title": "list of allowed behaviours"
+                },
+                "include_attributes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The shareable attributes list",
+                    "title": "Names of allowed visible attributes"
+                },
+                "user_attributes": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "$ref": "#/definitions/v1Filter"
+                    },
+                    "description": "User attribute filters",
+                    "title": "list of filters for user attribute matching\ninner OR and outer AND in form of\n[\n    { \"or\": [\"group=issuer1:maintainers\", \"group=issuer2:supervisors\"] }\n]\ndescribing anybody who is a maintainer or supervisor"
+                },
+                "asset_attributes_read": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of readable asset attributes"
+                },
+                "asset_attributes_write": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of writable asset attributes"
+                },
+                "event_arc_display_type_read": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Visible events selector"
+                },
+                "event_arc_display_type_write": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Visible events selector"
+                }
+            },
+            "description": "Permissions"
         }
-      },
-      "description": "List of access policies (or the next page in a continuing  list request"
-    },
-    "v1Permission": {
-      "type": "object",
-      "example": {
-        "subjects": [
-          "subjects/9846b867-3e42-4b5d-af56-bcd62c2126d2",
-          "subjects/3907c132-900b-4481-82da-21ffe699ddb9"
-        ],
-        "behaviours": [
-          "behaviour1",
-          "behaviour2"
-        ],
-        "include_attributes": [
-          "attribute1",
-          "attribute2"
-        ],
-        "asset_attributes_read": [
-          "attribute1",
-          "attribute2"
-        ],
-        "asset_attributes_write": [
-          "toner_colour"
-        ],
-        "event_arc_display_type_read": [
-          "TonerReplacement",
-          "TonerReplacementRequired"
-        ],
-        "event_arc_display_type_write": [
-          "TonerReplacement"
-        ],
-        "user_attributes": [
-          {
-            "or": [
-              "group:maintainers",
-              "group:supervisors"
-            ]
-          }
-        ]
-      },
-      "properties": {
-        "subjects": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "The subjects list",
-          "title": "list of strings with subject identities"
-        },
-        "behaviours": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "The allowed behaviours",
-          "title": "list of allowed behaviours"
-        },
-        "include_attributes": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "The shareable attributes list",
-          "title": "Names of allowed visible attributes"
-        },
-        "user_attributes": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1Filter"
-          },
-          "description": "User attribute filters",
-          "title": "list of filters for user attribute matching\ninner OR and outer AND in form of\n[\n    { \"or\": [\"group=issuer1:maintainers\", \"group=issuer2:supervisors\"] }\n]\ndescribing anybody who is a maintainer or supervisor"
-        },
-        "asset_attributes_read": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "List of readable asset attributes"
-        },
-        "asset_attributes_write": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "List of writable asset attributes"
-        },
-        "event_arc_display_type_read": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "Visible events selector"
-        },
-        "event_arc_display_type_write": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "Visible events selector"
-        }
-      },
-      "description": "Permissions"
     }
-  }
 }

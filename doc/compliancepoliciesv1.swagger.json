@@ -1,497 +1,497 @@
 {
-  "swagger": "2.0",
-  "info": {
-    "title": "Compliance Policies API",
-    "description": "API to manage Compliance Policies.",
-    "version": "1.0",
-    "contact": {
-      "name": "DataTrails",
-      "url": "https://www.datatrails.ai"
-    }
-  },
-  "tags": [
-    {
-      "name": "CompliancePolicies",
-      "description": "Read and modify Compliance Policies"
-    }
-  ],
-  "basePath": "/archivist/v1/compliance_policies",
-  "schemes": [
-    "https"
-  ],
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
-  "paths": {
-    "/archivist/v1/compliance_policies": {
-      "get": {
-        "summary": "List Compliance Policies",
-        "description": "Retrieves a list of Compliance Policies",
-        "operationId": "CompliancePolicies_ListCompliancePolicy",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1ListCompliancePolicyResponse"
-            }
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to access the requested resource."
-          },
-          "404": {
-            "description": "Returned when the asset with the id does not exist."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          }
-        },
-        "parameters": [
-          {
-            "name": "page_size",
-            "description": "Maximum results per page.",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "page_token",
-            "description": "The next_page_token returned from a previous list request if any.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "order_by",
-            "description": "Specify the sort order for the results.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "enum": [
-              "DEFAULT"
-            ],
-            "default": "DEFAULT"
-          },
-          {
-            "name": "compliance_type",
-            "description": "policy type\n\n - COMPLIANCE_SINCE: time since specific event greated than X\n - COMPLIANCE_CURRENT_OUTSTANDING: unresolved event currently on asset (eg. vulnerablity)\n - COMPLIANCE_PERIOD_OUTSTANDING: no unresolved events for longer than X\n - COMPLIANCE_DYNAMIC_TOLERANCE: Dynamic tolerance with dynamic window etc..\n - COMPLIANCE_RICHNESS: compliance on comparison of asset attribute value to predefined comparator.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "enum": [
-              "COMPLIANCE_TYPE_UNDEFINED",
-              "COMPLIANCE_SINCE",
-              "COMPLIANCE_CURRENT_OUTSTANDING",
-              "COMPLIANCE_PERIOD_OUTSTANDING",
-              "COMPLIANCE_DYNAMIC_TOLERANCE",
-              "COMPLIANCE_RICHNESS"
-            ],
-            "default": "COMPLIANCE_TYPE_UNDEFINED"
-          },
-          {
-            "name": "description",
-            "description": "Customer description of the compliance policy.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "display_name",
-            "description": "Customer friendly name for the compliance policy.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "CompliancePolicies"
-        ]
-      },
-      "post": {
-        "summary": "Create a Compliance Policy",
-        "description": "Creates a Compliance Policy",
-        "operationId": "CompliancePolicies_AddCompliancePolicy",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1CompliancePolicyResponse"
-            }
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "402": {
-            "description": "Returned when the user's quota of compliance policies has been reached."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to access the requested resource."
-          },
-          "404": {
-            "description": "Returned when the asset with the id does not exist."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "description": "request adding new compliance policy",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1AddCompliancePolicyRequest"
-            }
-          }
-        ],
-        "tags": [
-          "CompliancePolicies"
-        ]
-      }
-    },
-    "/archivist/v1/compliance_policies/{uuid}": {
-      "get": {
-        "summary": "Retrieves a Compliance Policy",
-        "description": "Retrieves a specific Compliance Policy",
-        "operationId": "CompliancePolicies_GetCompliancePolicy",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1CompliancePolicyResponse"
-            }
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to access the requested resource."
-          },
-          "404": {
-            "description": "Returned when the asset with the id does not exist."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          }
-        },
-        "parameters": [
-          {
-            "name": "uuid",
-            "description": "Specify the Compliance Policy UUID where `compliance_policies/{uuid}` is the Compliance Policy Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `compliance_policies/add30235-1424-4fda-840a-d5ef82c4c96f`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "CompliancePolicies"
-        ]
-      },
-      "delete": {
-        "summary": "Delete a Compliance Policy",
-        "description": "Deletes a Compliance Policy",
-        "operationId": "CompliancePolicies_DeleteCompliancePolicy",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1CompliancePolicyResponse"
-            }
-          },
-          "401": {
-            "description": "Returned when the user is not authenticated to the system."
-          },
-          "403": {
-            "description": "Returned when the user is not authorized to access the requested resource."
-          },
-          "404": {
-            "description": "Returned when the asset with the id does not exist."
-          },
-          "429": {
-            "description": "Returned when a user exceeds their subscription's rate limit for requests."
-          }
-        },
-        "parameters": [
-          {
-            "name": "uuid",
-            "description": "Specify the Compliance Policy UUID where `compliance_policies/{uuid}` is the Compliance Policy Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `compliance_policies/add30235-1424-4fda-840a-d5ef82c4c96f`",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "CompliancePolicies"
-        ]
-      }
-    }
-  },
-  "definitions": {
-    "ListCompliancePolicyRequestOrderBy": {
-      "type": "string",
-      "enum": [
-        "DEFAULT"
-      ],
-      "default": "DEFAULT",
-      "title": "Supported sort orders"
-    },
-    "v1AddCompliancePolicyRequest": {
-      "type": "object",
-      "example": {
-        "compliance_type": "COMPLIANCE_SINCE",
-        "description": "Ensure Maintenance is performed daily",
-        "display_name": "Daily Maintenance",
-        "asset_filter": [
-          {
-            "or": [
-              "attributes.arc_location_identity:locations/5eef2b71-35c1-4376-a166-6c64bfa72f4b"
-            ]
-          }
-        ],
-        "event_display_type": "Maintenance Performed",
-        "time_period_seconds": 86800
-      },
-      "properties": {
-        "compliance_type": {
-          "$ref": "#/definitions/v1ComplianceType",
-          "description": "policy type",
-          "readOnly": true
-        },
-        "description": {
-          "type": "string",
-          "description": "Customer description of the compliance policy.",
-          "readOnly": true,
-          "maxLength": 4096
-        },
-        "display_name": {
-          "type": "string",
-          "description": "display name",
-          "readOnly": true,
-          "maxLength": 1024
-        },
-        "asset_filter": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1Filter",
-            "readOnly": true
-          },
-          "description": "filter for asset this compliance policy is for [ { or: [\"a:b\", \"c:d\"]}, { or: [...]}]"
-        },
-        "event_display_type": {
-          "type": "string",
-          "description": "this is the target event_display_type - always required",
-          "readOnly": true
-        },
-        "closing_event_display_type": {
-          "type": "string",
-          "description": "this is the correlated event type",
-          "readOnly": true
-        },
-        "time_period_seconds": {
-          "type": "string",
-          "format": "int64",
-          "description": "time delta - required for SINCE and PERIOD_OUTSTANDING",
-          "readOnly": true
-        },
-        "dynamic_window": {
-          "type": "string",
-          "format": "int64",
-          "description": "valid period for policy - required for DYNAMIC_TOLERANCE",
-          "readOnly": true
-        },
-        "dynamic_variability": {
-          "type": "number",
-          "format": "float",
-          "description": "number of standard deviations - required for DYNAMIC_TOLERANCE",
-          "readOnly": true
-        },
-        "richness_assertions": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1Filter",
-            "readOnly": true
-          },
-          "description": "assertions for the richness of this compliance policy [ { or: [\"a<b\", \"c>=d\"]}, { or: [...]}]",
-          "title": "richness assertions follows the same pattern as filters [{\"or\":[\"foo=bar\", \"baz=fiz\"]}]"
+    "swagger": "2.0",
+    "info": {
+        "title": "Compliance Policies API",
+        "description": "API to manage Compliance Policies.",
+        "version": "1.0",
+        "contact": {
+            "name": "DataTrails",
+            "url": "https://www.datatrails.ai"
         }
-      },
-      "description": "request adding new compliance policy"
     },
-    "v1Cap": {
-      "type": "object",
-      "properties": {
-        "resource_type": {
-          "type": "string",
-          "description": "String identifying the capped resource type"
-        },
-        "resource_remaining": {
-          "type": "string",
-          "format": "int64",
-          "description": "Number of capped resources remaining"
-        },
-        "resource_cap": {
-          "type": "string",
-          "format": "int64",
-          "description": "Resource cap"
+    "tags": [
+        {
+            "name": "CompliancePolicies",
+            "description": "Read and modify Compliance Policies"
         }
-      }
-    },
-    "v1Caps": {
-      "type": "object",
-      "properties": {
-        "caps": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1Cap"
-          },
-          "description": "List of relevant capped resources"
-        }
-      }
-    },
-    "v1CompliancePolicyResponse": {
-      "type": "object",
-      "example": {
-        "identity": "compliance_policies/463fab3a-bae5-4349-8f76-f6454da20c9d",
-        "compliance_type": "COMPLIANCE_SINCE",
-        "description": "Ensure Maintenance is performed daily",
-        "display_name": "Daily Maintenance",
-        "asset_filter": [
-          {
-            "or": [
-              "attributes.arc_location_identity:locations/5eef2b71-35c1-4376-a166-6c64bfa72f4b"
-            ]
-          }
-        ],
-        "event_display_type": "Maintenance Performed",
-        "time_period_seconds": 86800
-      },
-      "properties": {
-        "identity": {
-          "type": "string"
-        },
-        "compliance_type": {
-          "$ref": "#/definitions/v1ComplianceType"
-        },
-        "description": {
-          "type": "string"
-        },
-        "display_name": {
-          "type": "string"
-        },
-        "asset_filter": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1Filter"
-          }
-        },
-        "event_display_type": {
-          "type": "string"
-        },
-        "closing_event_display_type": {
-          "type": "string"
-        },
-        "time_period_seconds": {
-          "type": "string",
-          "format": "int64"
-        },
-        "dynamic_window": {
-          "type": "string",
-          "format": "int64",
-          "title": "valid perod for policy - only valid for SINCE and CURRENT"
-        },
-        "dynamic_variability": {
-          "type": "number",
-          "format": "float",
-          "title": "number of standard deviations - only valid for SINCE and CURRENT"
-        },
-        "richness_assertions": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1Filter"
-          }
-        }
-      },
-      "description": "compliance policy"
-    },
-    "v1ComplianceType": {
-      "type": "string",
-      "enum": [
-        "COMPLIANCE_TYPE_UNDEFINED",
-        "COMPLIANCE_SINCE",
-        "COMPLIANCE_CURRENT_OUTSTANDING",
-        "COMPLIANCE_PERIOD_OUTSTANDING",
-        "COMPLIANCE_DYNAMIC_TOLERANCE",
-        "COMPLIANCE_RICHNESS"
-      ],
-      "default": "COMPLIANCE_TYPE_UNDEFINED",
-      "description": " - COMPLIANCE_SINCE: time since specific event greated than X\n - COMPLIANCE_CURRENT_OUTSTANDING: unresolved event currently on asset (eg. vulnerablity)\n - COMPLIANCE_PERIOD_OUTSTANDING: no unresolved events for longer than X\n - COMPLIANCE_DYNAMIC_TOLERANCE: Dynamic tolerance with dynamic window etc..\n - COMPLIANCE_RICHNESS: compliance on comparison of asset attribute value to predefined comparator."
-    },
-    "v1Filter": {
-      "type": "object",
-      "example": {
-        "or": [
-          "group=maintainers",
-          "group=supervisors"
-        ]
-      },
-      "properties": {
-        "or": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "The filter list"
-        }
-      },
-      "description": "Filter"
-    },
-    "v1ListCompliancePolicyResponse": {
-      "type": "object",
-      "example": {
-        "compliance_policies": [
-          {
-            "identity": "compliance_policies/463fab3a-bae5-4349-8f76-f6454da20c9d",
-            "compliance_type": "COMPLIANCE_SINCE",
-            "description": "sample compliance policy",
-            "display_name": "my compliance policy",
-            "asset_filter": [
-              {
-                "or": [
-                  "attributes.arc_location_identity:locations/5eef2b71-35c1-4376-a166-6c64bfa72f4b"
+    ],
+    "basePath": "/archivist/v1/compliance_policies",
+    "schemes": [
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/archivist/v1/compliance_policies": {
+            "get": {
+                "summary": "List Compliance Policies",
+                "description": "Retrieves a list of Compliance Policies",
+                "operationId": "CompliancePolicies_ListCompliancePolicy",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "$ref": "#/definitions/v1ListCompliancePolicyResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Returned when the user is not authenticated to the system."
+                    },
+                    "403": {
+                        "description": "Returned when the user is not authorized to access the requested resource."
+                    },
+                    "404": {
+                        "description": "Returned when the asset with the id does not exist."
+                    },
+                    "429": {
+                        "description": "Returned when a user exceeds their subscription's rate limit for requests."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "page_size",
+                        "description": "Maximum results per page.",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "page_token",
+                        "description": "The next_page_token returned from a previous list request if any.",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "order_by",
+                        "description": "Specify the sort order for the results.",
+                        "in": "query",
+                        "required": false,
+                        "type": "string",
+                        "enum": [
+                            "DEFAULT"
+                        ],
+                        "default": "DEFAULT"
+                    },
+                    {
+                        "name": "compliance_type",
+                        "description": "policy type\n\n - COMPLIANCE_SINCE: time since specific event greated than X\n - COMPLIANCE_CURRENT_OUTSTANDING: unresolved event currently on asset (eg. vulnerablity)\n - COMPLIANCE_PERIOD_OUTSTANDING: no unresolved events for longer than X\n - COMPLIANCE_DYNAMIC_TOLERANCE: Dynamic tolerance with dynamic window etc..\n - COMPLIANCE_RICHNESS: compliance on comparison of asset attribute value to predefined comparator.",
+                        "in": "query",
+                        "required": false,
+                        "type": "string",
+                        "enum": [
+                            "COMPLIANCE_TYPE_UNDEFINED",
+                            "COMPLIANCE_SINCE",
+                            "COMPLIANCE_CURRENT_OUTSTANDING",
+                            "COMPLIANCE_PERIOD_OUTSTANDING",
+                            "COMPLIANCE_DYNAMIC_TOLERANCE",
+                            "COMPLIANCE_RICHNESS"
+                        ],
+                        "default": "COMPLIANCE_TYPE_UNDEFINED"
+                    },
+                    {
+                        "name": "description",
+                        "description": "Customer description of the compliance policy.",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "display_name",
+                        "description": "Customer friendly name for the compliance policy.",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "CompliancePolicies"
                 ]
-              }
-            ],
-            "event_display_type": "tracked event",
-            "time_period_seconds": 86400
-          }
-        ],
-        "next_page_token": "NDYzZmFiM2EtYmFlNS00MzQ5LThmNzYtZjY0NTRkYTIwYzlkCg=="
-      },
-      "properties": {
-        "compliance_policies": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1CompliancePolicyResponse"
-          }
+            },
+            "post": {
+                "summary": "Create a Compliance Policy",
+                "description": "Creates a Compliance Policy",
+                "operationId": "CompliancePolicies_AddCompliancePolicy",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "$ref": "#/definitions/v1CompliancePolicyResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Returned when the user is not authenticated to the system."
+                    },
+                    "402": {
+                        "description": "Returned when the user's quota of compliance policies has been reached."
+                    },
+                    "403": {
+                        "description": "Returned when the user is not authorized to access the requested resource."
+                    },
+                    "404": {
+                        "description": "Returned when the asset with the id does not exist."
+                    },
+                    "429": {
+                        "description": "Returned when a user exceeds their subscription's rate limit for requests."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "description": "request adding new compliance policy",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/v1AddCompliancePolicyRequest"
+                        }
+                    }
+                ],
+                "tags": [
+                    "CompliancePolicies"
+                ]
+            }
         },
-        "next_page_token": {
-          "type": "string"
+        "/archivist/v1/compliance_policies/{uuid}": {
+            "get": {
+                "summary": "Retrieves a Compliance Policy",
+                "description": "Retrieves a specific Compliance Policy",
+                "operationId": "CompliancePolicies_GetCompliancePolicy",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "$ref": "#/definitions/v1CompliancePolicyResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Returned when the user is not authenticated to the system."
+                    },
+                    "403": {
+                        "description": "Returned when the user is not authorized to access the requested resource."
+                    },
+                    "404": {
+                        "description": "Returned when the asset with the id does not exist."
+                    },
+                    "429": {
+                        "description": "Returned when a user exceeds their subscription's rate limit for requests."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "description": "Specify the Compliance Policy UUID where `compliance_policies/{uuid}` is the Compliance Policy Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `compliance_policies/add30235-1424-4fda-840a-d5ef82c4c96f`",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "CompliancePolicies"
+                ]
+            },
+            "delete": {
+                "summary": "Delete a Compliance Policy",
+                "description": "Deletes a Compliance Policy",
+                "operationId": "CompliancePolicies_DeleteCompliancePolicy",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "$ref": "#/definitions/v1CompliancePolicyResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Returned when the user is not authenticated to the system."
+                    },
+                    "403": {
+                        "description": "Returned when the user is not authorized to access the requested resource."
+                    },
+                    "404": {
+                        "description": "Returned when the asset with the id does not exist."
+                    },
+                    "429": {
+                        "description": "Returned when a user exceeds their subscription's rate limit for requests."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "description": "Specify the Compliance Policy UUID where `compliance_policies/{uuid}` is the Compliance Policy Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `compliance_policies/add30235-1424-4fda-840a-d5ef82c4c96f`",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "CompliancePolicies"
+                ]
+            }
         }
-      },
-      "description": "simple compliance status for an Asset."
+    },
+    "definitions": {
+        "ListCompliancePolicyRequestOrderBy": {
+            "type": "string",
+            "enum": [
+                "DEFAULT"
+            ],
+            "default": "DEFAULT",
+            "title": "Supported sort orders"
+        },
+        "v1AddCompliancePolicyRequest": {
+            "type": "object",
+            "example": {
+                "compliance_type": "COMPLIANCE_SINCE",
+                "description": "Ensure Maintenance is performed daily",
+                "display_name": "Daily Maintenance",
+                "asset_filter": [
+                    {
+                        "or": [
+                            "attributes.arc_location_identity:locations/5eef2b71-35c1-4376-a166-6c64bfa72f4b"
+                        ]
+                    }
+                ],
+                "event_display_type": "Maintenance Performed",
+                "time_period_seconds": 86800
+            },
+            "properties": {
+                "compliance_type": {
+                    "$ref": "#/definitions/v1ComplianceType",
+                    "description": "policy type",
+                    "readOnly": true
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Customer description of the compliance policy.",
+                    "readOnly": true,
+                    "maxLength": 4096
+                },
+                "display_name": {
+                    "type": "string",
+                    "description": "display name",
+                    "readOnly": true,
+                    "maxLength": 1024
+                },
+                "asset_filter": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "$ref": "#/definitions/v1Filter",
+                        "readOnly": true
+                    },
+                    "description": "filter for asset this compliance policy is for [ { or: [\"a:b\", \"c:d\"]}, { or: [...]}]"
+                },
+                "event_display_type": {
+                    "type": "string",
+                    "description": "this is the target event_display_type - always required",
+                    "readOnly": true
+                },
+                "closing_event_display_type": {
+                    "type": "string",
+                    "description": "this is the correlated event type",
+                    "readOnly": true
+                },
+                "time_period_seconds": {
+                    "type": "string",
+                    "format": "int64",
+                    "description": "time delta - required for SINCE and PERIOD_OUTSTANDING",
+                    "readOnly": true
+                },
+                "dynamic_window": {
+                    "type": "string",
+                    "format": "int64",
+                    "description": "valid period for policy - required for DYNAMIC_TOLERANCE",
+                    "readOnly": true
+                },
+                "dynamic_variability": {
+                    "type": "number",
+                    "format": "float",
+                    "description": "number of standard deviations - required for DYNAMIC_TOLERANCE",
+                    "readOnly": true
+                },
+                "richness_assertions": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "$ref": "#/definitions/v1Filter",
+                        "readOnly": true
+                    },
+                    "description": "assertions for the richness of this compliance policy [ { or: [\"a<b\", \"c>=d\"]}, { or: [...]}]",
+                    "title": "richness assertions follows the same pattern as filters [{\"or\":[\"foo=bar\", \"baz=fiz\"]}]"
+                }
+            },
+            "description": "request adding new compliance policy"
+        },
+        "v1Cap": {
+            "type": "object",
+            "properties": {
+                "resource_type": {
+                    "type": "string",
+                    "description": "String identifying the capped resource type"
+                },
+                "resource_remaining": {
+                    "type": "string",
+                    "format": "int64",
+                    "description": "Number of capped resources remaining"
+                },
+                "resource_cap": {
+                    "type": "string",
+                    "format": "int64",
+                    "description": "Resource cap"
+                }
+            }
+        },
+        "v1Caps": {
+            "type": "object",
+            "properties": {
+                "caps": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "$ref": "#/definitions/v1Cap"
+                    },
+                    "description": "List of relevant capped resources"
+                }
+            }
+        },
+        "v1CompliancePolicyResponse": {
+            "type": "object",
+            "example": {
+                "identity": "compliance_policies/463fab3a-bae5-4349-8f76-f6454da20c9d",
+                "compliance_type": "COMPLIANCE_SINCE",
+                "description": "Ensure Maintenance is performed daily",
+                "display_name": "Daily Maintenance",
+                "asset_filter": [
+                    {
+                        "or": [
+                            "attributes.arc_location_identity:locations/5eef2b71-35c1-4376-a166-6c64bfa72f4b"
+                        ]
+                    }
+                ],
+                "event_display_type": "Maintenance Performed",
+                "time_period_seconds": 86800
+            },
+            "properties": {
+                "identity": {
+                    "type": "string"
+                },
+                "compliance_type": {
+                    "$ref": "#/definitions/v1ComplianceType"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "display_name": {
+                    "type": "string"
+                },
+                "asset_filter": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "$ref": "#/definitions/v1Filter"
+                    }
+                },
+                "event_display_type": {
+                    "type": "string"
+                },
+                "closing_event_display_type": {
+                    "type": "string"
+                },
+                "time_period_seconds": {
+                    "type": "string",
+                    "format": "int64"
+                },
+                "dynamic_window": {
+                    "type": "string",
+                    "format": "int64",
+                    "title": "valid perod for policy - only valid for SINCE and CURRENT"
+                },
+                "dynamic_variability": {
+                    "type": "number",
+                    "format": "float",
+                    "title": "number of standard deviations - only valid for SINCE and CURRENT"
+                },
+                "richness_assertions": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "$ref": "#/definitions/v1Filter"
+                    }
+                }
+            },
+            "description": "compliance policy"
+        },
+        "v1ComplianceType": {
+            "type": "string",
+            "enum": [
+                "COMPLIANCE_TYPE_UNDEFINED",
+                "COMPLIANCE_SINCE",
+                "COMPLIANCE_CURRENT_OUTSTANDING",
+                "COMPLIANCE_PERIOD_OUTSTANDING",
+                "COMPLIANCE_DYNAMIC_TOLERANCE",
+                "COMPLIANCE_RICHNESS"
+            ],
+            "default": "COMPLIANCE_TYPE_UNDEFINED",
+            "description": " - COMPLIANCE_SINCE: time since specific event greated than X\n - COMPLIANCE_CURRENT_OUTSTANDING: unresolved event currently on asset (eg. vulnerablity)\n - COMPLIANCE_PERIOD_OUTSTANDING: no unresolved events for longer than X\n - COMPLIANCE_DYNAMIC_TOLERANCE: Dynamic tolerance with dynamic window etc..\n - COMPLIANCE_RICHNESS: compliance on comparison of asset attribute value to predefined comparator."
+        },
+        "v1Filter": {
+            "type": "object",
+            "example": {
+                "or": [
+                    "group=maintainers",
+                    "group=supervisors"
+                ]
+            },
+            "properties": {
+                "or": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The filter list"
+                }
+            },
+            "description": "Filter"
+        },
+        "v1ListCompliancePolicyResponse": {
+            "type": "object",
+            "example": {
+                "compliance_policies": [
+                    {
+                        "identity": "compliance_policies/463fab3a-bae5-4349-8f76-f6454da20c9d",
+                        "compliance_type": "COMPLIANCE_SINCE",
+                        "description": "sample compliance policy",
+                        "display_name": "my compliance policy",
+                        "asset_filter": [
+                            {
+                                "or": [
+                                    "attributes.arc_location_identity:locations/5eef2b71-35c1-4376-a166-6c64bfa72f4b"
+                                ]
+                            }
+                        ],
+                        "event_display_type": "tracked event",
+                        "time_period_seconds": 86400
+                    }
+                ],
+                "next_page_token": "NDYzZmFiM2EtYmFlNS00MzQ5LThmNzYtZjY0NTRkYTIwYzlkCg=="
+            },
+            "properties": {
+                "compliance_policies": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "$ref": "#/definitions/v1CompliancePolicyResponse"
+                    }
+                },
+                "next_page_token": {
+                    "type": "string"
+                }
+            },
+            "description": "simple compliance status for an Asset."
+        }
     }
-  }
 }
