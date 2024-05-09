@@ -522,6 +522,13 @@
                         "required": false,
                         "type": "string",
                         "format": "int64"
+                    },
+                    {
+                        "name": "from",
+                        "description": "filter from wallet address",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
                     }
                 ],
                 "tags": [
