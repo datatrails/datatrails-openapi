@@ -891,8 +891,7 @@
                 "UNEQUIVOCAL"
             ],
             "default": "CONFIRMATION_STATUS_UNSPECIFIED",
-            "description": "forestrie, \"its in the db\"\n - COMMITTED: forestrie, \"you can know if its changed\"\n - UNEQUIVOCAL: We re-use the constant for CONFIRMED (above)\n\nforestrie, \"You easily prove it was publicly available to all\"",
-            "title": "- PENDING: not yet committed\n - CONFIRMED: committed. forestrie: \"You can easily prove it changed\"\n - FAILED: permanent failure\n - STORED: Regarding the new statuses for forestrie,  See\nhttps://github.com/datatrails/epic-8120-scalable-proof-mechanisms/blob/main/event-trust-levels.md"
+            "title": "- PENDING: Not yet stored\n - CONFIRMED: A tree root including the event has been signed by DataTrails\n - FAILED: Permanent failure\n - STORED: In database, awaiting verifiable commitment\n - COMMITTED: The stored event is verifiable\n - UNEQUIVOCAL: Provable independent of DataTrails"
         },
         "v2DictAttr": {
             "type": "object",

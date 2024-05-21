@@ -99,7 +99,7 @@
                     },
                     {
                         "name": "confirmation_status",
-                        "description": "indicates if the asset has been succesfully committed to the blockchain\n\n - PENDING: not yet committed\n - CONFIRMED: committed. forestrie: \"You can easily prove it changed\"\n - FAILED: permanent failure\n - STORED: Regarding the new statuses for forestrie,  See\nhttps://github.com/datatrails/epic-8120-scalable-proof-mechanisms/blob/main/event-trust-levels.md\n\nforestrie, \"its in the db\"\n - COMMITTED: forestrie, \"you can know if its changed\"\n - UNEQUIVOCAL: We re-use the constant for CONFIRMED (above)\n\nforestrie, \"You easily prove it was publicly available to all\"",
+                        "description": "indicates if the asset has been succesfully committed to the blockchain\n\n - PENDING: Not yet stored\n - CONFIRMED: A tree root including the event has been signed by DataTrails\n - FAILED: Permanent failure\n - STORED: In database, awaiting verifiable commitment\n - COMMITTED: The stored event is verifiable\n - UNEQUIVOCAL: Provable independent of DataTrails",
                         "in": "query",
                         "required": false,
                         "type": "string",
@@ -349,7 +349,7 @@
                     },
                     {
                         "name": "confirmation_status",
-                        "description": "indicates if the asset has been succesfully committed to the blockchain\n\n - PENDING: not yet committed\n - CONFIRMED: committed. forestrie: \"You can easily prove it changed\"\n - FAILED: permanent failure\n - STORED: Regarding the new statuses for forestrie,  See\nhttps://github.com/datatrails/epic-8120-scalable-proof-mechanisms/blob/main/event-trust-levels.md\n\nforestrie, \"its in the db\"\n - COMMITTED: forestrie, \"you can know if its changed\"\n - UNEQUIVOCAL: We re-use the constant for CONFIRMED (above)\n\nforestrie, \"You easily prove it was publicly available to all\"",
+                        "description": "indicates if the asset has been succesfully committed to the blockchain\n\n - PENDING: Not yet stored\n - CONFIRMED: A tree root including the event has been signed by DataTrails\n - FAILED: Permanent failure\n - STORED: In database, awaiting verifiable commitment\n - COMMITTED: The stored event is verifiable\n - UNEQUIVOCAL: Provable independent of DataTrails",
                         "in": "query",
                         "required": false,
                         "type": "string",
@@ -529,6 +529,23 @@
                         "in": "query",
                         "required": false,
                         "type": "string"
+                    },
+                    {
+                        "name": "minimum_trust",
+                        "description": "specify the minimum trust level for Events COMMITTED -> COMMITTED, CONFIRMED, UNEQUIVOCAL CONFIRMED -> CONFIRMED, UNEQUIVOCAL UNEQUIVOCAL -> UNEQUIVOCAL\n\n - PENDING: Not yet stored\n - CONFIRMED: A tree root including the event has been signed by DataTrails\n - FAILED: Permanent failure\n - STORED: In database, awaiting verifiable commitment\n - COMMITTED: The stored event is verifiable\n - UNEQUIVOCAL: Provable independent of DataTrails",
+                        "in": "query",
+                        "required": false,
+                        "type": "string",
+                        "enum": [
+                            "CONFIRMATION_STATUS_UNSPECIFIED",
+                            "PENDING",
+                            "CONFIRMED",
+                            "FAILED",
+                            "STORED",
+                            "COMMITTED",
+                            "UNEQUIVOCAL"
+                        ],
+                        "default": "CONFIRMATION_STATUS_UNSPECIFIED"
                     }
                 ],
                 "tags": [
@@ -569,54 +586,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "object",
-                            "example": {
-                                "operation": "Record",
-                                "behaviour": "RecordEvidence",
-                                "event_attributes": {
-                                    "arc_display_type": "Paint",
-                                    "arc_description": "Painted the fence"
-                                },
-                                "asset_attributes": {
-                                    "colour": "Midnight Blue"
-                                }
-                            },
-                            "properties": {
-                                "behaviour": {
-                                    "type": "string",
-                                    "title": "name of this behaviour"
-                                },
-                                "operation": {
-                                    "type": "string",
-                                    "title": "name of operation on this behviour"
-                                },
-                                "principal_declared": {
-                                    "$ref": "#/definitions/v2Principal",
-                                    "title": "principal information associated with event - if not provided will be set to principal_accepted"
-                                },
-                                "timestamp_declared": {
-                                    "type": "string",
-                                    "format": "date-time",
-                                    "description": "time of event as declared by the user",
-                                    "title": "timestamp when operation was actually performed - if not provided will be set to timestamp_accepted",
-                                    "readOnly": true
-                                },
-                                "event_attributes": {
-                                    "type": "object",
-                                    "additionalProperties": {
-                                        "$ref": "#/definitions/v2Attribute"
-                                    },
-                                    "description": "key value mapping of event attributes"
-                                },
-                                "asset_attributes": {
-                                    "type": "object",
-                                    "additionalProperties": {
-                                        "$ref": "#/definitions/v2Attribute"
-                                    },
-                                    "description": "key value mapping of asset attributes"
-                                }
-                            },
-                            "description": "Request creating RecordEvidence event Specify `operation` to chose which RecordEvidence event to create "
+                            "$ref": "#/definitions/EventsCreateBody"
                         }
                     }
                 ],
@@ -719,6 +689,56 @@
         }
     },
     "definitions": {
+        "EventsCreateBody": {
+            "type": "object",
+            "example": {
+                "operation": "Record",
+                "behaviour": "RecordEvidence",
+                "event_attributes": {
+                    "arc_display_type": "Paint",
+                    "arc_description": "Painted the fence"
+                },
+                "asset_attributes": {
+                    "colour": "Midnight Blue"
+                }
+            },
+            "properties": {
+                "behaviour": {
+                    "type": "string",
+                    "title": "name of this behaviour"
+                },
+                "operation": {
+                    "type": "string",
+                    "title": "name of operation on this behviour"
+                },
+                "principal_declared": {
+                    "$ref": "#/definitions/v2Principal",
+                    "title": "principal information associated with event - if not provided will be set to principal_accepted"
+                },
+                "timestamp_declared": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "time of event as declared by the user",
+                    "title": "timestamp when operation was actually performed - if not provided will be set to timestamp_accepted",
+                    "readOnly": true
+                },
+                "event_attributes": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/v2Attribute"
+                    },
+                    "description": "key value mapping of event attributes"
+                },
+                "asset_attributes": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/v2Attribute"
+                    },
+                    "description": "key value mapping of asset attributes"
+                }
+            },
+            "description": "Request creating RecordEvidence event Specify `operation` to chose which RecordEvidence event to create "
+        },
         "ListEventsRequestAssetQuery": {
             "type": "object",
             "properties": {
@@ -899,8 +919,7 @@
                 "UNEQUIVOCAL"
             ],
             "default": "CONFIRMATION_STATUS_UNSPECIFIED",
-            "description": "forestrie, \"its in the db\"\n - COMMITTED: forestrie, \"you can know if its changed\"\n - UNEQUIVOCAL: We re-use the constant for CONFIRMED (above)\n\nforestrie, \"You easily prove it was publicly available to all\"",
-            "title": "- PENDING: not yet committed\n - CONFIRMED: committed. forestrie: \"You can easily prove it changed\"\n - FAILED: permanent failure\n - STORED: Regarding the new statuses for forestrie,  See\nhttps://github.com/datatrails/epic-8120-scalable-proof-mechanisms/blob/main/event-trust-levels.md"
+            "title": "- PENDING: Not yet stored\n - CONFIRMED: A tree root including the event has been signed by DataTrails\n - FAILED: Permanent failure\n - STORED: In database, awaiting verifiable commitment\n - COMMITTED: The stored event is verifiable\n - UNEQUIVOCAL: Provable independent of DataTrails"
         },
         "v2CreateAssetRequest": {
             "type": "object",

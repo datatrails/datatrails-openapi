@@ -558,6 +558,11 @@
                     "type": "boolean",
                     "description": "true if this request created a new tenant",
                     "readOnly": true
+                },
+                "is_root_principal": {
+                    "type": "boolean",
+                    "description": "true if this user is a root principal in the tenant",
+                    "readOnly": true
                 }
             }
         },
