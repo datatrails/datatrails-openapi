@@ -367,6 +367,15 @@
         }
     },
     "definitions": {
+        "v1AccumulatedPoliciesResponse": {
+            "type": "object",
+            "properties": {
+                "policies": {
+                    "type": "string",
+                    "format": "byte"
+                }
+            }
+        },
         "v1Cap": {
             "type": "object",
             "properties": {
