@@ -62,7 +62,6 @@
                             "v1/compliance/assets",
                             "v1/compliance_policies",
                             "v1/invites",
-                            "v1/notary",
                             "v1/publicscitt",
                             "v1/tenancies",
                             "v1/tlscacertificates",
