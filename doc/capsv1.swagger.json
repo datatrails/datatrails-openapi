@@ -55,8 +55,7 @@
                             "compliance_policies",
                             "invites",
                             "locations",
-                            "tenancies/users",
-                            "tlscacertificates"
+                            "tenancies/users"
                         ]
                     }
                 ],

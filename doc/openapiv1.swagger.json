@@ -64,7 +64,6 @@
                             "v1/invites",
                             "v1/publicscitt",
                             "v1/tenancies",
-                            "v1/tlscacertificates",
                             "v1/users",
                             "v1alpha2/blockchain/assets",
                             "v2/assets",
