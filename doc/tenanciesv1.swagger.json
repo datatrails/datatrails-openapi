@@ -620,7 +620,7 @@
                     "items": {
                         "$ref": "#/definitions/v2ProofMechanism"
                     },
-                    "title": "proof_mechanism includes the enabled proof_mechanism values for the tenant.\nCurrently we only support SIMPLE_HASH or MERKLE_LOG"
+                    "title": "proof_mechanism includes the enabled proof_mechanism values for the tenant.\nCurrently we only support MERKLE_LOG"
                 },
                 "tier": {
                     "$ref": "#/definitions/v1Tier"

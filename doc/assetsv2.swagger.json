@@ -546,6 +546,13 @@
                             "UNEQUIVOCAL"
                         ],
                         "default": "CONFIRMATION_STATUS_UNSPECIFIED"
+                    },
+                    {
+                        "name": "transaction_id",
+                        "description": "hash of transaction commiting this event to blockchain",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
                     }
                 ],
                 "tags": [
@@ -818,7 +825,7 @@
                 "tracked": "TRACKED",
                 "owner": "0x601f5A7D3e6dcB55e87bf2F17bC8A27AaCD3511",
                 "at_time": "2019-11-27T14:44:19Z",
-                "proof_mechanism": "SIMPLE_HASH",
+                "proof_mechanism": "MERKLE_LOG",
                 "public": false,
                 "tenant_identity": "tenant/8e0b600c-8234-43e4-860c-e95bdcd695a9"
             },
@@ -932,7 +939,7 @@
                     "arc_display_name": "My Garden Fence",
                     "colour": "Plain wood"
                 },
-                "proof_mechanism": "SIMPLE_HASH",
+                "proof_mechanism": "MERKLE_LOG",
                 "public": false
             },
             "properties": {
@@ -1165,7 +1172,7 @@
                         "tracked": "TRACKED",
                         "owner": "0x601f5A7D3e6dcB55e87bf2F17bC8A27AaCD3511",
                         "at_time": "2019-11-27T14:44:19Z",
-                        "proof_mechanism": "SIMPLE_HASH",
+                        "proof_mechanism": "MERKLE_LOG",
                         "public": false,
                         "tenant_identity": "tenant/8e0b600c-8234-43e4-860c-e95bdcd695a9"
                     },
@@ -1183,7 +1190,7 @@
                         "tracked": "TRACKED",
                         "owner": "0x601f5A7D3e6dcB55e87bf2F17bC8A27AaCD3511",
                         "at_time": "2019-11-27T14:44:19Z",
-                        "proof_mechanism": "SIMPLE_HASH",
+                        "proof_mechanism": "MERKLE_LOG",
                         "public": false,
                         "tenant_identity": "tenant/8e0b600c-8234-43e4-860c-e95bdcd695a9"
                     }
