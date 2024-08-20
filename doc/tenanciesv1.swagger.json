@@ -415,6 +415,18 @@
                 }
             }
         },
+        "v1GetManyTenantsResponse": {
+            "type": "object",
+            "properties": {
+                "tenants": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "$ref": "#/definitions/v1TenantResponse"
+                    }
+                }
+            }
+        },
         "v1GetPublicTenantInfoResponse": {
             "type": "object",
             "example": {
