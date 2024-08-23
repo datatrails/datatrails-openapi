@@ -1,4 +1,4 @@
-# archivist-openapi
+# datatrails-openapi
 
 Contains all openapi definitions
 
