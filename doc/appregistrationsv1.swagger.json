@@ -338,6 +338,12 @@
                         "type": "string"
                     },
                     "description": "Custom claims to add to Application for use in access policies."
+                },
+                "roles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/v1Role"
+                    }
                 }
             },
             "description": "Describes a single application used for machine authentication",
@@ -388,6 +394,12 @@
                         "type": "string"
                     },
                     "description": "Custom claims to add to Application for use in access policies."
+                },
+                "roles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/v1Role"
+                    }
                 }
             },
             "title": "Request types"
@@ -476,6 +488,15 @@
                 }
             },
             "description": "Describes a set of locations"
+        },
+        "v1Role": {
+            "type": "string",
+            "enum": [
+                "ROLE_UNSPECIFIED",
+                "OWNER"
+            ],
+            "default": "ROLE_UNSPECIFIED",
+            "title": "- OWNER: Represents possession of all current and future roles"
         }
     }
 }
