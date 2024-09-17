@@ -481,7 +481,9 @@
             },
             "description": "The body of a request to create a new Access Policy.",
             "required": [
-                "display_name"
+                "display_name",
+                "filters",
+                "access_permissions"
             ]
         },
         "v1Filter": {

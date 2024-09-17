@@ -744,7 +744,11 @@
                     "description": "key value mapping of asset attributes"
                 }
             },
-            "description": "Request creating RecordEvidence event Specify `operation` to chose which RecordEvidence event to create "
+            "description": "Request creating RecordEvidence event Specify `operation` to chose which RecordEvidence event to create ",
+            "required": [
+                "behaviour",
+                "operation"
+            ]
         },
         "ListEventsRequestAssetQuery": {
             "type": "object",

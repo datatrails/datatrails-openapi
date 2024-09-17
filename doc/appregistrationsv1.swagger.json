@@ -103,6 +103,7 @@
                 "parameters": [
                     {
                         "name": "body",
+                        "description": "The body of a request to create a new Application.",
                         "in": "body",
                         "required": true,
                         "schema": {
@@ -383,6 +384,13 @@
         },
         "v1CreateAppRegistrationRequest": {
             "type": "object",
+            "example": {
+                "display_name": "TrafficLight101",
+                "custom_claims": {
+                    "serial_number": "TL1000000101",
+                    "has_cyclist_light": "true"
+                }
+            },
             "properties": {
                 "display_name": {
                     "type": "string",
@@ -402,7 +410,11 @@
                     }
                 }
             },
-            "title": "Request types"
+            "description": "The body of a request to create a new Application.",
+            "title": "Request types",
+            "required": [
+                "display_name"
+            ]
         },
         "v1Credential": {
             "type": "object",

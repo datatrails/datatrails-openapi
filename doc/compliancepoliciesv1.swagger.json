@@ -287,12 +287,12 @@
                 },
                 "event_display_type": {
                     "type": "string",
-                    "description": "this is the target event_display_type - always required",
+                    "description": "this is the target event_display_type - required except for RICHNESS policy type",
                     "readOnly": true
                 },
                 "closing_event_display_type": {
                     "type": "string",
-                    "description": "this is the correlated event type",
+                    "description": "this is the correlated event type - required except for RICHNESS policy type",
                     "readOnly": true
                 },
                 "time_period_seconds": {
@@ -320,11 +320,16 @@
                         "$ref": "#/definitions/v1Filter",
                         "readOnly": true
                     },
-                    "description": "assertions for the richness of this compliance policy [ { or: [\"a<b\", \"c>=d\"]}, { or: [...]}]",
+                    "description": "assertions for the RICHNESS of this compliance policy [ { or: [\"a<b\", \"c>=d\"]}, { or: [...]}]",
                     "title": "richness assertions follows the same pattern as filters [{\"or\":[\"foo=bar\", \"baz=fiz\"]}]"
                 }
             },
-            "description": "request adding new compliance policy"
+            "description": "request adding new compliance policy",
+            "required": [
+                "display_name",
+                "compliance_type",
+                "asset_filter"
+            ]
         },
         "v1Cap": {
             "type": "object",

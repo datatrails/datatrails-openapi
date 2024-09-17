@@ -231,7 +231,10 @@
                     "description": "cbor encoded COSE_Sign1 statement"
                 }
             },
-            "description": "CBOR encoded signed statement."
+            "description": "CBOR encoded signed statement.",
+            "required": [
+                "statement"
+            ]
         },
         "v1RegisterSignedStatementResponse": {
             "type": "object",
