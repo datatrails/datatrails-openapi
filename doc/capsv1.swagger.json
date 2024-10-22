@@ -55,6 +55,7 @@
                             "compliance_policies",
                             "invites",
                             "locations",
+                            "members",
                             "tenancies/users"
                         ]
                     }
