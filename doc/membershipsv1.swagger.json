@@ -1,0 +1,139 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Memberships API",
+        "description": "API for viewing your tenant memberships",
+        "version": "1.0",
+        "contact": {
+            "name": "DataTrails",
+            "url": "https://www.datatrails.ai"
+        }
+    },
+    "tags": [
+        {
+            "name": "Memberships",
+            "description": "Manage user memberships"
+        }
+    ],
+    "basePath": "/archivist/iam/v1/memberships",
+    "schemes": [
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/archivist/iam/v1/memberships": {
+            "get": {
+                "summary": "List memberships",
+                "description": "List all active memberships for the current user",
+                "operationId": "Memberships_ListUserMemberships",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "$ref": "#/definitions/v1ListUserMembershipsResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Returned when the user is not authenticated to the system."
+                    },
+                    "403": {
+                        "description": "Returned when the user does not have permission to access this endpoint."
+                    },
+                    "404": {
+                        "description": "Returned when the requested resource does not exist."
+                    },
+                    "429": {
+                        "description": "Returned when a user exceeds their subscription's rate limit for requests."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "page_size",
+                        "description": "Number of membership records to retrieve",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "page_token",
+                        "description": "Token to retrieve subsequent pages of memberships",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "Memberships"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        "v1ListUserMembershipsResponse": {
+            "type": "object",
+            "example": {
+                "memberships": [
+                    {
+                        "identity": "members/01234567-c357-470d-912a-3abc9528dd21",
+                        "tenant_id": "tenancies/01038663-c357-470d-912a-3abc9528dd21",
+                        "display_name": "Bobs Tenancy"
+                    },
+                    {
+                        "identity": "members/76543210-c357-470d-912a-3abc9528dd21",
+                        "tenant_id": "tenancies/12149552-f258-430d-922b-4bcd8413ee30",
+                        "display_name": "Alices Tenancy"
+                    }
+                ],
+                "page_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6InN0dW50aWR"
+            },
+            "properties": {
+                "memberships": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "$ref": "#/definitions/v1UserMembership",
+                        "readOnly": true
+                    },
+                    "description": "memberships for the current user"
+                },
+                "next_page_token": {
+                    "type": "string",
+                    "description": "Token to retrieve the next page of results or empty if there are none."
+                }
+            },
+            "description": "List of tenancies the user is a member of (or the next page in a continuing  list request)"
+        },
+        "v1UserMembership": {
+            "type": "object",
+            "example": {
+                "identity": "members/01234567-c357-470d-912a-3abc9528dd21",
+                "tenant_id": "tenancies/01038663-c357-470d-912a-3abc9528dd21",
+                "display_name": "Bobs Tenancy"
+            },
+            "properties": {
+                "identity": {
+                    "type": "string",
+                    "description": "membership identity",
+                    "readOnly": true
+                },
+                "display_name": {
+                    "type": "string",
+                    "description": "display name of the tenancy.`",
+                    "readOnly": true
+                },
+                "tenant_id": {
+                    "type": "string",
+                    "description": "tenant identity in the form `tenancies/{UUID}`",
+                    "readOnly": true
+                }
+            },
+            "description": "A users membership to a tenant."
+        }
+    }
+}
