@@ -1,0 +1,394 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Members API",
+        "description": "API for managing the users in your tenant",
+        "version": "1.0",
+        "contact": {
+            "name": "DataTrails",
+            "url": "https://www.datatrails.ai"
+        }
+    },
+    "tags": [
+        {
+            "name": "Members",
+            "description": "Manage tenant members"
+        }
+    ],
+    "basePath": "/archivist/iam/v1/members",
+    "schemes": [
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/archivist/iam/v1/members": {
+            "get": {
+                "summary": "List all members",
+                "description": "Lists all members in the tenant the session is authorized for",
+                "operationId": "Members_ListMembers",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "$ref": "#/definitions/v1ListMembersResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Returned when the user is not authenticated to the system."
+                    },
+                    "403": {
+                        "description": "Returned when the user does not have permission to access this endpoint."
+                    },
+                    "429": {
+                        "description": "Returned when a user exceeds their subscription's rate limit for requests."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "page_size",
+                        "description": "Number of members to retrieve",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "page_token",
+                        "description": "Token to retrieve subsequent pages of members",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "member_state",
+                        "description": "Filter option to permit listing deactivated users",
+                        "in": "query",
+                        "required": false,
+                        "type": "string",
+                        "enum": [
+                            "MEMBER_STATE_UNSPECIFIED",
+                            "MEMBER_STATE_ACTIVE",
+                            "MEMBER_STATE_INACTIVE",
+                            "MEMBER_STATE_BOTH"
+                        ],
+                        "default": "MEMBER_STATE_UNSPECIFIED"
+                    }
+                ],
+                "tags": [
+                    "Members"
+                ]
+            }
+        },
+        "/archivist/iam/v1/members/{member_uuid}": {
+            "patch": {
+                "summary": "Update a member",
+                "description": "Update a specific member",
+                "operationId": "Members_UpdateMember",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "$ref": "#/definitions/v1MemberResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Returned when the user is not authenticated to the system."
+                    },
+                    "403": {
+                        "description": "Returned when the user does not have permission to access this endpoint."
+                    },
+                    "404": {
+                        "description": "Returned when the requested resource does not exist."
+                    },
+                    "429": {
+                        "description": "Returned when a user exceeds their subscription's rate limit for requests."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "member_uuid",
+                        "description": "UUID identifying the member, taken from URL",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "member",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/v1MemberUpdate"
+                        }
+                    },
+                    {
+                        "name": "mask",
+                        "description": "The mask says exactly which fields are to be updated. This\nremoves the ambiguity caused by 'zero' valued fields.\nhttps://grpc-ecosystem.github.io/grpc-gateway/docs/patch.html",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "Members"
+                ]
+            }
+        },
+        "/archivist/iam/v1/members/{member_uuid}:activate": {
+            "post": {
+                "summary": "Re-activate a member",
+                "description": "Re-activates a de-activated member",
+                "operationId": "Members_ActivateMember",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "$ref": "#/definitions/v1MemberResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Returned when the user is not authenticated to the system."
+                    },
+                    "403": {
+                        "description": "Returned when the user does not have permission to access this endpoint."
+                    },
+                    "404": {
+                        "description": "Returned when the requested resource does not exist."
+                    },
+                    "429": {
+                        "description": "Returned when a user exceeds their subscription's rate limit for requests."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "member_uuid",
+                        "description": "UUID identifying the member, taken from URL",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "Members"
+                ]
+            }
+        },
+        "/archivist/iam/v1/members/{member_uuid}:deactivate": {
+            "post": {
+                "summary": "De-activate a member",
+                "description": "De-activates a de-activated member",
+                "operationId": "Members_DeactivateMember",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "$ref": "#/definitions/v1MemberResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Returned when the user is not authenticated to the system."
+                    },
+                    "403": {
+                        "description": "Returned when the user does not have permission to access this endpoint."
+                    },
+                    "404": {
+                        "description": "Returned when the requested resource does not exist."
+                    },
+                    "429": {
+                        "description": "Returned when a user exceeds their subscription's rate limit for requests."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "member_uuid",
+                        "description": "UUID identifying the member, taken from URL",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "Members"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        "v1Cap": {
+            "type": "object",
+            "properties": {
+                "resource_type": {
+                    "type": "string",
+                    "description": "String identifying the capped resource type"
+                },
+                "resource_remaining": {
+                    "type": "string",
+                    "format": "int64",
+                    "description": "Number of capped resources remaining"
+                },
+                "resource_cap": {
+                    "type": "string",
+                    "format": "int64",
+                    "description": "Resource cap"
+                }
+            }
+        },
+        "v1Caps": {
+            "type": "object",
+            "properties": {
+                "caps": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "$ref": "#/definitions/v1Cap"
+                    },
+                    "description": "List of relevant capped resources"
+                }
+            }
+        },
+        "v1CountMembersResponse": {
+            "type": "object",
+            "properties": {
+                "total": {
+                    "type": "string",
+                    "format": "int64"
+                }
+            }
+        },
+        "v1ListMembersResponse": {
+            "type": "object",
+            "example": {
+                "members": [
+                    {
+                        "identity": "members/08838336-c357-460d-902a-3aba9528dd22",
+                        "display_name": "User One",
+                        "email": "user.one@datatrails.test",
+                        "active": true,
+                        "roles": [
+                            "OWNER"
+                        ]
+                    }
+                ],
+                "page_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6InN0dW50aWR"
+            },
+            "properties": {
+                "members": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "$ref": "#/definitions/v1MemberResponse"
+                    },
+                    "description": "List of members in this page of results"
+                },
+                "page_token": {
+                    "type": "string",
+                    "description": "Token to retrieve the next page of results"
+                }
+            },
+            "description": "List of members in this tenant"
+        },
+        "v1Member": {
+            "type": "object",
+            "properties": {
+                "identity": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "string"
+                },
+                "tenant_id": {
+                    "type": "string"
+                },
+                "active": {
+                    "type": "boolean"
+                },
+                "roles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/v1Role"
+                    }
+                }
+            },
+            "description": "Member is the internal representation of a members/hip record, and therefore should be not be\nannotated for inclusion in the Swagger."
+        },
+        "v1MemberResponse": {
+            "type": "object",
+            "example": {
+                "identity": "members/08838336-c357-460d-902a-3aba9528dd22",
+                "display_name": "User One",
+                "email": "user.one@datatrails.test",
+                "active": true,
+                "roles": [
+                    "OWNER"
+                ]
+            },
+            "properties": {
+                "identity": {
+                    "type": "string",
+                    "description": "Unique identifier for this member (i.e. this user within the tenant)"
+                },
+                "display_name": {
+                    "type": "string",
+                    "description": "Display name for this member"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "Email address for this member"
+                },
+                "active": {
+                    "type": "boolean",
+                    "description": "Whether or not the this membership is active"
+                },
+                "roles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/v1Role"
+                    },
+                    "description": "The roles this member has within the tenant"
+                }
+            },
+            "description": "Describes a user in your tenant"
+        },
+        "v1MemberState": {
+            "type": "string",
+            "enum": [
+                "MEMBER_STATE_UNSPECIFIED",
+                "MEMBER_STATE_ACTIVE",
+                "MEMBER_STATE_INACTIVE",
+                "MEMBER_STATE_BOTH"
+            ],
+            "default": "MEMBER_STATE_UNSPECIFIED"
+        },
+        "v1MemberUpdate": {
+            "type": "object",
+            "example": {
+                "roles": [
+                    "OWNER"
+                ]
+            },
+            "properties": {
+                "roles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/v1Role"
+                    },
+                    "description": "The roles this member has within the tenant"
+                }
+            },
+            "description": "Properties to change in an update to a member"
+        },
+        "v1Role": {
+            "type": "string",
+            "enum": [
+                "ROLE_UNSPECIFIED",
+                "OWNER"
+            ],
+            "default": "ROLE_UNSPECIFIED",
+            "title": "- OWNER: Represents possession of all current and future roles"
+        }
+    }
+}
