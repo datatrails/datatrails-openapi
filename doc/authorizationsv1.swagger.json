@@ -1,0 +1,71 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Authorizations API",
+        "description": "API to authorize users for a tenant",
+        "version": "1.0",
+        "contact": {
+            "name": "DataTrails",
+            "url": "https://www.datatrails.ai"
+        }
+    },
+    "tags": [
+        {
+            "name": "Authorizations",
+            "description": "Authorize a user for a tenant"
+        }
+    ],
+    "basePath": "/archivist/iam/v1/authorizations",
+    "schemes": [
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {},
+    "definitions": {
+        "v1AuthorizeAzureB2CResponse": {
+            "type": "object",
+            "properties": {
+                "identity": {
+                    "type": "string",
+                    "description": "tenant identity `{UUID}`",
+                    "readOnly": true
+                },
+                "tier": {
+                    "$ref": "#/definitions/v1Tier",
+                    "description": "tenant tier FREE, READONLY or PREMIUM",
+                    "readOnly": true
+                },
+                "is_root_principal": {
+                    "type": "boolean",
+                    "description": "true if this user is a root principal in the tenant",
+                    "readOnly": true
+                },
+                "user_uuid": {
+                    "type": "string",
+                    "description": "datatrails internal user uuid",
+                    "readOnly": true
+                },
+                "member_id": {
+                    "type": "string",
+                    "description": "datatrails internal member identity",
+                    "readOnly": true
+                }
+            }
+        },
+        "v1Tier": {
+            "type": "string",
+            "enum": [
+                "TIER_UNSPECIFIED",
+                "FREE",
+                "PREMIUM",
+                "READONLY"
+            ],
+            "default": "TIER_UNSPECIFIED"
+        }
+    }
+}
