@@ -63,7 +63,7 @@
                             "v1/invites",
                             "v1/publicscitt",
                             "v1/tenancies",
-                            "v1/users",
+                            "iam/v1/members",
                             "v2/assets",
                             "v2/attachments/assets",
                             "v2/attachments/publicassets",
