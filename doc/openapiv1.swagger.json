@@ -60,6 +60,7 @@
                             "v1/blobs",
                             "v1/compliance/assets",
                             "v1/compliance_policies",
+                            "v1/events",
                             "v1/invites",
                             "v1/publicscitt",
                             "v1/tenancies",
