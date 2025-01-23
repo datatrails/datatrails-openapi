@@ -1,0 +1,272 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Events API",
+    "version": "v1.0",
+    "contact": {
+      "name": "DataTrails",
+      "url": "https://www.datatrails.ai"
+    }
+  },
+  "tags": [],
+  "basePath": "/archivist/v1/events",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/archivist/v1/events": {
+      "post": {
+        "summary": "Create an event.",
+        "description": "Create an event within the datatrails system. The maximum size of the request can be 64kb.",
+        "operationId": "Events_CreateEvent",
+        "responses": {
+          "200": {
+            "description": "Returned when an event has successfully been created.",
+            "schema": {
+              "$ref": "#/definitions/v1EventResponse"
+            }
+          },
+          "400": {
+            "description": "Returned when the user doesn't provide a valid create event request."
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system."
+          },
+          "402": {
+            "description": "Returned when a user exhausts their allowance of events."
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to create events."
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Request to create an event. The maximum size of the request can be 64kb.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateEventRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Events"
+        ]
+      }
+    },
+    "/archivist/v1/events/{uuid}": {
+      "get": {
+        "summary": "Get an event based on its unique resource identity.",
+        "description": "Get an event based on its unique resource identity.",
+        "operationId": "Events_GetEvent",
+        "responses": {
+          "200": {
+            "description": "Returned when an event has successfully been retrieved.",
+            "schema": {
+              "$ref": "#/definitions/v1EventResponse"
+            }
+          },
+          "401": {
+            "description": "Returned when the user is not authenticated to the system."
+          },
+          "403": {
+            "description": "Returned when the user is not authorized to retrieve the event."
+          },
+          "404": {
+            "description": "Returned when the specified event does not exist for the requesting log tenant."
+          },
+          "429": {
+            "description": "Returned when a user exceeds their subscription's rate limit for requests."
+          }
+        },
+        "parameters": [
+          {
+            "name": "uuid",
+            "description": "resource uuid of the event.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Events"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "v1CreateEventRequest": {
+      "type": "object",
+      "example": {
+        "attributes": {
+          "foo": "bar",
+          "fab": "baz"
+        },
+        "trails": [
+          "bar",
+          "boo"
+        ]
+      },
+      "properties": {
+        "attributes": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/v2Attribute"
+          },
+          "description": "attributes of the event."
+        },
+        "trails": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "specific trails that the event is part of."
+        }
+      },
+      "description": "Request to create an event. The maximum size of the request can be 64kb."
+    },
+    "v1EventResponse": {
+      "type": "object",
+      "example": {
+        "identity": "events/08838336-c357-460d-902a-3aba9528dd22",
+        "attributes": {
+          "foo": "bar",
+          "fab": "baz"
+        },
+        "trails": [
+          "bar",
+          "boo"
+        ],
+        "origin_tenant": "tenant/47369fd0-c9da-4ea9-8f0a-d8a56787441b",
+        "created_by": "members/77d373d6-c646-4ccc-b932-53b5d4d0ffda",
+        "created_at": 1730283341,
+        "confirmation_status": "STORED"
+      },
+      "properties": {
+        "identity": {
+          "type": "string",
+          "description": "resource identity of the event.",
+          "readOnly": true
+        },
+        "attributes": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/v2Attribute"
+          },
+          "description": "attributes of the event.",
+          "readOnly": true
+        },
+        "trails": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "readOnly": true
+          },
+          "description": "specific trails that the event is part of."
+        },
+        "origin_tenant": {
+          "type": "string",
+          "description": "the tenant that originally created the event.",
+          "readOnly": true
+        },
+        "created_by": {
+          "type": "string",
+          "description": "the member of the log tenant that created the event.",
+          "readOnly": true
+        },
+        "created_at": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Unix Epoch timestamp, the number of milliseconds since midnight 1 Jan 1970 UTC, leap seconds excluded of when the event is stored. NOTE: this is NOT the timestamp of when the event was committed to the immutable log.",
+          "readOnly": true
+        },
+        "confirmation_status": {
+          "type": "string",
+          "$ref": "#/definitions/v2ConfirmationStatus",
+          "description": "confirmation status of the event one of STORED|COMMITTED|CONFIRMED.",
+          "readOnly": true
+        },
+        "merklelog_commit": {
+          "type": "object",
+          "$ref": "#/definitions/v2MerkleLogCommit",
+          "description": "merkle log commit data",
+          "readOnly": true
+        }
+      },
+      "description": "Describes an Event."
+    },
+    "v2Attribute": {
+      "type": "object",
+      "properties": {
+        "str_val": {
+          "type": "string"
+        },
+        "dict_val": {
+          "$ref": "#/definitions/v2DictAttr"
+        },
+        "list_val": {
+          "$ref": "#/definitions/v2ListAttr"
+        }
+      }
+    },
+    "v2ConfirmationStatus": {
+      "type": "string",
+      "enum": [
+        "CONFIRMATION_STATUS_UNSPECIFIED",
+        "PENDING",
+        "CONFIRMED",
+        "FAILED",
+        "STORED",
+        "COMMITTED",
+        "UNEQUIVOCAL"
+      ],
+      "default": "CONFIRMATION_STATUS_UNSPECIFIED",
+      "title": "- PENDING: Not yet stored\n - CONFIRMED: A tree root including the event has been signed by DataTrails\n - FAILED: Permanent failure\n - STORED: In database, awaiting verifiable commitment\n - COMMITTED: The stored event is verifiable\n - UNEQUIVOCAL: Provable independent of DataTrails"
+    },
+    "v2DictAttr": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "v2ListAttr": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v2DictAttr"
+          }
+        }
+      }
+    },
+    "v2MerkleLogCommit": {
+      "type": "object",
+      "properties": {
+        "index": {
+          "type": "string",
+          "format": "uint64",
+          "title": "The mmr index"
+        },
+        "idtimestamp": {
+          "type": "string",
+          "description": "time ordered and strictly unique per tenant. system wide unique with very\nreasonable operational assumptions. prefixed with time epoch if len > 8\nbytes (after conversion back from hex)."
+        }
+      },
+      "description": "MerkeLogCommit provides the log entry details for a single mmr leaf."
+    }
+  }
+}
