@@ -57,10 +57,12 @@
                 "parameters": [
                     {
                         "name": "body",
-                        "description": "cbor encoded signed statement",
-                        "in": "formData",
-                        "type": "file",
-                        "required": true
+                        "description": "CBOR encoded signed statement.",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/v1RegisterSignedStatementRequest"
+                        }
                     }
                 ],
                 "tags": [
@@ -71,6 +73,86 @@
                 ],
                 "produces": [
                     "application/json"
+                ]
+            }
+        },
+        "/archivist/v1/scitt/entries/{entryID}": {
+            "get": {
+                "summary": "Get Signed Statement",
+                "description": "Get Signed Statement countersigned by DataTrails.",
+                "operationId": "SCITT_RetrieveSignedStatement",
+                "responses": {
+                    "200": {
+                        "description": "Returned when the signed statement can be retrieved.",
+                        "schema": {}
+                    },
+                    "401": {
+                        "description": "Returned when the user is not authenticated to the system."
+                    },
+                    "403": {
+                        "description": "Returned when the user is not authorized to retrieve signed statement."
+                    },
+                    "404": {
+                        "description": "Returned when the entryID is unknown."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "entryID",
+                        "description": "The entry ID of the registered Signed Statement",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "SCITT (Beta)"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/cbor"
+                ]
+            }
+        },
+        "/archivist/v1/scitt/entries/{entryID}/receipt": {
+            "get": {
+                "summary": "Get Registration Receipt",
+                "description": "Get Registration Receipt.",
+                "operationId": "SCITT_RetrieveRegistrationReceipt",
+                "responses": {
+                    "200": {
+                        "description": "Returned when the registration receipt can be retrieved.",
+                        "schema": {}
+                    },
+                    "401": {
+                        "description": "Returned when the user is not authenticated to the system."
+                    },
+                    "403": {
+                        "description": "Returned when the user is not authorized to retrieve registration receipt."
+                    },
+                    "404": {
+                        "description": "Returned when the entryID is unknown."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "entryID",
+                        "description": "The entry ID of the registered Signed Statement",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "SCITT (Beta)"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/cbor"
                 ]
             }
         },
@@ -113,90 +195,6 @@
                 ],
                 "produces": [
                     "application/json"
-                ]
-            }
-        },
-        "/archivist/v1/scitt/entries/{entryID}": {
-            "get": {
-                "summary": "Get Signed Statement",
-                "description": "Get Signed Statement countersigned by DataTrails.",
-                "operationId": "SCITT_RetrieveSignedStatement",
-                "responses": {
-                    "200": {
-                        "description": "Returned when the signed statement can be retrieved.",
-                        "schema": {
-                            "type": "file"
-                        }
-                    },
-                    "401": {
-                        "description": "Returned when the user is not authenticated to the system."
-                    },
-                    "403": {
-                        "description": "Returned when the user is not authorized to retrieve signed statement."
-                    },
-                    "404": {
-                        "description": "Returned when the entryID is unknown."
-                    }
-                },
-                "parameters": [
-                    {
-                        "name": "entryID",
-                        "description": "The entry ID of the registered Signed Statement",
-                        "in": "path",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "tags": [
-                    "SCITT (Beta)"
-                ],
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/cbor"
-                ]
-            }
-        },
-        "/archivist/v1/scitt/entries/{entryID}/receipt": {
-            "get": {
-                "summary": "Get Registration Receipt",
-                "description": "Get Registration Receipt.",
-                "operationId": "SCITT_RetrieveRegistrationReceipt",
-                "responses": {
-                    "200": {
-                        "description": "Returned when the registration receipt can be retrieved.",
-                        "schema": {
-                            "type": "file"
-                        }
-                    },
-                    "401": {
-                        "description": "Returned when the user is not authenticated to the system."
-                    },
-                    "403": {
-                        "description": "Returned when the user is not authorized to retrieve registration receipt."
-                    },
-                    "404": {
-                        "description": "Returned when the entryID is unknown."
-                    }
-                },
-                "parameters": [
-                    {
-                        "name": "entryID",
-                        "description": "The entry ID of the registered Signed Statement",
-                        "in": "path",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "tags": [
-                    "SCITT (Beta)"
-                ],
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/cbor"
                 ]
             }
         }

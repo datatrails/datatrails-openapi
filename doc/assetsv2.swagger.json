@@ -11,7 +11,7 @@
     },
     "tags": [
         {
-            "name": "Assets & Events",
+            "name": "Assets and Events",
             "description": "Primary API for Asset management"
         }
     ],
@@ -39,13 +39,10 @@
                         }
                     },
                     "206": {
-                        "description": "The number of Assets exceeds the servers limit. The approximate number of matching results is provided by the x-total-count header if the 'x-request-total-count' header on the request is set to 'true'. The exact limit is available in the content-range header. The value format is 'items 0-LIMIT/TOTAL'. Note that x-total-count is always present for 200 and 206 responses. It is the servers best available approximation. Similarly, in any result set, you may get a few more than LIMIT items."
+                        "description": "The number of assets exceeds the servers limit. The approximate number of matching results is provided by the x-total-count header if the 'x-request-total-count' header on the request is set to 'true'. The exact limit is available in the content-range header. The value format is 'items 0-LIMIT/TOTAL'. Note that x-total-count is always present for 200 and 206 responses. It is the servers best available approximation. Similarly, in any result set, you may get a few more than LIMIT items."
                     },
                     "401": {
                         "description": "Returned when the user is not authenticated to the system."
-                    },
-                    "402": {
-                        "description": "Returned when the user's quota of Assets for the given proof mechanism has been reached."
                     },
                     "403": {
                         "description": "Returned when the user is not authorized to list Assets."
@@ -157,7 +154,7 @@
                     }
                 ],
                 "tags": [
-                    "Assets & Events"
+                    "Assets and Events"
                 ]
             },
             "post": {
@@ -175,7 +172,7 @@
                         "description": "Returned when the user is not authenticated to the system."
                     },
                     "402": {
-                        "description": "Returned when the user either has not enabled blockchain storage orthe number of assets would exceed the user's quota"
+                        "description": "Returned when the number of assets would exceed the user's quota"
                     },
                     "403": {
                         "description": "Returned when the user is not authorized to create an Asset."
@@ -196,13 +193,105 @@
                     }
                 ],
                 "tags": [
-                    "Assets & Events"
+                    "Assets and Events"
+                ]
+            }
+        },
+        "/archivist/v2/assets/{asset_uuid}/events/{uuid}": {
+            "get": {
+                "summary": "Retrieves Event",
+                "description": "Retrieves a specific Event",
+                "operationId": "Assets_GetEvent",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "$ref": "#/definitions/v2EventResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Returned when the user is not authenticated to the system."
+                    },
+                    "403": {
+                        "description": "Returned when the user is not authorized to view Event."
+                    },
+                    "404": {
+                        "description": "Returned when the event does not exist."
+                    },
+                    "429": {
+                        "description": "Returned when a user exceeds their subscription's rate limit for requests."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "asset_uuid",
+                        "description": "Specify the Asset UUID where `assets/{asset_uuid}/events/{uuid}` is the Event Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "uuid",
+                        "description": "Specify the Event UUID where `assets/{asset_uuid}/events/{uuid}` is the Event Identity e.g. `11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "Assets and Events"
+                ]
+            }
+        },
+        "/archivist/v2/assets/{asset_uuid}/events/{uuid}:publicurl": {
+            "get": {
+                "summary": "Retrieves the public url for a specific Event.",
+                "description": "Retrieves the public url for a specific Event.",
+                "operationId": "Assets_GetEventPublicURL",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "$ref": "#/definitions/v2PublicEventURLResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Returned when the user is not authenticated to the system."
+                    },
+                    "403": {
+                        "description": "Returned when the user is not authorized to view an Asset."
+                    },
+                    "404": {
+                        "description": "Returned when the asset with the id does not exist."
+                    },
+                    "429": {
+                        "description": "Returned when a user exceeds their subscription's rate limit for requests."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "asset_uuid",
+                        "description": "Specify the Asset UUID where `assets/{asset_uuid}/events/{uuid}` is the Event Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "uuid",
+                        "description": "Specify the Event UUID where `assets/{asset_uuid}/events/{uuid}` is the Event Identity e.g. `11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "Assets and Events"
                 ]
             }
         },
         "/archivist/v2/assets/{uuid}": {
             "get": {
-                "summary": "Retrieves an Asset",
+                "summary": "Retrieves a specific Asset",
                 "description": "Retrieves a specific Asset",
                 "operationId": "Assets_GetAsset",
                 "responses": {
@@ -243,46 +332,7 @@
                     }
                 ],
                 "tags": [
-                    "Assets & Events"
-                ]
-            }
-        },
-        "/archivist/v2/assets/{uuid}:publicurl": {
-            "get": {
-                "summary": "Retrieves the Asset public url",
-                "description": "Retrieves the public url for a specific Asset.",
-                "operationId": "Assets_GetAssetPublicURL",
-                "responses": {
-                    "200": {
-                        "description": "A successful response.",
-                        "schema": {
-                            "$ref": "#/definitions/v2PublicAssetURLResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Returned when the user is not authenticated to the system."
-                    },
-                    "403": {
-                        "description": "Returned when the user is not authorized to view an Asset."
-                    },
-                    "404": {
-                        "description": "Returned when the asset with the id does not exist."
-                    },
-                    "429": {
-                        "description": "Returned when a user exceeds their subscription's rate limit for requests."
-                    }
-                },
-                "parameters": [
-                    {
-                        "name": "uuid",
-                        "description": "Specify the Asset UUID where `assets/{uuid}` is the Asset Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f`",
-                        "in": "path",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "tags": [
-                    "Assets & Events"
+                    "Assets and Events"
                 ]
             }
         },
@@ -299,7 +349,7 @@
                         }
                     },
                     "206": {
-                        "description": "The number of Events exceeds the server's limit. The approximate number of matching results is provided by the x-total-count header, the exact limit is available in the content-range header. The value format is 'items 0-LIMIT/TOTAL'.  Note that x-total-count is always present for 200 and 206 responses. It is the servers best available approximation. Similarly, in any result set, you may get a few more than LIMIT items."
+                        "description": "The number of events exceeds the servers limit. The approximate number of matching results is provided by the x-total-count header, the exact limit is available in the content-range header. The value format is 'items 0-LIMIT/TOTAL'.  Note that x-total-count is always present for 200 and 206 responses. It is the servers best available approximation. Similarly, in any result set, you may get a few more than LIMIT items."
                     },
                     "401": {
                         "description": "Returned when the user is not authenticated to the system."
@@ -481,21 +531,21 @@
                         "type": "string"
                     },
                     {
-                        "name": "event_attributes[string]",
+                        "name": "event_attributes[string][string]",
                         "description": "user defined event_attributes key max_length: 1024 value max_length: 4096\n\nThis is a request variable of the map type. The query format is \"map_name[key]=value\", e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\"bob\"]=18",
                         "in": "query",
                         "required": false,
                         "type": "string"
                     },
                     {
-                        "name": "asset_attributes[string]",
+                        "name": "asset_attributes[string][string]",
                         "description": "user defined asset_attributes key max_length: 1024 value max_length: 4096\n\nThis is a request variable of the map type. The query format is \"map_name[key]=value\", e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\"bob\"]=18",
                         "in": "query",
                         "required": false,
                         "type": "string"
                     },
                     {
-                        "name": "asset.attributes[string]",
+                        "name": "asset.attributes[string][string]",
                         "description": "This is a request variable of the map type. The query format is \"map_name[key]=value\", e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\"bob\"]=18",
                         "in": "query",
                         "required": false,
@@ -556,7 +606,7 @@
                     }
                 ],
                 "tags": [
-                    "Assets & Events"
+                    "Assets and Events"
                 ]
             },
             "post": {
@@ -598,66 +648,20 @@
                     }
                 ],
                 "tags": [
-                    "Assets & Events"
+                    "Assets and Events"
                 ]
             }
         },
-        "/archivist/v2/assets/{asset_uuid}/events/{uuid}": {
+        "/archivist/v2/assets/{uuid}:publicurl": {
             "get": {
-                "summary": "Retrieves an Event",
-                "description": "Retrieves a specific Event",
-                "operationId": "Assets_GetEvent",
+                "summary": "Retrieves the public url for a specific Asset.",
+                "description": "Retrieves the public url for a specific Asset.",
+                "operationId": "Assets_GetAssetPublicURL",
                 "responses": {
                     "200": {
                         "description": "A successful response.",
                         "schema": {
-                            "$ref": "#/definitions/v2EventResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Returned when the user is not authenticated to the system."
-                    },
-                    "403": {
-                        "description": "Returned when the user is not authorized to view Event."
-                    },
-                    "404": {
-                        "description": "Returned when the event does not exist."
-                    },
-                    "429": {
-                        "description": "Returned when a user exceeds their subscription's rate limit for requests."
-                    }
-                },
-                "parameters": [
-                    {
-                        "name": "asset_uuid",
-                        "description": "Specify the Asset UUID where `assets/{asset_uuid}/events/{uuid}` is the Event Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
-                        "in": "path",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "uuid",
-                        "description": "Specify the Event UUID where `assets/{asset_uuid}/events/{uuid}` is the Event Identity e.g. `11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
-                        "in": "path",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "tags": [
-                    "Assets & Events"
-                ]
-            }
-        },
-        "/archivist/v2/assets/{asset_uuid}/events/{uuid}:publicurl": {
-            "get": {
-                "summary": "Retrieves the Event public url",
-                "description": "Retrieves the public url for a specific Event.",
-                "operationId": "Assets_GetEventPublicURL",
-                "responses": {
-                    "200": {
-                        "description": "A successful response.",
-                        "schema": {
-                            "$ref": "#/definitions/v2PublicEventURLResponse"
+                            "$ref": "#/definitions/v2PublicAssetURLResponse"
                         }
                     },
                     "401": {
@@ -675,22 +679,15 @@
                 },
                 "parameters": [
                     {
-                        "name": "asset_uuid",
-                        "description": "Specify the Asset UUID where `assets/{asset_uuid}/events/{uuid}` is the Event Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
-                        "in": "path",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
                         "name": "uuid",
-                        "description": "Specify the Event UUID where `assets/{asset_uuid}/events/{uuid}` is the Event Identity e.g. `11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f/events/11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000`",
+                        "description": "Specify the Asset UUID where `assets/{uuid}` is the Asset Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `assets/add30235-1424-4fda-840a-d5ef82c4c96f`",
                         "in": "path",
                         "required": true,
                         "type": "string"
                     }
                 ],
                 "tags": [
-                    "Assets & Events"
+                    "Assets and Events"
                 ]
             }
         }
@@ -753,7 +750,7 @@
         "ListEventsRequestAssetQuery": {
             "type": "object",
             "properties": {
-                "attributes[string]": {
+                "attributes[string][string]": {
                     "type": "object",
                     "additionalProperties": {
                         "type": "string"
